@@ -1,0 +1,2 @@
+ALTER TABLE "Contact"
+ADD COLUMN IF NOT EXISTS "replies" JSONB NOT NULL DEFAULT '[]'::jsonb;

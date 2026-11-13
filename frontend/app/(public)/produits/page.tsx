@@ -1,0 +1,21 @@
+import { Suspense } from "react";
+import Catalogue from "@/components/shop/Catalogue";
+
+export const metadata = { title: "Produits et équipements — MOAYE SERVICE" };
+
+export default function ProduitsPage() {
+  return (
+    <main>
+      <section className="page-hero catalogue-hero">
+        <div className="wrap stack" style={{ paddingTop: 44, paddingBottom: 44, gap: 12 }}>
+          <span className="tag">Produits</span>
+          <h1>Catalogue produits et équipements</h1>
+          <p>Aliments, animaux d&apos;élevage, équipements et matériel. Vous pouvez explorer le catalogue ; la validation des commandes en ligne n&apos;est pas encore activée.</p>
+        </div>
+      </section>
+      <Suspense fallback={<div className="wrap" aria-busy="true" />}>
+        <Catalogue />
+      </Suspense>
+    </main>
+  );
+}
