@@ -55,4 +55,10 @@ router.patch(
   contactController.updateContactStatus,
 );
 
+
+/**
+ * DELETE /api/contact/:id
+ * Suppression définitive réservée aux administrateurs.
+ */
+router.delete("/:id", requireAuth, requireRole("ADMIN"), contactController.deleteContact);
 export default router;

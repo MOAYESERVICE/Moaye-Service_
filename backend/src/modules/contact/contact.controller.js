@@ -169,3 +169,26 @@ export async function updateContactStatus(req, res, next) {
     next(error);
   }
 }
+
+/**
+ * DELETE /api/contact/:id
+ * Supprimer définitivement un message et ses réponses (ADMIN SEULEMENT).
+ */
+export async function deleteContact(req, res, next) {
+  try {
+    const id = Number(req.params.id);
+    if (!Number.isSafeInteger(id) || id <= 0) {
+      return res.status(400).json({ success: false, message: "Identifiant de conversation invalide." });
+    }
+
+    const contact = await prisma.contact.findUnique({ where: { id }, select: { id: true } });
+    if (!contact) return res.status(404).json({ success: false, message: "Conversation introuvable." });
+
+    await prisma.contact.delete({ where: { id } });
+    logger.info("Conversation supprimée par un administrateur", { contactId: id, adminId: req.user.id });
+    return res.json({ success: true, message: "Conversation et réponses supprimées." });
+  } catch (error) {
+    logger.error("Erreur suppression conversation", { error });
+    next(error);
+  }
+}

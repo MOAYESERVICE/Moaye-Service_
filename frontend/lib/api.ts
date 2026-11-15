@@ -628,6 +628,21 @@ export async function updateContactStatus(id: string, status: string): Promise<v
   }
 }
 
+// Admin: Supprimer définitivement une discussion et ses réponses.
+export async function deleteContactMessage(id: string | number): Promise<void> {
+  let response: Response;
+  try {
+    response = await fetchWithSession(`/api/contact/${encodeURIComponent(String(id))}`, {
+      method: "DELETE",
+      cache: "no-store",
+    });
+  } catch {
+    throw new Error("Impossible de supprimer cette discussion.");
+  }
+
+  const result = await response.json().catch(() => ({}));
+  if (!response.ok) throw new Error(result?.message || "La discussion n’a pas pu être supprimée.");
+}
 // Admin: Récupérer les demandes de devis
 export async function getQuotes(signal?: AbortSignal) {
   let response: Response;
