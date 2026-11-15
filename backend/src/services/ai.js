@@ -63,7 +63,7 @@ async function streamChat(messages, onText, signal) {
           { role: "system", content: SYSTEM_PROMPT },
           ...getGroqMessages(messages),
         ],
-        max_completion_tokens: 2048,
+        max_completion_tokens: 768,
         // Laisse l'assistant chercher uniquement quand la question le justifie.
         tools: [{ type: "browser_search" }],
       },
@@ -80,7 +80,7 @@ async function streamChat(messages, onText, signal) {
       model,
       instructions: SYSTEM_PROMPT,
       input: messages,
-      max_output_tokens: 1024,
+      max_output_tokens: 512,
       stream: true,
     },
     { signal }
