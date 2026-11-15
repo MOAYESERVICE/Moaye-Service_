@@ -18,9 +18,9 @@ const p = (n: keyof typeof photos) => photos[n];
 
 export const slides = [
   { domain: "Pisciculture et aquaculture", img: p(10), alt: "Cage flottante d'élevage de poissons avec passerelle en bois", title: "Cages flottantes pour l'élevage de poissons", cta: "Découvrir l'aquaculture", href: "/expertise" },
-  { domain: "Santé et suivi des animaux", img: p(5), alt: "Soins apportés à un bovin par un technicien", title: "Soins et suivi sanitaire des animaux", cta: "Découvrir nos services", href: "/#services" },
+  { domain: "Santé et suivi des animaux", img: p(5), alt: "Soins apportés à un bovin par un technicien", title: "Soins et suivi sanitaire des animaux", cta: "Voir le suivi sanitaire", href: "/services/suivi-technique-sanitaire" },
   { domain: "Enclos piscicoles", img: p(1), alt: "Équipe installant une cage piscicole flottante sur un plan d'eau", title: "Enclos installés sur plan d'eau", cta: "Découvrir les systèmes", href: "/expertise" },
-  { domain: "Formation et accompagnement", img: p(12), alt: "Un technicien montre un contrôle sanitaire à un éleveur sur le terrain", title: "Formation et encadrement des producteurs", cta: "Voir notre méthode", href: "/#services" },
+  { domain: "Formation et accompagnement", img: p(12), alt: "Un technicien montre un contrôle sanitaire à un éleveur sur le terrain", title: "Formation et encadrement des producteurs", cta: "Voir notre méthode", href: "/#methode" },
 ];
 
 export const assets = [
