@@ -12,9 +12,17 @@ export default function HistoryList({
 }) {
   return (
     <aside className="card chat-side" aria-label="Historique des conversations">
-      <button className="btn btn-green btn-sm" onClick={onNew}>+ Nouvelle discussion</button>
+      <div className="chat-side-heading">
+        <span>VOTRE ESPACE</span>
+        <h2>Discussions</h2>
+        <p>Retrouvez vos échanges avec l’assistant.</p>
+      </div>
+      <button className="chat-new-button" onClick={onNew}>
+        <span aria-hidden="true">＋</span>
+        Nouvelle discussion
+      </button>
       {conversations.length === 0 ? (
-        <p className="muted" style={{ fontSize: 14 }}>Aucune conversation pour l&apos;instant.</p>
+        <p className="chat-history-empty">Vos nouvelles conversations apparaîtront ici.</p>
       ) : (
         <div className="hist">
           {conversations.map((c) => (

@@ -56,6 +56,7 @@ export default function ChatWindow({
             <span>Conseils agro-pastoraux professionnels</span>
           </div>
         </div>
+        <span className="chat-presence"><i aria-hidden="true" />Assistant disponible</span>
         <QuoteFromChat messages={messages} />
       </div>
 
@@ -97,19 +98,22 @@ export default function ChatWindow({
 
       <div className="chat-input">
         <label htmlFor="chat-text" style={{ position: "absolute", width: 1, height: 1, overflow: "hidden", clip: "rect(0 0 0 0)" }}>Votre message</label>
-        <textarea
-          id="chat-text"
-          rows={1}
-          placeholder="Posez votre question…"
-          value={text}
-          onChange={(e) => setText(e.target.value)}
-          onKeyDown={(e) => {
-            if (e.key === "Enter" && !e.shiftKey) {
-              e.preventDefault();
-              submit();
-            }
-          }}
-        />
+        <div className="chat-input-field">
+          <textarea
+            id="chat-text"
+            rows={1}
+            placeholder="Posez votre question…"
+            value={text}
+            onChange={(e) => setText(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" && !e.shiftKey) {
+                e.preventDefault();
+                submit();
+              }
+            }}
+          />
+          <span>Entrée pour envoyer · Maj + Entrée pour revenir à la ligne</span>
+        </div>
         <button className="btn btn-amber" onClick={submit} disabled={loading || !text.trim()}>Envoyer</button>
       </div>
       <AiDisclaimer />
