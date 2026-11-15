@@ -113,12 +113,16 @@ export async function saveAdminProduct(product: AdminProductInput): Promise<Prod
   const url = isUpdate
     ? `/api/admin/products/${encodeURIComponent(product.id!)}`
     : "/api/admin/products";
+  // L'identifiant est déjà transmis dans l'URL. Le backend valide le corps
+  // avec un schéma strict qui n'accepte que les champs modifiables.
+  const productData = { ...product };
+  delete productData.id;
   let response: Response;
   try {
     response = await fetchWithSession(url, {
       method: isUpdate ? "PUT" : "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(product),
+      body: JSON.stringify(productData),
       cache: "no-store",
     });
   } catch {
