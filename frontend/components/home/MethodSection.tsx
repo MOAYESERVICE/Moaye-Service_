@@ -2,7 +2,7 @@ import { methodSteps } from "@/data/home";
 
 export default function MethodSection() {
   return (
-    <section className="section">
+    <section className="section" id="methode">
       <div className="wrap">
         <div className="head">
           <span className="eyebrow">Notre méthode</span>
