@@ -124,7 +124,7 @@ export default function AdminDevis() {
                 <td data-label="Client"><div className="pt-quote-client"><strong>{quote.contactName || "Client"}</strong>{quote.contactEmail && <a href={`mailto:${quote.contactEmail}`}>{quote.contactEmail}</a>}{quote.contactPhone && <a href={`tel:${quote.contactPhone}`}>{quote.contactPhone}</a>}</div></td>
                 <td data-label="Projet"><div className="pt-quote-project">{quote.location && <span>{quote.location}</span>}{quote.budgetRange && <span>Budget : {quote.budgetRange}</span>}<strong>{quote.price ? `${quote.price.toLocaleString("fr-FR")} FCFA` : "Montant à établir"}</strong></div></td>
                 <td data-label="Reçue le"><span className="pt-quote-date">{formatDate(quote.createdAt)}</span></td>
-                <td data-label="Statut"><StatusSelect label={`Statut du devis ${quote.id}`} value={quote.status} options={[...OPTIONS]} onChange={(value) => void handleStatusChange(quote.id, value)} /></td>
+                <td data-label="Statut"><div className={`pt-quote-status ${quote.status.toLowerCase()}`}><StatusSelect label={`Statut du devis ${quote.id}`} value={quote.status} options={[...OPTIONS]} onChange={(value) => void handleStatusChange(quote.id, value)} /></div></td>
               </tr>)}</tbody>
             </table>
           </div> : <div className="pt-quote-empty"><span aria-hidden="true">✓</span><strong>{q ? "Aucun résultat" : "Aucune demande pour le moment"}</strong><p>{q ? "Essaie un autre terme de recherche." : "Les nouveaux devis apparaîtront ici dès leur réception."}</p></div>}

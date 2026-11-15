@@ -744,3 +744,44 @@
 
 @media(max-width:700px){.pt-quote-live{font-size:0}}
 
+
+/* Couleur d’état toujours visible devant le menu de statut. */
+.pt-quote-status{display:inline-flex;align-items:center;gap:9px;min-width:0}
+.pt-quote-status::before{content:"";width:10px;height:10px;flex:none;border-radius:50%;background:currentColor;box-shadow:0 0 0 4px rgba(24,114,79,.12)}
+.pt-quote-status .pt-sel{border-color:currentColor;background-color:#fff;color:inherit;font-weight:650}
+.pt-quote-status.pending{color:#B85A16}
+.pt-quote-status.pending .pt-sel{background-color:#FFF8EE}
+.pt-quote-status.accepted{color:#18724F}
+.pt-quote-status.accepted .pt-sel{background-color:#F1F8F3}
+.pt-quote-status.rejected{color:#B23A34}
+.pt-quote-status.rejected .pt-sel{background-color:#FFF4F2}
+.pt-quote-status.expired{color:#65766D}
+.pt-quote-status.expired .pt-sel{background-color:#F3F6F4}
+@media(max-width:700px){.pt-quote-status{gap:8px}.pt-quote-status::before{width:9px;height:9px}.pt-quote-status .pt-sel{max-width:190px}}
+
+.pt-quote-status.pending::before{box-shadow:0 0 0 4px #FFF0DD}.pt-quote-status.rejected::before{box-shadow:0 0 0 4px #FBE5E2}.pt-quote-status.expired::before{box-shadow:0 0 0 4px #E9EEEB}
+
+/* Taille confortable et codes couleur du suivi des devis. */
+.pt-quote-stat>div span{font-size:16px}
+.pt-quote-stat>div strong{font-size:27px}
+.pt-quote-stat small{font-size:13px}
+.pt-quote-list-heading h3{font-size:21px}
+.pt-quote-list-heading p{font-size:14px}
+.pt-quote-table th{font-size:13px}
+.pt-quote-request>strong,.pt-quote-client>strong{font-size:17px}
+.pt-quote-id{font-size:13px}
+.pt-quote-request p{font-size:15px;line-height:1.55}
+.pt-quote-client a{font-size:14px}
+.pt-quote-project span{font-size:14px}
+.pt-quote-project strong{font-size:15px}
+.pt-quote-date{font-size:14px}
+.pt-quote-table .pt-sel{font-size:15px;min-height:44px}
+@media(max-width:700px){
+  .pt-quote-stat>div span{font-size:12.5px}
+  .pt-quote-stat small{font-size:11.5px}
+  .pt-quote-request>strong,.pt-quote-client>strong{font-size:15px}
+  .pt-quote-request p{font-size:13.5px}
+  .pt-quote-client a,.pt-quote-project span,.pt-quote-date{font-size:13px}
+  .pt-quote-project strong{font-size:13.5px}
+  .pt-quote-table .pt-sel{font-size:14px}
+}
