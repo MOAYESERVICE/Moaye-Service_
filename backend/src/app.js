@@ -12,6 +12,7 @@ import { env } from "./config/env.js"
 import { logger, httpLogger } from "./config/logger.js"
 import { errorHandler, wrap } from "./middlewares/errorHandler.js"
 import apiRouter from "./routes/index.js"
+import { handleWaveWebhook } from "./modules/payments/wave.controller.js"
 
 const app = express()
 const uploadsDirectory = path.resolve(
@@ -45,13 +46,6 @@ app.use(
   })
 )
 
-// ============================================
-// 2. PARSING ET LOGGING
-// ============================================
-
-// Parser JSON (max 64KB)
-app.use(express.json({ limit: "64kb" }))
-
 // Logger requêtes HTTP
 app.use(morgan("combined"))
 app.use(httpLogger)
@@ -75,6 +69,16 @@ const apiLimiter = rateLimit({
 
 // Rate limiting seulement sur /api
 app.use("/api", apiLimiter)
+
+// Wave signs the exact raw body; this route must run before the JSON parser.
+app.post(
+  "/api/payments/wave/webhook",
+  express.raw({ type: "application/json", limit: "64kb" }),
+  wrap(handleWaveWebhook),
+)
+
+// Parser JSON for the remaining API routes (max 64KB).
+app.use(express.json({ limit: "64kb" }))
 
 // ============================================
 // 4. ROUTES

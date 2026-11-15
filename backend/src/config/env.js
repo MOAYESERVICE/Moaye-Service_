@@ -17,6 +17,14 @@ const envSchema = z.object({
   JWT_SECRET: z.string().regex(/^[a-fA-F0-9]{64}$/),
 
   DATABASE_URL: z.string().min(1),
+
+  WAVE_API_KEY: z.preprocess((value) => value === "" ? undefined : value, z.string().optional()),
+  WAVE_REQUEST_SIGNING_SECRET: z.preprocess((value) => value === "" ? undefined : value, z.string().optional()),
+  WAVE_WEBHOOK_SECRET: z.preprocess((value) => value === "" ? undefined : value, z.string().optional()),
+  PUBLIC_FRONTEND_URL: z.preprocess(
+    (value) => value === "" ? undefined : value,
+    z.string().url().refine((value) => new URL(value).protocol === "https:", "PUBLIC_FRONTEND_URL doit utiliser HTTPS.").optional(),
+  ),
 })
 
 // Vérifie les réglages réellement chargés depuis .env

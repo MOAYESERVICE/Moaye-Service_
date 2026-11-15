@@ -274,7 +274,7 @@ export async function saveProfile(_data: ProfileData): Promise<void> {
 export async function sendOrder(
   _data: CheckoutData,
   cart: Record<string, number>,
-): Promise<string> {
+): Promise<{ orderId: string; checkoutUrl?: string }> {
   const items = Object.entries(cart).map(([id, quantity]) => ({
     productId: Number(id),
     quantity,
@@ -327,10 +327,16 @@ export async function sendOrder(
     throw new Error("Impossible de joindre le service de commande.");
   }
 
-  const data = await response.json().catch(() => null) as { data?: { id?: string | number }; message?: string } | null;
+  const data = await response.json().catch(() => null) as {
+    data?: { id?: string | number; checkoutUrl?: string };
+    message?: string;
+  } | null;
   if (!response.ok) throw new Error(data?.message || "Erreur création commande");
   if (data?.data?.id === undefined) throw new Error("Le backend n’a pas renvoyé la référence de commande.");
-  return String(data.data.id);
+  return {
+    orderId: String(data.data.id),
+    ...(data.data.checkoutUrl ? { checkoutUrl: data.data.checkoutUrl } : {}),
+  };
 }
 
 export async function sendQuote(_data: QuoteData & { summary?: string }): Promise<string> {

@@ -52,11 +52,15 @@ export default function CheckoutForm() {
   const onSubmit = async (data: CheckoutData) => {
     setStatus("idle");
     try {
-      const r = await sendOrder(
+      const result = await sendOrder(
         { ...data, phone: formatInternationalPhone(data.phone, phoneCode) },
         cart,
       );
-      setRef(r);
+      if (result.checkoutUrl) {
+        window.location.assign(result.checkoutUrl);
+        return;
+      }
+      setRef(result.orderId);
       setStatus("success");
       clear();
     } catch (error) {

@@ -4,8 +4,56 @@
  * Gère les commandes: création, récupération, modification
  */
 
+import { createHmac } from "node:crypto";
 import { prisma } from "../../config/database.js";
+import { env } from "../../config/env.js";
 import { logger } from "../../config/logger.js";
+
+async function createWaveCheckout({ orderId, amount }) {
+  const frontendUrl = env.PUBLIC_FRONTEND_URL;
+  if (!env.WAVE_API_KEY || !env.WAVE_REQUEST_SIGNING_SECRET || !env.WAVE_WEBHOOK_SECRET || !frontendUrl) {
+    throw Object.assign(new Error("Le paiement Wave n’est pas encore configuré."), { statusCode: 503 });
+  }
+
+  const baseUrl = frontendUrl.replace(/\/+$/, "");
+  const successUrl = new URL("/paiement/wave", baseUrl);
+  successUrl.searchParams.set("result", "success");
+  successUrl.searchParams.set("order", String(orderId));
+  const errorUrl = new URL("/paiement/wave", baseUrl);
+  errorUrl.searchParams.set("result", "cancelled");
+  errorUrl.searchParams.set("order", String(orderId));
+
+  const body = JSON.stringify({
+    amount: String(amount),
+    currency: "XOF",
+    client_reference: String(orderId),
+    success_url: successUrl.toString(),
+    error_url: errorUrl.toString(),
+  });
+  const timestamp = String(Math.floor(Date.now() / 1000));
+  const signature = createHmac("sha256", env.WAVE_REQUEST_SIGNING_SECRET)
+    .update(`${timestamp}${body}`)
+    .digest("hex");
+
+  const response = await fetch("https://api.wave.com/v1/checkout/sessions", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${env.WAVE_API_KEY}`,
+      "Content-Type": "application/json",
+      "Wave-Signature": `t=${timestamp},v1=${signature}`,
+    },
+    body,
+    signal: AbortSignal.timeout(10000),
+  });
+
+  const session = await response.json().catch(() => null);
+  if (!response.ok || typeof session?.id !== "string" || typeof session?.wave_launch_url !== "string") {
+    logger.error("Échec de création de session Wave", { status: response.status });
+    throw Object.assign(new Error("Wave n’a pas pu démarrer le paiement. Réessayez."), { statusCode: 502 });
+  }
+
+  return session;
+}
 
 /**
  * POST /api/orders
@@ -24,6 +72,13 @@ export async function createOrder(req, res, next) {
 
     // Utiliser les données validées plutôt que req.body
     const { shippingAddress, shippingCity, shippingZip, shippingPhone, paymentMethod } = req.validated;
+
+    if (paymentMethod === "WAVE" && (!env.WAVE_API_KEY || !env.WAVE_REQUEST_SIGNING_SECRET || !env.WAVE_WEBHOOK_SECRET || !env.PUBLIC_FRONTEND_URL)) {
+      return res.status(503).json({
+        success: false,
+        message: "Le paiement Wave n’est pas encore configuré. Choisissez un autre mode ou réessayez plus tard.",
+      });
+    }
 
     logger.info(`📦 Création commande pour utilisateur ${userId}`);
 
@@ -63,10 +118,10 @@ export async function createOrder(req, res, next) {
       });
     }
 
-    logger.info(`💰 Total commande: ${totalPrice} centimes`);
+    logger.info(`💰 Total commande: ${totalPrice} FCFA`);
 
     // Créer la commande avec ses articles et les informations de livraison/paiement
-    const order = await prisma.order.create({
+    let order = await prisma.order.create({
       data: {
         userId,
         shippingAddress,
@@ -79,6 +134,15 @@ export async function createOrder(req, res, next) {
         items: {
           create: orderItems,
         },
+        ...(paymentMethod === "WAVE" ? {
+          payment: {
+            create: {
+              amount: totalPrice,
+              method: "WAVE",
+              status: "PENDING",
+            },
+          },
+        } : {}),
       },
       include: {
         items: {
@@ -96,17 +160,35 @@ export async function createOrder(req, res, next) {
       },
     });
 
-    // Vider le panier après création commande
-    await prisma.cartItem.deleteMany({
-      where: { cartId: cart.id },
-    });
+    let checkoutUrl;
+    if (paymentMethod === "WAVE") {
+      try {
+        const session = await createWaveCheckout({ orderId: order.id, amount: totalPrice });
+        await prisma.payment.update({
+          where: { orderId: order.id },
+          data: { providerPaymentId: session.id },
+        });
+        checkoutUrl = session.wave_launch_url;
+      } catch (error) {
+        await prisma.payment.update({
+          where: { orderId: order.id },
+          data: { status: "FAILED" },
+        }).catch(() => {});
+        throw error;
+      }
+    }
+
+    // Keep the cart until Wave confirms the payment; manual orders keep the existing flow.
+    if (paymentMethod !== "WAVE") {
+      await prisma.cartItem.deleteMany({ where: { cartId: cart.id } });
+    }
 
     logger.info(`✅ Commande créée: ${order.id}`);
 
     res.status(201).json({
       success: true,
       message: "Commande créée avec succès",
-      data: order,
+      data: { ...order, ...(checkoutUrl ? { checkoutUrl } : {}) },
     });
   } catch (error) {
     logger.error(`❌ Erreur création commande: ${error.message}`);
