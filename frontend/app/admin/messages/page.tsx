@@ -111,6 +111,9 @@ export default function AdminMessages() {
       await updateContactStatus(key, newStatus);
       setMessages((current) => current.map((item) => String(item.id) === key ? { ...item, status: newStatus as MessageStatus } : item));
       threadListRef.current?.scrollTo({ top: 0 });
+      window.requestAnimationFrame(() => {
+        document.querySelector<HTMLElement>(".pt-message-inbox")?.scrollIntoView({ block: "start", behavior: "smooth" });
+      });
       if (newStatus === "RESOLVED" || message.status === "RESOLVED") {
         setFilter("ACTIVE");
         setMobileDetailOpen(false);
