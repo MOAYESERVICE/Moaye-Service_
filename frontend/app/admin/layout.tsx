@@ -5,6 +5,7 @@ import TopBar from "@/components/admin/TopBar";
 import ToastBar from "@/components/admin/ToastBar";
 
 export const metadata = { title: "Administration — MOAYE SERVICES" };
+export const dynamic = "force-dynamic";
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   return (
