@@ -785,3 +785,17 @@
   .pt-quote-project strong{font-size:13.5px}
   .pt-quote-table .pt-sel{font-size:14px}
 }
+
+/* Action de fermeture et d’archivage des conversations admin. */
+.pt-message-management{display:flex;align-items:center;justify-content:flex-end;gap:10px;min-width:0}
+.pt-message-close{display:inline-flex;min-height:38px;align-items:center;justify-content:center;padding:0 13px;border:1px solid #E7CDBD;border-radius:10px;background:#FFF8F4;color:#9B4925;font:inherit;font-size:12px;font-weight:650;white-space:nowrap;cursor:pointer;transition:background .15s ease,border-color .15s ease}
+.pt-message-close:hover:not(:disabled){border-color:#D99A79;background:#FFF0E8}
+.pt-message-close:focus-visible{outline:2px solid #B85A16;outline-offset:2px}
+.pt-message-close:disabled{opacity:.55;cursor:wait}
+.pt-message-close.reopen{border-color:#C8DED0;background:#F0F7F2;color:#1B6B57}
+.pt-message-close.reopen:hover:not(:disabled){border-color:#75A991;background:#E4F1E9}
+.pt-message-card.is-resolved{border-left:4px solid #78A58D}
+@media(max-width:700px){
+  .pt-message-management{width:100%;align-items:stretch;flex-direction:column;gap:9px}
+  .pt-message-close{width:100%;min-height:42px}
+}

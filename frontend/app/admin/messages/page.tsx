@@ -21,7 +21,7 @@ type ContactMessage = {
 };
 
 type MessageStatus = ContactMessage["status"];
-type Filter = "ALL" | MessageStatus;
+type Filter = "ACTIVE" | "ALL" | MessageStatus;
 
 const STATUS_OPTIONS = [
   { id: "NEW", label: "Nouveau" },
@@ -30,10 +30,11 @@ const STATUS_OPTIONS = [
 ];
 
 const FILTERS: { id: Filter; label: string }[] = [
-  { id: "ALL", label: "Tous" },
+  { id: "ACTIVE", label: "Actifs" },
   { id: "NEW", label: "Nouveaux" },
   { id: "VIEWED", label: "En cours" },
-  { id: "RESOLVED", label: "Résolus" },
+  { id: "RESOLVED", label: "Fermés" },
+  { id: "ALL", label: "Tous" },
 ];
 
 const STATUS_TONE: Record<MessageStatus, "in" | "pr" | "out" | "n"> = {
@@ -63,7 +64,7 @@ function formatDate(value: string) {
 export default function AdminMessages() {
   const { q, flash } = useAdmin();
   const [messages, setMessages] = useState<ContactMessage[]>([]);
-  const [filter, setFilter] = useState<Filter>("ALL");
+  const [filter, setFilter] = useState<Filter>("ACTIVE");
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -107,13 +108,14 @@ export default function AdminMessages() {
 
   const counts = useMemo(() => ({
     ALL: messages.length,
+    ACTIVE: messages.filter((message) => message.status !== "RESOLVED").length,
     NEW: messages.filter((message) => message.status === "NEW").length,
     VIEWED: messages.filter((message) => message.status === "VIEWED").length,
     RESOLVED: messages.filter((message) => message.status === "RESOLVED").length,
   }), [messages]);
 
   const filteredMessages = messages.filter((message) => {
-    const matchesStatus = filter === "ALL" || message.status === filter;
+    const matchesStatus = filter === "ALL" || (filter === "ACTIVE" ? message.status !== "RESOLVED" : message.status === filter);
     const matchesSearch = norm(q) === "" ||
       norm(`${message.subject} ${message.name} ${message.email} ${message.phone ?? ""} ${message.message}`).includes(norm(q));
     return matchesStatus && matchesSearch;
@@ -179,7 +181,7 @@ export default function AdminMessages() {
           <div className="pt-message-stat pt-message-stat-total"><span>Total reçu</span><strong>{counts.ALL}</strong></div>
           <div className="pt-message-stat"><span>À traiter</span><strong>{counts.NEW}</strong></div>
           <div className="pt-message-stat"><span>En cours</span><strong>{counts.VIEWED}</strong></div>
-          <div className="pt-message-stat"><span>Résolus</span><strong>{counts.RESOLVED}</strong></div>
+          <div className="pt-message-stat"><span>Fermés</span><strong>{counts.RESOLVED}</strong></div>
         </section>
 
         <section className="pt-message-inbox" aria-label="Liste des messages de contact">
@@ -217,8 +219,8 @@ export default function AdminMessages() {
               <span className="pt-message-empty-icon" aria-hidden="true">
                 <svg viewBox="0 0 48 48"><rect x="7" y="11" width="34" height="26" rx="5" /><path d="m9 15 15 12 15-12" /></svg>
               </span>
-              <h3>{messages.length === 0 ? "Votre boîte de réception est vide" : "Aucun message dans ce filtre"}</h3>
-              <p>{messages.length === 0 ? "Les demandes envoyées depuis le site apparaîtront ici." : "Essayez un autre statut ou modifiez votre recherche."}</p>
+              <h3>{messages.length === 0 ? "Votre boîte de réception est vide" : filter === "ACTIVE" ? "Aucune discussion active" : filter === "RESOLVED" ? "Aucune discussion fermée" : "Aucun message dans ce filtre"}</h3>
+              <p>{messages.length === 0 ? "Les demandes envoyées depuis le site apparaîtront ici." : filter === "ACTIVE" ? "Les discussions fermées restent disponibles dans le filtre « Fermés »." : filter === "RESOLVED" ? "Les discussions fermées apparaîtront ici." : "Essayez un autre statut ou modifiez votre recherche."}</p>
               {filter !== "ALL" && <button className="pt-message-filter active" type="button" onClick={() => setFilter("ALL")}>Afficher tous les messages</button>}
             </div>
           )}
@@ -251,14 +253,24 @@ export default function AdminMessages() {
                       <a href={`mailto:${message.email}`}>{message.email}</a>
                       {message.phone && <a href={`tel:${message.phone}`}>{message.phone}</a>}
                     </div>
-                    <div className="pt-message-status-control">
-                      <span>{pendingId === String(message.id) ? "Enregistrement…" : "Suivi"}</span>
-                      <StatusSelect
-                        label={`Statut du message de ${message.name}`}
-                        value={message.status}
-                        options={STATUS_OPTIONS}
-                        onChange={(value) => void handleStatusChange(message.id, value)}
-                      />
+                    <div className="pt-message-management">
+                      <div className="pt-message-status-control">
+                        <span>{pendingId === String(message.id) ? "Enregistrement…" : "Suivi"}</span>
+                        <StatusSelect
+                          label={`Statut du message de ${message.name}`}
+                          value={message.status}
+                          options={STATUS_OPTIONS}
+                          onChange={(value) => { if (value === "RESOLVED") setFilter("ACTIVE"); void handleStatusChange(message.id, value); }}
+                        />
+                      </div>
+                      <button
+                        type="button"
+                        className={`pt-message-close${message.status === "RESOLVED" ? " reopen" : ""}`}
+                        disabled={pendingId === String(message.id)}
+                        onClick={() => { setFilter("ACTIVE"); void handleStatusChange(message.id, message.status === "RESOLVED" ? "VIEWED" : "RESOLVED"); }}
+                      >
+                        {message.status === "RESOLVED" ? "Rouvrir" : "Fermer la discussion"}
+                      </button>
                     </div>
                   </div>
                 </article>
