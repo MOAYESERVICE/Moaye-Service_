@@ -637,3 +637,74 @@
   .pt-quote-request>strong{font-size:12.5px}
   .pt-quote-request p{font-size:11px}
 }
+
+/* Portfolio admin: gestion des réalisations, avec éditeur dédié. */
+.pt-realisation-manager{display:flex;flex-direction:column;gap:18px;min-width:0}
+.pt-realisation-list-panel{overflow:hidden;padding:0;border-radius:18px}
+.pt-realisation-list-heading{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:24px;border-bottom:1px solid #E7EEE9;background:linear-gradient(110deg,#F7FAF8,#fff)}
+.pt-realisation-list-heading h2,.pt-realisation-form-heading h2{margin:4px 0 5px;color:#12342F;font-size:clamp(21px,2.2vw,28px);letter-spacing:-.025em;line-height:1.2}
+.pt-realisation-list-heading p,.pt-realisation-form-heading p{margin:0;color:#71847B;font-size:13px;line-height:1.5}
+.pt-realisation-eyebrow{color:#1B6B57;font-size:10px;font-weight:750;letter-spacing:.13em}
+.pt-realisation-list-heading>.btn{min-height:44px;white-space:nowrap}
+.pt-realisation-list{display:flex;flex-direction:column;gap:12px;padding:18px 22px}
+.pt-realisation-card{display:grid;grid-template-columns:minmax(170px,220px) minmax(0,1fr);gap:20px;align-items:center;padding:14px;border:1px solid #E4ECE6;border-radius:15px;background:#fff;transition:border-color .15s ease,box-shadow .15s ease}
+.pt-realisation-card:hover{border-color:#C8DAD0;box-shadow:0 7px 22px rgba(14,42,38,.06)}
+.pt-realisation-image,.pt-realisation-image-placeholder{display:block;width:100%;height:138px;border-radius:11px;background:#F1F5F2;object-fit:cover}
+.pt-realisation-card-content{display:flex;min-width:0;flex-direction:column;align-items:flex-start;gap:7px}
+.pt-realisation-card-title{display:flex;width:100%;align-items:center;justify-content:space-between;gap:12px}
+.pt-realisation-card-title>strong{color:#173B32;font-size:16px;line-height:1.4}
+.pt-realisation-card-title .pt-bd{flex:none}
+.pt-realisation-card-meta{font-size:12px}
+.pt-realisation-card-description{display:-webkit-box;overflow:hidden;color:#586F65;font-size:13px;line-height:1.5;-webkit-box-orient:vertical;-webkit-line-clamp:2}
+.pt-realisation-card-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:3px}
+.pt-realisation-card-actions .btn{min-height:38px;padding:0 15px;font-size:12px}
+.pt-realisation-state{padding:22px 24px}
+.pt-realisation-form{scroll-margin-top:20px;overflow:hidden;padding:0;border:1px solid #DCE8E1;border-radius:19px;box-shadow:0 14px 38px rgba(14,42,38,.07)}
+.pt-realisation-form-heading{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;padding:24px 28px;background:linear-gradient(110deg,#F5F9F6,#fff);border-bottom:1px solid #E6EEE8}
+.pt-realisation-form-heading .btn{flex:none;min-height:40px}
+.pt-realisation-form-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 24px;padding:26px 28px}
+.pt-realisation-form-fields .fgroup{min-width:0;gap:8px}
+.pt-realisation-form-fields .fgroup>label{color:#183B32;font-size:13px;font-weight:650}
+.pt-realisation-form-fields .inp{min-height:46px;border-radius:10px;font-size:14px}
+.pt-realisation-form-fields textarea.inp{min-height:135px;resize:vertical;line-height:1.5}
+.pt-realisation-description-field,.pt-realisation-upload{grid-column:1/-1}
+.pt-realisation-form-fields input[type="file"]{width:100%;padding:9px;border:1px solid #D5E2DA;border-radius:10px;background:#fff;color:#52685F;font:inherit;font-size:12px}
+.pt-realisation-form-fields input[type="file"]::file-selector-button{margin-right:10px;padding:9px 13px;border:0;border-radius:8px;background:#E4F0E9;color:#165B49;font:inherit;font-size:12px;font-weight:650;cursor:pointer}
+.pt-realisation-form-preview{display:block;width:100%;max-height:250px;border:1px solid #E1EAE4;border-radius:12px;background:#F8FAF8;object-fit:contain}
+.pt-realisation-publish{grid-column:1/-1;display:flex;align-items:flex-start;gap:11px;padding:14px;border:1px solid #E1EAE4;border-radius:12px;background:#F8FAF8;cursor:pointer}
+.pt-realisation-publish input{width:18px;height:18px;margin:2px 0 0;accent-color:#1B6B57;flex:none}
+.pt-realisation-publish span{display:flex;flex-direction:column;gap:3px}
+.pt-realisation-publish strong{color:#183B32;font-size:13px}
+.pt-realisation-publish small{color:#71847B;font-size:11px}
+.pt-realisation-form-error{margin:0 28px}
+.pt-realisation-form-footer{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:17px 28px;border-top:1px solid #E6EEE8;background:#FCFDFC}
+.pt-realisation-form-footer>span{color:#71847B;font-size:11px}
+.pt-realisation-form-footer>div{display:flex;flex-wrap:wrap;gap:9px}
+.pt-realisation-form-footer .btn{min-height:42px}
+@media(max-width:700px){
+  .pt-realisation-manager{gap:14px}
+  .pt-realisation-list-panel{border-radius:15px}
+  .pt-realisation-list-heading{align-items:flex-start;flex-direction:column;padding:18px;gap:13px}
+  .pt-realisation-list-heading h2,.pt-realisation-form-heading h2{font-size:21px}
+  .pt-realisation-list-heading>.btn{width:100%}
+  .pt-realisation-list{gap:11px;padding:12px}
+  .pt-realisation-card{grid-template-columns:minmax(0,1fr);gap:12px;padding:11px;border-radius:13px}
+  .pt-realisation-image,.pt-realisation-image-placeholder{height:auto;aspect-ratio:16/9;border-radius:10px}
+  .pt-realisation-card-content{gap:6px;padding:0 2px 2px}
+  .pt-realisation-card-title{align-items:flex-start}
+  .pt-realisation-card-title>strong{font-size:14px}
+  .pt-realisation-card-description{font-size:12px;line-height:1.5}
+  .pt-realisation-card-actions{width:100%;margin-top:5px}
+  .pt-realisation-card-actions .btn{flex:1;min-height:42px}
+  .pt-realisation-form{border-radius:15px}
+  .pt-realisation-form-heading{flex-direction:column;padding:19px;gap:12px}
+  .pt-realisation-form-heading .btn{align-self:flex-start}
+  .pt-realisation-form-fields{grid-template-columns:minmax(0,1fr);gap:16px;padding:19px}
+  .pt-realisation-description-field,.pt-realisation-upload,.pt-realisation-publish{grid-column:auto}
+  .pt-realisation-form-fields textarea.inp{min-height:120px}
+  .pt-realisation-form-preview{max-height:210px}
+  .pt-realisation-form-error{margin:0 19px}
+  .pt-realisation-form-footer{align-items:stretch;flex-direction:column;padding:16px 19px}
+  .pt-realisation-form-footer>div{display:grid;grid-template-columns:1fr}
+  .pt-realisation-form-footer .btn{width:100%}
+}
