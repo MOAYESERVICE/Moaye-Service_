@@ -826,12 +826,13 @@
 .pt-thread-subject-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 20px;background:#F8FAF8;border-bottom:1px solid #EDF2EE}
 .pt-thread-subject-bar strong{color:#21473C;font-size:13px}
 .pt-thread-subject-bar span{color:#82918A;font-size:10px}
-.pt-thread-history{display:flex;min-height:220px;max-height:390px;flex:1;flex-direction:column;gap:11px;overflow-y:auto;padding:20px;background:#FAFCFB}
-.pt-thread-bubble{max-width:min(80%,620px);padding:12px 14px;border:1px solid #E1EAE4;border-radius:14px 14px 14px 4px;background:#fff;color:#36564B}
-.pt-thread-bubble.from-admin{align-self:flex-end;border-color:#B9DCC8;border-radius:14px 14px 4px 14px;background:#E3EFE8;color:#12342F}
-.pt-thread-bubble p{margin:0;overflow-wrap:anywhere;white-space:pre-wrap;font-size:13px;line-height:1.55}
-.pt-thread-bubble small{display:block;margin-top:7px;color:#82918A;font-size:10px}
-.pt-thread-bubble.from-admin small{color:#557166}
+.pt-thread-history{display:flex;min-height:220px;max-height:390px;flex:1;flex-direction:column;gap:14px;overflow-y:auto;padding:20px;background:#F7F9F7}
+.pt-thread-bubble{max-width:min(82%,680px);padding:15px 18px;border:1px solid #DCE8E1;border-radius:18px 18px 18px 5px;background:#E3EFE8;color:#12342F}
+.pt-thread-bubble.from-client{align-self:flex-end;border-color:#D6E5DC;border-radius:18px 18px 5px 18px;background:var(--mist);color:#12342F}
+.pt-thread-bubble.from-admin{align-self:flex-start;border-color:#C8DED1;border-radius:18px 18px 18px 5px;background:#E3EFE8;color:#12342F}
+.pt-thread-bubble p{margin:0;overflow-wrap:anywhere;white-space:pre-wrap;font-size:15px;line-height:1.65}
+.pt-thread-bubble small{display:block;margin-top:8px;color:#557166;font-size:11px}
+.pt-thread-bubble.from-client small{color:#647A70}
 .pt-thread-composer{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:10px;margin:0;padding:13px 16px;border-top:1px solid #E7EEE9;background:#fff}
 .pt-thread-composer textarea.inp{width:100%;min-height:56px;height:56px;max-height:150px;padding:12px 14px;border-radius:12px;font-size:13px;line-height:1.45;resize:vertical}
 .pt-thread-composer .btn{min-height:44px;padding:0 18px;border-radius:11px;font-size:13px}
@@ -862,9 +863,9 @@
   .pt-thread-header>.pt-bd{font-size:10px;padding:4px 8px}
   .pt-thread-back{display:inline-flex;flex:none;align-items:center;min-height:36px;padding:0 9px;border:1px solid #DCE8E1;border-radius:9px;background:#fff;color:#31584C;font:inherit;font-size:11px;font-weight:650}
   .pt-thread-subject-bar{align-items:flex-start;flex-direction:column;gap:4px;padding:10px 13px}
-  .pt-thread-history{min-height:180px;max-height:none;padding:13px}
-  .pt-thread-bubble{max-width:92%;padding:10px 12px}
-  .pt-thread-bubble p{font-size:12px}
+  .pt-thread-history{min-height:180px;max-height:none;gap:12px;padding:14px}
+  .pt-thread-bubble{max-width:96%;padding:12px 14px}
+  .pt-thread-bubble p{font-size:14px}
   .pt-thread-composer{grid-template-columns:minmax(0,1fr);gap:8px;padding:11px}
   .pt-thread-composer textarea.inp{min-height:52px;height:52px;font-size:13px}
   .pt-thread-composer .btn{width:100%;min-height:42px}
