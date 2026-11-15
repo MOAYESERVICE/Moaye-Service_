@@ -460,20 +460,31 @@ textarea.inp{padding:12px 16px;min-height:150px;resize:vertical;line-height:1.5}
 .site-loading-status>span:last-child{color:#718179}
 @media(max-width:620px){
   .site-loading{padding:24px 18px}
-  .site-loading-content{width:min(100%,420px);grid-template-columns:minmax(100px,.9fr) minmax(0,1.1fr);column-gap:12px;row-gap:24px}
+  .site-loading-content{width:min(100%,420px);grid-template-columns:minmax(100px,.8fr) minmax(0,1.2fr);column-gap:12px;row-gap:22px}
   .site-loading-brand .logo-lockup{gap:6px}
   .site-loading-brand .logo-mark{width:34px;height:42px}
   .site-loading-brand .logo-wordmark{gap:3px}
   .site-loading-brand .logo-name{font-size:clamp(17px,5vw,21px)}
   .site-loading-brand .logo-service{font-size:8px;letter-spacing:.18em}
-  .site-loading-copy{min-width:0;padding:5px 0 5px 12px}
-  .site-loading-eyebrow{margin-bottom:10px;font-size:clamp(7px,2vw,9px);letter-spacing:.045em;line-height:1.5}
+  .site-loading-copy{min-width:0;padding:5px 0 5px 12px;border-left:2px solid #C6D8CE}
+  .site-loading-eyebrow{margin-bottom:9px;font-size:clamp(8px,2.3vw,10px);letter-spacing:.035em;line-height:1.45}
   .site-loading-eyebrow span{padding:0 1px}
-  .site-loading-message{font-size:clamp(19px,5.6vw,24px);line-height:1.13;letter-spacing:-.035em}
-  .site-loading-message span{display:block;margin-top:3px;font-size:.78em;letter-spacing:-.02em;overflow-wrap:anywhere}
-  .site-loading-description{margin-top:9px;font-size:12px;line-height:1.45}
-  .site-loading-status{margin-top:0;font-size:12px}
+  .site-loading-message{font-size:clamp(16px,4.8vw,21px);line-height:1.18;letter-spacing:-.035em}
+  .site-loading-message span{display:block;margin-top:3px;font-size:.8em;letter-spacing:-.02em;overflow-wrap:anywhere}
+  .site-loading-description{margin-top:8px;font-size:clamp(11px,3.2vw,13px);line-height:1.4}
+  .site-loading-status{margin-top:0;font-size:clamp(11px,3.2vw,12px)}
   .site-loading-spinner{width:21px;height:21px}
+}
+@media(max-width:360px){
+  .site-loading{padding-right:14px;padding-left:14px}
+  .site-loading-content{grid-template-columns:minmax(92px,.75fr) minmax(0,1.25fr);column-gap:8px;row-gap:18px}
+  .site-loading-brand .logo-lockup{gap:4px}
+  .site-loading-brand .logo-mark{width:30px;height:38px}
+  .site-loading-brand .logo-name{font-size:16px}
+  .site-loading-brand .logo-service{font-size:7px}
+  .site-loading-copy{padding-left:9px}
+  .site-loading-eyebrow{font-size:8px}
+  .site-loading-message{font-size:16px}
 }
 @media(prefers-reduced-motion:reduce){.site-loading-spinner{animation:none}}
 /* Auth */
