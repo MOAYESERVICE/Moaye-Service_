@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { DM_Sans, Poppins } from "next/font/google";
+import InitialPageLoader from "./InitialPageLoader";
 import "./globals.css";
 
 const bodyFont = Poppins({
@@ -22,7 +23,10 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="fr">
-      <body className={`${bodyFont.variable} ${displayFont.variable}`}>{children}</body>
+      <body className={`${bodyFont.variable} ${displayFont.variable}`}>
+        <InitialPageLoader />
+        {children}
+      </body>
     </html>
   );
 }
