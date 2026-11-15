@@ -8,7 +8,7 @@ export default function ImageUploader({ value, onChange, label = "Photo du produ
   const [uploadError, setUploadError] = useState("");
 
   return (
-    <div className="fgroup">
+    <div className="fgroup pt-image-uploader">
       <label htmlFor="photo">{label}</label>
       <input
         id="photo"
@@ -31,10 +31,10 @@ export default function ImageUploader({ value, onChange, label = "Photo du produ
           }
         }}
       />
-      {value && <Image src={value} alt="Aperçu" width={96} height={96} unoptimized style={{ objectFit: "cover", borderRadius: 12 }} />}
+      {value && <Image className="pt-image-uploader-preview" src={value} alt="Aperçu de la photo" width={520} height={300} unoptimized />}
       {uploading && <span className="muted" role="status">Envoi de l’image…</span>}
       {uploadError && <span className="err" role="alert">{uploadError}</span>}
-      <span className="muted" style={{ fontSize: 13 }}>Formats acceptés : PNG, JPG ou WEBP, jusqu’à 5 Mo.</span>
+      <span className="muted pt-image-uploader-hint">Formats acceptés : PNG, JPG ou WEBP, jusqu’à 5 Mo.</span>
     </div>
   );
 }
