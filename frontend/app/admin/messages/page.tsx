@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import RoleGuard from "@/components/admin/RoleGuard";
 import StatusSelect from "@/components/admin/StatusSelect";
 import Pill from "@/components/portal/Pill";
@@ -47,6 +47,7 @@ function formatDate(value: string) {
 export default function AdminMessages() {
   const { q, flash } = useAdmin();
   const [messages, setMessages] = useState<ContactMessage[]>([]);
+  const threadListRef = useRef<HTMLElement | null>(null);
   const [filter, setFilter] = useState<Filter>("ACTIVE");
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [mobileDetailOpen, setMobileDetailOpen] = useState(false);
@@ -109,6 +110,7 @@ export default function AdminMessages() {
     try {
       await updateContactStatus(key, newStatus);
       setMessages((current) => current.map((item) => String(item.id) === key ? { ...item, status: newStatus as MessageStatus } : item));
+      threadListRef.current?.scrollTo({ top: 0 });
       if (newStatus === "RESOLVED" || message.status === "RESOLVED") {
         setFilter("ACTIVE");
         setMobileDetailOpen(false);
@@ -188,7 +190,7 @@ export default function AdminMessages() {
           {!loading && !error && filteredMessages.length === 0 && <div className="pt-message-empty"><span className="pt-message-empty-icon" aria-hidden="true"><svg viewBox="0 0 48 48"><rect x="7" y="11" width="34" height="26" rx="5" /><path d="m9 15 15 12 15-12" /></svg></span><h3>{messages.length ? "Aucune conversation dans ce filtre" : "Votre boîte de réception est vide"}</h3><p>{messages.length ? "Choisissez un autre filtre ou modifiez votre recherche." : "Les demandes envoyées depuis le site apparaîtront ici."}</p></div>}
 
           {!loading && !error && filteredMessages.length > 0 && <div className={`pt-message-workspace${mobileDetailOpen ? " mobile-detail-open" : ""}`}>
-            <nav className="pt-thread-list" aria-label="Conversations clients">
+            <nav ref={threadListRef} className="pt-thread-list" aria-label="Conversations clients">
               {filteredMessages.map((message) => {
                 const lastReply = message.replies?.[message.replies.length - 1];
                 const preview = lastReply?.message ?? message.message;
