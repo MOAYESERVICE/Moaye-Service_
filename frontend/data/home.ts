@@ -11,7 +11,7 @@ const photos = {
   10: "/photos/floating-cages.webp",
   11: "/photos/fish-net-harvest.webp",
   12: "/photos/cattle-health-check.webp",
-  13: "/photos/poultry-farming.webp",
+  13: "/photos/formation-producteurs.png",
 } as const;
 
 const p = (n: keyof typeof photos) => photos[n];
@@ -91,7 +91,7 @@ export const projects = [
   { slug: "installation-en-plan-deau", img: p(2), alt: "Technicien dans l'eau près d'un enclos et d'un équipement", domain: "Aquaculture", title: "Installation en plan d'eau", desc: "Mise en place et entretien des équipements directement sur le site d'élevage." },
   { slug: "suivi-elevage-avicole", img: p(7), alt: "Poussins dans un bâtiment d'élevage avicole", domain: "Aviculture", title: "Suivi d'un élevage avicole", desc: "Conception du bâtiment, conseils d'alimentation et suivi technique." },
   { slug: "suivi-sanitaire-betail", img: p(5), alt: "Soins apportés à un bovin par un technicien", domain: "Élevage", title: "Soins et suivi sanitaire du bétail", desc: "Interventions techniques sur le terrain auprès des éleveurs." },
-  { slug: "formation-producteurs", img: p(13), alt: "Producteurs au travail dans un bâtiment d'élevage avicole lors d'un accompagnement de terrain", domain: "Accompagnement", title: "Formation de producteurs", desc: "Sessions de formation et d'encadrement des équipes sur le terrain." },
+  { slug: "formation-producteurs", img: p(13), alt: "Des producteurs réunis en séance de formation et d'accompagnement technique", domain: "Accompagnement", title: "Formation de producteurs", desc: "Sessions de formation et d'encadrement des équipes sur le terrain." },
 ];
 
 export const partners = ["IRC", "GIZ", "PAPC", "SOCODEVI", "PNUD-CI", "PAPSE"];
