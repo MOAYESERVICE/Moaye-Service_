@@ -98,10 +98,10 @@ export const values = [
 ];
 
 export const faq = [
-  { q: "Comment se déroule un projet avec MOAYE SERVICES ?", a: "Nous partons de l'analyse de vos besoins, puis nous étudions, concevons et planifions le projet, mettons en place les installations et assurons le suivi technique." },
-  { q: "Comment préparer une demande de devis ?", a: "Le formulaire permet de décrire votre projet. Son envoi en ligne n'est pas encore activé." },
-  { q: "Puis-je commander des produits en ligne ?", a: "Vous pouvez consulter le catalogue et préparer votre panier. La validation et l'envoi des commandes en ligne ne sont pas encore activés." },
-  { q: "L'assistant de projet est-il disponible ?", a: "Oui, vous pouvez lui poser vos questions pour préciser votre projet. Ses recommandations restent indicatives et peuvent nécessiter la validation d'un expert." },
+  { q: "Comment se déroule un projet avec MOAYE SERVICES ?", a: "Chaque accompagnement commence par l’analyse de vos besoins, de vos objectifs et de vos contraintes. Nous étudions ensuite les conditions du projet, préparons une proposition technique et budgétaire, puis planifions sa mise en œuvre. Selon la mission retenue, notre équipe peut assurer l’installation, le démarrage et le suivi technique." },
+  { q: "Comment préparer une demande de devis ?", a: "Remplissez le formulaire de demande en précisant votre activité, la localisation du projet, son niveau d’avancement, votre budget indicatif et vos besoins. La demande est gratuite et sans engagement. Notre équipe l’étudie et vous recontacte si des précisions sont nécessaires." },
+  { q: "Puis-je commander des produits en ligne ?", a: "Vous pouvez parcourir le catalogue, ajouter des produits à votre panier et transmettre une commande depuis le site. Notre équipe vous contacte ensuite pour confirmer la disponibilité, la livraison et les modalités de règlement avant la finalisation." },
+  { q: "L’assistant de projet est-il disponible ?", a: "Oui. L’assistant peut vous aider à préciser votre idée, à organiser vos besoins et à découvrir les services adaptés. Ses réponses sont indicatives : les choix techniques définitifs doivent être confirmés avec un conseiller MOAYE SERVICES." },
 ];
 
 export const socials = ["Facebook", "LinkedIn", "WhatsApp"];
