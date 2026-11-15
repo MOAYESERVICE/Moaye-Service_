@@ -10,17 +10,17 @@ const photos = {
   9: "/photos/cage-farm-installation.webp",
   10: "/photos/floating-cages.webp",
   11: "/photos/fish-net-harvest.webp",
+  12: "/photos/cattle-health-check.webp",
+  13: "/photos/poultry-farming.webp",
 } as const;
 
 const p = (n: keyof typeof photos) => photos[n];
 
 export const slides = [
   { domain: "Pisciculture et aquaculture", img: p(10), alt: "Cage flottante d'élevage de poissons avec passerelle en bois", title: "Cages flottantes pour l'élevage de poissons", cta: "Découvrir l'aquaculture", href: "/expertise" },
-  { domain: "Élevage et aviculture", img: p(7), alt: "Poussins dans un bâtiment d'élevage avicole", title: "Conception et suivi technique des élevages", cta: "Découvrir l'élevage", href: "/#expertises" },
   { domain: "Santé et suivi des animaux", img: p(5), alt: "Soins apportés à un bovin par un technicien", title: "Soins et suivi sanitaire des animaux", cta: "Découvrir nos services", href: "/#services" },
   { domain: "Enclos piscicoles", img: p(1), alt: "Équipe installant une cage piscicole flottante sur un plan d'eau", title: "Enclos installés sur plan d'eau", cta: "Découvrir les systèmes", href: "/expertise" },
-  { domain: "Formation et accompagnement", img: p(6), alt: "Deux membres de MOAYE SERVICES en combinaison lors d'un accompagnement de terrain", title: "Formation et encadrement des producteurs", cta: "Voir notre méthode", href: "/#services" },
-  { domain: "Pisciculture", img: p(4), alt: "Poissons issus d'une production piscicole", title: "Production et récolte de poissons", cta: "Découvrir l'aquaculture", href: "/expertise" },
+  { domain: "Formation et accompagnement", img: p(12), alt: "Un technicien montre un contrôle sanitaire à un éleveur sur le terrain", title: "Formation et encadrement des producteurs", cta: "Voir notre méthode", href: "/#services" },
 ];
 
 export const assets = [
@@ -31,11 +31,17 @@ export const assets = [
 ];
 
 export const expertises = [
-  { title: "Agriculture", desc: "Accompagnement des projets agricoles, préparation des activités et suivi des cultures.", href: "/expertises#agriculture", img: p(6) as string | null, alt: "Équipe de terrain mobilisée pour accompagner un projet agricole", placeholder: "" },
+  { title: "Agriculture", desc: "Accompagnement des projets agricoles, préparation des activités et suivi des cultures.", href: "/services#etude-accompagnement-projets", img: p(6) as string | null, alt: "Équipe de terrain mobilisée pour accompagner un projet agricole", placeholder: "" },
   { title: "Élevage et aviculture", desc: "Conception, mise en place, gestion et suivi technique des élevages.", href: "/services/elevage-aviculture", img: p(7), alt: "Poussins dans un bâtiment d'élevage avicole", placeholder: "" },
   { title: "Aquaculture et pisciculture", desc: "Solutions de pisciculture en cages flottantes, enclos, étangs et systèmes hors-sol.", href: "/expertise", img: p(9), alt: "Plateforme d'élevage de poissons en cages flottantes", placeholder: "" },
   { title: "Nutrition animale", desc: "Conseils techniques et accompagnement pour l'alimentation et le suivi des animaux.", href: "/services/nutrition-animale", img: p(3), alt: "Poissons issus d'un élevage piscicole", placeholder: "" },
 ];
+
+const homeExpertiseCtas: Record<string, string> = {
+  "Élevage et aviculture": "Voir les services d’élevage",
+  "Aquaculture et pisciculture": "Découvrir l’aquaculture",
+  "Nutrition animale": "Voir nos conseils nutritionnels",
+};
 
 export const homeExpertises = expertises.map((expertise) =>
   expertise.title === "Agriculture"
@@ -43,12 +49,12 @@ export const homeExpertises = expertises.map((expertise) =>
         ...expertise,
         title: "Suivi technique et sanitaire",
         desc: "Suivez les résultats de votre élevage et bénéficiez de conseils pour ajuster vos pratiques au quotidien.",
-        href: "/devis",
+        href: "/services/suivi-technique-sanitaire",
         img: p(5),
         alt: "Technicien réalisant un suivi sanitaire sur le terrain",
-        cta: "Demander un accompagnement",
+        cta: "Découvrir le suivi technique",
       }
-    : { ...expertise, cta: "En savoir plus" },
+    : { ...expertise, cta: homeExpertiseCtas[expertise.title] ?? "Découvrir cette expertise" },
 );
 
 export const systems = ["Cages flottantes", "Enclos", "Étangs", "Hors-sol"];
@@ -85,7 +91,7 @@ export const projects = [
   { slug: "installation-en-plan-deau", img: p(2), alt: "Technicien dans l'eau près d'un enclos et d'un équipement", domain: "Aquaculture", title: "Installation en plan d'eau", desc: "Mise en place et entretien des équipements directement sur le site d'élevage." },
   { slug: "suivi-elevage-avicole", img: p(7), alt: "Poussins dans un bâtiment d'élevage avicole", domain: "Aviculture", title: "Suivi d'un élevage avicole", desc: "Conception du bâtiment, conseils d'alimentation et suivi technique." },
   { slug: "suivi-sanitaire-betail", img: p(5), alt: "Soins apportés à un bovin par un technicien", domain: "Élevage", title: "Soins et suivi sanitaire du bétail", desc: "Interventions techniques sur le terrain auprès des éleveurs." },
-  { slug: "formation-producteurs", img: p(6), alt: "Séance de formation de producteurs avec une balance", domain: "Accompagnement", title: "Formation de producteurs", desc: "Sessions de formation et d'encadrement des équipes sur le terrain." },
+  { slug: "formation-producteurs", img: p(13), alt: "Producteurs au travail dans un bâtiment d'élevage avicole lors d'un accompagnement de terrain", domain: "Accompagnement", title: "Formation de producteurs", desc: "Sessions de formation et d'encadrement des équipes sur le terrain." },
 ];
 
 export const partners = ["IRC", "GIZ", "PAPC", "SOCODEVI", "PNUD-CI", "PAPSE"];
@@ -105,3 +111,7 @@ export const faq = [
 ];
 
 export const socials = ["Facebook", "LinkedIn", "WhatsApp"];
+
+
+
+
