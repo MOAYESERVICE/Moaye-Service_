@@ -140,7 +140,7 @@ export default function Hero() {
             </span>
           </p>
           <div className={`h-actions${actionsReady ? " is-visible" : ""}`}>
-            <Link className="btn btn-amber" href="/#services">Découvrir nos services</Link>
+            <Link className="btn btn-amber" href="/services">Découvrir nos services</Link>
             <Link
               className="btn btn-white"
               href="/contact"
