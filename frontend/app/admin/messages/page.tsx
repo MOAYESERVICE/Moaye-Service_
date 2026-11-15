@@ -48,6 +48,11 @@ export default function AdminMessages() {
   const { q, flash } = useAdmin();
   const [messages, setMessages] = useState<ContactMessage[]>([]);
   const threadListRef = useRef<HTMLElement | null>(null);
+  const inboxRef = useRef<HTMLElement | null>(null);
+  const scrollToInbox = () => {
+    if (!window.matchMedia("(max-width: 700px)").matches) return;
+    window.requestAnimationFrame(() => inboxRef.current?.scrollIntoView({ block: "start", behavior: "smooth" }));
+  };
   const [filter, setFilter] = useState<Filter>("ACTIVE");
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [mobileDetailOpen, setMobileDetailOpen] = useState(false);
@@ -111,9 +116,7 @@ export default function AdminMessages() {
       await updateContactStatus(key, newStatus);
       setMessages((current) => current.map((item) => String(item.id) === key ? { ...item, status: newStatus as MessageStatus } : item));
       threadListRef.current?.scrollTo({ top: 0 });
-      window.requestAnimationFrame(() => {
-        document.querySelector<HTMLElement>(".pt-message-inbox")?.scrollIntoView({ block: "start", behavior: "smooth" });
-      });
+      scrollToInbox();
       if (newStatus === "RESOLVED" || message.status === "RESOLVED") {
         setFilter("ACTIVE");
         setMobileDetailOpen(false);
@@ -179,11 +182,11 @@ export default function AdminMessages() {
           <div className="pt-message-stat"><span>Fermés</span><strong>{counts.RESOLVED}</strong></div>
         </section>
 
-        <section className="pt-message-inbox" aria-label="Boîte de réception des clients">
+        <section ref={inboxRef} className="pt-message-inbox" aria-label="Boîte de réception des clients">
           <div className="pt-message-toolbar">
             <div><h3>Boîte de réception</h3><p>{filteredMessages.length} conversation{filteredMessages.length === 1 ? "" : "s"}</p></div>
             <div className="pt-message-filters" role="group" aria-label="Filtrer les conversations">
-              {FILTERS.map((item) => <button key={item.id} type="button" className={filter === item.id ? "pt-message-filter active" : "pt-message-filter"} onClick={() => { setFilter(item.id); setMobileDetailOpen(false); }} aria-pressed={filter === item.id}>{item.label}<span>{counts[item.id]}</span></button>)}
+              {FILTERS.map((item) => <button key={item.id} type="button" className={filter === item.id ? "pt-message-filter active" : "pt-message-filter"} onClick={() => { setFilter(item.id); setMobileDetailOpen(false); scrollToInbox(); }} aria-pressed={filter === item.id}>{item.label}<span>{counts[item.id]}</span></button>)}
             </div>
           </div>
 
@@ -198,7 +201,7 @@ export default function AdminMessages() {
                 const lastReply = message.replies?.[message.replies.length - 1];
                 const preview = lastReply?.message ?? message.message;
                 const selected = selectedMessage && String(selectedMessage.id) === String(message.id);
-                return <button key={message.id} type="button" className={`pt-thread-item${selected ? " selected" : ""}${message.status === "NEW" ? " unread" : ""}`} onClick={() => { setSelectedId(String(message.id)); setMobileDetailOpen(true); }} aria-pressed={Boolean(selected)}>
+                return <button key={message.id} type="button" className={`pt-thread-item${selected ? " selected" : ""}${message.status === "NEW" ? " unread" : ""}`} onClick={() => { setSelectedId(String(message.id)); setMobileDetailOpen(true); scrollToInbox(); }} aria-pressed={Boolean(selected)}>
                   <span className="pt-thread-avatar">{message.name.trim().charAt(0).toLocaleUpperCase() || "?"}</span>
                   <span className="pt-thread-main"><span className="pt-thread-line"><strong>{message.name}</strong><time>{formatDate(message.createdAt)}</time></span><span className="pt-thread-subject">{message.subject}</span><span className="pt-thread-preview">{preview}</span></span>
                   <span className={`pt-thread-indicator ${message.status.toLowerCase()}`} aria-label={STATUS_LABEL[message.status]} />
@@ -208,7 +211,7 @@ export default function AdminMessages() {
 
             {selectedMessage ? <section className="pt-thread-view" aria-label={`Discussion avec ${selectedMessage.name}`}>
               <header className="pt-thread-header">
-                <button type="button" className="pt-thread-back" onClick={() => setMobileDetailOpen(false)}>← Messages</button>
+                <button type="button" className="pt-thread-back" onClick={() => { setMobileDetailOpen(false); scrollToInbox(); }}>← Messages</button>
                 <span className="pt-thread-avatar large">{selectedMessage.name.trim().charAt(0).toLocaleUpperCase() || "?"}</span>
                 <div className="pt-thread-header-info"><strong>{selectedMessage.name}</strong><span>{selectedMessage.email}{selectedMessage.phone ? ` · ${selectedMessage.phone}` : ""}</span></div>
                 <Pill tone={STATUS_TONE[selectedMessage.status]}>{STATUS_LABEL[selectedMessage.status]}</Pill>
