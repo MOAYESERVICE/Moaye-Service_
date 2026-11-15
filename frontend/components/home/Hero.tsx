@@ -19,7 +19,7 @@ const heroHeadlines = [
 ];
 
 export default function Hero() {
-  const [showImages, setShowImages] = useState(true);
+  const [showImages, setShowImages] = useState(false);
   const [index, setIndex] = useState(0);
   const [headlineIndex, setHeadlineIndex] = useState(0);
   const [cycle, setCycle] = useState(0);
