@@ -196,10 +196,15 @@ model Realization {
   title       String
   description String
   imageUrl    String?
+  imageAlt    String?
+  domain      String   @default("Accompagnement")
+  location    String?
+  isPublished Boolean  @default(true)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
-}
 
+  @@index([isPublished, createdAt])
+}
 model HomepagePhoto {
   id         Int      @id @default(autoincrement())
   productKey String   @unique

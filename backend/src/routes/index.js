@@ -20,6 +20,7 @@ import contactRouter from "../modules/contact/contact.routes.js"
 import quotesRouter from "../modules/quotes/quotes.routes.js"
 import adminUsersRouter from "../modules/users/admin-users.routes.js"
 import homepageRouter from "../modules/homepage/homepage.routes.js"
+import realisationsRouter from "../modules/realisations/realisations.routes.js"
 
 // Crée le routeur principal de l'API.
 const apiRouter = Router()
@@ -32,6 +33,9 @@ apiRouter.use("/auth", authRouter)
 
 // Routes de produits
 apiRouter.use("/products", productRouter)
+
+// Gestion des projets de réalisation.
+apiRouter.use("/realisations", realisationsRouter)
 
 // Photos publiées sur la page d'accueil.
 apiRouter.use("/home", homepageRouter)

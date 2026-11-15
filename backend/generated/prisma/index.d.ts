@@ -2281,21 +2281,21 @@ export namespace Prisma {
    */
 
   export type UserCountOutputType = {
-    orders: number
-    quotes: number
-    reviews: number
     contactMessages: number
     contactReplies: number
+    orders: number
+    quotes: number
     refreshTokens: number
+    reviews: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    orders?: boolean | UserCountOutputTypeCountOrdersArgs
-    quotes?: boolean | UserCountOutputTypeCountQuotesArgs
-    reviews?: boolean | UserCountOutputTypeCountReviewsArgs
     contactMessages?: boolean | UserCountOutputTypeCountContactMessagesArgs
     contactReplies?: boolean | UserCountOutputTypeCountContactRepliesArgs
+    orders?: boolean | UserCountOutputTypeCountOrdersArgs
+    quotes?: boolean | UserCountOutputTypeCountQuotesArgs
     refreshTokens?: boolean | UserCountOutputTypeCountRefreshTokensArgs
+    reviews?: boolean | UserCountOutputTypeCountReviewsArgs
   }
 
   // Custom InputTypes
@@ -2307,27 +2307,6 @@ export namespace Prisma {
      * Select specific fields to fetch from the UserCountOutputType
      */
     select?: UserCountOutputTypeSelect<ExtArgs> | null
-  }
-
-  /**
-   * UserCountOutputType without action
-   */
-  export type UserCountOutputTypeCountOrdersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: OrderWhereInput
-  }
-
-  /**
-   * UserCountOutputType without action
-   */
-  export type UserCountOutputTypeCountQuotesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: QuoteWhereInput
-  }
-
-  /**
-   * UserCountOutputType without action
-   */
-  export type UserCountOutputTypeCountReviewsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: ReviewWhereInput
   }
 
   /**
@@ -2347,8 +2326,29 @@ export namespace Prisma {
   /**
    * UserCountOutputType without action
    */
+  export type UserCountOutputTypeCountOrdersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: OrderWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountQuotesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: QuoteWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
   export type UserCountOutputTypeCountRefreshTokensArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: RefreshTokenWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountReviewsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ReviewWhereInput
   }
 
 
@@ -2553,36 +2553,36 @@ export namespace Prisma {
     id: number | null
     email: string | null
     name: string | null
-    phone: string | null
     passwordHash: string | null
     role: $Enums.UserRole | null
     isActive: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
+    phone: string | null
   }
 
   export type UserMaxAggregateOutputType = {
     id: number | null
     email: string | null
     name: string | null
-    phone: string | null
     passwordHash: string | null
     role: $Enums.UserRole | null
     isActive: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
+    phone: string | null
   }
 
   export type UserCountAggregateOutputType = {
     id: number
     email: number
     name: number
-    phone: number
     passwordHash: number
     role: number
     isActive: number
     createdAt: number
     updatedAt: number
+    phone: number
     _all: number
   }
 
@@ -2599,36 +2599,36 @@ export namespace Prisma {
     id?: true
     email?: true
     name?: true
-    phone?: true
     passwordHash?: true
     role?: true
     isActive?: true
     createdAt?: true
     updatedAt?: true
+    phone?: true
   }
 
   export type UserMaxAggregateInputType = {
     id?: true
     email?: true
     name?: true
-    phone?: true
     passwordHash?: true
     role?: true
     isActive?: true
     createdAt?: true
     updatedAt?: true
+    phone?: true
   }
 
   export type UserCountAggregateInputType = {
     id?: true
     email?: true
     name?: true
-    phone?: true
     passwordHash?: true
     role?: true
     isActive?: true
     createdAt?: true
     updatedAt?: true
+    phone?: true
     _all?: true
   }
 
@@ -2722,12 +2722,12 @@ export namespace Prisma {
     id: number
     email: string
     name: string
-    phone: string | null
     passwordHash: string
     role: $Enums.UserRole
     isActive: boolean
     createdAt: Date
     updatedAt: Date
+    phone: string | null
     _count: UserCountAggregateOutputType | null
     _avg: UserAvgAggregateOutputType | null
     _sum: UserSumAggregateOutputType | null
@@ -2753,19 +2753,19 @@ export namespace Prisma {
     id?: boolean
     email?: boolean
     name?: boolean
-    phone?: boolean
     passwordHash?: boolean
     role?: boolean
     isActive?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    orders?: boolean | User$ordersArgs<ExtArgs>
+    phone?: boolean
     cart?: boolean | User$cartArgs<ExtArgs>
-    quotes?: boolean | User$quotesArgs<ExtArgs>
-    reviews?: boolean | User$reviewsArgs<ExtArgs>
     contactMessages?: boolean | User$contactMessagesArgs<ExtArgs>
     contactReplies?: boolean | User$contactRepliesArgs<ExtArgs>
+    orders?: boolean | User$ordersArgs<ExtArgs>
+    quotes?: boolean | User$quotesArgs<ExtArgs>
     refreshTokens?: boolean | User$refreshTokensArgs<ExtArgs>
+    reviews?: boolean | User$reviewsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -2773,47 +2773,47 @@ export namespace Prisma {
     id?: boolean
     email?: boolean
     name?: boolean
-    phone?: boolean
     passwordHash?: boolean
     role?: boolean
     isActive?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    phone?: boolean
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     email?: boolean
     name?: boolean
-    phone?: boolean
     passwordHash?: boolean
     role?: boolean
     isActive?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    phone?: boolean
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectScalar = {
     id?: boolean
     email?: boolean
     name?: boolean
-    phone?: boolean
     passwordHash?: boolean
     role?: boolean
     isActive?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    phone?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "name" | "phone" | "passwordHash" | "role" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "name" | "passwordHash" | "role" | "isActive" | "createdAt" | "updatedAt" | "phone", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    orders?: boolean | User$ordersArgs<ExtArgs>
     cart?: boolean | User$cartArgs<ExtArgs>
-    quotes?: boolean | User$quotesArgs<ExtArgs>
-    reviews?: boolean | User$reviewsArgs<ExtArgs>
     contactMessages?: boolean | User$contactMessagesArgs<ExtArgs>
     contactReplies?: boolean | User$contactRepliesArgs<ExtArgs>
+    orders?: boolean | User$ordersArgs<ExtArgs>
+    quotes?: boolean | User$quotesArgs<ExtArgs>
     refreshTokens?: boolean | User$refreshTokensArgs<ExtArgs>
+    reviews?: boolean | User$reviewsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -2822,24 +2822,24 @@ export namespace Prisma {
   export type $UserPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "User"
     objects: {
-      orders: Prisma.$OrderPayload<ExtArgs>[]
       cart: Prisma.$CartPayload<ExtArgs> | null
-      quotes: Prisma.$QuotePayload<ExtArgs>[]
-      reviews: Prisma.$ReviewPayload<ExtArgs>[]
       contactMessages: Prisma.$ContactPayload<ExtArgs>[]
       contactReplies: Prisma.$ContactReplyPayload<ExtArgs>[]
+      orders: Prisma.$OrderPayload<ExtArgs>[]
+      quotes: Prisma.$QuotePayload<ExtArgs>[]
       refreshTokens: Prisma.$RefreshTokenPayload<ExtArgs>[]
+      reviews: Prisma.$ReviewPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
       email: string
       name: string
-      phone: string | null
       passwordHash: string
       role: $Enums.UserRole
       isActive: boolean
       createdAt: Date
       updatedAt: Date
+      phone: string | null
     }, ExtArgs["result"]["user"]>
     composites: {}
   }
@@ -3234,13 +3234,13 @@ export namespace Prisma {
    */
   export interface Prisma__UserClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    orders<T extends User$ordersArgs<ExtArgs> = {}>(args?: Subset<T, User$ordersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OrderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     cart<T extends User$cartArgs<ExtArgs> = {}>(args?: Subset<T, User$cartArgs<ExtArgs>>): Prisma__CartClient<$Result.GetResult<Prisma.$CartPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-    quotes<T extends User$quotesArgs<ExtArgs> = {}>(args?: Subset<T, User$quotesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$QuotePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    reviews<T extends User$reviewsArgs<ExtArgs> = {}>(args?: Subset<T, User$reviewsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReviewPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     contactMessages<T extends User$contactMessagesArgs<ExtArgs> = {}>(args?: Subset<T, User$contactMessagesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ContactPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     contactReplies<T extends User$contactRepliesArgs<ExtArgs> = {}>(args?: Subset<T, User$contactRepliesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ContactReplyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    orders<T extends User$ordersArgs<ExtArgs> = {}>(args?: Subset<T, User$ordersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OrderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    quotes<T extends User$quotesArgs<ExtArgs> = {}>(args?: Subset<T, User$quotesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$QuotePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     refreshTokens<T extends User$refreshTokensArgs<ExtArgs> = {}>(args?: Subset<T, User$refreshTokensArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RefreshTokenPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    reviews<T extends User$reviewsArgs<ExtArgs> = {}>(args?: Subset<T, User$reviewsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReviewPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3273,12 +3273,12 @@ export namespace Prisma {
     readonly id: FieldRef<"User", 'Int'>
     readonly email: FieldRef<"User", 'String'>
     readonly name: FieldRef<"User", 'String'>
-    readonly phone: FieldRef<"User", 'String'>
     readonly passwordHash: FieldRef<"User", 'String'>
     readonly role: FieldRef<"User", 'UserRole'>
     readonly isActive: FieldRef<"User", 'Boolean'>
     readonly createdAt: FieldRef<"User", 'DateTime'>
     readonly updatedAt: FieldRef<"User", 'DateTime'>
+    readonly phone: FieldRef<"User", 'String'>
   }
     
 
@@ -3672,30 +3672,6 @@ export namespace Prisma {
   }
 
   /**
-   * User.orders
-   */
-  export type User$ordersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Order
-     */
-    select?: OrderSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Order
-     */
-    omit?: OrderOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: OrderInclude<ExtArgs> | null
-    where?: OrderWhereInput
-    orderBy?: OrderOrderByWithRelationInput | OrderOrderByWithRelationInput[]
-    cursor?: OrderWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: OrderScalarFieldEnum | OrderScalarFieldEnum[]
-  }
-
-  /**
    * User.cart
    */
   export type User$cartArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3712,54 +3688,6 @@ export namespace Prisma {
      */
     include?: CartInclude<ExtArgs> | null
     where?: CartWhereInput
-  }
-
-  /**
-   * User.quotes
-   */
-  export type User$quotesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Quote
-     */
-    select?: QuoteSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Quote
-     */
-    omit?: QuoteOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: QuoteInclude<ExtArgs> | null
-    where?: QuoteWhereInput
-    orderBy?: QuoteOrderByWithRelationInput | QuoteOrderByWithRelationInput[]
-    cursor?: QuoteWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: QuoteScalarFieldEnum | QuoteScalarFieldEnum[]
-  }
-
-  /**
-   * User.reviews
-   */
-  export type User$reviewsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Review
-     */
-    select?: ReviewSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Review
-     */
-    omit?: ReviewOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ReviewInclude<ExtArgs> | null
-    where?: ReviewWhereInput
-    orderBy?: ReviewOrderByWithRelationInput | ReviewOrderByWithRelationInput[]
-    cursor?: ReviewWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: ReviewScalarFieldEnum | ReviewScalarFieldEnum[]
   }
 
   /**
@@ -3811,6 +3739,54 @@ export namespace Prisma {
   }
 
   /**
+   * User.orders
+   */
+  export type User$ordersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Order
+     */
+    select?: OrderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Order
+     */
+    omit?: OrderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OrderInclude<ExtArgs> | null
+    where?: OrderWhereInput
+    orderBy?: OrderOrderByWithRelationInput | OrderOrderByWithRelationInput[]
+    cursor?: OrderWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: OrderScalarFieldEnum | OrderScalarFieldEnum[]
+  }
+
+  /**
+   * User.quotes
+   */
+  export type User$quotesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Quote
+     */
+    select?: QuoteSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Quote
+     */
+    omit?: QuoteOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QuoteInclude<ExtArgs> | null
+    where?: QuoteWhereInput
+    orderBy?: QuoteOrderByWithRelationInput | QuoteOrderByWithRelationInput[]
+    cursor?: QuoteWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: QuoteScalarFieldEnum | QuoteScalarFieldEnum[]
+  }
+
+  /**
    * User.refreshTokens
    */
   export type User$refreshTokensArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3832,6 +3808,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: RefreshTokenScalarFieldEnum | RefreshTokenScalarFieldEnum[]
+  }
+
+  /**
+   * User.reviews
+   */
+  export type User$reviewsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Review
+     */
+    select?: ReviewSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Review
+     */
+    omit?: ReviewOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReviewInclude<ExtArgs> | null
+    where?: ReviewWhereInput
+    orderBy?: ReviewOrderByWithRelationInput | ReviewOrderByWithRelationInput[]
+    cursor?: ReviewWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ReviewScalarFieldEnum | ReviewScalarFieldEnum[]
   }
 
   /**
@@ -4990,37 +4990,37 @@ export namespace Prisma {
     id: number | null
     name: string | null
     description: string | null
-    price: number | null
-    stock: $Enums.StockStatus | null
     imageUrl: string | null
-    categoryId: number | null
     createdAt: Date | null
     updatedAt: Date | null
+    price: number | null
+    stock: $Enums.StockStatus | null
+    categoryId: number | null
   }
 
   export type ProductMaxAggregateOutputType = {
     id: number | null
     name: string | null
     description: string | null
-    price: number | null
-    stock: $Enums.StockStatus | null
     imageUrl: string | null
-    categoryId: number | null
     createdAt: Date | null
     updatedAt: Date | null
+    price: number | null
+    stock: $Enums.StockStatus | null
+    categoryId: number | null
   }
 
   export type ProductCountAggregateOutputType = {
     id: number
     name: number
     description: number
-    price: number
-    stock: number
     imageUrl: number
-    specs: number
-    categoryId: number
     createdAt: number
     updatedAt: number
+    price: number
+    specs: number
+    stock: number
+    categoryId: number
     _all: number
   }
 
@@ -5041,37 +5041,37 @@ export namespace Prisma {
     id?: true
     name?: true
     description?: true
-    price?: true
-    stock?: true
     imageUrl?: true
-    categoryId?: true
     createdAt?: true
     updatedAt?: true
+    price?: true
+    stock?: true
+    categoryId?: true
   }
 
   export type ProductMaxAggregateInputType = {
     id?: true
     name?: true
     description?: true
-    price?: true
-    stock?: true
     imageUrl?: true
-    categoryId?: true
     createdAt?: true
     updatedAt?: true
+    price?: true
+    stock?: true
+    categoryId?: true
   }
 
   export type ProductCountAggregateInputType = {
     id?: true
     name?: true
     description?: true
-    price?: true
-    stock?: true
     imageUrl?: true
-    specs?: true
-    categoryId?: true
     createdAt?: true
     updatedAt?: true
+    price?: true
+    specs?: true
+    stock?: true
+    categoryId?: true
     _all?: true
   }
 
@@ -5165,13 +5165,13 @@ export namespace Prisma {
     id: number
     name: string
     description: string
-    price: number
-    stock: $Enums.StockStatus
     imageUrl: string | null
-    specs: string[]
-    categoryId: number
     createdAt: Date
     updatedAt: Date
+    price: number
+    specs: string[]
+    stock: $Enums.StockStatus
+    categoryId: number
     _count: ProductCountAggregateOutputType | null
     _avg: ProductAvgAggregateOutputType | null
     _sum: ProductSumAggregateOutputType | null
@@ -5197,18 +5197,18 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     description?: boolean
-    price?: boolean
-    stock?: boolean
     imageUrl?: boolean
-    specs?: boolean
-    categoryId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    category?: boolean | CategoryDefaultArgs<ExtArgs>
+    price?: boolean
+    specs?: boolean
+    stock?: boolean
+    categoryId?: boolean
     cartItems?: boolean | Product$cartItemsArgs<ExtArgs>
-    orderItems?: boolean | Product$orderItemsArgs<ExtArgs>
-    reviews?: boolean | Product$reviewsArgs<ExtArgs>
     homepagePhoto?: boolean | Product$homepagePhotoArgs<ExtArgs>
+    orderItems?: boolean | Product$orderItemsArgs<ExtArgs>
+    category?: boolean | CategoryDefaultArgs<ExtArgs>
+    reviews?: boolean | Product$reviewsArgs<ExtArgs>
     _count?: boolean | ProductCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["product"]>
 
@@ -5216,13 +5216,13 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     description?: boolean
-    price?: boolean
-    stock?: boolean
     imageUrl?: boolean
-    specs?: boolean
-    categoryId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    price?: boolean
+    specs?: boolean
+    stock?: boolean
+    categoryId?: boolean
     category?: boolean | CategoryDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["product"]>
 
@@ -5230,13 +5230,13 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     description?: boolean
-    price?: boolean
-    stock?: boolean
     imageUrl?: boolean
-    specs?: boolean
-    categoryId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    price?: boolean
+    specs?: boolean
+    stock?: boolean
+    categoryId?: boolean
     category?: boolean | CategoryDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["product"]>
 
@@ -5244,22 +5244,22 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     description?: boolean
-    price?: boolean
-    stock?: boolean
     imageUrl?: boolean
-    specs?: boolean
-    categoryId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    price?: boolean
+    specs?: boolean
+    stock?: boolean
+    categoryId?: boolean
   }
 
-  export type ProductOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "description" | "price" | "stock" | "imageUrl" | "specs" | "categoryId" | "createdAt" | "updatedAt", ExtArgs["result"]["product"]>
+  export type ProductOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "description" | "imageUrl" | "createdAt" | "updatedAt" | "price" | "specs" | "stock" | "categoryId", ExtArgs["result"]["product"]>
   export type ProductInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    category?: boolean | CategoryDefaultArgs<ExtArgs>
     cartItems?: boolean | Product$cartItemsArgs<ExtArgs>
-    orderItems?: boolean | Product$orderItemsArgs<ExtArgs>
-    reviews?: boolean | Product$reviewsArgs<ExtArgs>
     homepagePhoto?: boolean | Product$homepagePhotoArgs<ExtArgs>
+    orderItems?: boolean | Product$orderItemsArgs<ExtArgs>
+    category?: boolean | CategoryDefaultArgs<ExtArgs>
+    reviews?: boolean | Product$reviewsArgs<ExtArgs>
     _count?: boolean | ProductCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type ProductIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -5272,23 +5272,23 @@ export namespace Prisma {
   export type $ProductPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Product"
     objects: {
-      category: Prisma.$CategoryPayload<ExtArgs>
       cartItems: Prisma.$CartItemPayload<ExtArgs>[]
-      orderItems: Prisma.$OrderItemPayload<ExtArgs>[]
-      reviews: Prisma.$ReviewPayload<ExtArgs>[]
       homepagePhoto: Prisma.$HomepagePhotoPayload<ExtArgs> | null
+      orderItems: Prisma.$OrderItemPayload<ExtArgs>[]
+      category: Prisma.$CategoryPayload<ExtArgs>
+      reviews: Prisma.$ReviewPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
       name: string
       description: string
-      price: number
-      stock: $Enums.StockStatus
       imageUrl: string | null
-      specs: string[]
-      categoryId: number
       createdAt: Date
       updatedAt: Date
+      price: number
+      specs: string[]
+      stock: $Enums.StockStatus
+      categoryId: number
     }, ExtArgs["result"]["product"]>
     composites: {}
   }
@@ -5683,11 +5683,11 @@ export namespace Prisma {
    */
   export interface Prisma__ProductClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    category<T extends CategoryDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CategoryDefaultArgs<ExtArgs>>): Prisma__CategoryClient<$Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     cartItems<T extends Product$cartItemsArgs<ExtArgs> = {}>(args?: Subset<T, Product$cartItemsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CartItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    orderItems<T extends Product$orderItemsArgs<ExtArgs> = {}>(args?: Subset<T, Product$orderItemsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OrderItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    reviews<T extends Product$reviewsArgs<ExtArgs> = {}>(args?: Subset<T, Product$reviewsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReviewPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     homepagePhoto<T extends Product$homepagePhotoArgs<ExtArgs> = {}>(args?: Subset<T, Product$homepagePhotoArgs<ExtArgs>>): Prisma__HomepagePhotoClient<$Result.GetResult<Prisma.$HomepagePhotoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    orderItems<T extends Product$orderItemsArgs<ExtArgs> = {}>(args?: Subset<T, Product$orderItemsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OrderItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    category<T extends CategoryDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CategoryDefaultArgs<ExtArgs>>): Prisma__CategoryClient<$Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    reviews<T extends Product$reviewsArgs<ExtArgs> = {}>(args?: Subset<T, Product$reviewsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReviewPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -5720,13 +5720,13 @@ export namespace Prisma {
     readonly id: FieldRef<"Product", 'Int'>
     readonly name: FieldRef<"Product", 'String'>
     readonly description: FieldRef<"Product", 'String'>
-    readonly price: FieldRef<"Product", 'Int'>
-    readonly stock: FieldRef<"Product", 'StockStatus'>
     readonly imageUrl: FieldRef<"Product", 'String'>
-    readonly specs: FieldRef<"Product", 'String[]'>
-    readonly categoryId: FieldRef<"Product", 'Int'>
     readonly createdAt: FieldRef<"Product", 'DateTime'>
     readonly updatedAt: FieldRef<"Product", 'DateTime'>
+    readonly price: FieldRef<"Product", 'Int'>
+    readonly specs: FieldRef<"Product", 'String[]'>
+    readonly stock: FieldRef<"Product", 'StockStatus'>
+    readonly categoryId: FieldRef<"Product", 'Int'>
   }
     
 
@@ -6152,6 +6152,25 @@ export namespace Prisma {
   }
 
   /**
+   * Product.homepagePhoto
+   */
+  export type Product$homepagePhotoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HomepagePhoto
+     */
+    select?: HomepagePhotoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the HomepagePhoto
+     */
+    omit?: HomepagePhotoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HomepagePhotoInclude<ExtArgs> | null
+    where?: HomepagePhotoWhereInput
+  }
+
+  /**
    * Product.orderItems
    */
   export type Product$orderItemsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -6197,25 +6216,6 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: ReviewScalarFieldEnum | ReviewScalarFieldEnum[]
-  }
-
-  /**
-   * Product.homepagePhoto
-   */
-  export type Product$homepagePhotoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the HomepagePhoto
-     */
-    select?: HomepagePhotoSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the HomepagePhoto
-     */
-    omit?: HomepagePhotoOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: HomepagePhotoInclude<ExtArgs> | null
-    where?: HomepagePhotoWhereInput
   }
 
   /**
@@ -8517,10 +8517,10 @@ export namespace Prisma {
     shippingAddress: string | null
     shippingCity: string | null
     shippingZip: string | null
-    shippingPhone: string | null
-    paymentMethod: $Enums.PaymentMethod | null
     createdAt: Date | null
     updatedAt: Date | null
+    paymentMethod: $Enums.PaymentMethod | null
+    shippingPhone: string | null
   }
 
   export type OrderMaxAggregateOutputType = {
@@ -8531,10 +8531,10 @@ export namespace Prisma {
     shippingAddress: string | null
     shippingCity: string | null
     shippingZip: string | null
-    shippingPhone: string | null
-    paymentMethod: $Enums.PaymentMethod | null
     createdAt: Date | null
     updatedAt: Date | null
+    paymentMethod: $Enums.PaymentMethod | null
+    shippingPhone: string | null
   }
 
   export type OrderCountAggregateOutputType = {
@@ -8545,10 +8545,10 @@ export namespace Prisma {
     shippingAddress: number
     shippingCity: number
     shippingZip: number
-    shippingPhone: number
-    paymentMethod: number
     createdAt: number
     updatedAt: number
+    paymentMethod: number
+    shippingPhone: number
     _all: number
   }
 
@@ -8573,10 +8573,10 @@ export namespace Prisma {
     shippingAddress?: true
     shippingCity?: true
     shippingZip?: true
-    shippingPhone?: true
-    paymentMethod?: true
     createdAt?: true
     updatedAt?: true
+    paymentMethod?: true
+    shippingPhone?: true
   }
 
   export type OrderMaxAggregateInputType = {
@@ -8587,10 +8587,10 @@ export namespace Prisma {
     shippingAddress?: true
     shippingCity?: true
     shippingZip?: true
-    shippingPhone?: true
-    paymentMethod?: true
     createdAt?: true
     updatedAt?: true
+    paymentMethod?: true
+    shippingPhone?: true
   }
 
   export type OrderCountAggregateInputType = {
@@ -8601,10 +8601,10 @@ export namespace Prisma {
     shippingAddress?: true
     shippingCity?: true
     shippingZip?: true
-    shippingPhone?: true
-    paymentMethod?: true
     createdAt?: true
     updatedAt?: true
+    paymentMethod?: true
+    shippingPhone?: true
     _all?: true
   }
 
@@ -8702,10 +8702,10 @@ export namespace Prisma {
     shippingAddress: string
     shippingCity: string
     shippingZip: string
-    shippingPhone: string | null
-    paymentMethod: $Enums.PaymentMethod | null
     createdAt: Date
     updatedAt: Date
+    paymentMethod: $Enums.PaymentMethod | null
+    shippingPhone: string | null
     _count: OrderCountAggregateOutputType | null
     _avg: OrderAvgAggregateOutputType | null
     _sum: OrderSumAggregateOutputType | null
@@ -8735,10 +8735,10 @@ export namespace Prisma {
     shippingAddress?: boolean
     shippingCity?: boolean
     shippingZip?: boolean
-    shippingPhone?: boolean
-    paymentMethod?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    paymentMethod?: boolean
+    shippingPhone?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
     items?: boolean | Order$itemsArgs<ExtArgs>
     payment?: boolean | Order$paymentArgs<ExtArgs>
@@ -8753,10 +8753,10 @@ export namespace Prisma {
     shippingAddress?: boolean
     shippingCity?: boolean
     shippingZip?: boolean
-    shippingPhone?: boolean
-    paymentMethod?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    paymentMethod?: boolean
+    shippingPhone?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["order"]>
 
@@ -8768,10 +8768,10 @@ export namespace Prisma {
     shippingAddress?: boolean
     shippingCity?: boolean
     shippingZip?: boolean
-    shippingPhone?: boolean
-    paymentMethod?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    paymentMethod?: boolean
+    shippingPhone?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["order"]>
 
@@ -8783,13 +8783,13 @@ export namespace Prisma {
     shippingAddress?: boolean
     shippingCity?: boolean
     shippingZip?: boolean
-    shippingPhone?: boolean
-    paymentMethod?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    paymentMethod?: boolean
+    shippingPhone?: boolean
   }
 
-  export type OrderOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "status" | "totalPrice" | "shippingAddress" | "shippingCity" | "shippingZip" | "shippingPhone" | "paymentMethod" | "createdAt" | "updatedAt", ExtArgs["result"]["order"]>
+  export type OrderOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "status" | "totalPrice" | "shippingAddress" | "shippingCity" | "shippingZip" | "createdAt" | "updatedAt" | "paymentMethod" | "shippingPhone", ExtArgs["result"]["order"]>
   export type OrderInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
     items?: boolean | Order$itemsArgs<ExtArgs>
@@ -8818,10 +8818,10 @@ export namespace Prisma {
       shippingAddress: string
       shippingCity: string
       shippingZip: string
-      shippingPhone: string | null
-      paymentMethod: $Enums.PaymentMethod | null
       createdAt: Date
       updatedAt: Date
+      paymentMethod: $Enums.PaymentMethod | null
+      shippingPhone: string | null
     }, ExtArgs["result"]["order"]>
     composites: {}
   }
@@ -9255,10 +9255,10 @@ export namespace Prisma {
     readonly shippingAddress: FieldRef<"Order", 'String'>
     readonly shippingCity: FieldRef<"Order", 'String'>
     readonly shippingZip: FieldRef<"Order", 'String'>
-    readonly shippingPhone: FieldRef<"Order", 'String'>
-    readonly paymentMethod: FieldRef<"Order", 'PaymentMethod'>
     readonly createdAt: FieldRef<"Order", 'DateTime'>
     readonly updatedAt: FieldRef<"Order", 'DateTime'>
+    readonly paymentMethod: FieldRef<"Order", 'PaymentMethod'>
+    readonly shippingPhone: FieldRef<"Order", 'String'>
   }
     
 
@@ -12015,15 +12015,15 @@ export namespace Prisma {
     userId: number | null
     title: string | null
     description: string | null
+    price: number | null
+    status: $Enums.QuoteStatus | null
+    createdAt: Date | null
+    updatedAt: Date | null
     contactName: string | null
     contactEmail: string | null
     contactPhone: string | null
     location: string | null
     budgetRange: string | null
-    price: number | null
-    status: $Enums.QuoteStatus | null
-    createdAt: Date | null
-    updatedAt: Date | null
   }
 
   export type QuoteMaxAggregateOutputType = {
@@ -12031,15 +12031,15 @@ export namespace Prisma {
     userId: number | null
     title: string | null
     description: string | null
+    price: number | null
+    status: $Enums.QuoteStatus | null
+    createdAt: Date | null
+    updatedAt: Date | null
     contactName: string | null
     contactEmail: string | null
     contactPhone: string | null
     location: string | null
     budgetRange: string | null
-    price: number | null
-    status: $Enums.QuoteStatus | null
-    createdAt: Date | null
-    updatedAt: Date | null
   }
 
   export type QuoteCountAggregateOutputType = {
@@ -12047,15 +12047,15 @@ export namespace Prisma {
     userId: number
     title: number
     description: number
+    price: number
+    status: number
+    createdAt: number
+    updatedAt: number
     contactName: number
     contactEmail: number
     contactPhone: number
     location: number
     budgetRange: number
-    price: number
-    status: number
-    createdAt: number
-    updatedAt: number
     _all: number
   }
 
@@ -12077,15 +12077,15 @@ export namespace Prisma {
     userId?: true
     title?: true
     description?: true
+    price?: true
+    status?: true
+    createdAt?: true
+    updatedAt?: true
     contactName?: true
     contactEmail?: true
     contactPhone?: true
     location?: true
     budgetRange?: true
-    price?: true
-    status?: true
-    createdAt?: true
-    updatedAt?: true
   }
 
   export type QuoteMaxAggregateInputType = {
@@ -12093,15 +12093,15 @@ export namespace Prisma {
     userId?: true
     title?: true
     description?: true
+    price?: true
+    status?: true
+    createdAt?: true
+    updatedAt?: true
     contactName?: true
     contactEmail?: true
     contactPhone?: true
     location?: true
     budgetRange?: true
-    price?: true
-    status?: true
-    createdAt?: true
-    updatedAt?: true
   }
 
   export type QuoteCountAggregateInputType = {
@@ -12109,15 +12109,15 @@ export namespace Prisma {
     userId?: true
     title?: true
     description?: true
+    price?: true
+    status?: true
+    createdAt?: true
+    updatedAt?: true
     contactName?: true
     contactEmail?: true
     contactPhone?: true
     location?: true
     budgetRange?: true
-    price?: true
-    status?: true
-    createdAt?: true
-    updatedAt?: true
     _all?: true
   }
 
@@ -12212,15 +12212,15 @@ export namespace Prisma {
     userId: number | null
     title: string
     description: string
+    price: number | null
+    status: $Enums.QuoteStatus
+    createdAt: Date
+    updatedAt: Date
     contactName: string | null
     contactEmail: string | null
     contactPhone: string | null
     location: string | null
     budgetRange: string | null
-    price: number | null
-    status: $Enums.QuoteStatus
-    createdAt: Date
-    updatedAt: Date
     _count: QuoteCountAggregateOutputType | null
     _avg: QuoteAvgAggregateOutputType | null
     _sum: QuoteSumAggregateOutputType | null
@@ -12247,15 +12247,15 @@ export namespace Prisma {
     userId?: boolean
     title?: boolean
     description?: boolean
+    price?: boolean
+    status?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     contactName?: boolean
     contactEmail?: boolean
     contactPhone?: boolean
     location?: boolean
     budgetRange?: boolean
-    price?: boolean
-    status?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
     user?: boolean | Quote$userArgs<ExtArgs>
   }, ExtArgs["result"]["quote"]>
 
@@ -12264,15 +12264,15 @@ export namespace Prisma {
     userId?: boolean
     title?: boolean
     description?: boolean
+    price?: boolean
+    status?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     contactName?: boolean
     contactEmail?: boolean
     contactPhone?: boolean
     location?: boolean
     budgetRange?: boolean
-    price?: boolean
-    status?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
     user?: boolean | Quote$userArgs<ExtArgs>
   }, ExtArgs["result"]["quote"]>
 
@@ -12281,15 +12281,15 @@ export namespace Prisma {
     userId?: boolean
     title?: boolean
     description?: boolean
+    price?: boolean
+    status?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     contactName?: boolean
     contactEmail?: boolean
     contactPhone?: boolean
     location?: boolean
     budgetRange?: boolean
-    price?: boolean
-    status?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
     user?: boolean | Quote$userArgs<ExtArgs>
   }, ExtArgs["result"]["quote"]>
 
@@ -12298,18 +12298,18 @@ export namespace Prisma {
     userId?: boolean
     title?: boolean
     description?: boolean
+    price?: boolean
+    status?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     contactName?: boolean
     contactEmail?: boolean
     contactPhone?: boolean
     location?: boolean
     budgetRange?: boolean
-    price?: boolean
-    status?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
   }
 
-  export type QuoteOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "title" | "description" | "contactName" | "contactEmail" | "contactPhone" | "location" | "budgetRange" | "price" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["quote"]>
+  export type QuoteOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "title" | "description" | "price" | "status" | "createdAt" | "updatedAt" | "contactName" | "contactEmail" | "contactPhone" | "location" | "budgetRange", ExtArgs["result"]["quote"]>
   export type QuoteInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | Quote$userArgs<ExtArgs>
   }
@@ -12330,15 +12330,15 @@ export namespace Prisma {
       userId: number | null
       title: string
       description: string
+      price: number | null
+      status: $Enums.QuoteStatus
+      createdAt: Date
+      updatedAt: Date
       contactName: string | null
       contactEmail: string | null
       contactPhone: string | null
       location: string | null
       budgetRange: string | null
-      price: number | null
-      status: $Enums.QuoteStatus
-      createdAt: Date
-      updatedAt: Date
     }, ExtArgs["result"]["quote"]>
     composites: {}
   }
@@ -12767,15 +12767,15 @@ export namespace Prisma {
     readonly userId: FieldRef<"Quote", 'Int'>
     readonly title: FieldRef<"Quote", 'String'>
     readonly description: FieldRef<"Quote", 'String'>
+    readonly price: FieldRef<"Quote", 'Int'>
+    readonly status: FieldRef<"Quote", 'QuoteStatus'>
+    readonly createdAt: FieldRef<"Quote", 'DateTime'>
+    readonly updatedAt: FieldRef<"Quote", 'DateTime'>
     readonly contactName: FieldRef<"Quote", 'String'>
     readonly contactEmail: FieldRef<"Quote", 'String'>
     readonly contactPhone: FieldRef<"Quote", 'String'>
     readonly location: FieldRef<"Quote", 'String'>
     readonly budgetRange: FieldRef<"Quote", 'String'>
-    readonly price: FieldRef<"Quote", 'Int'>
-    readonly status: FieldRef<"Quote", 'QuoteStatus'>
-    readonly createdAt: FieldRef<"Quote", 'DateTime'>
-    readonly updatedAt: FieldRef<"Quote", 'DateTime'>
   }
     
 
@@ -13239,41 +13239,41 @@ export namespace Prisma {
   export type ContactMinAggregateOutputType = {
     id: number | null
     userId: number | null
-    name: string | null
     email: string | null
-    phone: string | null
     subject: string | null
     message: string | null
     status: $Enums.ContactStatus | null
     createdAt: Date | null
     updatedAt: Date | null
+    name: string | null
+    phone: string | null
   }
 
   export type ContactMaxAggregateOutputType = {
     id: number | null
     userId: number | null
-    name: string | null
     email: string | null
-    phone: string | null
     subject: string | null
     message: string | null
     status: $Enums.ContactStatus | null
     createdAt: Date | null
     updatedAt: Date | null
+    name: string | null
+    phone: string | null
   }
 
   export type ContactCountAggregateOutputType = {
     id: number
     userId: number
-    name: number
     email: number
-    phone: number
     subject: number
     message: number
-    legacyReplies: number
     status: number
     createdAt: number
     updatedAt: number
+    name: number
+    phone: number
+    legacyReplies: number
     _all: number
   }
 
@@ -13291,41 +13291,41 @@ export namespace Prisma {
   export type ContactMinAggregateInputType = {
     id?: true
     userId?: true
-    name?: true
     email?: true
-    phone?: true
     subject?: true
     message?: true
     status?: true
     createdAt?: true
     updatedAt?: true
+    name?: true
+    phone?: true
   }
 
   export type ContactMaxAggregateInputType = {
     id?: true
     userId?: true
-    name?: true
     email?: true
-    phone?: true
     subject?: true
     message?: true
     status?: true
     createdAt?: true
     updatedAt?: true
+    name?: true
+    phone?: true
   }
 
   export type ContactCountAggregateInputType = {
     id?: true
     userId?: true
-    name?: true
     email?: true
-    phone?: true
     subject?: true
     message?: true
-    legacyReplies?: true
     status?: true
     createdAt?: true
     updatedAt?: true
+    name?: true
+    phone?: true
+    legacyReplies?: true
     _all?: true
   }
 
@@ -13418,15 +13418,15 @@ export namespace Prisma {
   export type ContactGroupByOutputType = {
     id: number
     userId: number | null
-    name: string
     email: string
-    phone: string | null
     subject: string
     message: string
-    legacyReplies: JsonValue
     status: $Enums.ContactStatus
     createdAt: Date
     updatedAt: Date
+    name: string
+    phone: string | null
+    legacyReplies: JsonValue
     _count: ContactCountAggregateOutputType | null
     _avg: ContactAvgAggregateOutputType | null
     _sum: ContactSumAggregateOutputType | null
@@ -13451,15 +13451,15 @@ export namespace Prisma {
   export type ContactSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     userId?: boolean
-    name?: boolean
     email?: boolean
-    phone?: boolean
     subject?: boolean
     message?: boolean
-    legacyReplies?: boolean
     status?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    name?: boolean
+    phone?: boolean
+    legacyReplies?: boolean
     user?: boolean | Contact$userArgs<ExtArgs>
     threadReplies?: boolean | Contact$threadRepliesArgs<ExtArgs>
     _count?: boolean | ContactCountOutputTypeDefaultArgs<ExtArgs>
@@ -13468,48 +13468,48 @@ export namespace Prisma {
   export type ContactSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     userId?: boolean
-    name?: boolean
     email?: boolean
-    phone?: boolean
     subject?: boolean
     message?: boolean
-    legacyReplies?: boolean
     status?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    name?: boolean
+    phone?: boolean
+    legacyReplies?: boolean
     user?: boolean | Contact$userArgs<ExtArgs>
   }, ExtArgs["result"]["contact"]>
 
   export type ContactSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     userId?: boolean
-    name?: boolean
     email?: boolean
-    phone?: boolean
     subject?: boolean
     message?: boolean
-    legacyReplies?: boolean
     status?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    name?: boolean
+    phone?: boolean
+    legacyReplies?: boolean
     user?: boolean | Contact$userArgs<ExtArgs>
   }, ExtArgs["result"]["contact"]>
 
   export type ContactSelectScalar = {
     id?: boolean
     userId?: boolean
-    name?: boolean
     email?: boolean
-    phone?: boolean
     subject?: boolean
     message?: boolean
-    legacyReplies?: boolean
     status?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    name?: boolean
+    phone?: boolean
+    legacyReplies?: boolean
   }
 
-  export type ContactOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "name" | "email" | "phone" | "subject" | "message" | "legacyReplies" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["contact"]>
+  export type ContactOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "email" | "subject" | "message" | "status" | "createdAt" | "updatedAt" | "name" | "phone" | "legacyReplies", ExtArgs["result"]["contact"]>
   export type ContactInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | Contact$userArgs<ExtArgs>
     threadReplies?: boolean | Contact$threadRepliesArgs<ExtArgs>
@@ -13531,15 +13531,15 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: number
       userId: number | null
-      name: string
       email: string
-      phone: string | null
       subject: string
       message: string
-      legacyReplies: Prisma.JsonValue
       status: $Enums.ContactStatus
       createdAt: Date
       updatedAt: Date
+      name: string
+      phone: string | null
+      legacyReplies: Prisma.JsonValue
     }, ExtArgs["result"]["contact"]>
     composites: {}
   }
@@ -13967,15 +13967,15 @@ export namespace Prisma {
   interface ContactFieldRefs {
     readonly id: FieldRef<"Contact", 'Int'>
     readonly userId: FieldRef<"Contact", 'Int'>
-    readonly name: FieldRef<"Contact", 'String'>
     readonly email: FieldRef<"Contact", 'String'>
-    readonly phone: FieldRef<"Contact", 'String'>
     readonly subject: FieldRef<"Contact", 'String'>
     readonly message: FieldRef<"Contact", 'String'>
-    readonly legacyReplies: FieldRef<"Contact", 'Json'>
     readonly status: FieldRef<"Contact", 'ContactStatus'>
     readonly createdAt: FieldRef<"Contact", 'DateTime'>
     readonly updatedAt: FieldRef<"Contact", 'DateTime'>
+    readonly name: FieldRef<"Contact", 'String'>
+    readonly phone: FieldRef<"Contact", 'String'>
+    readonly legacyReplies: FieldRef<"Contact", 'Json'>
   }
     
 
@@ -14660,8 +14660,8 @@ export namespace Prisma {
     senderName?: boolean
     message?: boolean
     createdAt?: boolean
-    contact?: boolean | ContactDefaultArgs<ExtArgs>
     author?: boolean | ContactReply$authorArgs<ExtArgs>
+    contact?: boolean | ContactDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["contactReply"]>
 
   export type ContactReplySelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -14672,8 +14672,8 @@ export namespace Prisma {
     senderName?: boolean
     message?: boolean
     createdAt?: boolean
-    contact?: boolean | ContactDefaultArgs<ExtArgs>
     author?: boolean | ContactReply$authorArgs<ExtArgs>
+    contact?: boolean | ContactDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["contactReply"]>
 
   export type ContactReplySelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -14684,8 +14684,8 @@ export namespace Prisma {
     senderName?: boolean
     message?: boolean
     createdAt?: boolean
-    contact?: boolean | ContactDefaultArgs<ExtArgs>
     author?: boolean | ContactReply$authorArgs<ExtArgs>
+    contact?: boolean | ContactDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["contactReply"]>
 
   export type ContactReplySelectScalar = {
@@ -14700,23 +14700,23 @@ export namespace Prisma {
 
   export type ContactReplyOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "contactId" | "authorId" | "senderRole" | "senderName" | "message" | "createdAt", ExtArgs["result"]["contactReply"]>
   export type ContactReplyInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    contact?: boolean | ContactDefaultArgs<ExtArgs>
     author?: boolean | ContactReply$authorArgs<ExtArgs>
+    contact?: boolean | ContactDefaultArgs<ExtArgs>
   }
   export type ContactReplyIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    contact?: boolean | ContactDefaultArgs<ExtArgs>
     author?: boolean | ContactReply$authorArgs<ExtArgs>
+    contact?: boolean | ContactDefaultArgs<ExtArgs>
   }
   export type ContactReplyIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    contact?: boolean | ContactDefaultArgs<ExtArgs>
     author?: boolean | ContactReply$authorArgs<ExtArgs>
+    contact?: boolean | ContactDefaultArgs<ExtArgs>
   }
 
   export type $ContactReplyPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "ContactReply"
     objects: {
-      contact: Prisma.$ContactPayload<ExtArgs>
       author: Prisma.$UserPayload<ExtArgs> | null
+      contact: Prisma.$ContactPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -15120,8 +15120,8 @@ export namespace Prisma {
    */
   export interface Prisma__ContactReplyClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    contact<T extends ContactDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ContactDefaultArgs<ExtArgs>>): Prisma__ContactClient<$Result.GetResult<Prisma.$ContactPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     author<T extends ContactReply$authorArgs<ExtArgs> = {}>(args?: Subset<T, ContactReply$authorArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    contact<T extends ContactDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ContactDefaultArgs<ExtArgs>>): Prisma__ContactClient<$Result.GetResult<Prisma.$ContactPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -15822,8 +15822,8 @@ export namespace Prisma {
     comment?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
     product?: boolean | ProductDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["review"]>
 
   export type ReviewSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -15834,8 +15834,8 @@ export namespace Prisma {
     comment?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
     product?: boolean | ProductDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["review"]>
 
   export type ReviewSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -15846,8 +15846,8 @@ export namespace Prisma {
     comment?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
     product?: boolean | ProductDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["review"]>
 
   export type ReviewSelectScalar = {
@@ -15862,23 +15862,23 @@ export namespace Prisma {
 
   export type ReviewOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "productId" | "rating" | "comment" | "createdAt" | "updatedAt", ExtArgs["result"]["review"]>
   export type ReviewInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
     product?: boolean | ProductDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }
   export type ReviewIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
     product?: boolean | ProductDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }
   export type ReviewIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
     product?: boolean | ProductDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }
 
   export type $ReviewPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Review"
     objects: {
-      user: Prisma.$UserPayload<ExtArgs>
       product: Prisma.$ProductPayload<ExtArgs>
+      user: Prisma.$UserPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -16282,8 +16282,8 @@ export namespace Prisma {
    */
   export interface Prisma__ReviewClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     product<T extends ProductDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProductDefaultArgs<ExtArgs>>): Prisma__ProductClient<$Result.GetResult<Prisma.$ProductPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -16764,6 +16764,10 @@ export namespace Prisma {
     title: string | null
     description: string | null
     imageUrl: string | null
+    imageAlt: string | null
+    domain: string | null
+    location: string | null
+    isPublished: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -16773,6 +16777,10 @@ export namespace Prisma {
     title: string | null
     description: string | null
     imageUrl: string | null
+    imageAlt: string | null
+    domain: string | null
+    location: string | null
+    isPublished: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -16782,6 +16790,10 @@ export namespace Prisma {
     title: number
     description: number
     imageUrl: number
+    imageAlt: number
+    domain: number
+    location: number
+    isPublished: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -16801,6 +16813,10 @@ export namespace Prisma {
     title?: true
     description?: true
     imageUrl?: true
+    imageAlt?: true
+    domain?: true
+    location?: true
+    isPublished?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -16810,6 +16826,10 @@ export namespace Prisma {
     title?: true
     description?: true
     imageUrl?: true
+    imageAlt?: true
+    domain?: true
+    location?: true
+    isPublished?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -16819,6 +16839,10 @@ export namespace Prisma {
     title?: true
     description?: true
     imageUrl?: true
+    imageAlt?: true
+    domain?: true
+    location?: true
+    isPublished?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -16915,6 +16939,10 @@ export namespace Prisma {
     title: string
     description: string
     imageUrl: string | null
+    imageAlt: string | null
+    domain: string
+    location: string | null
+    isPublished: boolean
     createdAt: Date
     updatedAt: Date
     _count: RealizationCountAggregateOutputType | null
@@ -16943,6 +16971,10 @@ export namespace Prisma {
     title?: boolean
     description?: boolean
     imageUrl?: boolean
+    imageAlt?: boolean
+    domain?: boolean
+    location?: boolean
+    isPublished?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["realization"]>
@@ -16952,6 +16984,10 @@ export namespace Prisma {
     title?: boolean
     description?: boolean
     imageUrl?: boolean
+    imageAlt?: boolean
+    domain?: boolean
+    location?: boolean
+    isPublished?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["realization"]>
@@ -16961,6 +16997,10 @@ export namespace Prisma {
     title?: boolean
     description?: boolean
     imageUrl?: boolean
+    imageAlt?: boolean
+    domain?: boolean
+    location?: boolean
+    isPublished?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["realization"]>
@@ -16970,11 +17010,15 @@ export namespace Prisma {
     title?: boolean
     description?: boolean
     imageUrl?: boolean
+    imageAlt?: boolean
+    domain?: boolean
+    location?: boolean
+    isPublished?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type RealizationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "description" | "imageUrl" | "createdAt" | "updatedAt", ExtArgs["result"]["realization"]>
+  export type RealizationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "description" | "imageUrl" | "imageAlt" | "domain" | "location" | "isPublished" | "createdAt" | "updatedAt", ExtArgs["result"]["realization"]>
 
   export type $RealizationPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Realization"
@@ -16984,6 +17028,10 @@ export namespace Prisma {
       title: string
       description: string
       imageUrl: string | null
+      imageAlt: string | null
+      domain: string
+      location: string | null
+      isPublished: boolean
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["realization"]>
@@ -17413,6 +17461,10 @@ export namespace Prisma {
     readonly title: FieldRef<"Realization", 'String'>
     readonly description: FieldRef<"Realization", 'String'>
     readonly imageUrl: FieldRef<"Realization", 'String'>
+    readonly imageAlt: FieldRef<"Realization", 'String'>
+    readonly domain: FieldRef<"Realization", 'String'>
+    readonly location: FieldRef<"Realization", 'String'>
+    readonly isPublished: FieldRef<"Realization", 'Boolean'>
     readonly createdAt: FieldRef<"Realization", 'DateTime'>
     readonly updatedAt: FieldRef<"Realization", 'DateTime'>
   }
@@ -17800,106 +17852,106 @@ export namespace Prisma {
 
   export type HomepagePhotoAvgAggregateOutputType = {
     id: number | null
-    productId: number | null
     position: number | null
+    productId: number | null
   }
 
   export type HomepagePhotoSumAggregateOutputType = {
     id: number | null
-    productId: number | null
     position: number | null
+    productId: number | null
   }
 
   export type HomepagePhotoMinAggregateOutputType = {
     id: number | null
     productKey: string | null
-    productId: number | null
-    title: string | null
     imageUrl: string | null
     alt: string | null
     position: number | null
     isActive: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
+    title: string | null
+    productId: number | null
   }
 
   export type HomepagePhotoMaxAggregateOutputType = {
     id: number | null
     productKey: string | null
-    productId: number | null
-    title: string | null
     imageUrl: string | null
     alt: string | null
     position: number | null
     isActive: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
+    title: string | null
+    productId: number | null
   }
 
   export type HomepagePhotoCountAggregateOutputType = {
     id: number
     productKey: number
-    productId: number
-    title: number
     imageUrl: number
     alt: number
     position: number
     isActive: number
     createdAt: number
     updatedAt: number
+    title: number
+    productId: number
     _all: number
   }
 
 
   export type HomepagePhotoAvgAggregateInputType = {
     id?: true
-    productId?: true
     position?: true
+    productId?: true
   }
 
   export type HomepagePhotoSumAggregateInputType = {
     id?: true
-    productId?: true
     position?: true
+    productId?: true
   }
 
   export type HomepagePhotoMinAggregateInputType = {
     id?: true
     productKey?: true
-    productId?: true
-    title?: true
     imageUrl?: true
     alt?: true
     position?: true
     isActive?: true
     createdAt?: true
     updatedAt?: true
+    title?: true
+    productId?: true
   }
 
   export type HomepagePhotoMaxAggregateInputType = {
     id?: true
     productKey?: true
-    productId?: true
-    title?: true
     imageUrl?: true
     alt?: true
     position?: true
     isActive?: true
     createdAt?: true
     updatedAt?: true
+    title?: true
+    productId?: true
   }
 
   export type HomepagePhotoCountAggregateInputType = {
     id?: true
     productKey?: true
-    productId?: true
-    title?: true
     imageUrl?: true
     alt?: true
     position?: true
     isActive?: true
     createdAt?: true
     updatedAt?: true
+    title?: true
+    productId?: true
     _all?: true
   }
 
@@ -17992,14 +18044,14 @@ export namespace Prisma {
   export type HomepagePhotoGroupByOutputType = {
     id: number
     productKey: string
-    productId: number | null
-    title: string
     imageUrl: string
     alt: string
     position: number
     isActive: boolean
     createdAt: Date
     updatedAt: Date
+    title: string
+    productId: number | null
     _count: HomepagePhotoCountAggregateOutputType | null
     _avg: HomepagePhotoAvgAggregateOutputType | null
     _sum: HomepagePhotoSumAggregateOutputType | null
@@ -18024,59 +18076,59 @@ export namespace Prisma {
   export type HomepagePhotoSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     productKey?: boolean
-    productId?: boolean
-    title?: boolean
     imageUrl?: boolean
     alt?: boolean
     position?: boolean
     isActive?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    title?: boolean
+    productId?: boolean
     product?: boolean | HomepagePhoto$productArgs<ExtArgs>
   }, ExtArgs["result"]["homepagePhoto"]>
 
   export type HomepagePhotoSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     productKey?: boolean
-    productId?: boolean
-    title?: boolean
     imageUrl?: boolean
     alt?: boolean
     position?: boolean
     isActive?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    title?: boolean
+    productId?: boolean
     product?: boolean | HomepagePhoto$productArgs<ExtArgs>
   }, ExtArgs["result"]["homepagePhoto"]>
 
   export type HomepagePhotoSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     productKey?: boolean
-    productId?: boolean
-    title?: boolean
     imageUrl?: boolean
     alt?: boolean
     position?: boolean
     isActive?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    title?: boolean
+    productId?: boolean
     product?: boolean | HomepagePhoto$productArgs<ExtArgs>
   }, ExtArgs["result"]["homepagePhoto"]>
 
   export type HomepagePhotoSelectScalar = {
     id?: boolean
     productKey?: boolean
-    productId?: boolean
-    title?: boolean
     imageUrl?: boolean
     alt?: boolean
     position?: boolean
     isActive?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    title?: boolean
+    productId?: boolean
   }
 
-  export type HomepagePhotoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "productKey" | "productId" | "title" | "imageUrl" | "alt" | "position" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["homepagePhoto"]>
+  export type HomepagePhotoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "productKey" | "imageUrl" | "alt" | "position" | "isActive" | "createdAt" | "updatedAt" | "title" | "productId", ExtArgs["result"]["homepagePhoto"]>
   export type HomepagePhotoInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     product?: boolean | HomepagePhoto$productArgs<ExtArgs>
   }
@@ -18095,14 +18147,14 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: number
       productKey: string
-      productId: number | null
-      title: string
       imageUrl: string
       alt: string
       position: number
       isActive: boolean
       createdAt: Date
       updatedAt: Date
+      title: string
+      productId: number | null
     }, ExtArgs["result"]["homepagePhoto"]>
     composites: {}
   }
@@ -18529,14 +18581,14 @@ export namespace Prisma {
   interface HomepagePhotoFieldRefs {
     readonly id: FieldRef<"HomepagePhoto", 'Int'>
     readonly productKey: FieldRef<"HomepagePhoto", 'String'>
-    readonly productId: FieldRef<"HomepagePhoto", 'Int'>
-    readonly title: FieldRef<"HomepagePhoto", 'String'>
     readonly imageUrl: FieldRef<"HomepagePhoto", 'String'>
     readonly alt: FieldRef<"HomepagePhoto", 'String'>
     readonly position: FieldRef<"HomepagePhoto", 'Int'>
     readonly isActive: FieldRef<"HomepagePhoto", 'Boolean'>
     readonly createdAt: FieldRef<"HomepagePhoto", 'DateTime'>
     readonly updatedAt: FieldRef<"HomepagePhoto", 'DateTime'>
+    readonly title: FieldRef<"HomepagePhoto", 'String'>
+    readonly productId: FieldRef<"HomepagePhoto", 'Int'>
   }
     
 
@@ -20120,12 +20172,12 @@ export namespace Prisma {
     id: 'id',
     email: 'email',
     name: 'name',
-    phone: 'phone',
     passwordHash: 'passwordHash',
     role: 'role',
     isActive: 'isActive',
     createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
+    updatedAt: 'updatedAt',
+    phone: 'phone'
   };
 
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -20146,13 +20198,13 @@ export namespace Prisma {
     id: 'id',
     name: 'name',
     description: 'description',
-    price: 'price',
-    stock: 'stock',
     imageUrl: 'imageUrl',
-    specs: 'specs',
-    categoryId: 'categoryId',
     createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
+    updatedAt: 'updatedAt',
+    price: 'price',
+    specs: 'specs',
+    stock: 'stock',
+    categoryId: 'categoryId'
   };
 
   export type ProductScalarFieldEnum = (typeof ProductScalarFieldEnum)[keyof typeof ProductScalarFieldEnum]
@@ -20188,10 +20240,10 @@ export namespace Prisma {
     shippingAddress: 'shippingAddress',
     shippingCity: 'shippingCity',
     shippingZip: 'shippingZip',
-    shippingPhone: 'shippingPhone',
-    paymentMethod: 'paymentMethod',
     createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
+    updatedAt: 'updatedAt',
+    paymentMethod: 'paymentMethod',
+    shippingPhone: 'shippingPhone'
   };
 
   export type OrderScalarFieldEnum = (typeof OrderScalarFieldEnum)[keyof typeof OrderScalarFieldEnum]
@@ -20227,15 +20279,15 @@ export namespace Prisma {
     userId: 'userId',
     title: 'title',
     description: 'description',
+    price: 'price',
+    status: 'status',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt',
     contactName: 'contactName',
     contactEmail: 'contactEmail',
     contactPhone: 'contactPhone',
     location: 'location',
-    budgetRange: 'budgetRange',
-    price: 'price',
-    status: 'status',
-    createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
+    budgetRange: 'budgetRange'
   };
 
   export type QuoteScalarFieldEnum = (typeof QuoteScalarFieldEnum)[keyof typeof QuoteScalarFieldEnum]
@@ -20244,15 +20296,15 @@ export namespace Prisma {
   export const ContactScalarFieldEnum: {
     id: 'id',
     userId: 'userId',
-    name: 'name',
     email: 'email',
-    phone: 'phone',
     subject: 'subject',
     message: 'message',
-    legacyReplies: 'legacyReplies',
     status: 'status',
     createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
+    updatedAt: 'updatedAt',
+    name: 'name',
+    phone: 'phone',
+    legacyReplies: 'legacyReplies'
   };
 
   export type ContactScalarFieldEnum = (typeof ContactScalarFieldEnum)[keyof typeof ContactScalarFieldEnum]
@@ -20289,6 +20341,10 @@ export namespace Prisma {
     title: 'title',
     description: 'description',
     imageUrl: 'imageUrl',
+    imageAlt: 'imageAlt',
+    domain: 'domain',
+    location: 'location',
+    isPublished: 'isPublished',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -20299,14 +20355,14 @@ export namespace Prisma {
   export const HomepagePhotoScalarFieldEnum: {
     id: 'id',
     productKey: 'productKey',
-    productId: 'productId',
-    title: 'title',
     imageUrl: 'imageUrl',
     alt: 'alt',
     position: 'position',
     isActive: 'isActive',
     createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
+    updatedAt: 'updatedAt',
+    title: 'title',
+    productId: 'productId'
   };
 
   export type HomepagePhotoScalarFieldEnum = (typeof HomepagePhotoScalarFieldEnum)[keyof typeof HomepagePhotoScalarFieldEnum]
@@ -20504,20 +20560,6 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'Json'
-   */
-  export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
-    
-
-
-  /**
-   * Reference to a field of type 'QueryMode'
-   */
-  export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
-    
-
-
-  /**
    * Reference to a field of type 'ContactStatus'
    */
   export type EnumContactStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ContactStatus'>
@@ -20528,6 +20570,20 @@ export namespace Prisma {
    * Reference to a field of type 'ContactStatus[]'
    */
   export type ListEnumContactStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ContactStatus[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Json'
+   */
+  export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
+    
+
+
+  /**
+   * Reference to a field of type 'QueryMode'
+   */
+  export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
     
 
 
@@ -20569,38 +20625,38 @@ export namespace Prisma {
     id?: IntFilter<"User"> | number
     email?: StringFilter<"User"> | string
     name?: StringFilter<"User"> | string
-    phone?: StringNullableFilter<"User"> | string | null
     passwordHash?: StringFilter<"User"> | string
     role?: EnumUserRoleFilter<"User"> | $Enums.UserRole
     isActive?: BoolFilter<"User"> | boolean
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
-    orders?: OrderListRelationFilter
+    phone?: StringNullableFilter<"User"> | string | null
     cart?: XOR<CartNullableScalarRelationFilter, CartWhereInput> | null
-    quotes?: QuoteListRelationFilter
-    reviews?: ReviewListRelationFilter
     contactMessages?: ContactListRelationFilter
     contactReplies?: ContactReplyListRelationFilter
+    orders?: OrderListRelationFilter
+    quotes?: QuoteListRelationFilter
     refreshTokens?: RefreshTokenListRelationFilter
+    reviews?: ReviewListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
     id?: SortOrder
     email?: SortOrder
     name?: SortOrder
-    phone?: SortOrderInput | SortOrder
     passwordHash?: SortOrder
     role?: SortOrder
     isActive?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    orders?: OrderOrderByRelationAggregateInput
+    phone?: SortOrderInput | SortOrder
     cart?: CartOrderByWithRelationInput
-    quotes?: QuoteOrderByRelationAggregateInput
-    reviews?: ReviewOrderByRelationAggregateInput
     contactMessages?: ContactOrderByRelationAggregateInput
     contactReplies?: ContactReplyOrderByRelationAggregateInput
+    orders?: OrderOrderByRelationAggregateInput
+    quotes?: QuoteOrderByRelationAggregateInput
     refreshTokens?: RefreshTokenOrderByRelationAggregateInput
+    reviews?: ReviewOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -20610,31 +20666,31 @@ export namespace Prisma {
     OR?: UserWhereInput[]
     NOT?: UserWhereInput | UserWhereInput[]
     name?: StringFilter<"User"> | string
-    phone?: StringNullableFilter<"User"> | string | null
     passwordHash?: StringFilter<"User"> | string
     role?: EnumUserRoleFilter<"User"> | $Enums.UserRole
     isActive?: BoolFilter<"User"> | boolean
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
-    orders?: OrderListRelationFilter
+    phone?: StringNullableFilter<"User"> | string | null
     cart?: XOR<CartNullableScalarRelationFilter, CartWhereInput> | null
-    quotes?: QuoteListRelationFilter
-    reviews?: ReviewListRelationFilter
     contactMessages?: ContactListRelationFilter
     contactReplies?: ContactReplyListRelationFilter
+    orders?: OrderListRelationFilter
+    quotes?: QuoteListRelationFilter
     refreshTokens?: RefreshTokenListRelationFilter
+    reviews?: ReviewListRelationFilter
   }, "id" | "email">
 
   export type UserOrderByWithAggregationInput = {
     id?: SortOrder
     email?: SortOrder
     name?: SortOrder
-    phone?: SortOrderInput | SortOrder
     passwordHash?: SortOrder
     role?: SortOrder
     isActive?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    phone?: SortOrderInput | SortOrder
     _count?: UserCountOrderByAggregateInput
     _avg?: UserAvgOrderByAggregateInput
     _max?: UserMaxOrderByAggregateInput
@@ -20649,12 +20705,12 @@ export namespace Prisma {
     id?: IntWithAggregatesFilter<"User"> | number
     email?: StringWithAggregatesFilter<"User"> | string
     name?: StringWithAggregatesFilter<"User"> | string
-    phone?: StringNullableWithAggregatesFilter<"User"> | string | null
     passwordHash?: StringWithAggregatesFilter<"User"> | string
     role?: EnumUserRoleWithAggregatesFilter<"User"> | $Enums.UserRole
     isActive?: BoolWithAggregatesFilter<"User"> | boolean
     createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
+    phone?: StringNullableWithAggregatesFilter<"User"> | string | null
   }
 
   export type CategoryWhereInput = {
@@ -20721,36 +20777,36 @@ export namespace Prisma {
     id?: IntFilter<"Product"> | number
     name?: StringFilter<"Product"> | string
     description?: StringFilter<"Product"> | string
-    price?: IntFilter<"Product"> | number
-    stock?: EnumStockStatusFilter<"Product"> | $Enums.StockStatus
     imageUrl?: StringNullableFilter<"Product"> | string | null
-    specs?: StringNullableListFilter<"Product">
-    categoryId?: IntFilter<"Product"> | number
     createdAt?: DateTimeFilter<"Product"> | Date | string
     updatedAt?: DateTimeFilter<"Product"> | Date | string
-    category?: XOR<CategoryScalarRelationFilter, CategoryWhereInput>
+    price?: IntFilter<"Product"> | number
+    specs?: StringNullableListFilter<"Product">
+    stock?: EnumStockStatusFilter<"Product"> | $Enums.StockStatus
+    categoryId?: IntFilter<"Product"> | number
     cartItems?: CartItemListRelationFilter
-    orderItems?: OrderItemListRelationFilter
-    reviews?: ReviewListRelationFilter
     homepagePhoto?: XOR<HomepagePhotoNullableScalarRelationFilter, HomepagePhotoWhereInput> | null
+    orderItems?: OrderItemListRelationFilter
+    category?: XOR<CategoryScalarRelationFilter, CategoryWhereInput>
+    reviews?: ReviewListRelationFilter
   }
 
   export type ProductOrderByWithRelationInput = {
     id?: SortOrder
     name?: SortOrder
     description?: SortOrder
-    price?: SortOrder
-    stock?: SortOrder
     imageUrl?: SortOrderInput | SortOrder
-    specs?: SortOrder
-    categoryId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    category?: CategoryOrderByWithRelationInput
+    price?: SortOrder
+    specs?: SortOrder
+    stock?: SortOrder
+    categoryId?: SortOrder
     cartItems?: CartItemOrderByRelationAggregateInput
-    orderItems?: OrderItemOrderByRelationAggregateInput
-    reviews?: ReviewOrderByRelationAggregateInput
     homepagePhoto?: HomepagePhotoOrderByWithRelationInput
+    orderItems?: OrderItemOrderByRelationAggregateInput
+    category?: CategoryOrderByWithRelationInput
+    reviews?: ReviewOrderByRelationAggregateInput
   }
 
   export type ProductWhereUniqueInput = Prisma.AtLeast<{
@@ -20760,31 +20816,31 @@ export namespace Prisma {
     NOT?: ProductWhereInput | ProductWhereInput[]
     name?: StringFilter<"Product"> | string
     description?: StringFilter<"Product"> | string
-    price?: IntFilter<"Product"> | number
-    stock?: EnumStockStatusFilter<"Product"> | $Enums.StockStatus
     imageUrl?: StringNullableFilter<"Product"> | string | null
-    specs?: StringNullableListFilter<"Product">
-    categoryId?: IntFilter<"Product"> | number
     createdAt?: DateTimeFilter<"Product"> | Date | string
     updatedAt?: DateTimeFilter<"Product"> | Date | string
-    category?: XOR<CategoryScalarRelationFilter, CategoryWhereInput>
+    price?: IntFilter<"Product"> | number
+    specs?: StringNullableListFilter<"Product">
+    stock?: EnumStockStatusFilter<"Product"> | $Enums.StockStatus
+    categoryId?: IntFilter<"Product"> | number
     cartItems?: CartItemListRelationFilter
-    orderItems?: OrderItemListRelationFilter
-    reviews?: ReviewListRelationFilter
     homepagePhoto?: XOR<HomepagePhotoNullableScalarRelationFilter, HomepagePhotoWhereInput> | null
+    orderItems?: OrderItemListRelationFilter
+    category?: XOR<CategoryScalarRelationFilter, CategoryWhereInput>
+    reviews?: ReviewListRelationFilter
   }, "id">
 
   export type ProductOrderByWithAggregationInput = {
     id?: SortOrder
     name?: SortOrder
     description?: SortOrder
-    price?: SortOrder
-    stock?: SortOrder
     imageUrl?: SortOrderInput | SortOrder
-    specs?: SortOrder
-    categoryId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    price?: SortOrder
+    specs?: SortOrder
+    stock?: SortOrder
+    categoryId?: SortOrder
     _count?: ProductCountOrderByAggregateInput
     _avg?: ProductAvgOrderByAggregateInput
     _max?: ProductMaxOrderByAggregateInput
@@ -20799,13 +20855,13 @@ export namespace Prisma {
     id?: IntWithAggregatesFilter<"Product"> | number
     name?: StringWithAggregatesFilter<"Product"> | string
     description?: StringWithAggregatesFilter<"Product"> | string
-    price?: IntWithAggregatesFilter<"Product"> | number
-    stock?: EnumStockStatusWithAggregatesFilter<"Product"> | $Enums.StockStatus
     imageUrl?: StringNullableWithAggregatesFilter<"Product"> | string | null
-    specs?: StringNullableListFilter<"Product">
-    categoryId?: IntWithAggregatesFilter<"Product"> | number
     createdAt?: DateTimeWithAggregatesFilter<"Product"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Product"> | Date | string
+    price?: IntWithAggregatesFilter<"Product"> | number
+    specs?: StringNullableListFilter<"Product">
+    stock?: EnumStockStatusWithAggregatesFilter<"Product"> | $Enums.StockStatus
+    categoryId?: IntWithAggregatesFilter<"Product"> | number
   }
 
   export type CartWhereInput = {
@@ -20940,10 +20996,10 @@ export namespace Prisma {
     shippingAddress?: StringFilter<"Order"> | string
     shippingCity?: StringFilter<"Order"> | string
     shippingZip?: StringFilter<"Order"> | string
-    shippingPhone?: StringNullableFilter<"Order"> | string | null
-    paymentMethod?: EnumPaymentMethodNullableFilter<"Order"> | $Enums.PaymentMethod | null
     createdAt?: DateTimeFilter<"Order"> | Date | string
     updatedAt?: DateTimeFilter<"Order"> | Date | string
+    paymentMethod?: EnumPaymentMethodNullableFilter<"Order"> | $Enums.PaymentMethod | null
+    shippingPhone?: StringNullableFilter<"Order"> | string | null
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     items?: OrderItemListRelationFilter
     payment?: XOR<PaymentNullableScalarRelationFilter, PaymentWhereInput> | null
@@ -20957,10 +21013,10 @@ export namespace Prisma {
     shippingAddress?: SortOrder
     shippingCity?: SortOrder
     shippingZip?: SortOrder
-    shippingPhone?: SortOrderInput | SortOrder
-    paymentMethod?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    paymentMethod?: SortOrderInput | SortOrder
+    shippingPhone?: SortOrderInput | SortOrder
     user?: UserOrderByWithRelationInput
     items?: OrderItemOrderByRelationAggregateInput
     payment?: PaymentOrderByWithRelationInput
@@ -20977,10 +21033,10 @@ export namespace Prisma {
     shippingAddress?: StringFilter<"Order"> | string
     shippingCity?: StringFilter<"Order"> | string
     shippingZip?: StringFilter<"Order"> | string
-    shippingPhone?: StringNullableFilter<"Order"> | string | null
-    paymentMethod?: EnumPaymentMethodNullableFilter<"Order"> | $Enums.PaymentMethod | null
     createdAt?: DateTimeFilter<"Order"> | Date | string
     updatedAt?: DateTimeFilter<"Order"> | Date | string
+    paymentMethod?: EnumPaymentMethodNullableFilter<"Order"> | $Enums.PaymentMethod | null
+    shippingPhone?: StringNullableFilter<"Order"> | string | null
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     items?: OrderItemListRelationFilter
     payment?: XOR<PaymentNullableScalarRelationFilter, PaymentWhereInput> | null
@@ -20994,10 +21050,10 @@ export namespace Prisma {
     shippingAddress?: SortOrder
     shippingCity?: SortOrder
     shippingZip?: SortOrder
-    shippingPhone?: SortOrderInput | SortOrder
-    paymentMethod?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    paymentMethod?: SortOrderInput | SortOrder
+    shippingPhone?: SortOrderInput | SortOrder
     _count?: OrderCountOrderByAggregateInput
     _avg?: OrderAvgOrderByAggregateInput
     _max?: OrderMaxOrderByAggregateInput
@@ -21016,10 +21072,10 @@ export namespace Prisma {
     shippingAddress?: StringWithAggregatesFilter<"Order"> | string
     shippingCity?: StringWithAggregatesFilter<"Order"> | string
     shippingZip?: StringWithAggregatesFilter<"Order"> | string
-    shippingPhone?: StringNullableWithAggregatesFilter<"Order"> | string | null
-    paymentMethod?: EnumPaymentMethodNullableWithAggregatesFilter<"Order"> | $Enums.PaymentMethod | null
     createdAt?: DateTimeWithAggregatesFilter<"Order"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Order"> | Date | string
+    paymentMethod?: EnumPaymentMethodNullableWithAggregatesFilter<"Order"> | $Enums.PaymentMethod | null
+    shippingPhone?: StringNullableWithAggregatesFilter<"Order"> | string | null
   }
 
   export type OrderItemWhereInput = {
@@ -21162,15 +21218,15 @@ export namespace Prisma {
     userId?: IntNullableFilter<"Quote"> | number | null
     title?: StringFilter<"Quote"> | string
     description?: StringFilter<"Quote"> | string
+    price?: IntNullableFilter<"Quote"> | number | null
+    status?: EnumQuoteStatusFilter<"Quote"> | $Enums.QuoteStatus
+    createdAt?: DateTimeFilter<"Quote"> | Date | string
+    updatedAt?: DateTimeFilter<"Quote"> | Date | string
     contactName?: StringNullableFilter<"Quote"> | string | null
     contactEmail?: StringNullableFilter<"Quote"> | string | null
     contactPhone?: StringNullableFilter<"Quote"> | string | null
     location?: StringNullableFilter<"Quote"> | string | null
     budgetRange?: StringNullableFilter<"Quote"> | string | null
-    price?: IntNullableFilter<"Quote"> | number | null
-    status?: EnumQuoteStatusFilter<"Quote"> | $Enums.QuoteStatus
-    createdAt?: DateTimeFilter<"Quote"> | Date | string
-    updatedAt?: DateTimeFilter<"Quote"> | Date | string
     user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
   }
 
@@ -21179,15 +21235,15 @@ export namespace Prisma {
     userId?: SortOrderInput | SortOrder
     title?: SortOrder
     description?: SortOrder
+    price?: SortOrderInput | SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     contactName?: SortOrderInput | SortOrder
     contactEmail?: SortOrderInput | SortOrder
     contactPhone?: SortOrderInput | SortOrder
     location?: SortOrderInput | SortOrder
     budgetRange?: SortOrderInput | SortOrder
-    price?: SortOrderInput | SortOrder
-    status?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
     user?: UserOrderByWithRelationInput
   }
 
@@ -21199,15 +21255,15 @@ export namespace Prisma {
     userId?: IntNullableFilter<"Quote"> | number | null
     title?: StringFilter<"Quote"> | string
     description?: StringFilter<"Quote"> | string
+    price?: IntNullableFilter<"Quote"> | number | null
+    status?: EnumQuoteStatusFilter<"Quote"> | $Enums.QuoteStatus
+    createdAt?: DateTimeFilter<"Quote"> | Date | string
+    updatedAt?: DateTimeFilter<"Quote"> | Date | string
     contactName?: StringNullableFilter<"Quote"> | string | null
     contactEmail?: StringNullableFilter<"Quote"> | string | null
     contactPhone?: StringNullableFilter<"Quote"> | string | null
     location?: StringNullableFilter<"Quote"> | string | null
     budgetRange?: StringNullableFilter<"Quote"> | string | null
-    price?: IntNullableFilter<"Quote"> | number | null
-    status?: EnumQuoteStatusFilter<"Quote"> | $Enums.QuoteStatus
-    createdAt?: DateTimeFilter<"Quote"> | Date | string
-    updatedAt?: DateTimeFilter<"Quote"> | Date | string
     user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
   }, "id">
 
@@ -21216,15 +21272,15 @@ export namespace Prisma {
     userId?: SortOrderInput | SortOrder
     title?: SortOrder
     description?: SortOrder
+    price?: SortOrderInput | SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     contactName?: SortOrderInput | SortOrder
     contactEmail?: SortOrderInput | SortOrder
     contactPhone?: SortOrderInput | SortOrder
     location?: SortOrderInput | SortOrder
     budgetRange?: SortOrderInput | SortOrder
-    price?: SortOrderInput | SortOrder
-    status?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
     _count?: QuoteCountOrderByAggregateInput
     _avg?: QuoteAvgOrderByAggregateInput
     _max?: QuoteMaxOrderByAggregateInput
@@ -21240,15 +21296,15 @@ export namespace Prisma {
     userId?: IntNullableWithAggregatesFilter<"Quote"> | number | null
     title?: StringWithAggregatesFilter<"Quote"> | string
     description?: StringWithAggregatesFilter<"Quote"> | string
+    price?: IntNullableWithAggregatesFilter<"Quote"> | number | null
+    status?: EnumQuoteStatusWithAggregatesFilter<"Quote"> | $Enums.QuoteStatus
+    createdAt?: DateTimeWithAggregatesFilter<"Quote"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Quote"> | Date | string
     contactName?: StringNullableWithAggregatesFilter<"Quote"> | string | null
     contactEmail?: StringNullableWithAggregatesFilter<"Quote"> | string | null
     contactPhone?: StringNullableWithAggregatesFilter<"Quote"> | string | null
     location?: StringNullableWithAggregatesFilter<"Quote"> | string | null
     budgetRange?: StringNullableWithAggregatesFilter<"Quote"> | string | null
-    price?: IntNullableWithAggregatesFilter<"Quote"> | number | null
-    status?: EnumQuoteStatusWithAggregatesFilter<"Quote"> | $Enums.QuoteStatus
-    createdAt?: DateTimeWithAggregatesFilter<"Quote"> | Date | string
-    updatedAt?: DateTimeWithAggregatesFilter<"Quote"> | Date | string
   }
 
   export type ContactWhereInput = {
@@ -21257,15 +21313,15 @@ export namespace Prisma {
     NOT?: ContactWhereInput | ContactWhereInput[]
     id?: IntFilter<"Contact"> | number
     userId?: IntNullableFilter<"Contact"> | number | null
-    name?: StringFilter<"Contact"> | string
     email?: StringFilter<"Contact"> | string
-    phone?: StringNullableFilter<"Contact"> | string | null
     subject?: StringFilter<"Contact"> | string
     message?: StringFilter<"Contact"> | string
-    legacyReplies?: JsonFilter<"Contact">
     status?: EnumContactStatusFilter<"Contact"> | $Enums.ContactStatus
     createdAt?: DateTimeFilter<"Contact"> | Date | string
     updatedAt?: DateTimeFilter<"Contact"> | Date | string
+    name?: StringFilter<"Contact"> | string
+    phone?: StringNullableFilter<"Contact"> | string | null
+    legacyReplies?: JsonFilter<"Contact">
     user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
     threadReplies?: ContactReplyListRelationFilter
   }
@@ -21273,15 +21329,15 @@ export namespace Prisma {
   export type ContactOrderByWithRelationInput = {
     id?: SortOrder
     userId?: SortOrderInput | SortOrder
-    name?: SortOrder
     email?: SortOrder
-    phone?: SortOrderInput | SortOrder
     subject?: SortOrder
     message?: SortOrder
-    legacyReplies?: SortOrder
     status?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    name?: SortOrder
+    phone?: SortOrderInput | SortOrder
+    legacyReplies?: SortOrder
     user?: UserOrderByWithRelationInput
     threadReplies?: ContactReplyOrderByRelationAggregateInput
   }
@@ -21292,15 +21348,15 @@ export namespace Prisma {
     OR?: ContactWhereInput[]
     NOT?: ContactWhereInput | ContactWhereInput[]
     userId?: IntNullableFilter<"Contact"> | number | null
-    name?: StringFilter<"Contact"> | string
     email?: StringFilter<"Contact"> | string
-    phone?: StringNullableFilter<"Contact"> | string | null
     subject?: StringFilter<"Contact"> | string
     message?: StringFilter<"Contact"> | string
-    legacyReplies?: JsonFilter<"Contact">
     status?: EnumContactStatusFilter<"Contact"> | $Enums.ContactStatus
     createdAt?: DateTimeFilter<"Contact"> | Date | string
     updatedAt?: DateTimeFilter<"Contact"> | Date | string
+    name?: StringFilter<"Contact"> | string
+    phone?: StringNullableFilter<"Contact"> | string | null
+    legacyReplies?: JsonFilter<"Contact">
     user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
     threadReplies?: ContactReplyListRelationFilter
   }, "id">
@@ -21308,15 +21364,15 @@ export namespace Prisma {
   export type ContactOrderByWithAggregationInput = {
     id?: SortOrder
     userId?: SortOrderInput | SortOrder
-    name?: SortOrder
     email?: SortOrder
-    phone?: SortOrderInput | SortOrder
     subject?: SortOrder
     message?: SortOrder
-    legacyReplies?: SortOrder
     status?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    name?: SortOrder
+    phone?: SortOrderInput | SortOrder
+    legacyReplies?: SortOrder
     _count?: ContactCountOrderByAggregateInput
     _avg?: ContactAvgOrderByAggregateInput
     _max?: ContactMaxOrderByAggregateInput
@@ -21330,15 +21386,15 @@ export namespace Prisma {
     NOT?: ContactScalarWhereWithAggregatesInput | ContactScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"Contact"> | number
     userId?: IntNullableWithAggregatesFilter<"Contact"> | number | null
-    name?: StringWithAggregatesFilter<"Contact"> | string
     email?: StringWithAggregatesFilter<"Contact"> | string
-    phone?: StringNullableWithAggregatesFilter<"Contact"> | string | null
     subject?: StringWithAggregatesFilter<"Contact"> | string
     message?: StringWithAggregatesFilter<"Contact"> | string
-    legacyReplies?: JsonWithAggregatesFilter<"Contact">
     status?: EnumContactStatusWithAggregatesFilter<"Contact"> | $Enums.ContactStatus
     createdAt?: DateTimeWithAggregatesFilter<"Contact"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Contact"> | Date | string
+    name?: StringWithAggregatesFilter<"Contact"> | string
+    phone?: StringNullableWithAggregatesFilter<"Contact"> | string | null
+    legacyReplies?: JsonWithAggregatesFilter<"Contact">
   }
 
   export type ContactReplyWhereInput = {
@@ -21352,8 +21408,8 @@ export namespace Prisma {
     senderName?: StringFilter<"ContactReply"> | string
     message?: StringFilter<"ContactReply"> | string
     createdAt?: DateTimeFilter<"ContactReply"> | Date | string
-    contact?: XOR<ContactScalarRelationFilter, ContactWhereInput>
     author?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
+    contact?: XOR<ContactScalarRelationFilter, ContactWhereInput>
   }
 
   export type ContactReplyOrderByWithRelationInput = {
@@ -21364,8 +21420,8 @@ export namespace Prisma {
     senderName?: SortOrder
     message?: SortOrder
     createdAt?: SortOrder
-    contact?: ContactOrderByWithRelationInput
     author?: UserOrderByWithRelationInput
+    contact?: ContactOrderByWithRelationInput
   }
 
   export type ContactReplyWhereUniqueInput = Prisma.AtLeast<{
@@ -21379,8 +21435,8 @@ export namespace Prisma {
     senderName?: StringFilter<"ContactReply"> | string
     message?: StringFilter<"ContactReply"> | string
     createdAt?: DateTimeFilter<"ContactReply"> | Date | string
-    contact?: XOR<ContactScalarRelationFilter, ContactWhereInput>
     author?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
+    contact?: XOR<ContactScalarRelationFilter, ContactWhereInput>
   }, "id">
 
   export type ContactReplyOrderByWithAggregationInput = {
@@ -21422,8 +21478,8 @@ export namespace Prisma {
     comment?: StringNullableFilter<"Review"> | string | null
     createdAt?: DateTimeFilter<"Review"> | Date | string
     updatedAt?: DateTimeFilter<"Review"> | Date | string
-    user?: XOR<UserScalarRelationFilter, UserWhereInput>
     product?: XOR<ProductScalarRelationFilter, ProductWhereInput>
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }
 
   export type ReviewOrderByWithRelationInput = {
@@ -21434,8 +21490,8 @@ export namespace Prisma {
     comment?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    user?: UserOrderByWithRelationInput
     product?: ProductOrderByWithRelationInput
+    user?: UserOrderByWithRelationInput
   }
 
   export type ReviewWhereUniqueInput = Prisma.AtLeast<{
@@ -21450,8 +21506,8 @@ export namespace Prisma {
     comment?: StringNullableFilter<"Review"> | string | null
     createdAt?: DateTimeFilter<"Review"> | Date | string
     updatedAt?: DateTimeFilter<"Review"> | Date | string
-    user?: XOR<UserScalarRelationFilter, UserWhereInput>
     product?: XOR<ProductScalarRelationFilter, ProductWhereInput>
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }, "id" | "userId_productId">
 
   export type ReviewOrderByWithAggregationInput = {
@@ -21490,6 +21546,10 @@ export namespace Prisma {
     title?: StringFilter<"Realization"> | string
     description?: StringFilter<"Realization"> | string
     imageUrl?: StringNullableFilter<"Realization"> | string | null
+    imageAlt?: StringNullableFilter<"Realization"> | string | null
+    domain?: StringFilter<"Realization"> | string
+    location?: StringNullableFilter<"Realization"> | string | null
+    isPublished?: BoolFilter<"Realization"> | boolean
     createdAt?: DateTimeFilter<"Realization"> | Date | string
     updatedAt?: DateTimeFilter<"Realization"> | Date | string
   }
@@ -21499,6 +21559,10 @@ export namespace Prisma {
     title?: SortOrder
     description?: SortOrder
     imageUrl?: SortOrderInput | SortOrder
+    imageAlt?: SortOrderInput | SortOrder
+    domain?: SortOrder
+    location?: SortOrderInput | SortOrder
+    isPublished?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -21511,6 +21575,10 @@ export namespace Prisma {
     title?: StringFilter<"Realization"> | string
     description?: StringFilter<"Realization"> | string
     imageUrl?: StringNullableFilter<"Realization"> | string | null
+    imageAlt?: StringNullableFilter<"Realization"> | string | null
+    domain?: StringFilter<"Realization"> | string
+    location?: StringNullableFilter<"Realization"> | string | null
+    isPublished?: BoolFilter<"Realization"> | boolean
     createdAt?: DateTimeFilter<"Realization"> | Date | string
     updatedAt?: DateTimeFilter<"Realization"> | Date | string
   }, "id">
@@ -21520,6 +21588,10 @@ export namespace Prisma {
     title?: SortOrder
     description?: SortOrder
     imageUrl?: SortOrderInput | SortOrder
+    imageAlt?: SortOrderInput | SortOrder
+    domain?: SortOrder
+    location?: SortOrderInput | SortOrder
+    isPublished?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: RealizationCountOrderByAggregateInput
@@ -21537,6 +21609,10 @@ export namespace Prisma {
     title?: StringWithAggregatesFilter<"Realization"> | string
     description?: StringWithAggregatesFilter<"Realization"> | string
     imageUrl?: StringNullableWithAggregatesFilter<"Realization"> | string | null
+    imageAlt?: StringNullableWithAggregatesFilter<"Realization"> | string | null
+    domain?: StringWithAggregatesFilter<"Realization"> | string
+    location?: StringNullableWithAggregatesFilter<"Realization"> | string | null
+    isPublished?: BoolWithAggregatesFilter<"Realization"> | boolean
     createdAt?: DateTimeWithAggregatesFilter<"Realization"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Realization"> | Date | string
   }
@@ -21547,59 +21623,59 @@ export namespace Prisma {
     NOT?: HomepagePhotoWhereInput | HomepagePhotoWhereInput[]
     id?: IntFilter<"HomepagePhoto"> | number
     productKey?: StringFilter<"HomepagePhoto"> | string
-    productId?: IntNullableFilter<"HomepagePhoto"> | number | null
-    title?: StringFilter<"HomepagePhoto"> | string
     imageUrl?: StringFilter<"HomepagePhoto"> | string
     alt?: StringFilter<"HomepagePhoto"> | string
     position?: IntFilter<"HomepagePhoto"> | number
     isActive?: BoolFilter<"HomepagePhoto"> | boolean
     createdAt?: DateTimeFilter<"HomepagePhoto"> | Date | string
     updatedAt?: DateTimeFilter<"HomepagePhoto"> | Date | string
+    title?: StringFilter<"HomepagePhoto"> | string
+    productId?: IntNullableFilter<"HomepagePhoto"> | number | null
     product?: XOR<ProductNullableScalarRelationFilter, ProductWhereInput> | null
   }
 
   export type HomepagePhotoOrderByWithRelationInput = {
     id?: SortOrder
     productKey?: SortOrder
-    productId?: SortOrderInput | SortOrder
-    title?: SortOrder
     imageUrl?: SortOrder
     alt?: SortOrder
     position?: SortOrder
     isActive?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    title?: SortOrder
+    productId?: SortOrderInput | SortOrder
     product?: ProductOrderByWithRelationInput
   }
 
   export type HomepagePhotoWhereUniqueInput = Prisma.AtLeast<{
     id?: number
     productKey?: string
-    productId?: number
     position?: number
+    productId?: number
     AND?: HomepagePhotoWhereInput | HomepagePhotoWhereInput[]
     OR?: HomepagePhotoWhereInput[]
     NOT?: HomepagePhotoWhereInput | HomepagePhotoWhereInput[]
-    title?: StringFilter<"HomepagePhoto"> | string
     imageUrl?: StringFilter<"HomepagePhoto"> | string
     alt?: StringFilter<"HomepagePhoto"> | string
     isActive?: BoolFilter<"HomepagePhoto"> | boolean
     createdAt?: DateTimeFilter<"HomepagePhoto"> | Date | string
     updatedAt?: DateTimeFilter<"HomepagePhoto"> | Date | string
+    title?: StringFilter<"HomepagePhoto"> | string
     product?: XOR<ProductNullableScalarRelationFilter, ProductWhereInput> | null
-  }, "id" | "productKey" | "productId" | "position">
+  }, "id" | "productKey" | "position" | "productId">
 
   export type HomepagePhotoOrderByWithAggregationInput = {
     id?: SortOrder
     productKey?: SortOrder
-    productId?: SortOrderInput | SortOrder
-    title?: SortOrder
     imageUrl?: SortOrder
     alt?: SortOrder
     position?: SortOrder
     isActive?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    title?: SortOrder
+    productId?: SortOrderInput | SortOrder
     _count?: HomepagePhotoCountOrderByAggregateInput
     _avg?: HomepagePhotoAvgOrderByAggregateInput
     _max?: HomepagePhotoMaxOrderByAggregateInput
@@ -21613,14 +21689,14 @@ export namespace Prisma {
     NOT?: HomepagePhotoScalarWhereWithAggregatesInput | HomepagePhotoScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"HomepagePhoto"> | number
     productKey?: StringWithAggregatesFilter<"HomepagePhoto"> | string
-    productId?: IntNullableWithAggregatesFilter<"HomepagePhoto"> | number | null
-    title?: StringWithAggregatesFilter<"HomepagePhoto"> | string
     imageUrl?: StringWithAggregatesFilter<"HomepagePhoto"> | string
     alt?: StringWithAggregatesFilter<"HomepagePhoto"> | string
     position?: IntWithAggregatesFilter<"HomepagePhoto"> | number
     isActive?: BoolWithAggregatesFilter<"HomepagePhoto"> | boolean
     createdAt?: DateTimeWithAggregatesFilter<"HomepagePhoto"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"HomepagePhoto"> | Date | string
+    title?: StringWithAggregatesFilter<"HomepagePhoto"> | string
+    productId?: IntNullableWithAggregatesFilter<"HomepagePhoto"> | number | null
   }
 
   export type RefreshTokenWhereInput = {
@@ -21693,110 +21769,110 @@ export namespace Prisma {
   export type UserCreateInput = {
     email: string
     name: string
-    phone?: string | null
     passwordHash: string
     role?: $Enums.UserRole
     isActive?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
-    orders?: OrderCreateNestedManyWithoutUserInput
+    phone?: string | null
     cart?: CartCreateNestedOneWithoutUserInput
-    quotes?: QuoteCreateNestedManyWithoutUserInput
-    reviews?: ReviewCreateNestedManyWithoutUserInput
     contactMessages?: ContactCreateNestedManyWithoutUserInput
     contactReplies?: ContactReplyCreateNestedManyWithoutAuthorInput
+    orders?: OrderCreateNestedManyWithoutUserInput
+    quotes?: QuoteCreateNestedManyWithoutUserInput
     refreshTokens?: RefreshTokenCreateNestedManyWithoutUserInput
+    reviews?: ReviewCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
     id?: number
     email: string
     name: string
-    phone?: string | null
     passwordHash: string
     role?: $Enums.UserRole
     isActive?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
-    orders?: OrderUncheckedCreateNestedManyWithoutUserInput
+    phone?: string | null
     cart?: CartUncheckedCreateNestedOneWithoutUserInput
-    quotes?: QuoteUncheckedCreateNestedManyWithoutUserInput
-    reviews?: ReviewUncheckedCreateNestedManyWithoutUserInput
     contactMessages?: ContactUncheckedCreateNestedManyWithoutUserInput
     contactReplies?: ContactReplyUncheckedCreateNestedManyWithoutAuthorInput
+    orders?: OrderUncheckedCreateNestedManyWithoutUserInput
+    quotes?: QuoteUncheckedCreateNestedManyWithoutUserInput
     refreshTokens?: RefreshTokenUncheckedCreateNestedManyWithoutUserInput
+    reviews?: ReviewUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
     email?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    phone?: NullableStringFieldUpdateOperationsInput | string | null
     passwordHash?: StringFieldUpdateOperationsInput | string
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    orders?: OrderUpdateManyWithoutUserNestedInput
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
     cart?: CartUpdateOneWithoutUserNestedInput
-    quotes?: QuoteUpdateManyWithoutUserNestedInput
-    reviews?: ReviewUpdateManyWithoutUserNestedInput
     contactMessages?: ContactUpdateManyWithoutUserNestedInput
     contactReplies?: ContactReplyUpdateManyWithoutAuthorNestedInput
+    orders?: OrderUpdateManyWithoutUserNestedInput
+    quotes?: QuoteUpdateManyWithoutUserNestedInput
     refreshTokens?: RefreshTokenUpdateManyWithoutUserNestedInput
+    reviews?: ReviewUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     email?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    phone?: NullableStringFieldUpdateOperationsInput | string | null
     passwordHash?: StringFieldUpdateOperationsInput | string
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    orders?: OrderUncheckedUpdateManyWithoutUserNestedInput
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
     cart?: CartUncheckedUpdateOneWithoutUserNestedInput
-    quotes?: QuoteUncheckedUpdateManyWithoutUserNestedInput
-    reviews?: ReviewUncheckedUpdateManyWithoutUserNestedInput
     contactMessages?: ContactUncheckedUpdateManyWithoutUserNestedInput
     contactReplies?: ContactReplyUncheckedUpdateManyWithoutAuthorNestedInput
+    orders?: OrderUncheckedUpdateManyWithoutUserNestedInput
+    quotes?: QuoteUncheckedUpdateManyWithoutUserNestedInput
     refreshTokens?: RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
+    reviews?: ReviewUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
     id?: number
     email: string
     name: string
-    phone?: string | null
     passwordHash: string
     role?: $Enums.UserRole
     isActive?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    phone?: string | null
   }
 
   export type UserUpdateManyMutationInput = {
     email?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    phone?: NullableStringFieldUpdateOperationsInput | string | null
     passwordHash?: StringFieldUpdateOperationsInput | string
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type UserUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     email?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    phone?: NullableStringFieldUpdateOperationsInput | string | null
     passwordHash?: StringFieldUpdateOperationsInput | string
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type CategoryCreateInput = {
@@ -21859,104 +21935,104 @@ export namespace Prisma {
   export type ProductCreateInput = {
     name: string
     description: string
-    price: number
-    stock?: $Enums.StockStatus
     imageUrl?: string | null
-    specs?: ProductCreatespecsInput | string[]
     createdAt?: Date | string
     updatedAt?: Date | string
-    category: CategoryCreateNestedOneWithoutProductsInput
+    price: number
+    specs?: ProductCreatespecsInput | string[]
+    stock?: $Enums.StockStatus
     cartItems?: CartItemCreateNestedManyWithoutProductInput
-    orderItems?: OrderItemCreateNestedManyWithoutProductInput
-    reviews?: ReviewCreateNestedManyWithoutProductInput
     homepagePhoto?: HomepagePhotoCreateNestedOneWithoutProductInput
+    orderItems?: OrderItemCreateNestedManyWithoutProductInput
+    category: CategoryCreateNestedOneWithoutProductsInput
+    reviews?: ReviewCreateNestedManyWithoutProductInput
   }
 
   export type ProductUncheckedCreateInput = {
     id?: number
     name: string
     description: string
-    price: number
-    stock?: $Enums.StockStatus
     imageUrl?: string | null
-    specs?: ProductCreatespecsInput | string[]
-    categoryId: number
     createdAt?: Date | string
     updatedAt?: Date | string
+    price: number
+    specs?: ProductCreatespecsInput | string[]
+    stock?: $Enums.StockStatus
+    categoryId: number
     cartItems?: CartItemUncheckedCreateNestedManyWithoutProductInput
+    homepagePhoto?: HomepagePhotoUncheckedCreateNestedOneWithoutProductInput
     orderItems?: OrderItemUncheckedCreateNestedManyWithoutProductInput
     reviews?: ReviewUncheckedCreateNestedManyWithoutProductInput
-    homepagePhoto?: HomepagePhotoUncheckedCreateNestedOneWithoutProductInput
   }
 
   export type ProductUpdateInput = {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    price?: IntFieldUpdateOperationsInput | number
-    stock?: EnumStockStatusFieldUpdateOperationsInput | $Enums.StockStatus
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    specs?: ProductUpdatespecsInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    category?: CategoryUpdateOneRequiredWithoutProductsNestedInput
+    price?: IntFieldUpdateOperationsInput | number
+    specs?: ProductUpdatespecsInput | string[]
+    stock?: EnumStockStatusFieldUpdateOperationsInput | $Enums.StockStatus
     cartItems?: CartItemUpdateManyWithoutProductNestedInput
-    orderItems?: OrderItemUpdateManyWithoutProductNestedInput
-    reviews?: ReviewUpdateManyWithoutProductNestedInput
     homepagePhoto?: HomepagePhotoUpdateOneWithoutProductNestedInput
+    orderItems?: OrderItemUpdateManyWithoutProductNestedInput
+    category?: CategoryUpdateOneRequiredWithoutProductsNestedInput
+    reviews?: ReviewUpdateManyWithoutProductNestedInput
   }
 
   export type ProductUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    price?: IntFieldUpdateOperationsInput | number
-    stock?: EnumStockStatusFieldUpdateOperationsInput | $Enums.StockStatus
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    specs?: ProductUpdatespecsInput | string[]
-    categoryId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    price?: IntFieldUpdateOperationsInput | number
+    specs?: ProductUpdatespecsInput | string[]
+    stock?: EnumStockStatusFieldUpdateOperationsInput | $Enums.StockStatus
+    categoryId?: IntFieldUpdateOperationsInput | number
     cartItems?: CartItemUncheckedUpdateManyWithoutProductNestedInput
+    homepagePhoto?: HomepagePhotoUncheckedUpdateOneWithoutProductNestedInput
     orderItems?: OrderItemUncheckedUpdateManyWithoutProductNestedInput
     reviews?: ReviewUncheckedUpdateManyWithoutProductNestedInput
-    homepagePhoto?: HomepagePhotoUncheckedUpdateOneWithoutProductNestedInput
   }
 
   export type ProductCreateManyInput = {
     id?: number
     name: string
     description: string
-    price: number
-    stock?: $Enums.StockStatus
     imageUrl?: string | null
-    specs?: ProductCreatespecsInput | string[]
-    categoryId: number
     createdAt?: Date | string
     updatedAt?: Date | string
+    price: number
+    specs?: ProductCreatespecsInput | string[]
+    stock?: $Enums.StockStatus
+    categoryId: number
   }
 
   export type ProductUpdateManyMutationInput = {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    price?: IntFieldUpdateOperationsInput | number
-    stock?: EnumStockStatusFieldUpdateOperationsInput | $Enums.StockStatus
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    specs?: ProductUpdatespecsInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    price?: IntFieldUpdateOperationsInput | number
+    specs?: ProductUpdatespecsInput | string[]
+    stock?: EnumStockStatusFieldUpdateOperationsInput | $Enums.StockStatus
   }
 
   export type ProductUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    price?: IntFieldUpdateOperationsInput | number
-    stock?: EnumStockStatusFieldUpdateOperationsInput | $Enums.StockStatus
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    specs?: ProductUpdatespecsInput | string[]
-    categoryId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    price?: IntFieldUpdateOperationsInput | number
+    specs?: ProductUpdatespecsInput | string[]
+    stock?: EnumStockStatusFieldUpdateOperationsInput | $Enums.StockStatus
+    categoryId?: IntFieldUpdateOperationsInput | number
   }
 
   export type CartCreateInput = {
@@ -22072,10 +22148,10 @@ export namespace Prisma {
     shippingAddress: string
     shippingCity: string
     shippingZip: string
-    shippingPhone?: string | null
-    paymentMethod?: $Enums.PaymentMethod | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    paymentMethod?: $Enums.PaymentMethod | null
+    shippingPhone?: string | null
     user: UserCreateNestedOneWithoutOrdersInput
     items?: OrderItemCreateNestedManyWithoutOrderInput
     payment?: PaymentCreateNestedOneWithoutOrderInput
@@ -22089,10 +22165,10 @@ export namespace Prisma {
     shippingAddress: string
     shippingCity: string
     shippingZip: string
-    shippingPhone?: string | null
-    paymentMethod?: $Enums.PaymentMethod | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    paymentMethod?: $Enums.PaymentMethod | null
+    shippingPhone?: string | null
     items?: OrderItemUncheckedCreateNestedManyWithoutOrderInput
     payment?: PaymentUncheckedCreateNestedOneWithoutOrderInput
   }
@@ -22103,10 +22179,10 @@ export namespace Prisma {
     shippingAddress?: StringFieldUpdateOperationsInput | string
     shippingCity?: StringFieldUpdateOperationsInput | string
     shippingZip?: StringFieldUpdateOperationsInput | string
-    shippingPhone?: NullableStringFieldUpdateOperationsInput | string | null
-    paymentMethod?: NullableEnumPaymentMethodFieldUpdateOperationsInput | $Enums.PaymentMethod | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    paymentMethod?: NullableEnumPaymentMethodFieldUpdateOperationsInput | $Enums.PaymentMethod | null
+    shippingPhone?: NullableStringFieldUpdateOperationsInput | string | null
     user?: UserUpdateOneRequiredWithoutOrdersNestedInput
     items?: OrderItemUpdateManyWithoutOrderNestedInput
     payment?: PaymentUpdateOneWithoutOrderNestedInput
@@ -22120,10 +22196,10 @@ export namespace Prisma {
     shippingAddress?: StringFieldUpdateOperationsInput | string
     shippingCity?: StringFieldUpdateOperationsInput | string
     shippingZip?: StringFieldUpdateOperationsInput | string
-    shippingPhone?: NullableStringFieldUpdateOperationsInput | string | null
-    paymentMethod?: NullableEnumPaymentMethodFieldUpdateOperationsInput | $Enums.PaymentMethod | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    paymentMethod?: NullableEnumPaymentMethodFieldUpdateOperationsInput | $Enums.PaymentMethod | null
+    shippingPhone?: NullableStringFieldUpdateOperationsInput | string | null
     items?: OrderItemUncheckedUpdateManyWithoutOrderNestedInput
     payment?: PaymentUncheckedUpdateOneWithoutOrderNestedInput
   }
@@ -22136,10 +22212,10 @@ export namespace Prisma {
     shippingAddress: string
     shippingCity: string
     shippingZip: string
-    shippingPhone?: string | null
-    paymentMethod?: $Enums.PaymentMethod | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    paymentMethod?: $Enums.PaymentMethod | null
+    shippingPhone?: string | null
   }
 
   export type OrderUpdateManyMutationInput = {
@@ -22148,10 +22224,10 @@ export namespace Prisma {
     shippingAddress?: StringFieldUpdateOperationsInput | string
     shippingCity?: StringFieldUpdateOperationsInput | string
     shippingZip?: StringFieldUpdateOperationsInput | string
-    shippingPhone?: NullableStringFieldUpdateOperationsInput | string | null
-    paymentMethod?: NullableEnumPaymentMethodFieldUpdateOperationsInput | $Enums.PaymentMethod | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    paymentMethod?: NullableEnumPaymentMethodFieldUpdateOperationsInput | $Enums.PaymentMethod | null
+    shippingPhone?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type OrderUncheckedUpdateManyInput = {
@@ -22162,10 +22238,10 @@ export namespace Prisma {
     shippingAddress?: StringFieldUpdateOperationsInput | string
     shippingCity?: StringFieldUpdateOperationsInput | string
     shippingZip?: StringFieldUpdateOperationsInput | string
-    shippingPhone?: NullableStringFieldUpdateOperationsInput | string | null
-    paymentMethod?: NullableEnumPaymentMethodFieldUpdateOperationsInput | $Enums.PaymentMethod | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    paymentMethod?: NullableEnumPaymentMethodFieldUpdateOperationsInput | $Enums.PaymentMethod | null
+    shippingPhone?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type OrderItemCreateInput = {
@@ -22295,15 +22371,15 @@ export namespace Prisma {
   export type QuoteCreateInput = {
     title: string
     description: string
+    price?: number | null
+    status?: $Enums.QuoteStatus
+    createdAt?: Date | string
+    updatedAt?: Date | string
     contactName?: string | null
     contactEmail?: string | null
     contactPhone?: string | null
     location?: string | null
     budgetRange?: string | null
-    price?: number | null
-    status?: $Enums.QuoteStatus
-    createdAt?: Date | string
-    updatedAt?: Date | string
     user?: UserCreateNestedOneWithoutQuotesInput
   }
 
@@ -22312,29 +22388,29 @@ export namespace Prisma {
     userId?: number | null
     title: string
     description: string
+    price?: number | null
+    status?: $Enums.QuoteStatus
+    createdAt?: Date | string
+    updatedAt?: Date | string
     contactName?: string | null
     contactEmail?: string | null
     contactPhone?: string | null
     location?: string | null
     budgetRange?: string | null
-    price?: number | null
-    status?: $Enums.QuoteStatus
-    createdAt?: Date | string
-    updatedAt?: Date | string
   }
 
   export type QuoteUpdateInput = {
     title?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
+    price?: NullableIntFieldUpdateOperationsInput | number | null
+    status?: EnumQuoteStatusFieldUpdateOperationsInput | $Enums.QuoteStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     contactName?: NullableStringFieldUpdateOperationsInput | string | null
     contactEmail?: NullableStringFieldUpdateOperationsInput | string | null
     contactPhone?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
     budgetRange?: NullableStringFieldUpdateOperationsInput | string | null
-    price?: NullableIntFieldUpdateOperationsInput | number | null
-    status?: EnumQuoteStatusFieldUpdateOperationsInput | $Enums.QuoteStatus
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneWithoutQuotesNestedInput
   }
 
@@ -22343,15 +22419,15 @@ export namespace Prisma {
     userId?: NullableIntFieldUpdateOperationsInput | number | null
     title?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
+    price?: NullableIntFieldUpdateOperationsInput | number | null
+    status?: EnumQuoteStatusFieldUpdateOperationsInput | $Enums.QuoteStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     contactName?: NullableStringFieldUpdateOperationsInput | string | null
     contactEmail?: NullableStringFieldUpdateOperationsInput | string | null
     contactPhone?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
     budgetRange?: NullableStringFieldUpdateOperationsInput | string | null
-    price?: NullableIntFieldUpdateOperationsInput | number | null
-    status?: EnumQuoteStatusFieldUpdateOperationsInput | $Enums.QuoteStatus
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type QuoteCreateManyInput = {
@@ -22359,29 +22435,29 @@ export namespace Prisma {
     userId?: number | null
     title: string
     description: string
+    price?: number | null
+    status?: $Enums.QuoteStatus
+    createdAt?: Date | string
+    updatedAt?: Date | string
     contactName?: string | null
     contactEmail?: string | null
     contactPhone?: string | null
     location?: string | null
     budgetRange?: string | null
-    price?: number | null
-    status?: $Enums.QuoteStatus
-    createdAt?: Date | string
-    updatedAt?: Date | string
   }
 
   export type QuoteUpdateManyMutationInput = {
     title?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
+    price?: NullableIntFieldUpdateOperationsInput | number | null
+    status?: EnumQuoteStatusFieldUpdateOperationsInput | $Enums.QuoteStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     contactName?: NullableStringFieldUpdateOperationsInput | string | null
     contactEmail?: NullableStringFieldUpdateOperationsInput | string | null
     contactPhone?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
     budgetRange?: NullableStringFieldUpdateOperationsInput | string | null
-    price?: NullableIntFieldUpdateOperationsInput | number | null
-    status?: EnumQuoteStatusFieldUpdateOperationsInput | $Enums.QuoteStatus
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type QuoteUncheckedUpdateManyInput = {
@@ -22389,27 +22465,27 @@ export namespace Prisma {
     userId?: NullableIntFieldUpdateOperationsInput | number | null
     title?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
+    price?: NullableIntFieldUpdateOperationsInput | number | null
+    status?: EnumQuoteStatusFieldUpdateOperationsInput | $Enums.QuoteStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     contactName?: NullableStringFieldUpdateOperationsInput | string | null
     contactEmail?: NullableStringFieldUpdateOperationsInput | string | null
     contactPhone?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
     budgetRange?: NullableStringFieldUpdateOperationsInput | string | null
-    price?: NullableIntFieldUpdateOperationsInput | number | null
-    status?: EnumQuoteStatusFieldUpdateOperationsInput | $Enums.QuoteStatus
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ContactCreateInput = {
-    name: string
     email: string
-    phone?: string | null
     subject: string
     message: string
-    legacyReplies?: JsonNullValueInput | InputJsonValue
     status?: $Enums.ContactStatus
     createdAt?: Date | string
     updatedAt?: Date | string
+    name: string
+    phone?: string | null
+    legacyReplies?: JsonNullValueInput | InputJsonValue
     user?: UserCreateNestedOneWithoutContactMessagesInput
     threadReplies?: ContactReplyCreateNestedManyWithoutContactInput
   }
@@ -22417,28 +22493,28 @@ export namespace Prisma {
   export type ContactUncheckedCreateInput = {
     id?: number
     userId?: number | null
-    name: string
     email: string
-    phone?: string | null
     subject: string
     message: string
-    legacyReplies?: JsonNullValueInput | InputJsonValue
     status?: $Enums.ContactStatus
     createdAt?: Date | string
     updatedAt?: Date | string
+    name: string
+    phone?: string | null
+    legacyReplies?: JsonNullValueInput | InputJsonValue
     threadReplies?: ContactReplyUncheckedCreateNestedManyWithoutContactInput
   }
 
   export type ContactUpdateInput = {
-    name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    phone?: NullableStringFieldUpdateOperationsInput | string | null
     subject?: StringFieldUpdateOperationsInput | string
     message?: StringFieldUpdateOperationsInput | string
-    legacyReplies?: JsonNullValueInput | InputJsonValue
     status?: EnumContactStatusFieldUpdateOperationsInput | $Enums.ContactStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    name?: StringFieldUpdateOperationsInput | string
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    legacyReplies?: JsonNullValueInput | InputJsonValue
     user?: UserUpdateOneWithoutContactMessagesNestedInput
     threadReplies?: ContactReplyUpdateManyWithoutContactNestedInput
   }
@@ -22446,56 +22522,56 @@ export namespace Prisma {
   export type ContactUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     userId?: NullableIntFieldUpdateOperationsInput | number | null
-    name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    phone?: NullableStringFieldUpdateOperationsInput | string | null
     subject?: StringFieldUpdateOperationsInput | string
     message?: StringFieldUpdateOperationsInput | string
-    legacyReplies?: JsonNullValueInput | InputJsonValue
     status?: EnumContactStatusFieldUpdateOperationsInput | $Enums.ContactStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    name?: StringFieldUpdateOperationsInput | string
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    legacyReplies?: JsonNullValueInput | InputJsonValue
     threadReplies?: ContactReplyUncheckedUpdateManyWithoutContactNestedInput
   }
 
   export type ContactCreateManyInput = {
     id?: number
     userId?: number | null
-    name: string
     email: string
-    phone?: string | null
     subject: string
     message: string
-    legacyReplies?: JsonNullValueInput | InputJsonValue
     status?: $Enums.ContactStatus
     createdAt?: Date | string
     updatedAt?: Date | string
+    name: string
+    phone?: string | null
+    legacyReplies?: JsonNullValueInput | InputJsonValue
   }
 
   export type ContactUpdateManyMutationInput = {
-    name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    phone?: NullableStringFieldUpdateOperationsInput | string | null
     subject?: StringFieldUpdateOperationsInput | string
     message?: StringFieldUpdateOperationsInput | string
-    legacyReplies?: JsonNullValueInput | InputJsonValue
     status?: EnumContactStatusFieldUpdateOperationsInput | $Enums.ContactStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    name?: StringFieldUpdateOperationsInput | string
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    legacyReplies?: JsonNullValueInput | InputJsonValue
   }
 
   export type ContactUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     userId?: NullableIntFieldUpdateOperationsInput | number | null
-    name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    phone?: NullableStringFieldUpdateOperationsInput | string | null
     subject?: StringFieldUpdateOperationsInput | string
     message?: StringFieldUpdateOperationsInput | string
-    legacyReplies?: JsonNullValueInput | InputJsonValue
     status?: EnumContactStatusFieldUpdateOperationsInput | $Enums.ContactStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    name?: StringFieldUpdateOperationsInput | string
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    legacyReplies?: JsonNullValueInput | InputJsonValue
   }
 
   export type ContactReplyCreateInput = {
@@ -22503,8 +22579,8 @@ export namespace Prisma {
     senderName: string
     message: string
     createdAt?: Date | string
-    contact: ContactCreateNestedOneWithoutThreadRepliesInput
     author?: UserCreateNestedOneWithoutContactRepliesInput
+    contact: ContactCreateNestedOneWithoutThreadRepliesInput
   }
 
   export type ContactReplyUncheckedCreateInput = {
@@ -22522,8 +22598,8 @@ export namespace Prisma {
     senderName?: StringFieldUpdateOperationsInput | string
     message?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    contact?: ContactUpdateOneRequiredWithoutThreadRepliesNestedInput
     author?: UserUpdateOneWithoutContactRepliesNestedInput
+    contact?: ContactUpdateOneRequiredWithoutThreadRepliesNestedInput
   }
 
   export type ContactReplyUncheckedUpdateInput = {
@@ -22568,8 +22644,8 @@ export namespace Prisma {
     comment?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    user: UserCreateNestedOneWithoutReviewsInput
     product: ProductCreateNestedOneWithoutReviewsInput
+    user: UserCreateNestedOneWithoutReviewsInput
   }
 
   export type ReviewUncheckedCreateInput = {
@@ -22587,8 +22663,8 @@ export namespace Prisma {
     comment?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneRequiredWithoutReviewsNestedInput
     product?: ProductUpdateOneRequiredWithoutReviewsNestedInput
+    user?: UserUpdateOneRequiredWithoutReviewsNestedInput
   }
 
   export type ReviewUncheckedUpdateInput = {
@@ -22632,6 +22708,10 @@ export namespace Prisma {
     title: string
     description: string
     imageUrl?: string | null
+    imageAlt?: string | null
+    domain?: string
+    location?: string | null
+    isPublished?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -22641,6 +22721,10 @@ export namespace Prisma {
     title: string
     description: string
     imageUrl?: string | null
+    imageAlt?: string | null
+    domain?: string
+    location?: string | null
+    isPublished?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -22649,6 +22733,10 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    imageAlt?: NullableStringFieldUpdateOperationsInput | string | null
+    domain?: StringFieldUpdateOperationsInput | string
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    isPublished?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -22658,6 +22746,10 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    imageAlt?: NullableStringFieldUpdateOperationsInput | string | null
+    domain?: StringFieldUpdateOperationsInput | string
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    isPublished?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -22667,6 +22759,10 @@ export namespace Prisma {
     title: string
     description: string
     imageUrl?: string | null
+    imageAlt?: string | null
+    domain?: string
+    location?: string | null
+    isPublished?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -22675,6 +22771,10 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    imageAlt?: NullableStringFieldUpdateOperationsInput | string | null
+    domain?: StringFieldUpdateOperationsInput | string
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    isPublished?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -22684,95 +22784,99 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    imageAlt?: NullableStringFieldUpdateOperationsInput | string | null
+    domain?: StringFieldUpdateOperationsInput | string
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    isPublished?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type HomepagePhotoCreateInput = {
     productKey: string
-    title: string
     imageUrl: string
     alt: string
     position: number
     isActive?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    title: string
     product?: ProductCreateNestedOneWithoutHomepagePhotoInput
   }
 
   export type HomepagePhotoUncheckedCreateInput = {
     id?: number
     productKey: string
-    productId?: number | null
-    title: string
     imageUrl: string
     alt: string
     position: number
     isActive?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    title: string
+    productId?: number | null
   }
 
   export type HomepagePhotoUpdateInput = {
     productKey?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
     imageUrl?: StringFieldUpdateOperationsInput | string
     alt?: StringFieldUpdateOperationsInput | string
     position?: IntFieldUpdateOperationsInput | number
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    title?: StringFieldUpdateOperationsInput | string
     product?: ProductUpdateOneWithoutHomepagePhotoNestedInput
   }
 
   export type HomepagePhotoUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     productKey?: StringFieldUpdateOperationsInput | string
-    productId?: NullableIntFieldUpdateOperationsInput | number | null
-    title?: StringFieldUpdateOperationsInput | string
     imageUrl?: StringFieldUpdateOperationsInput | string
     alt?: StringFieldUpdateOperationsInput | string
     position?: IntFieldUpdateOperationsInput | number
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    title?: StringFieldUpdateOperationsInput | string
+    productId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type HomepagePhotoCreateManyInput = {
     id?: number
     productKey: string
-    productId?: number | null
-    title: string
     imageUrl: string
     alt: string
     position: number
     isActive?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    title: string
+    productId?: number | null
   }
 
   export type HomepagePhotoUpdateManyMutationInput = {
     productKey?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
     imageUrl?: StringFieldUpdateOperationsInput | string
     alt?: StringFieldUpdateOperationsInput | string
     position?: IntFieldUpdateOperationsInput | number
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    title?: StringFieldUpdateOperationsInput | string
   }
 
   export type HomepagePhotoUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     productKey?: StringFieldUpdateOperationsInput | string
-    productId?: NullableIntFieldUpdateOperationsInput | number | null
-    title?: StringFieldUpdateOperationsInput | string
     imageUrl?: StringFieldUpdateOperationsInput | string
     alt?: StringFieldUpdateOperationsInput | string
     position?: IntFieldUpdateOperationsInput | number
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    title?: StringFieldUpdateOperationsInput | string
+    productId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type RefreshTokenCreateInput = {
@@ -22867,21 +22971,6 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
-  export type StringNullableFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    mode?: QueryMode
-    not?: NestedStringNullableFilter<$PrismaModel> | string | null
-  }
-
   export type EnumUserRoleFilter<$PrismaModel = never> = {
     equals?: $Enums.UserRole | EnumUserRoleFieldRefInput<$PrismaModel>
     in?: $Enums.UserRole[] | ListEnumUserRoleFieldRefInput<$PrismaModel>
@@ -22905,27 +22994,24 @@ export namespace Prisma {
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
-  export type OrderListRelationFilter = {
-    every?: OrderWhereInput
-    some?: OrderWhereInput
-    none?: OrderWhereInput
+  export type StringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
   export type CartNullableScalarRelationFilter = {
     is?: CartWhereInput | null
     isNot?: CartWhereInput | null
-  }
-
-  export type QuoteListRelationFilter = {
-    every?: QuoteWhereInput
-    some?: QuoteWhereInput
-    none?: QuoteWhereInput
-  }
-
-  export type ReviewListRelationFilter = {
-    every?: ReviewWhereInput
-    some?: ReviewWhereInput
-    none?: ReviewWhereInput
   }
 
   export type ContactListRelationFilter = {
@@ -22940,27 +23026,33 @@ export namespace Prisma {
     none?: ContactReplyWhereInput
   }
 
+  export type OrderListRelationFilter = {
+    every?: OrderWhereInput
+    some?: OrderWhereInput
+    none?: OrderWhereInput
+  }
+
+  export type QuoteListRelationFilter = {
+    every?: QuoteWhereInput
+    some?: QuoteWhereInput
+    none?: QuoteWhereInput
+  }
+
   export type RefreshTokenListRelationFilter = {
     every?: RefreshTokenWhereInput
     some?: RefreshTokenWhereInput
     none?: RefreshTokenWhereInput
   }
 
+  export type ReviewListRelationFilter = {
+    every?: ReviewWhereInput
+    some?: ReviewWhereInput
+    none?: ReviewWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
-  }
-
-  export type OrderOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type QuoteOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type ReviewOrderByRelationAggregateInput = {
-    _count?: SortOrder
   }
 
   export type ContactOrderByRelationAggregateInput = {
@@ -22971,7 +23063,19 @@ export namespace Prisma {
     _count?: SortOrder
   }
 
+  export type OrderOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type QuoteOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
   export type RefreshTokenOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ReviewOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -22979,12 +23083,12 @@ export namespace Prisma {
     id?: SortOrder
     email?: SortOrder
     name?: SortOrder
-    phone?: SortOrder
     passwordHash?: SortOrder
     role?: SortOrder
     isActive?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    phone?: SortOrder
   }
 
   export type UserAvgOrderByAggregateInput = {
@@ -22995,24 +23099,24 @@ export namespace Prisma {
     id?: SortOrder
     email?: SortOrder
     name?: SortOrder
-    phone?: SortOrder
     passwordHash?: SortOrder
     role?: SortOrder
     isActive?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    phone?: SortOrder
   }
 
   export type UserMinOrderByAggregateInput = {
     id?: SortOrder
     email?: SortOrder
     name?: SortOrder
-    phone?: SortOrder
     passwordHash?: SortOrder
     role?: SortOrder
     isActive?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    phone?: SortOrder
   }
 
   export type UserSumOrderByAggregateInput = {
@@ -23053,24 +23157,6 @@ export namespace Prisma {
     _max?: NestedStringFilter<$PrismaModel>
   }
 
-  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    mode?: QueryMode
-    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedStringNullableFilter<$PrismaModel>
-    _max?: NestedStringNullableFilter<$PrismaModel>
-  }
-
   export type EnumUserRoleWithAggregatesFilter<$PrismaModel = never> = {
     equals?: $Enums.UserRole | EnumUserRoleFieldRefInput<$PrismaModel>
     in?: $Enums.UserRole[] | ListEnumUserRoleFieldRefInput<$PrismaModel>
@@ -23101,6 +23187,24 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedDateTimeFilter<$PrismaModel>
     _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
   export type ProductListRelationFilter = {
@@ -23145,13 +23249,6 @@ export namespace Prisma {
     id?: SortOrder
   }
 
-  export type EnumStockStatusFilter<$PrismaModel = never> = {
-    equals?: $Enums.StockStatus | EnumStockStatusFieldRefInput<$PrismaModel>
-    in?: $Enums.StockStatus[] | ListEnumStockStatusFieldRefInput<$PrismaModel>
-    notIn?: $Enums.StockStatus[] | ListEnumStockStatusFieldRefInput<$PrismaModel>
-    not?: NestedEnumStockStatusFilter<$PrismaModel> | $Enums.StockStatus
-  }
-
   export type StringNullableListFilter<$PrismaModel = never> = {
     equals?: string[] | ListStringFieldRefInput<$PrismaModel> | null
     has?: string | StringFieldRefInput<$PrismaModel> | null
@@ -23160,9 +23257,11 @@ export namespace Prisma {
     isEmpty?: boolean
   }
 
-  export type CategoryScalarRelationFilter = {
-    is?: CategoryWhereInput
-    isNot?: CategoryWhereInput
+  export type EnumStockStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.StockStatus | EnumStockStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.StockStatus[] | ListEnumStockStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.StockStatus[] | ListEnumStockStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumStockStatusFilter<$PrismaModel> | $Enums.StockStatus
   }
 
   export type CartItemListRelationFilter = {
@@ -23171,15 +23270,20 @@ export namespace Prisma {
     none?: CartItemWhereInput
   }
 
+  export type HomepagePhotoNullableScalarRelationFilter = {
+    is?: HomepagePhotoWhereInput | null
+    isNot?: HomepagePhotoWhereInput | null
+  }
+
   export type OrderItemListRelationFilter = {
     every?: OrderItemWhereInput
     some?: OrderItemWhereInput
     none?: OrderItemWhereInput
   }
 
-  export type HomepagePhotoNullableScalarRelationFilter = {
-    is?: HomepagePhotoWhereInput | null
-    isNot?: HomepagePhotoWhereInput | null
+  export type CategoryScalarRelationFilter = {
+    is?: CategoryWhereInput
+    isNot?: CategoryWhereInput
   }
 
   export type CartItemOrderByRelationAggregateInput = {
@@ -23194,13 +23298,13 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     description?: SortOrder
-    price?: SortOrder
-    stock?: SortOrder
     imageUrl?: SortOrder
-    specs?: SortOrder
-    categoryId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    price?: SortOrder
+    specs?: SortOrder
+    stock?: SortOrder
+    categoryId?: SortOrder
   }
 
   export type ProductAvgOrderByAggregateInput = {
@@ -23213,24 +23317,24 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     description?: SortOrder
-    price?: SortOrder
-    stock?: SortOrder
     imageUrl?: SortOrder
-    categoryId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    price?: SortOrder
+    stock?: SortOrder
+    categoryId?: SortOrder
   }
 
   export type ProductMinOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
     description?: SortOrder
-    price?: SortOrder
-    stock?: SortOrder
     imageUrl?: SortOrder
-    categoryId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    price?: SortOrder
+    stock?: SortOrder
+    categoryId?: SortOrder
   }
 
   export type ProductSumOrderByAggregateInput = {
@@ -23368,10 +23472,10 @@ export namespace Prisma {
     shippingAddress?: SortOrder
     shippingCity?: SortOrder
     shippingZip?: SortOrder
-    shippingPhone?: SortOrder
-    paymentMethod?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    paymentMethod?: SortOrder
+    shippingPhone?: SortOrder
   }
 
   export type OrderAvgOrderByAggregateInput = {
@@ -23388,10 +23492,10 @@ export namespace Prisma {
     shippingAddress?: SortOrder
     shippingCity?: SortOrder
     shippingZip?: SortOrder
-    shippingPhone?: SortOrder
-    paymentMethod?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    paymentMethod?: SortOrder
+    shippingPhone?: SortOrder
   }
 
   export type OrderMinOrderByAggregateInput = {
@@ -23402,10 +23506,10 @@ export namespace Prisma {
     shippingAddress?: SortOrder
     shippingCity?: SortOrder
     shippingZip?: SortOrder
-    shippingPhone?: SortOrder
-    paymentMethod?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    paymentMethod?: SortOrder
+    shippingPhone?: SortOrder
   }
 
   export type OrderSumOrderByAggregateInput = {
@@ -23586,15 +23690,15 @@ export namespace Prisma {
     userId?: SortOrder
     title?: SortOrder
     description?: SortOrder
+    price?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     contactName?: SortOrder
     contactEmail?: SortOrder
     contactPhone?: SortOrder
     location?: SortOrder
     budgetRange?: SortOrder
-    price?: SortOrder
-    status?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
   }
 
   export type QuoteAvgOrderByAggregateInput = {
@@ -23608,15 +23712,15 @@ export namespace Prisma {
     userId?: SortOrder
     title?: SortOrder
     description?: SortOrder
+    price?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     contactName?: SortOrder
     contactEmail?: SortOrder
     contactPhone?: SortOrder
     location?: SortOrder
     budgetRange?: SortOrder
-    price?: SortOrder
-    status?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
   }
 
   export type QuoteMinOrderByAggregateInput = {
@@ -23624,15 +23728,15 @@ export namespace Prisma {
     userId?: SortOrder
     title?: SortOrder
     description?: SortOrder
+    price?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     contactName?: SortOrder
     contactEmail?: SortOrder
     contactPhone?: SortOrder
     location?: SortOrder
     budgetRange?: SortOrder
-    price?: SortOrder
-    status?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
   }
 
   export type QuoteSumOrderByAggregateInput = {
@@ -23666,6 +23770,13 @@ export namespace Prisma {
     _min?: NestedEnumQuoteStatusFilter<$PrismaModel>
     _max?: NestedEnumQuoteStatusFilter<$PrismaModel>
   }
+
+  export type EnumContactStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.ContactStatus | EnumContactStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.ContactStatus[] | ListEnumContactStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ContactStatus[] | ListEnumContactStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumContactStatusFilter<$PrismaModel> | $Enums.ContactStatus
+  }
   export type JsonFilter<$PrismaModel = never> =
     | PatchUndefined<
         Either<Required<JsonFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonFilterBase<$PrismaModel>>, 'path'>>,
@@ -23690,25 +23801,18 @@ export namespace Prisma {
     not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
   }
 
-  export type EnumContactStatusFilter<$PrismaModel = never> = {
-    equals?: $Enums.ContactStatus | EnumContactStatusFieldRefInput<$PrismaModel>
-    in?: $Enums.ContactStatus[] | ListEnumContactStatusFieldRefInput<$PrismaModel>
-    notIn?: $Enums.ContactStatus[] | ListEnumContactStatusFieldRefInput<$PrismaModel>
-    not?: NestedEnumContactStatusFilter<$PrismaModel> | $Enums.ContactStatus
-  }
-
   export type ContactCountOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
-    name?: SortOrder
     email?: SortOrder
-    phone?: SortOrder
     subject?: SortOrder
     message?: SortOrder
-    legacyReplies?: SortOrder
     status?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    name?: SortOrder
+    phone?: SortOrder
+    legacyReplies?: SortOrder
   }
 
   export type ContactAvgOrderByAggregateInput = {
@@ -23719,32 +23823,42 @@ export namespace Prisma {
   export type ContactMaxOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
-    name?: SortOrder
     email?: SortOrder
-    phone?: SortOrder
     subject?: SortOrder
     message?: SortOrder
     status?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    name?: SortOrder
+    phone?: SortOrder
   }
 
   export type ContactMinOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
-    name?: SortOrder
     email?: SortOrder
-    phone?: SortOrder
     subject?: SortOrder
     message?: SortOrder
     status?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    name?: SortOrder
+    phone?: SortOrder
   }
 
   export type ContactSumOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
+  }
+
+  export type EnumContactStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.ContactStatus | EnumContactStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.ContactStatus[] | ListEnumContactStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ContactStatus[] | ListEnumContactStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumContactStatusWithAggregatesFilter<$PrismaModel> | $Enums.ContactStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumContactStatusFilter<$PrismaModel>
+    _max?: NestedEnumContactStatusFilter<$PrismaModel>
   }
   export type JsonWithAggregatesFilter<$PrismaModel = never> =
     | PatchUndefined<
@@ -23771,16 +23885,6 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedJsonFilter<$PrismaModel>
     _max?: NestedJsonFilter<$PrismaModel>
-  }
-
-  export type EnumContactStatusWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.ContactStatus | EnumContactStatusFieldRefInput<$PrismaModel>
-    in?: $Enums.ContactStatus[] | ListEnumContactStatusFieldRefInput<$PrismaModel>
-    notIn?: $Enums.ContactStatus[] | ListEnumContactStatusFieldRefInput<$PrismaModel>
-    not?: NestedEnumContactStatusWithAggregatesFilter<$PrismaModel> | $Enums.ContactStatus
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumContactStatusFilter<$PrismaModel>
-    _max?: NestedEnumContactStatusFilter<$PrismaModel>
   }
 
   export type EnumContactReplySenderFilter<$PrismaModel = never> = {
@@ -23901,6 +24005,10 @@ export namespace Prisma {
     title?: SortOrder
     description?: SortOrder
     imageUrl?: SortOrder
+    imageAlt?: SortOrder
+    domain?: SortOrder
+    location?: SortOrder
+    isPublished?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -23914,6 +24022,10 @@ export namespace Prisma {
     title?: SortOrder
     description?: SortOrder
     imageUrl?: SortOrder
+    imageAlt?: SortOrder
+    domain?: SortOrder
+    location?: SortOrder
+    isPublished?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -23923,6 +24035,10 @@ export namespace Prisma {
     title?: SortOrder
     description?: SortOrder
     imageUrl?: SortOrder
+    imageAlt?: SortOrder
+    domain?: SortOrder
+    location?: SortOrder
+    isPublished?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -23939,52 +24055,52 @@ export namespace Prisma {
   export type HomepagePhotoCountOrderByAggregateInput = {
     id?: SortOrder
     productKey?: SortOrder
-    productId?: SortOrder
-    title?: SortOrder
     imageUrl?: SortOrder
     alt?: SortOrder
     position?: SortOrder
     isActive?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    title?: SortOrder
+    productId?: SortOrder
   }
 
   export type HomepagePhotoAvgOrderByAggregateInput = {
     id?: SortOrder
-    productId?: SortOrder
     position?: SortOrder
+    productId?: SortOrder
   }
 
   export type HomepagePhotoMaxOrderByAggregateInput = {
     id?: SortOrder
     productKey?: SortOrder
-    productId?: SortOrder
-    title?: SortOrder
     imageUrl?: SortOrder
     alt?: SortOrder
     position?: SortOrder
     isActive?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    title?: SortOrder
+    productId?: SortOrder
   }
 
   export type HomepagePhotoMinOrderByAggregateInput = {
     id?: SortOrder
     productKey?: SortOrder
-    productId?: SortOrder
-    title?: SortOrder
     imageUrl?: SortOrder
     alt?: SortOrder
     position?: SortOrder
     isActive?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    title?: SortOrder
+    productId?: SortOrder
   }
 
   export type HomepagePhotoSumOrderByAggregateInput = {
     id?: SortOrder
-    productId?: SortOrder
     position?: SortOrder
+    productId?: SortOrder
   }
 
   export type DateTimeNullableFilter<$PrismaModel = never> = {
@@ -24052,31 +24168,10 @@ export namespace Prisma {
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
-  export type OrderCreateNestedManyWithoutUserInput = {
-    create?: XOR<OrderCreateWithoutUserInput, OrderUncheckedCreateWithoutUserInput> | OrderCreateWithoutUserInput[] | OrderUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: OrderCreateOrConnectWithoutUserInput | OrderCreateOrConnectWithoutUserInput[]
-    createMany?: OrderCreateManyUserInputEnvelope
-    connect?: OrderWhereUniqueInput | OrderWhereUniqueInput[]
-  }
-
   export type CartCreateNestedOneWithoutUserInput = {
     create?: XOR<CartCreateWithoutUserInput, CartUncheckedCreateWithoutUserInput>
     connectOrCreate?: CartCreateOrConnectWithoutUserInput
     connect?: CartWhereUniqueInput
-  }
-
-  export type QuoteCreateNestedManyWithoutUserInput = {
-    create?: XOR<QuoteCreateWithoutUserInput, QuoteUncheckedCreateWithoutUserInput> | QuoteCreateWithoutUserInput[] | QuoteUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: QuoteCreateOrConnectWithoutUserInput | QuoteCreateOrConnectWithoutUserInput[]
-    createMany?: QuoteCreateManyUserInputEnvelope
-    connect?: QuoteWhereUniqueInput | QuoteWhereUniqueInput[]
-  }
-
-  export type ReviewCreateNestedManyWithoutUserInput = {
-    create?: XOR<ReviewCreateWithoutUserInput, ReviewUncheckedCreateWithoutUserInput> | ReviewCreateWithoutUserInput[] | ReviewUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: ReviewCreateOrConnectWithoutUserInput | ReviewCreateOrConnectWithoutUserInput[]
-    createMany?: ReviewCreateManyUserInputEnvelope
-    connect?: ReviewWhereUniqueInput | ReviewWhereUniqueInput[]
   }
 
   export type ContactCreateNestedManyWithoutUserInput = {
@@ -24093,6 +24188,20 @@ export namespace Prisma {
     connect?: ContactReplyWhereUniqueInput | ContactReplyWhereUniqueInput[]
   }
 
+  export type OrderCreateNestedManyWithoutUserInput = {
+    create?: XOR<OrderCreateWithoutUserInput, OrderUncheckedCreateWithoutUserInput> | OrderCreateWithoutUserInput[] | OrderUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: OrderCreateOrConnectWithoutUserInput | OrderCreateOrConnectWithoutUserInput[]
+    createMany?: OrderCreateManyUserInputEnvelope
+    connect?: OrderWhereUniqueInput | OrderWhereUniqueInput[]
+  }
+
+  export type QuoteCreateNestedManyWithoutUserInput = {
+    create?: XOR<QuoteCreateWithoutUserInput, QuoteUncheckedCreateWithoutUserInput> | QuoteCreateWithoutUserInput[] | QuoteUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: QuoteCreateOrConnectWithoutUserInput | QuoteCreateOrConnectWithoutUserInput[]
+    createMany?: QuoteCreateManyUserInputEnvelope
+    connect?: QuoteWhereUniqueInput | QuoteWhereUniqueInput[]
+  }
+
   export type RefreshTokenCreateNestedManyWithoutUserInput = {
     create?: XOR<RefreshTokenCreateWithoutUserInput, RefreshTokenUncheckedCreateWithoutUserInput> | RefreshTokenCreateWithoutUserInput[] | RefreshTokenUncheckedCreateWithoutUserInput[]
     connectOrCreate?: RefreshTokenCreateOrConnectWithoutUserInput | RefreshTokenCreateOrConnectWithoutUserInput[]
@@ -24100,31 +24209,17 @@ export namespace Prisma {
     connect?: RefreshTokenWhereUniqueInput | RefreshTokenWhereUniqueInput[]
   }
 
-  export type OrderUncheckedCreateNestedManyWithoutUserInput = {
-    create?: XOR<OrderCreateWithoutUserInput, OrderUncheckedCreateWithoutUserInput> | OrderCreateWithoutUserInput[] | OrderUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: OrderCreateOrConnectWithoutUserInput | OrderCreateOrConnectWithoutUserInput[]
-    createMany?: OrderCreateManyUserInputEnvelope
-    connect?: OrderWhereUniqueInput | OrderWhereUniqueInput[]
+  export type ReviewCreateNestedManyWithoutUserInput = {
+    create?: XOR<ReviewCreateWithoutUserInput, ReviewUncheckedCreateWithoutUserInput> | ReviewCreateWithoutUserInput[] | ReviewUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ReviewCreateOrConnectWithoutUserInput | ReviewCreateOrConnectWithoutUserInput[]
+    createMany?: ReviewCreateManyUserInputEnvelope
+    connect?: ReviewWhereUniqueInput | ReviewWhereUniqueInput[]
   }
 
   export type CartUncheckedCreateNestedOneWithoutUserInput = {
     create?: XOR<CartCreateWithoutUserInput, CartUncheckedCreateWithoutUserInput>
     connectOrCreate?: CartCreateOrConnectWithoutUserInput
     connect?: CartWhereUniqueInput
-  }
-
-  export type QuoteUncheckedCreateNestedManyWithoutUserInput = {
-    create?: XOR<QuoteCreateWithoutUserInput, QuoteUncheckedCreateWithoutUserInput> | QuoteCreateWithoutUserInput[] | QuoteUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: QuoteCreateOrConnectWithoutUserInput | QuoteCreateOrConnectWithoutUserInput[]
-    createMany?: QuoteCreateManyUserInputEnvelope
-    connect?: QuoteWhereUniqueInput | QuoteWhereUniqueInput[]
-  }
-
-  export type ReviewUncheckedCreateNestedManyWithoutUserInput = {
-    create?: XOR<ReviewCreateWithoutUserInput, ReviewUncheckedCreateWithoutUserInput> | ReviewCreateWithoutUserInput[] | ReviewUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: ReviewCreateOrConnectWithoutUserInput | ReviewCreateOrConnectWithoutUserInput[]
-    createMany?: ReviewCreateManyUserInputEnvelope
-    connect?: ReviewWhereUniqueInput | ReviewWhereUniqueInput[]
   }
 
   export type ContactUncheckedCreateNestedManyWithoutUserInput = {
@@ -24141,6 +24236,20 @@ export namespace Prisma {
     connect?: ContactReplyWhereUniqueInput | ContactReplyWhereUniqueInput[]
   }
 
+  export type OrderUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<OrderCreateWithoutUserInput, OrderUncheckedCreateWithoutUserInput> | OrderCreateWithoutUserInput[] | OrderUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: OrderCreateOrConnectWithoutUserInput | OrderCreateOrConnectWithoutUserInput[]
+    createMany?: OrderCreateManyUserInputEnvelope
+    connect?: OrderWhereUniqueInput | OrderWhereUniqueInput[]
+  }
+
+  export type QuoteUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<QuoteCreateWithoutUserInput, QuoteUncheckedCreateWithoutUserInput> | QuoteCreateWithoutUserInput[] | QuoteUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: QuoteCreateOrConnectWithoutUserInput | QuoteCreateOrConnectWithoutUserInput[]
+    createMany?: QuoteCreateManyUserInputEnvelope
+    connect?: QuoteWhereUniqueInput | QuoteWhereUniqueInput[]
+  }
+
   export type RefreshTokenUncheckedCreateNestedManyWithoutUserInput = {
     create?: XOR<RefreshTokenCreateWithoutUserInput, RefreshTokenUncheckedCreateWithoutUserInput> | RefreshTokenCreateWithoutUserInput[] | RefreshTokenUncheckedCreateWithoutUserInput[]
     connectOrCreate?: RefreshTokenCreateOrConnectWithoutUserInput | RefreshTokenCreateOrConnectWithoutUserInput[]
@@ -24148,12 +24257,15 @@ export namespace Prisma {
     connect?: RefreshTokenWhereUniqueInput | RefreshTokenWhereUniqueInput[]
   }
 
-  export type StringFieldUpdateOperationsInput = {
-    set?: string
+  export type ReviewUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<ReviewCreateWithoutUserInput, ReviewUncheckedCreateWithoutUserInput> | ReviewCreateWithoutUserInput[] | ReviewUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ReviewCreateOrConnectWithoutUserInput | ReviewCreateOrConnectWithoutUserInput[]
+    createMany?: ReviewCreateManyUserInputEnvelope
+    connect?: ReviewWhereUniqueInput | ReviewWhereUniqueInput[]
   }
 
-  export type NullableStringFieldUpdateOperationsInput = {
-    set?: string | null
+  export type StringFieldUpdateOperationsInput = {
+    set?: string
   }
 
   export type EnumUserRoleFieldUpdateOperationsInput = {
@@ -24168,18 +24280,8 @@ export namespace Prisma {
     set?: Date | string
   }
 
-  export type OrderUpdateManyWithoutUserNestedInput = {
-    create?: XOR<OrderCreateWithoutUserInput, OrderUncheckedCreateWithoutUserInput> | OrderCreateWithoutUserInput[] | OrderUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: OrderCreateOrConnectWithoutUserInput | OrderCreateOrConnectWithoutUserInput[]
-    upsert?: OrderUpsertWithWhereUniqueWithoutUserInput | OrderUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: OrderCreateManyUserInputEnvelope
-    set?: OrderWhereUniqueInput | OrderWhereUniqueInput[]
-    disconnect?: OrderWhereUniqueInput | OrderWhereUniqueInput[]
-    delete?: OrderWhereUniqueInput | OrderWhereUniqueInput[]
-    connect?: OrderWhereUniqueInput | OrderWhereUniqueInput[]
-    update?: OrderUpdateWithWhereUniqueWithoutUserInput | OrderUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: OrderUpdateManyWithWhereWithoutUserInput | OrderUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: OrderScalarWhereInput | OrderScalarWhereInput[]
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
   }
 
   export type CartUpdateOneWithoutUserNestedInput = {
@@ -24190,34 +24292,6 @@ export namespace Prisma {
     delete?: CartWhereInput | boolean
     connect?: CartWhereUniqueInput
     update?: XOR<XOR<CartUpdateToOneWithWhereWithoutUserInput, CartUpdateWithoutUserInput>, CartUncheckedUpdateWithoutUserInput>
-  }
-
-  export type QuoteUpdateManyWithoutUserNestedInput = {
-    create?: XOR<QuoteCreateWithoutUserInput, QuoteUncheckedCreateWithoutUserInput> | QuoteCreateWithoutUserInput[] | QuoteUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: QuoteCreateOrConnectWithoutUserInput | QuoteCreateOrConnectWithoutUserInput[]
-    upsert?: QuoteUpsertWithWhereUniqueWithoutUserInput | QuoteUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: QuoteCreateManyUserInputEnvelope
-    set?: QuoteWhereUniqueInput | QuoteWhereUniqueInput[]
-    disconnect?: QuoteWhereUniqueInput | QuoteWhereUniqueInput[]
-    delete?: QuoteWhereUniqueInput | QuoteWhereUniqueInput[]
-    connect?: QuoteWhereUniqueInput | QuoteWhereUniqueInput[]
-    update?: QuoteUpdateWithWhereUniqueWithoutUserInput | QuoteUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: QuoteUpdateManyWithWhereWithoutUserInput | QuoteUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: QuoteScalarWhereInput | QuoteScalarWhereInput[]
-  }
-
-  export type ReviewUpdateManyWithoutUserNestedInput = {
-    create?: XOR<ReviewCreateWithoutUserInput, ReviewUncheckedCreateWithoutUserInput> | ReviewCreateWithoutUserInput[] | ReviewUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: ReviewCreateOrConnectWithoutUserInput | ReviewCreateOrConnectWithoutUserInput[]
-    upsert?: ReviewUpsertWithWhereUniqueWithoutUserInput | ReviewUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: ReviewCreateManyUserInputEnvelope
-    set?: ReviewWhereUniqueInput | ReviewWhereUniqueInput[]
-    disconnect?: ReviewWhereUniqueInput | ReviewWhereUniqueInput[]
-    delete?: ReviewWhereUniqueInput | ReviewWhereUniqueInput[]
-    connect?: ReviewWhereUniqueInput | ReviewWhereUniqueInput[]
-    update?: ReviewUpdateWithWhereUniqueWithoutUserInput | ReviewUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: ReviewUpdateManyWithWhereWithoutUserInput | ReviewUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: ReviewScalarWhereInput | ReviewScalarWhereInput[]
   }
 
   export type ContactUpdateManyWithoutUserNestedInput = {
@@ -24248,6 +24322,34 @@ export namespace Prisma {
     deleteMany?: ContactReplyScalarWhereInput | ContactReplyScalarWhereInput[]
   }
 
+  export type OrderUpdateManyWithoutUserNestedInput = {
+    create?: XOR<OrderCreateWithoutUserInput, OrderUncheckedCreateWithoutUserInput> | OrderCreateWithoutUserInput[] | OrderUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: OrderCreateOrConnectWithoutUserInput | OrderCreateOrConnectWithoutUserInput[]
+    upsert?: OrderUpsertWithWhereUniqueWithoutUserInput | OrderUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: OrderCreateManyUserInputEnvelope
+    set?: OrderWhereUniqueInput | OrderWhereUniqueInput[]
+    disconnect?: OrderWhereUniqueInput | OrderWhereUniqueInput[]
+    delete?: OrderWhereUniqueInput | OrderWhereUniqueInput[]
+    connect?: OrderWhereUniqueInput | OrderWhereUniqueInput[]
+    update?: OrderUpdateWithWhereUniqueWithoutUserInput | OrderUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: OrderUpdateManyWithWhereWithoutUserInput | OrderUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: OrderScalarWhereInput | OrderScalarWhereInput[]
+  }
+
+  export type QuoteUpdateManyWithoutUserNestedInput = {
+    create?: XOR<QuoteCreateWithoutUserInput, QuoteUncheckedCreateWithoutUserInput> | QuoteCreateWithoutUserInput[] | QuoteUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: QuoteCreateOrConnectWithoutUserInput | QuoteCreateOrConnectWithoutUserInput[]
+    upsert?: QuoteUpsertWithWhereUniqueWithoutUserInput | QuoteUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: QuoteCreateManyUserInputEnvelope
+    set?: QuoteWhereUniqueInput | QuoteWhereUniqueInput[]
+    disconnect?: QuoteWhereUniqueInput | QuoteWhereUniqueInput[]
+    delete?: QuoteWhereUniqueInput | QuoteWhereUniqueInput[]
+    connect?: QuoteWhereUniqueInput | QuoteWhereUniqueInput[]
+    update?: QuoteUpdateWithWhereUniqueWithoutUserInput | QuoteUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: QuoteUpdateManyWithWhereWithoutUserInput | QuoteUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: QuoteScalarWhereInput | QuoteScalarWhereInput[]
+  }
+
   export type RefreshTokenUpdateManyWithoutUserNestedInput = {
     create?: XOR<RefreshTokenCreateWithoutUserInput, RefreshTokenUncheckedCreateWithoutUserInput> | RefreshTokenCreateWithoutUserInput[] | RefreshTokenUncheckedCreateWithoutUserInput[]
     connectOrCreate?: RefreshTokenCreateOrConnectWithoutUserInput | RefreshTokenCreateOrConnectWithoutUserInput[]
@@ -24262,53 +24364,7 @@ export namespace Prisma {
     deleteMany?: RefreshTokenScalarWhereInput | RefreshTokenScalarWhereInput[]
   }
 
-  export type IntFieldUpdateOperationsInput = {
-    set?: number
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
-  }
-
-  export type OrderUncheckedUpdateManyWithoutUserNestedInput = {
-    create?: XOR<OrderCreateWithoutUserInput, OrderUncheckedCreateWithoutUserInput> | OrderCreateWithoutUserInput[] | OrderUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: OrderCreateOrConnectWithoutUserInput | OrderCreateOrConnectWithoutUserInput[]
-    upsert?: OrderUpsertWithWhereUniqueWithoutUserInput | OrderUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: OrderCreateManyUserInputEnvelope
-    set?: OrderWhereUniqueInput | OrderWhereUniqueInput[]
-    disconnect?: OrderWhereUniqueInput | OrderWhereUniqueInput[]
-    delete?: OrderWhereUniqueInput | OrderWhereUniqueInput[]
-    connect?: OrderWhereUniqueInput | OrderWhereUniqueInput[]
-    update?: OrderUpdateWithWhereUniqueWithoutUserInput | OrderUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: OrderUpdateManyWithWhereWithoutUserInput | OrderUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: OrderScalarWhereInput | OrderScalarWhereInput[]
-  }
-
-  export type CartUncheckedUpdateOneWithoutUserNestedInput = {
-    create?: XOR<CartCreateWithoutUserInput, CartUncheckedCreateWithoutUserInput>
-    connectOrCreate?: CartCreateOrConnectWithoutUserInput
-    upsert?: CartUpsertWithoutUserInput
-    disconnect?: CartWhereInput | boolean
-    delete?: CartWhereInput | boolean
-    connect?: CartWhereUniqueInput
-    update?: XOR<XOR<CartUpdateToOneWithWhereWithoutUserInput, CartUpdateWithoutUserInput>, CartUncheckedUpdateWithoutUserInput>
-  }
-
-  export type QuoteUncheckedUpdateManyWithoutUserNestedInput = {
-    create?: XOR<QuoteCreateWithoutUserInput, QuoteUncheckedCreateWithoutUserInput> | QuoteCreateWithoutUserInput[] | QuoteUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: QuoteCreateOrConnectWithoutUserInput | QuoteCreateOrConnectWithoutUserInput[]
-    upsert?: QuoteUpsertWithWhereUniqueWithoutUserInput | QuoteUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: QuoteCreateManyUserInputEnvelope
-    set?: QuoteWhereUniqueInput | QuoteWhereUniqueInput[]
-    disconnect?: QuoteWhereUniqueInput | QuoteWhereUniqueInput[]
-    delete?: QuoteWhereUniqueInput | QuoteWhereUniqueInput[]
-    connect?: QuoteWhereUniqueInput | QuoteWhereUniqueInput[]
-    update?: QuoteUpdateWithWhereUniqueWithoutUserInput | QuoteUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: QuoteUpdateManyWithWhereWithoutUserInput | QuoteUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: QuoteScalarWhereInput | QuoteScalarWhereInput[]
-  }
-
-  export type ReviewUncheckedUpdateManyWithoutUserNestedInput = {
+  export type ReviewUpdateManyWithoutUserNestedInput = {
     create?: XOR<ReviewCreateWithoutUserInput, ReviewUncheckedCreateWithoutUserInput> | ReviewCreateWithoutUserInput[] | ReviewUncheckedCreateWithoutUserInput[]
     connectOrCreate?: ReviewCreateOrConnectWithoutUserInput | ReviewCreateOrConnectWithoutUserInput[]
     upsert?: ReviewUpsertWithWhereUniqueWithoutUserInput | ReviewUpsertWithWhereUniqueWithoutUserInput[]
@@ -24320,6 +24376,24 @@ export namespace Prisma {
     update?: ReviewUpdateWithWhereUniqueWithoutUserInput | ReviewUpdateWithWhereUniqueWithoutUserInput[]
     updateMany?: ReviewUpdateManyWithWhereWithoutUserInput | ReviewUpdateManyWithWhereWithoutUserInput[]
     deleteMany?: ReviewScalarWhereInput | ReviewScalarWhereInput[]
+  }
+
+  export type IntFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
+  export type CartUncheckedUpdateOneWithoutUserNestedInput = {
+    create?: XOR<CartCreateWithoutUserInput, CartUncheckedCreateWithoutUserInput>
+    connectOrCreate?: CartCreateOrConnectWithoutUserInput
+    upsert?: CartUpsertWithoutUserInput
+    disconnect?: CartWhereInput | boolean
+    delete?: CartWhereInput | boolean
+    connect?: CartWhereUniqueInput
+    update?: XOR<XOR<CartUpdateToOneWithWhereWithoutUserInput, CartUpdateWithoutUserInput>, CartUncheckedUpdateWithoutUserInput>
   }
 
   export type ContactUncheckedUpdateManyWithoutUserNestedInput = {
@@ -24350,6 +24424,34 @@ export namespace Prisma {
     deleteMany?: ContactReplyScalarWhereInput | ContactReplyScalarWhereInput[]
   }
 
+  export type OrderUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<OrderCreateWithoutUserInput, OrderUncheckedCreateWithoutUserInput> | OrderCreateWithoutUserInput[] | OrderUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: OrderCreateOrConnectWithoutUserInput | OrderCreateOrConnectWithoutUserInput[]
+    upsert?: OrderUpsertWithWhereUniqueWithoutUserInput | OrderUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: OrderCreateManyUserInputEnvelope
+    set?: OrderWhereUniqueInput | OrderWhereUniqueInput[]
+    disconnect?: OrderWhereUniqueInput | OrderWhereUniqueInput[]
+    delete?: OrderWhereUniqueInput | OrderWhereUniqueInput[]
+    connect?: OrderWhereUniqueInput | OrderWhereUniqueInput[]
+    update?: OrderUpdateWithWhereUniqueWithoutUserInput | OrderUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: OrderUpdateManyWithWhereWithoutUserInput | OrderUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: OrderScalarWhereInput | OrderScalarWhereInput[]
+  }
+
+  export type QuoteUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<QuoteCreateWithoutUserInput, QuoteUncheckedCreateWithoutUserInput> | QuoteCreateWithoutUserInput[] | QuoteUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: QuoteCreateOrConnectWithoutUserInput | QuoteCreateOrConnectWithoutUserInput[]
+    upsert?: QuoteUpsertWithWhereUniqueWithoutUserInput | QuoteUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: QuoteCreateManyUserInputEnvelope
+    set?: QuoteWhereUniqueInput | QuoteWhereUniqueInput[]
+    disconnect?: QuoteWhereUniqueInput | QuoteWhereUniqueInput[]
+    delete?: QuoteWhereUniqueInput | QuoteWhereUniqueInput[]
+    connect?: QuoteWhereUniqueInput | QuoteWhereUniqueInput[]
+    update?: QuoteUpdateWithWhereUniqueWithoutUserInput | QuoteUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: QuoteUpdateManyWithWhereWithoutUserInput | QuoteUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: QuoteScalarWhereInput | QuoteScalarWhereInput[]
+  }
+
   export type RefreshTokenUncheckedUpdateManyWithoutUserNestedInput = {
     create?: XOR<RefreshTokenCreateWithoutUserInput, RefreshTokenUncheckedCreateWithoutUserInput> | RefreshTokenCreateWithoutUserInput[] | RefreshTokenUncheckedCreateWithoutUserInput[]
     connectOrCreate?: RefreshTokenCreateOrConnectWithoutUserInput | RefreshTokenCreateOrConnectWithoutUserInput[]
@@ -24362,6 +24464,20 @@ export namespace Prisma {
     update?: RefreshTokenUpdateWithWhereUniqueWithoutUserInput | RefreshTokenUpdateWithWhereUniqueWithoutUserInput[]
     updateMany?: RefreshTokenUpdateManyWithWhereWithoutUserInput | RefreshTokenUpdateManyWithWhereWithoutUserInput[]
     deleteMany?: RefreshTokenScalarWhereInput | RefreshTokenScalarWhereInput[]
+  }
+
+  export type ReviewUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<ReviewCreateWithoutUserInput, ReviewUncheckedCreateWithoutUserInput> | ReviewCreateWithoutUserInput[] | ReviewUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ReviewCreateOrConnectWithoutUserInput | ReviewCreateOrConnectWithoutUserInput[]
+    upsert?: ReviewUpsertWithWhereUniqueWithoutUserInput | ReviewUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: ReviewCreateManyUserInputEnvelope
+    set?: ReviewWhereUniqueInput | ReviewWhereUniqueInput[]
+    disconnect?: ReviewWhereUniqueInput | ReviewWhereUniqueInput[]
+    delete?: ReviewWhereUniqueInput | ReviewWhereUniqueInput[]
+    connect?: ReviewWhereUniqueInput | ReviewWhereUniqueInput[]
+    update?: ReviewUpdateWithWhereUniqueWithoutUserInput | ReviewUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: ReviewUpdateManyWithWhereWithoutUserInput | ReviewUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: ReviewScalarWhereInput | ReviewScalarWhereInput[]
   }
 
   export type ProductCreateNestedManyWithoutCategoryInput = {
@@ -24410,17 +24526,17 @@ export namespace Prisma {
     set: string[]
   }
 
-  export type CategoryCreateNestedOneWithoutProductsInput = {
-    create?: XOR<CategoryCreateWithoutProductsInput, CategoryUncheckedCreateWithoutProductsInput>
-    connectOrCreate?: CategoryCreateOrConnectWithoutProductsInput
-    connect?: CategoryWhereUniqueInput
-  }
-
   export type CartItemCreateNestedManyWithoutProductInput = {
     create?: XOR<CartItemCreateWithoutProductInput, CartItemUncheckedCreateWithoutProductInput> | CartItemCreateWithoutProductInput[] | CartItemUncheckedCreateWithoutProductInput[]
     connectOrCreate?: CartItemCreateOrConnectWithoutProductInput | CartItemCreateOrConnectWithoutProductInput[]
     createMany?: CartItemCreateManyProductInputEnvelope
     connect?: CartItemWhereUniqueInput | CartItemWhereUniqueInput[]
+  }
+
+  export type HomepagePhotoCreateNestedOneWithoutProductInput = {
+    create?: XOR<HomepagePhotoCreateWithoutProductInput, HomepagePhotoUncheckedCreateWithoutProductInput>
+    connectOrCreate?: HomepagePhotoCreateOrConnectWithoutProductInput
+    connect?: HomepagePhotoWhereUniqueInput
   }
 
   export type OrderItemCreateNestedManyWithoutProductInput = {
@@ -24430,6 +24546,12 @@ export namespace Prisma {
     connect?: OrderItemWhereUniqueInput | OrderItemWhereUniqueInput[]
   }
 
+  export type CategoryCreateNestedOneWithoutProductsInput = {
+    create?: XOR<CategoryCreateWithoutProductsInput, CategoryUncheckedCreateWithoutProductsInput>
+    connectOrCreate?: CategoryCreateOrConnectWithoutProductsInput
+    connect?: CategoryWhereUniqueInput
+  }
+
   export type ReviewCreateNestedManyWithoutProductInput = {
     create?: XOR<ReviewCreateWithoutProductInput, ReviewUncheckedCreateWithoutProductInput> | ReviewCreateWithoutProductInput[] | ReviewUncheckedCreateWithoutProductInput[]
     connectOrCreate?: ReviewCreateOrConnectWithoutProductInput | ReviewCreateOrConnectWithoutProductInput[]
@@ -24437,17 +24559,17 @@ export namespace Prisma {
     connect?: ReviewWhereUniqueInput | ReviewWhereUniqueInput[]
   }
 
-  export type HomepagePhotoCreateNestedOneWithoutProductInput = {
-    create?: XOR<HomepagePhotoCreateWithoutProductInput, HomepagePhotoUncheckedCreateWithoutProductInput>
-    connectOrCreate?: HomepagePhotoCreateOrConnectWithoutProductInput
-    connect?: HomepagePhotoWhereUniqueInput
-  }
-
   export type CartItemUncheckedCreateNestedManyWithoutProductInput = {
     create?: XOR<CartItemCreateWithoutProductInput, CartItemUncheckedCreateWithoutProductInput> | CartItemCreateWithoutProductInput[] | CartItemUncheckedCreateWithoutProductInput[]
     connectOrCreate?: CartItemCreateOrConnectWithoutProductInput | CartItemCreateOrConnectWithoutProductInput[]
     createMany?: CartItemCreateManyProductInputEnvelope
     connect?: CartItemWhereUniqueInput | CartItemWhereUniqueInput[]
+  }
+
+  export type HomepagePhotoUncheckedCreateNestedOneWithoutProductInput = {
+    create?: XOR<HomepagePhotoCreateWithoutProductInput, HomepagePhotoUncheckedCreateWithoutProductInput>
+    connectOrCreate?: HomepagePhotoCreateOrConnectWithoutProductInput
+    connect?: HomepagePhotoWhereUniqueInput
   }
 
   export type OrderItemUncheckedCreateNestedManyWithoutProductInput = {
@@ -24464,27 +24586,13 @@ export namespace Prisma {
     connect?: ReviewWhereUniqueInput | ReviewWhereUniqueInput[]
   }
 
-  export type HomepagePhotoUncheckedCreateNestedOneWithoutProductInput = {
-    create?: XOR<HomepagePhotoCreateWithoutProductInput, HomepagePhotoUncheckedCreateWithoutProductInput>
-    connectOrCreate?: HomepagePhotoCreateOrConnectWithoutProductInput
-    connect?: HomepagePhotoWhereUniqueInput
-  }
-
-  export type EnumStockStatusFieldUpdateOperationsInput = {
-    set?: $Enums.StockStatus
-  }
-
   export type ProductUpdatespecsInput = {
     set?: string[]
     push?: string | string[]
   }
 
-  export type CategoryUpdateOneRequiredWithoutProductsNestedInput = {
-    create?: XOR<CategoryCreateWithoutProductsInput, CategoryUncheckedCreateWithoutProductsInput>
-    connectOrCreate?: CategoryCreateOrConnectWithoutProductsInput
-    upsert?: CategoryUpsertWithoutProductsInput
-    connect?: CategoryWhereUniqueInput
-    update?: XOR<XOR<CategoryUpdateToOneWithWhereWithoutProductsInput, CategoryUpdateWithoutProductsInput>, CategoryUncheckedUpdateWithoutProductsInput>
+  export type EnumStockStatusFieldUpdateOperationsInput = {
+    set?: $Enums.StockStatus
   }
 
   export type CartItemUpdateManyWithoutProductNestedInput = {
@@ -24501,6 +24609,16 @@ export namespace Prisma {
     deleteMany?: CartItemScalarWhereInput | CartItemScalarWhereInput[]
   }
 
+  export type HomepagePhotoUpdateOneWithoutProductNestedInput = {
+    create?: XOR<HomepagePhotoCreateWithoutProductInput, HomepagePhotoUncheckedCreateWithoutProductInput>
+    connectOrCreate?: HomepagePhotoCreateOrConnectWithoutProductInput
+    upsert?: HomepagePhotoUpsertWithoutProductInput
+    disconnect?: HomepagePhotoWhereInput | boolean
+    delete?: HomepagePhotoWhereInput | boolean
+    connect?: HomepagePhotoWhereUniqueInput
+    update?: XOR<XOR<HomepagePhotoUpdateToOneWithWhereWithoutProductInput, HomepagePhotoUpdateWithoutProductInput>, HomepagePhotoUncheckedUpdateWithoutProductInput>
+  }
+
   export type OrderItemUpdateManyWithoutProductNestedInput = {
     create?: XOR<OrderItemCreateWithoutProductInput, OrderItemUncheckedCreateWithoutProductInput> | OrderItemCreateWithoutProductInput[] | OrderItemUncheckedCreateWithoutProductInput[]
     connectOrCreate?: OrderItemCreateOrConnectWithoutProductInput | OrderItemCreateOrConnectWithoutProductInput[]
@@ -24513,6 +24631,14 @@ export namespace Prisma {
     update?: OrderItemUpdateWithWhereUniqueWithoutProductInput | OrderItemUpdateWithWhereUniqueWithoutProductInput[]
     updateMany?: OrderItemUpdateManyWithWhereWithoutProductInput | OrderItemUpdateManyWithWhereWithoutProductInput[]
     deleteMany?: OrderItemScalarWhereInput | OrderItemScalarWhereInput[]
+  }
+
+  export type CategoryUpdateOneRequiredWithoutProductsNestedInput = {
+    create?: XOR<CategoryCreateWithoutProductsInput, CategoryUncheckedCreateWithoutProductsInput>
+    connectOrCreate?: CategoryCreateOrConnectWithoutProductsInput
+    upsert?: CategoryUpsertWithoutProductsInput
+    connect?: CategoryWhereUniqueInput
+    update?: XOR<XOR<CategoryUpdateToOneWithWhereWithoutProductsInput, CategoryUpdateWithoutProductsInput>, CategoryUncheckedUpdateWithoutProductsInput>
   }
 
   export type ReviewUpdateManyWithoutProductNestedInput = {
@@ -24529,16 +24655,6 @@ export namespace Prisma {
     deleteMany?: ReviewScalarWhereInput | ReviewScalarWhereInput[]
   }
 
-  export type HomepagePhotoUpdateOneWithoutProductNestedInput = {
-    create?: XOR<HomepagePhotoCreateWithoutProductInput, HomepagePhotoUncheckedCreateWithoutProductInput>
-    connectOrCreate?: HomepagePhotoCreateOrConnectWithoutProductInput
-    upsert?: HomepagePhotoUpsertWithoutProductInput
-    disconnect?: HomepagePhotoWhereInput | boolean
-    delete?: HomepagePhotoWhereInput | boolean
-    connect?: HomepagePhotoWhereUniqueInput
-    update?: XOR<XOR<HomepagePhotoUpdateToOneWithWhereWithoutProductInput, HomepagePhotoUpdateWithoutProductInput>, HomepagePhotoUncheckedUpdateWithoutProductInput>
-  }
-
   export type CartItemUncheckedUpdateManyWithoutProductNestedInput = {
     create?: XOR<CartItemCreateWithoutProductInput, CartItemUncheckedCreateWithoutProductInput> | CartItemCreateWithoutProductInput[] | CartItemUncheckedCreateWithoutProductInput[]
     connectOrCreate?: CartItemCreateOrConnectWithoutProductInput | CartItemCreateOrConnectWithoutProductInput[]
@@ -24551,6 +24667,16 @@ export namespace Prisma {
     update?: CartItemUpdateWithWhereUniqueWithoutProductInput | CartItemUpdateWithWhereUniqueWithoutProductInput[]
     updateMany?: CartItemUpdateManyWithWhereWithoutProductInput | CartItemUpdateManyWithWhereWithoutProductInput[]
     deleteMany?: CartItemScalarWhereInput | CartItemScalarWhereInput[]
+  }
+
+  export type HomepagePhotoUncheckedUpdateOneWithoutProductNestedInput = {
+    create?: XOR<HomepagePhotoCreateWithoutProductInput, HomepagePhotoUncheckedCreateWithoutProductInput>
+    connectOrCreate?: HomepagePhotoCreateOrConnectWithoutProductInput
+    upsert?: HomepagePhotoUpsertWithoutProductInput
+    disconnect?: HomepagePhotoWhereInput | boolean
+    delete?: HomepagePhotoWhereInput | boolean
+    connect?: HomepagePhotoWhereUniqueInput
+    update?: XOR<XOR<HomepagePhotoUpdateToOneWithWhereWithoutProductInput, HomepagePhotoUpdateWithoutProductInput>, HomepagePhotoUncheckedUpdateWithoutProductInput>
   }
 
   export type OrderItemUncheckedUpdateManyWithoutProductNestedInput = {
@@ -24579,16 +24705,6 @@ export namespace Prisma {
     update?: ReviewUpdateWithWhereUniqueWithoutProductInput | ReviewUpdateWithWhereUniqueWithoutProductInput[]
     updateMany?: ReviewUpdateManyWithWhereWithoutProductInput | ReviewUpdateManyWithWhereWithoutProductInput[]
     deleteMany?: ReviewScalarWhereInput | ReviewScalarWhereInput[]
-  }
-
-  export type HomepagePhotoUncheckedUpdateOneWithoutProductNestedInput = {
-    create?: XOR<HomepagePhotoCreateWithoutProductInput, HomepagePhotoUncheckedCreateWithoutProductInput>
-    connectOrCreate?: HomepagePhotoCreateOrConnectWithoutProductInput
-    upsert?: HomepagePhotoUpsertWithoutProductInput
-    disconnect?: HomepagePhotoWhereInput | boolean
-    delete?: HomepagePhotoWhereInput | boolean
-    connect?: HomepagePhotoWhereUniqueInput
-    update?: XOR<XOR<HomepagePhotoUpdateToOneWithWhereWithoutProductInput, HomepagePhotoUpdateWithoutProductInput>, HomepagePhotoUncheckedUpdateWithoutProductInput>
   }
 
   export type UserCreateNestedOneWithoutCartInput = {
@@ -24911,28 +25027,20 @@ export namespace Prisma {
     deleteMany?: ContactReplyScalarWhereInput | ContactReplyScalarWhereInput[]
   }
 
-  export type ContactCreateNestedOneWithoutThreadRepliesInput = {
-    create?: XOR<ContactCreateWithoutThreadRepliesInput, ContactUncheckedCreateWithoutThreadRepliesInput>
-    connectOrCreate?: ContactCreateOrConnectWithoutThreadRepliesInput
-    connect?: ContactWhereUniqueInput
-  }
-
   export type UserCreateNestedOneWithoutContactRepliesInput = {
     create?: XOR<UserCreateWithoutContactRepliesInput, UserUncheckedCreateWithoutContactRepliesInput>
     connectOrCreate?: UserCreateOrConnectWithoutContactRepliesInput
     connect?: UserWhereUniqueInput
   }
 
-  export type EnumContactReplySenderFieldUpdateOperationsInput = {
-    set?: $Enums.ContactReplySender
-  }
-
-  export type ContactUpdateOneRequiredWithoutThreadRepliesNestedInput = {
+  export type ContactCreateNestedOneWithoutThreadRepliesInput = {
     create?: XOR<ContactCreateWithoutThreadRepliesInput, ContactUncheckedCreateWithoutThreadRepliesInput>
     connectOrCreate?: ContactCreateOrConnectWithoutThreadRepliesInput
-    upsert?: ContactUpsertWithoutThreadRepliesInput
     connect?: ContactWhereUniqueInput
-    update?: XOR<XOR<ContactUpdateToOneWithWhereWithoutThreadRepliesInput, ContactUpdateWithoutThreadRepliesInput>, ContactUncheckedUpdateWithoutThreadRepliesInput>
+  }
+
+  export type EnumContactReplySenderFieldUpdateOperationsInput = {
+    set?: $Enums.ContactReplySender
   }
 
   export type UserUpdateOneWithoutContactRepliesNestedInput = {
@@ -24945,10 +25053,12 @@ export namespace Prisma {
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutContactRepliesInput, UserUpdateWithoutContactRepliesInput>, UserUncheckedUpdateWithoutContactRepliesInput>
   }
 
-  export type UserCreateNestedOneWithoutReviewsInput = {
-    create?: XOR<UserCreateWithoutReviewsInput, UserUncheckedCreateWithoutReviewsInput>
-    connectOrCreate?: UserCreateOrConnectWithoutReviewsInput
-    connect?: UserWhereUniqueInput
+  export type ContactUpdateOneRequiredWithoutThreadRepliesNestedInput = {
+    create?: XOR<ContactCreateWithoutThreadRepliesInput, ContactUncheckedCreateWithoutThreadRepliesInput>
+    connectOrCreate?: ContactCreateOrConnectWithoutThreadRepliesInput
+    upsert?: ContactUpsertWithoutThreadRepliesInput
+    connect?: ContactWhereUniqueInput
+    update?: XOR<XOR<ContactUpdateToOneWithWhereWithoutThreadRepliesInput, ContactUpdateWithoutThreadRepliesInput>, ContactUncheckedUpdateWithoutThreadRepliesInput>
   }
 
   export type ProductCreateNestedOneWithoutReviewsInput = {
@@ -24957,12 +25067,10 @@ export namespace Prisma {
     connect?: ProductWhereUniqueInput
   }
 
-  export type UserUpdateOneRequiredWithoutReviewsNestedInput = {
+  export type UserCreateNestedOneWithoutReviewsInput = {
     create?: XOR<UserCreateWithoutReviewsInput, UserUncheckedCreateWithoutReviewsInput>
     connectOrCreate?: UserCreateOrConnectWithoutReviewsInput
-    upsert?: UserUpsertWithoutReviewsInput
     connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutReviewsInput, UserUpdateWithoutReviewsInput>, UserUncheckedUpdateWithoutReviewsInput>
   }
 
   export type ProductUpdateOneRequiredWithoutReviewsNestedInput = {
@@ -24971,6 +25079,14 @@ export namespace Prisma {
     upsert?: ProductUpsertWithoutReviewsInput
     connect?: ProductWhereUniqueInput
     update?: XOR<XOR<ProductUpdateToOneWithWhereWithoutReviewsInput, ProductUpdateWithoutReviewsInput>, ProductUncheckedUpdateWithoutReviewsInput>
+  }
+
+  export type UserUpdateOneRequiredWithoutReviewsNestedInput = {
+    create?: XOR<UserCreateWithoutReviewsInput, UserUncheckedCreateWithoutReviewsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutReviewsInput
+    upsert?: UserUpsertWithoutReviewsInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutReviewsInput, UserUpdateWithoutReviewsInput>, UserUncheckedUpdateWithoutReviewsInput>
   }
 
   export type ProductCreateNestedOneWithoutHomepagePhotoInput = {
@@ -25032,20 +25148,6 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
-  export type NestedStringNullableFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    not?: NestedStringNullableFilter<$PrismaModel> | string | null
-  }
-
   export type NestedEnumUserRoleFilter<$PrismaModel = never> = {
     equals?: $Enums.UserRole | EnumUserRoleFieldRefInput<$PrismaModel>
     in?: $Enums.UserRole[] | ListEnumUserRoleFieldRefInput<$PrismaModel>
@@ -25067,6 +25169,20 @@ export namespace Prisma {
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
+  export type NestedStringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
@@ -25113,34 +25229,6 @@ export namespace Prisma {
     _max?: NestedStringFilter<$PrismaModel>
   }
 
-  export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedStringNullableFilter<$PrismaModel>
-    _max?: NestedStringNullableFilter<$PrismaModel>
-  }
-
-  export type NestedIntNullableFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableFilter<$PrismaModel> | number | null
-  }
-
   export type NestedEnumUserRoleWithAggregatesFilter<$PrismaModel = never> = {
     equals?: $Enums.UserRole | EnumUserRoleFieldRefInput<$PrismaModel>
     in?: $Enums.UserRole[] | ListEnumUserRoleFieldRefInput<$PrismaModel>
@@ -25171,6 +25259,34 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedDateTimeFilter<$PrismaModel>
     _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type NestedIntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
   export type NestedEnumStockStatusFilter<$PrismaModel = never> = {
@@ -25308,6 +25424,16 @@ export namespace Prisma {
     notIn?: $Enums.ContactStatus[] | ListEnumContactStatusFieldRefInput<$PrismaModel>
     not?: NestedEnumContactStatusFilter<$PrismaModel> | $Enums.ContactStatus
   }
+
+  export type NestedEnumContactStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.ContactStatus | EnumContactStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.ContactStatus[] | ListEnumContactStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ContactStatus[] | ListEnumContactStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumContactStatusWithAggregatesFilter<$PrismaModel> | $Enums.ContactStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumContactStatusFilter<$PrismaModel>
+    _max?: NestedEnumContactStatusFilter<$PrismaModel>
+  }
   export type NestedJsonFilter<$PrismaModel = never> =
     | PatchUndefined<
         Either<Required<NestedJsonFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonFilterBase<$PrismaModel>>, 'path'>>,
@@ -25330,16 +25456,6 @@ export namespace Prisma {
     gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
     gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
     not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
-  }
-
-  export type NestedEnumContactStatusWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.ContactStatus | EnumContactStatusFieldRefInput<$PrismaModel>
-    in?: $Enums.ContactStatus[] | ListEnumContactStatusFieldRefInput<$PrismaModel>
-    notIn?: $Enums.ContactStatus[] | ListEnumContactStatusFieldRefInput<$PrismaModel>
-    not?: NestedEnumContactStatusWithAggregatesFilter<$PrismaModel> | $Enums.ContactStatus
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumContactStatusFilter<$PrismaModel>
-    _max?: NestedEnumContactStatusFilter<$PrismaModel>
   }
 
   export type NestedEnumContactReplySenderFilter<$PrismaModel = never> = {
@@ -25384,45 +25500,6 @@ export namespace Prisma {
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
-  export type OrderCreateWithoutUserInput = {
-    status?: $Enums.OrderStatus
-    totalPrice: number
-    shippingAddress: string
-    shippingCity: string
-    shippingZip: string
-    shippingPhone?: string | null
-    paymentMethod?: $Enums.PaymentMethod | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    items?: OrderItemCreateNestedManyWithoutOrderInput
-    payment?: PaymentCreateNestedOneWithoutOrderInput
-  }
-
-  export type OrderUncheckedCreateWithoutUserInput = {
-    id?: number
-    status?: $Enums.OrderStatus
-    totalPrice: number
-    shippingAddress: string
-    shippingCity: string
-    shippingZip: string
-    shippingPhone?: string | null
-    paymentMethod?: $Enums.PaymentMethod | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    items?: OrderItemUncheckedCreateNestedManyWithoutOrderInput
-    payment?: PaymentUncheckedCreateNestedOneWithoutOrderInput
-  }
-
-  export type OrderCreateOrConnectWithoutUserInput = {
-    where: OrderWhereUniqueInput
-    create: XOR<OrderCreateWithoutUserInput, OrderUncheckedCreateWithoutUserInput>
-  }
-
-  export type OrderCreateManyUserInputEnvelope = {
-    data: OrderCreateManyUserInput | OrderCreateManyUserInput[]
-    skipDuplicates?: boolean
-  }
-
   export type CartCreateWithoutUserInput = {
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -25441,96 +25518,30 @@ export namespace Prisma {
     create: XOR<CartCreateWithoutUserInput, CartUncheckedCreateWithoutUserInput>
   }
 
-  export type QuoteCreateWithoutUserInput = {
-    title: string
-    description: string
-    contactName?: string | null
-    contactEmail?: string | null
-    contactPhone?: string | null
-    location?: string | null
-    budgetRange?: string | null
-    price?: number | null
-    status?: $Enums.QuoteStatus
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type QuoteUncheckedCreateWithoutUserInput = {
-    id?: number
-    title: string
-    description: string
-    contactName?: string | null
-    contactEmail?: string | null
-    contactPhone?: string | null
-    location?: string | null
-    budgetRange?: string | null
-    price?: number | null
-    status?: $Enums.QuoteStatus
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type QuoteCreateOrConnectWithoutUserInput = {
-    where: QuoteWhereUniqueInput
-    create: XOR<QuoteCreateWithoutUserInput, QuoteUncheckedCreateWithoutUserInput>
-  }
-
-  export type QuoteCreateManyUserInputEnvelope = {
-    data: QuoteCreateManyUserInput | QuoteCreateManyUserInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type ReviewCreateWithoutUserInput = {
-    rating: number
-    comment?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    product: ProductCreateNestedOneWithoutReviewsInput
-  }
-
-  export type ReviewUncheckedCreateWithoutUserInput = {
-    id?: number
-    productId: number
-    rating: number
-    comment?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type ReviewCreateOrConnectWithoutUserInput = {
-    where: ReviewWhereUniqueInput
-    create: XOR<ReviewCreateWithoutUserInput, ReviewUncheckedCreateWithoutUserInput>
-  }
-
-  export type ReviewCreateManyUserInputEnvelope = {
-    data: ReviewCreateManyUserInput | ReviewCreateManyUserInput[]
-    skipDuplicates?: boolean
-  }
-
   export type ContactCreateWithoutUserInput = {
-    name: string
     email: string
-    phone?: string | null
     subject: string
     message: string
-    legacyReplies?: JsonNullValueInput | InputJsonValue
     status?: $Enums.ContactStatus
     createdAt?: Date | string
     updatedAt?: Date | string
+    name: string
+    phone?: string | null
+    legacyReplies?: JsonNullValueInput | InputJsonValue
     threadReplies?: ContactReplyCreateNestedManyWithoutContactInput
   }
 
   export type ContactUncheckedCreateWithoutUserInput = {
     id?: number
-    name: string
     email: string
-    phone?: string | null
     subject: string
     message: string
-    legacyReplies?: JsonNullValueInput | InputJsonValue
     status?: $Enums.ContactStatus
     createdAt?: Date | string
     updatedAt?: Date | string
+    name: string
+    phone?: string | null
+    legacyReplies?: JsonNullValueInput | InputJsonValue
     threadReplies?: ContactReplyUncheckedCreateNestedManyWithoutContactInput
   }
 
@@ -25571,6 +25582,84 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type OrderCreateWithoutUserInput = {
+    status?: $Enums.OrderStatus
+    totalPrice: number
+    shippingAddress: string
+    shippingCity: string
+    shippingZip: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    paymentMethod?: $Enums.PaymentMethod | null
+    shippingPhone?: string | null
+    items?: OrderItemCreateNestedManyWithoutOrderInput
+    payment?: PaymentCreateNestedOneWithoutOrderInput
+  }
+
+  export type OrderUncheckedCreateWithoutUserInput = {
+    id?: number
+    status?: $Enums.OrderStatus
+    totalPrice: number
+    shippingAddress: string
+    shippingCity: string
+    shippingZip: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    paymentMethod?: $Enums.PaymentMethod | null
+    shippingPhone?: string | null
+    items?: OrderItemUncheckedCreateNestedManyWithoutOrderInput
+    payment?: PaymentUncheckedCreateNestedOneWithoutOrderInput
+  }
+
+  export type OrderCreateOrConnectWithoutUserInput = {
+    where: OrderWhereUniqueInput
+    create: XOR<OrderCreateWithoutUserInput, OrderUncheckedCreateWithoutUserInput>
+  }
+
+  export type OrderCreateManyUserInputEnvelope = {
+    data: OrderCreateManyUserInput | OrderCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type QuoteCreateWithoutUserInput = {
+    title: string
+    description: string
+    price?: number | null
+    status?: $Enums.QuoteStatus
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    contactName?: string | null
+    contactEmail?: string | null
+    contactPhone?: string | null
+    location?: string | null
+    budgetRange?: string | null
+  }
+
+  export type QuoteUncheckedCreateWithoutUserInput = {
+    id?: number
+    title: string
+    description: string
+    price?: number | null
+    status?: $Enums.QuoteStatus
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    contactName?: string | null
+    contactEmail?: string | null
+    contactPhone?: string | null
+    location?: string | null
+    budgetRange?: string | null
+  }
+
+  export type QuoteCreateOrConnectWithoutUserInput = {
+    where: QuoteWhereUniqueInput
+    create: XOR<QuoteCreateWithoutUserInput, QuoteUncheckedCreateWithoutUserInput>
+  }
+
+  export type QuoteCreateManyUserInputEnvelope = {
+    data: QuoteCreateManyUserInput | QuoteCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
   export type RefreshTokenCreateWithoutUserInput = {
     tokenHash: string
     expiresAt: Date | string
@@ -25598,37 +25687,31 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type OrderUpsertWithWhereUniqueWithoutUserInput = {
-    where: OrderWhereUniqueInput
-    update: XOR<OrderUpdateWithoutUserInput, OrderUncheckedUpdateWithoutUserInput>
-    create: XOR<OrderCreateWithoutUserInput, OrderUncheckedCreateWithoutUserInput>
+  export type ReviewCreateWithoutUserInput = {
+    rating: number
+    comment?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    product: ProductCreateNestedOneWithoutReviewsInput
   }
 
-  export type OrderUpdateWithWhereUniqueWithoutUserInput = {
-    where: OrderWhereUniqueInput
-    data: XOR<OrderUpdateWithoutUserInput, OrderUncheckedUpdateWithoutUserInput>
+  export type ReviewUncheckedCreateWithoutUserInput = {
+    id?: number
+    productId: number
+    rating: number
+    comment?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
-  export type OrderUpdateManyWithWhereWithoutUserInput = {
-    where: OrderScalarWhereInput
-    data: XOR<OrderUpdateManyMutationInput, OrderUncheckedUpdateManyWithoutUserInput>
+  export type ReviewCreateOrConnectWithoutUserInput = {
+    where: ReviewWhereUniqueInput
+    create: XOR<ReviewCreateWithoutUserInput, ReviewUncheckedCreateWithoutUserInput>
   }
 
-  export type OrderScalarWhereInput = {
-    AND?: OrderScalarWhereInput | OrderScalarWhereInput[]
-    OR?: OrderScalarWhereInput[]
-    NOT?: OrderScalarWhereInput | OrderScalarWhereInput[]
-    id?: IntFilter<"Order"> | number
-    userId?: IntFilter<"Order"> | number
-    status?: EnumOrderStatusFilter<"Order"> | $Enums.OrderStatus
-    totalPrice?: IntFilter<"Order"> | number
-    shippingAddress?: StringFilter<"Order"> | string
-    shippingCity?: StringFilter<"Order"> | string
-    shippingZip?: StringFilter<"Order"> | string
-    shippingPhone?: StringNullableFilter<"Order"> | string | null
-    paymentMethod?: EnumPaymentMethodNullableFilter<"Order"> | $Enums.PaymentMethod | null
-    createdAt?: DateTimeFilter<"Order"> | Date | string
-    updatedAt?: DateTimeFilter<"Order"> | Date | string
+  export type ReviewCreateManyUserInputEnvelope = {
+    data: ReviewCreateManyUserInput | ReviewCreateManyUserInput[]
+    skipDuplicates?: boolean
   }
 
   export type CartUpsertWithoutUserInput = {
@@ -25655,70 +25738,6 @@ export namespace Prisma {
     items?: CartItemUncheckedUpdateManyWithoutCartNestedInput
   }
 
-  export type QuoteUpsertWithWhereUniqueWithoutUserInput = {
-    where: QuoteWhereUniqueInput
-    update: XOR<QuoteUpdateWithoutUserInput, QuoteUncheckedUpdateWithoutUserInput>
-    create: XOR<QuoteCreateWithoutUserInput, QuoteUncheckedCreateWithoutUserInput>
-  }
-
-  export type QuoteUpdateWithWhereUniqueWithoutUserInput = {
-    where: QuoteWhereUniqueInput
-    data: XOR<QuoteUpdateWithoutUserInput, QuoteUncheckedUpdateWithoutUserInput>
-  }
-
-  export type QuoteUpdateManyWithWhereWithoutUserInput = {
-    where: QuoteScalarWhereInput
-    data: XOR<QuoteUpdateManyMutationInput, QuoteUncheckedUpdateManyWithoutUserInput>
-  }
-
-  export type QuoteScalarWhereInput = {
-    AND?: QuoteScalarWhereInput | QuoteScalarWhereInput[]
-    OR?: QuoteScalarWhereInput[]
-    NOT?: QuoteScalarWhereInput | QuoteScalarWhereInput[]
-    id?: IntFilter<"Quote"> | number
-    userId?: IntNullableFilter<"Quote"> | number | null
-    title?: StringFilter<"Quote"> | string
-    description?: StringFilter<"Quote"> | string
-    contactName?: StringNullableFilter<"Quote"> | string | null
-    contactEmail?: StringNullableFilter<"Quote"> | string | null
-    contactPhone?: StringNullableFilter<"Quote"> | string | null
-    location?: StringNullableFilter<"Quote"> | string | null
-    budgetRange?: StringNullableFilter<"Quote"> | string | null
-    price?: IntNullableFilter<"Quote"> | number | null
-    status?: EnumQuoteStatusFilter<"Quote"> | $Enums.QuoteStatus
-    createdAt?: DateTimeFilter<"Quote"> | Date | string
-    updatedAt?: DateTimeFilter<"Quote"> | Date | string
-  }
-
-  export type ReviewUpsertWithWhereUniqueWithoutUserInput = {
-    where: ReviewWhereUniqueInput
-    update: XOR<ReviewUpdateWithoutUserInput, ReviewUncheckedUpdateWithoutUserInput>
-    create: XOR<ReviewCreateWithoutUserInput, ReviewUncheckedCreateWithoutUserInput>
-  }
-
-  export type ReviewUpdateWithWhereUniqueWithoutUserInput = {
-    where: ReviewWhereUniqueInput
-    data: XOR<ReviewUpdateWithoutUserInput, ReviewUncheckedUpdateWithoutUserInput>
-  }
-
-  export type ReviewUpdateManyWithWhereWithoutUserInput = {
-    where: ReviewScalarWhereInput
-    data: XOR<ReviewUpdateManyMutationInput, ReviewUncheckedUpdateManyWithoutUserInput>
-  }
-
-  export type ReviewScalarWhereInput = {
-    AND?: ReviewScalarWhereInput | ReviewScalarWhereInput[]
-    OR?: ReviewScalarWhereInput[]
-    NOT?: ReviewScalarWhereInput | ReviewScalarWhereInput[]
-    id?: IntFilter<"Review"> | number
-    userId?: IntFilter<"Review"> | number
-    productId?: IntFilter<"Review"> | number
-    rating?: IntFilter<"Review"> | number
-    comment?: StringNullableFilter<"Review"> | string | null
-    createdAt?: DateTimeFilter<"Review"> | Date | string
-    updatedAt?: DateTimeFilter<"Review"> | Date | string
-  }
-
   export type ContactUpsertWithWhereUniqueWithoutUserInput = {
     where: ContactWhereUniqueInput
     update: XOR<ContactUpdateWithoutUserInput, ContactUncheckedUpdateWithoutUserInput>
@@ -25741,15 +25760,15 @@ export namespace Prisma {
     NOT?: ContactScalarWhereInput | ContactScalarWhereInput[]
     id?: IntFilter<"Contact"> | number
     userId?: IntNullableFilter<"Contact"> | number | null
-    name?: StringFilter<"Contact"> | string
     email?: StringFilter<"Contact"> | string
-    phone?: StringNullableFilter<"Contact"> | string | null
     subject?: StringFilter<"Contact"> | string
     message?: StringFilter<"Contact"> | string
-    legacyReplies?: JsonFilter<"Contact">
     status?: EnumContactStatusFilter<"Contact"> | $Enums.ContactStatus
     createdAt?: DateTimeFilter<"Contact"> | Date | string
     updatedAt?: DateTimeFilter<"Contact"> | Date | string
+    name?: StringFilter<"Contact"> | string
+    phone?: StringNullableFilter<"Contact"> | string | null
+    legacyReplies?: JsonFilter<"Contact">
   }
 
   export type ContactReplyUpsertWithWhereUniqueWithoutAuthorInput = {
@@ -25781,6 +25800,74 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"ContactReply"> | Date | string
   }
 
+  export type OrderUpsertWithWhereUniqueWithoutUserInput = {
+    where: OrderWhereUniqueInput
+    update: XOR<OrderUpdateWithoutUserInput, OrderUncheckedUpdateWithoutUserInput>
+    create: XOR<OrderCreateWithoutUserInput, OrderUncheckedCreateWithoutUserInput>
+  }
+
+  export type OrderUpdateWithWhereUniqueWithoutUserInput = {
+    where: OrderWhereUniqueInput
+    data: XOR<OrderUpdateWithoutUserInput, OrderUncheckedUpdateWithoutUserInput>
+  }
+
+  export type OrderUpdateManyWithWhereWithoutUserInput = {
+    where: OrderScalarWhereInput
+    data: XOR<OrderUpdateManyMutationInput, OrderUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type OrderScalarWhereInput = {
+    AND?: OrderScalarWhereInput | OrderScalarWhereInput[]
+    OR?: OrderScalarWhereInput[]
+    NOT?: OrderScalarWhereInput | OrderScalarWhereInput[]
+    id?: IntFilter<"Order"> | number
+    userId?: IntFilter<"Order"> | number
+    status?: EnumOrderStatusFilter<"Order"> | $Enums.OrderStatus
+    totalPrice?: IntFilter<"Order"> | number
+    shippingAddress?: StringFilter<"Order"> | string
+    shippingCity?: StringFilter<"Order"> | string
+    shippingZip?: StringFilter<"Order"> | string
+    createdAt?: DateTimeFilter<"Order"> | Date | string
+    updatedAt?: DateTimeFilter<"Order"> | Date | string
+    paymentMethod?: EnumPaymentMethodNullableFilter<"Order"> | $Enums.PaymentMethod | null
+    shippingPhone?: StringNullableFilter<"Order"> | string | null
+  }
+
+  export type QuoteUpsertWithWhereUniqueWithoutUserInput = {
+    where: QuoteWhereUniqueInput
+    update: XOR<QuoteUpdateWithoutUserInput, QuoteUncheckedUpdateWithoutUserInput>
+    create: XOR<QuoteCreateWithoutUserInput, QuoteUncheckedCreateWithoutUserInput>
+  }
+
+  export type QuoteUpdateWithWhereUniqueWithoutUserInput = {
+    where: QuoteWhereUniqueInput
+    data: XOR<QuoteUpdateWithoutUserInput, QuoteUncheckedUpdateWithoutUserInput>
+  }
+
+  export type QuoteUpdateManyWithWhereWithoutUserInput = {
+    where: QuoteScalarWhereInput
+    data: XOR<QuoteUpdateManyMutationInput, QuoteUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type QuoteScalarWhereInput = {
+    AND?: QuoteScalarWhereInput | QuoteScalarWhereInput[]
+    OR?: QuoteScalarWhereInput[]
+    NOT?: QuoteScalarWhereInput | QuoteScalarWhereInput[]
+    id?: IntFilter<"Quote"> | number
+    userId?: IntNullableFilter<"Quote"> | number | null
+    title?: StringFilter<"Quote"> | string
+    description?: StringFilter<"Quote"> | string
+    price?: IntNullableFilter<"Quote"> | number | null
+    status?: EnumQuoteStatusFilter<"Quote"> | $Enums.QuoteStatus
+    createdAt?: DateTimeFilter<"Quote"> | Date | string
+    updatedAt?: DateTimeFilter<"Quote"> | Date | string
+    contactName?: StringNullableFilter<"Quote"> | string | null
+    contactEmail?: StringNullableFilter<"Quote"> | string | null
+    contactPhone?: StringNullableFilter<"Quote"> | string | null
+    location?: StringNullableFilter<"Quote"> | string | null
+    budgetRange?: StringNullableFilter<"Quote"> | string | null
+  }
+
   export type RefreshTokenUpsertWithWhereUniqueWithoutUserInput = {
     where: RefreshTokenWhereUniqueInput
     update: XOR<RefreshTokenUpdateWithoutUserInput, RefreshTokenUncheckedUpdateWithoutUserInput>
@@ -25810,35 +25897,64 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"RefreshToken"> | Date | string
   }
 
+  export type ReviewUpsertWithWhereUniqueWithoutUserInput = {
+    where: ReviewWhereUniqueInput
+    update: XOR<ReviewUpdateWithoutUserInput, ReviewUncheckedUpdateWithoutUserInput>
+    create: XOR<ReviewCreateWithoutUserInput, ReviewUncheckedCreateWithoutUserInput>
+  }
+
+  export type ReviewUpdateWithWhereUniqueWithoutUserInput = {
+    where: ReviewWhereUniqueInput
+    data: XOR<ReviewUpdateWithoutUserInput, ReviewUncheckedUpdateWithoutUserInput>
+  }
+
+  export type ReviewUpdateManyWithWhereWithoutUserInput = {
+    where: ReviewScalarWhereInput
+    data: XOR<ReviewUpdateManyMutationInput, ReviewUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type ReviewScalarWhereInput = {
+    AND?: ReviewScalarWhereInput | ReviewScalarWhereInput[]
+    OR?: ReviewScalarWhereInput[]
+    NOT?: ReviewScalarWhereInput | ReviewScalarWhereInput[]
+    id?: IntFilter<"Review"> | number
+    userId?: IntFilter<"Review"> | number
+    productId?: IntFilter<"Review"> | number
+    rating?: IntFilter<"Review"> | number
+    comment?: StringNullableFilter<"Review"> | string | null
+    createdAt?: DateTimeFilter<"Review"> | Date | string
+    updatedAt?: DateTimeFilter<"Review"> | Date | string
+  }
+
   export type ProductCreateWithoutCategoryInput = {
     name: string
     description: string
-    price: number
-    stock?: $Enums.StockStatus
     imageUrl?: string | null
-    specs?: ProductCreatespecsInput | string[]
     createdAt?: Date | string
     updatedAt?: Date | string
+    price: number
+    specs?: ProductCreatespecsInput | string[]
+    stock?: $Enums.StockStatus
     cartItems?: CartItemCreateNestedManyWithoutProductInput
+    homepagePhoto?: HomepagePhotoCreateNestedOneWithoutProductInput
     orderItems?: OrderItemCreateNestedManyWithoutProductInput
     reviews?: ReviewCreateNestedManyWithoutProductInput
-    homepagePhoto?: HomepagePhotoCreateNestedOneWithoutProductInput
   }
 
   export type ProductUncheckedCreateWithoutCategoryInput = {
     id?: number
     name: string
     description: string
-    price: number
-    stock?: $Enums.StockStatus
     imageUrl?: string | null
-    specs?: ProductCreatespecsInput | string[]
     createdAt?: Date | string
     updatedAt?: Date | string
+    price: number
+    specs?: ProductCreatespecsInput | string[]
+    stock?: $Enums.StockStatus
     cartItems?: CartItemUncheckedCreateNestedManyWithoutProductInput
+    homepagePhoto?: HomepagePhotoUncheckedCreateNestedOneWithoutProductInput
     orderItems?: OrderItemUncheckedCreateNestedManyWithoutProductInput
     reviews?: ReviewUncheckedCreateNestedManyWithoutProductInput
-    homepagePhoto?: HomepagePhotoUncheckedCreateNestedOneWithoutProductInput
   }
 
   export type ProductCreateOrConnectWithoutCategoryInput = {
@@ -25874,33 +25990,13 @@ export namespace Prisma {
     id?: IntFilter<"Product"> | number
     name?: StringFilter<"Product"> | string
     description?: StringFilter<"Product"> | string
-    price?: IntFilter<"Product"> | number
-    stock?: EnumStockStatusFilter<"Product"> | $Enums.StockStatus
     imageUrl?: StringNullableFilter<"Product"> | string | null
-    specs?: StringNullableListFilter<"Product">
-    categoryId?: IntFilter<"Product"> | number
     createdAt?: DateTimeFilter<"Product"> | Date | string
     updatedAt?: DateTimeFilter<"Product"> | Date | string
-  }
-
-  export type CategoryCreateWithoutProductsInput = {
-    name: string
-    description?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type CategoryUncheckedCreateWithoutProductsInput = {
-    id?: number
-    name: string
-    description?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type CategoryCreateOrConnectWithoutProductsInput = {
-    where: CategoryWhereUniqueInput
-    create: XOR<CategoryCreateWithoutProductsInput, CategoryUncheckedCreateWithoutProductsInput>
+    price?: IntFilter<"Product"> | number
+    specs?: StringNullableListFilter<"Product">
+    stock?: EnumStockStatusFilter<"Product"> | $Enums.StockStatus
+    categoryId?: IntFilter<"Product"> | number
   }
 
   export type CartItemCreateWithoutProductInput = {
@@ -25928,6 +26024,34 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type HomepagePhotoCreateWithoutProductInput = {
+    productKey: string
+    imageUrl: string
+    alt: string
+    position: number
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    title: string
+  }
+
+  export type HomepagePhotoUncheckedCreateWithoutProductInput = {
+    id?: number
+    productKey: string
+    imageUrl: string
+    alt: string
+    position: number
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    title: string
+  }
+
+  export type HomepagePhotoCreateOrConnectWithoutProductInput = {
+    where: HomepagePhotoWhereUniqueInput
+    create: XOR<HomepagePhotoCreateWithoutProductInput, HomepagePhotoUncheckedCreateWithoutProductInput>
+  }
+
   export type OrderItemCreateWithoutProductInput = {
     quantity: number
     price: number
@@ -25949,6 +26073,26 @@ export namespace Prisma {
   export type OrderItemCreateManyProductInputEnvelope = {
     data: OrderItemCreateManyProductInput | OrderItemCreateManyProductInput[]
     skipDuplicates?: boolean
+  }
+
+  export type CategoryCreateWithoutProductsInput = {
+    name: string
+    description?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type CategoryUncheckedCreateWithoutProductsInput = {
+    id?: number
+    name: string
+    description?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type CategoryCreateOrConnectWithoutProductsInput = {
+    where: CategoryWhereUniqueInput
+    create: XOR<CategoryCreateWithoutProductsInput, CategoryUncheckedCreateWithoutProductsInput>
   }
 
   export type ReviewCreateWithoutProductInput = {
@@ -25976,60 +26120,6 @@ export namespace Prisma {
   export type ReviewCreateManyProductInputEnvelope = {
     data: ReviewCreateManyProductInput | ReviewCreateManyProductInput[]
     skipDuplicates?: boolean
-  }
-
-  export type HomepagePhotoCreateWithoutProductInput = {
-    productKey: string
-    title: string
-    imageUrl: string
-    alt: string
-    position: number
-    isActive?: boolean
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type HomepagePhotoUncheckedCreateWithoutProductInput = {
-    id?: number
-    productKey: string
-    title: string
-    imageUrl: string
-    alt: string
-    position: number
-    isActive?: boolean
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type HomepagePhotoCreateOrConnectWithoutProductInput = {
-    where: HomepagePhotoWhereUniqueInput
-    create: XOR<HomepagePhotoCreateWithoutProductInput, HomepagePhotoUncheckedCreateWithoutProductInput>
-  }
-
-  export type CategoryUpsertWithoutProductsInput = {
-    update: XOR<CategoryUpdateWithoutProductsInput, CategoryUncheckedUpdateWithoutProductsInput>
-    create: XOR<CategoryCreateWithoutProductsInput, CategoryUncheckedCreateWithoutProductsInput>
-    where?: CategoryWhereInput
-  }
-
-  export type CategoryUpdateToOneWithWhereWithoutProductsInput = {
-    where?: CategoryWhereInput
-    data: XOR<CategoryUpdateWithoutProductsInput, CategoryUncheckedUpdateWithoutProductsInput>
-  }
-
-  export type CategoryUpdateWithoutProductsInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type CategoryUncheckedUpdateWithoutProductsInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type CartItemUpsertWithWhereUniqueWithoutProductInput = {
@@ -26060,6 +26150,40 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"CartItem"> | Date | string
   }
 
+  export type HomepagePhotoUpsertWithoutProductInput = {
+    update: XOR<HomepagePhotoUpdateWithoutProductInput, HomepagePhotoUncheckedUpdateWithoutProductInput>
+    create: XOR<HomepagePhotoCreateWithoutProductInput, HomepagePhotoUncheckedCreateWithoutProductInput>
+    where?: HomepagePhotoWhereInput
+  }
+
+  export type HomepagePhotoUpdateToOneWithWhereWithoutProductInput = {
+    where?: HomepagePhotoWhereInput
+    data: XOR<HomepagePhotoUpdateWithoutProductInput, HomepagePhotoUncheckedUpdateWithoutProductInput>
+  }
+
+  export type HomepagePhotoUpdateWithoutProductInput = {
+    productKey?: StringFieldUpdateOperationsInput | string
+    imageUrl?: StringFieldUpdateOperationsInput | string
+    alt?: StringFieldUpdateOperationsInput | string
+    position?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    title?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type HomepagePhotoUncheckedUpdateWithoutProductInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    productKey?: StringFieldUpdateOperationsInput | string
+    imageUrl?: StringFieldUpdateOperationsInput | string
+    alt?: StringFieldUpdateOperationsInput | string
+    position?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    title?: StringFieldUpdateOperationsInput | string
+  }
+
   export type OrderItemUpsertWithWhereUniqueWithoutProductInput = {
     where: OrderItemWhereUniqueInput
     update: XOR<OrderItemUpdateWithoutProductInput, OrderItemUncheckedUpdateWithoutProductInput>
@@ -26087,6 +26211,32 @@ export namespace Prisma {
     productId?: IntFilter<"OrderItem"> | number
   }
 
+  export type CategoryUpsertWithoutProductsInput = {
+    update: XOR<CategoryUpdateWithoutProductsInput, CategoryUncheckedUpdateWithoutProductsInput>
+    create: XOR<CategoryCreateWithoutProductsInput, CategoryUncheckedCreateWithoutProductsInput>
+    where?: CategoryWhereInput
+  }
+
+  export type CategoryUpdateToOneWithWhereWithoutProductsInput = {
+    where?: CategoryWhereInput
+    data: XOR<CategoryUpdateWithoutProductsInput, CategoryUncheckedUpdateWithoutProductsInput>
+  }
+
+  export type CategoryUpdateWithoutProductsInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CategoryUncheckedUpdateWithoutProductsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type ReviewUpsertWithWhereUniqueWithoutProductInput = {
     where: ReviewWhereUniqueInput
     update: XOR<ReviewUpdateWithoutProductInput, ReviewUncheckedUpdateWithoutProductInput>
@@ -26103,73 +26253,39 @@ export namespace Prisma {
     data: XOR<ReviewUpdateManyMutationInput, ReviewUncheckedUpdateManyWithoutProductInput>
   }
 
-  export type HomepagePhotoUpsertWithoutProductInput = {
-    update: XOR<HomepagePhotoUpdateWithoutProductInput, HomepagePhotoUncheckedUpdateWithoutProductInput>
-    create: XOR<HomepagePhotoCreateWithoutProductInput, HomepagePhotoUncheckedCreateWithoutProductInput>
-    where?: HomepagePhotoWhereInput
-  }
-
-  export type HomepagePhotoUpdateToOneWithWhereWithoutProductInput = {
-    where?: HomepagePhotoWhereInput
-    data: XOR<HomepagePhotoUpdateWithoutProductInput, HomepagePhotoUncheckedUpdateWithoutProductInput>
-  }
-
-  export type HomepagePhotoUpdateWithoutProductInput = {
-    productKey?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    imageUrl?: StringFieldUpdateOperationsInput | string
-    alt?: StringFieldUpdateOperationsInput | string
-    position?: IntFieldUpdateOperationsInput | number
-    isActive?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type HomepagePhotoUncheckedUpdateWithoutProductInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    productKey?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    imageUrl?: StringFieldUpdateOperationsInput | string
-    alt?: StringFieldUpdateOperationsInput | string
-    position?: IntFieldUpdateOperationsInput | number
-    isActive?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
   export type UserCreateWithoutCartInput = {
     email: string
     name: string
-    phone?: string | null
     passwordHash: string
     role?: $Enums.UserRole
     isActive?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
-    orders?: OrderCreateNestedManyWithoutUserInput
-    quotes?: QuoteCreateNestedManyWithoutUserInput
-    reviews?: ReviewCreateNestedManyWithoutUserInput
+    phone?: string | null
     contactMessages?: ContactCreateNestedManyWithoutUserInput
     contactReplies?: ContactReplyCreateNestedManyWithoutAuthorInput
+    orders?: OrderCreateNestedManyWithoutUserInput
+    quotes?: QuoteCreateNestedManyWithoutUserInput
     refreshTokens?: RefreshTokenCreateNestedManyWithoutUserInput
+    reviews?: ReviewCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutCartInput = {
     id?: number
     email: string
     name: string
-    phone?: string | null
     passwordHash: string
     role?: $Enums.UserRole
     isActive?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
-    orders?: OrderUncheckedCreateNestedManyWithoutUserInput
-    quotes?: QuoteUncheckedCreateNestedManyWithoutUserInput
-    reviews?: ReviewUncheckedCreateNestedManyWithoutUserInput
+    phone?: string | null
     contactMessages?: ContactUncheckedCreateNestedManyWithoutUserInput
     contactReplies?: ContactReplyUncheckedCreateNestedManyWithoutAuthorInput
+    orders?: OrderUncheckedCreateNestedManyWithoutUserInput
+    quotes?: QuoteUncheckedCreateNestedManyWithoutUserInput
     refreshTokens?: RefreshTokenUncheckedCreateNestedManyWithoutUserInput
+    reviews?: ReviewUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutCartInput = {
@@ -26216,36 +26332,36 @@ export namespace Prisma {
   export type UserUpdateWithoutCartInput = {
     email?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    phone?: NullableStringFieldUpdateOperationsInput | string | null
     passwordHash?: StringFieldUpdateOperationsInput | string
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    orders?: OrderUpdateManyWithoutUserNestedInput
-    quotes?: QuoteUpdateManyWithoutUserNestedInput
-    reviews?: ReviewUpdateManyWithoutUserNestedInput
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
     contactMessages?: ContactUpdateManyWithoutUserNestedInput
     contactReplies?: ContactReplyUpdateManyWithoutAuthorNestedInput
+    orders?: OrderUpdateManyWithoutUserNestedInput
+    quotes?: QuoteUpdateManyWithoutUserNestedInput
     refreshTokens?: RefreshTokenUpdateManyWithoutUserNestedInput
+    reviews?: ReviewUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutCartInput = {
     id?: IntFieldUpdateOperationsInput | number
     email?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    phone?: NullableStringFieldUpdateOperationsInput | string | null
     passwordHash?: StringFieldUpdateOperationsInput | string
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    orders?: OrderUncheckedUpdateManyWithoutUserNestedInput
-    quotes?: QuoteUncheckedUpdateManyWithoutUserNestedInput
-    reviews?: ReviewUncheckedUpdateManyWithoutUserNestedInput
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
     contactMessages?: ContactUncheckedUpdateManyWithoutUserNestedInput
     contactReplies?: ContactReplyUncheckedUpdateManyWithoutAuthorNestedInput
+    orders?: OrderUncheckedUpdateManyWithoutUserNestedInput
+    quotes?: QuoteUncheckedUpdateManyWithoutUserNestedInput
     refreshTokens?: RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
+    reviews?: ReviewUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type CartItemUpsertWithWhereUniqueWithoutCartInput = {
@@ -26285,32 +26401,32 @@ export namespace Prisma {
   export type ProductCreateWithoutCartItemsInput = {
     name: string
     description: string
-    price: number
-    stock?: $Enums.StockStatus
     imageUrl?: string | null
-    specs?: ProductCreatespecsInput | string[]
     createdAt?: Date | string
     updatedAt?: Date | string
-    category: CategoryCreateNestedOneWithoutProductsInput
-    orderItems?: OrderItemCreateNestedManyWithoutProductInput
-    reviews?: ReviewCreateNestedManyWithoutProductInput
+    price: number
+    specs?: ProductCreatespecsInput | string[]
+    stock?: $Enums.StockStatus
     homepagePhoto?: HomepagePhotoCreateNestedOneWithoutProductInput
+    orderItems?: OrderItemCreateNestedManyWithoutProductInput
+    category: CategoryCreateNestedOneWithoutProductsInput
+    reviews?: ReviewCreateNestedManyWithoutProductInput
   }
 
   export type ProductUncheckedCreateWithoutCartItemsInput = {
     id?: number
     name: string
     description: string
-    price: number
-    stock?: $Enums.StockStatus
     imageUrl?: string | null
-    specs?: ProductCreatespecsInput | string[]
-    categoryId: number
     createdAt?: Date | string
     updatedAt?: Date | string
+    price: number
+    specs?: ProductCreatespecsInput | string[]
+    stock?: $Enums.StockStatus
+    categoryId: number
+    homepagePhoto?: HomepagePhotoUncheckedCreateNestedOneWithoutProductInput
     orderItems?: OrderItemUncheckedCreateNestedManyWithoutProductInput
     reviews?: ReviewUncheckedCreateNestedManyWithoutProductInput
-    homepagePhoto?: HomepagePhotoUncheckedCreateNestedOneWithoutProductInput
   }
 
   export type ProductCreateOrConnectWithoutCartItemsInput = {
@@ -26356,67 +26472,67 @@ export namespace Prisma {
   export type ProductUpdateWithoutCartItemsInput = {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    price?: IntFieldUpdateOperationsInput | number
-    stock?: EnumStockStatusFieldUpdateOperationsInput | $Enums.StockStatus
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    specs?: ProductUpdatespecsInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    category?: CategoryUpdateOneRequiredWithoutProductsNestedInput
-    orderItems?: OrderItemUpdateManyWithoutProductNestedInput
-    reviews?: ReviewUpdateManyWithoutProductNestedInput
+    price?: IntFieldUpdateOperationsInput | number
+    specs?: ProductUpdatespecsInput | string[]
+    stock?: EnumStockStatusFieldUpdateOperationsInput | $Enums.StockStatus
     homepagePhoto?: HomepagePhotoUpdateOneWithoutProductNestedInput
+    orderItems?: OrderItemUpdateManyWithoutProductNestedInput
+    category?: CategoryUpdateOneRequiredWithoutProductsNestedInput
+    reviews?: ReviewUpdateManyWithoutProductNestedInput
   }
 
   export type ProductUncheckedUpdateWithoutCartItemsInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    price?: IntFieldUpdateOperationsInput | number
-    stock?: EnumStockStatusFieldUpdateOperationsInput | $Enums.StockStatus
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    specs?: ProductUpdatespecsInput | string[]
-    categoryId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    price?: IntFieldUpdateOperationsInput | number
+    specs?: ProductUpdatespecsInput | string[]
+    stock?: EnumStockStatusFieldUpdateOperationsInput | $Enums.StockStatus
+    categoryId?: IntFieldUpdateOperationsInput | number
+    homepagePhoto?: HomepagePhotoUncheckedUpdateOneWithoutProductNestedInput
     orderItems?: OrderItemUncheckedUpdateManyWithoutProductNestedInput
     reviews?: ReviewUncheckedUpdateManyWithoutProductNestedInput
-    homepagePhoto?: HomepagePhotoUncheckedUpdateOneWithoutProductNestedInput
   }
 
   export type UserCreateWithoutOrdersInput = {
     email: string
     name: string
-    phone?: string | null
     passwordHash: string
     role?: $Enums.UserRole
     isActive?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    phone?: string | null
     cart?: CartCreateNestedOneWithoutUserInput
-    quotes?: QuoteCreateNestedManyWithoutUserInput
-    reviews?: ReviewCreateNestedManyWithoutUserInput
     contactMessages?: ContactCreateNestedManyWithoutUserInput
     contactReplies?: ContactReplyCreateNestedManyWithoutAuthorInput
+    quotes?: QuoteCreateNestedManyWithoutUserInput
     refreshTokens?: RefreshTokenCreateNestedManyWithoutUserInput
+    reviews?: ReviewCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutOrdersInput = {
     id?: number
     email: string
     name: string
-    phone?: string | null
     passwordHash: string
     role?: $Enums.UserRole
     isActive?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    phone?: string | null
     cart?: CartUncheckedCreateNestedOneWithoutUserInput
-    quotes?: QuoteUncheckedCreateNestedManyWithoutUserInput
-    reviews?: ReviewUncheckedCreateNestedManyWithoutUserInput
     contactMessages?: ContactUncheckedCreateNestedManyWithoutUserInput
     contactReplies?: ContactReplyUncheckedCreateNestedManyWithoutAuthorInput
+    quotes?: QuoteUncheckedCreateNestedManyWithoutUserInput
     refreshTokens?: RefreshTokenUncheckedCreateNestedManyWithoutUserInput
+    reviews?: ReviewUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutOrdersInput = {
@@ -26485,36 +26601,36 @@ export namespace Prisma {
   export type UserUpdateWithoutOrdersInput = {
     email?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    phone?: NullableStringFieldUpdateOperationsInput | string | null
     passwordHash?: StringFieldUpdateOperationsInput | string
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
     cart?: CartUpdateOneWithoutUserNestedInput
-    quotes?: QuoteUpdateManyWithoutUserNestedInput
-    reviews?: ReviewUpdateManyWithoutUserNestedInput
     contactMessages?: ContactUpdateManyWithoutUserNestedInput
     contactReplies?: ContactReplyUpdateManyWithoutAuthorNestedInput
+    quotes?: QuoteUpdateManyWithoutUserNestedInput
     refreshTokens?: RefreshTokenUpdateManyWithoutUserNestedInput
+    reviews?: ReviewUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutOrdersInput = {
     id?: IntFieldUpdateOperationsInput | number
     email?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    phone?: NullableStringFieldUpdateOperationsInput | string | null
     passwordHash?: StringFieldUpdateOperationsInput | string
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
     cart?: CartUncheckedUpdateOneWithoutUserNestedInput
-    quotes?: QuoteUncheckedUpdateManyWithoutUserNestedInput
-    reviews?: ReviewUncheckedUpdateManyWithoutUserNestedInput
     contactMessages?: ContactUncheckedUpdateManyWithoutUserNestedInput
     contactReplies?: ContactReplyUncheckedUpdateManyWithoutAuthorNestedInput
+    quotes?: QuoteUncheckedUpdateManyWithoutUserNestedInput
     refreshTokens?: RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
+    reviews?: ReviewUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type OrderItemUpsertWithWhereUniqueWithoutOrderInput = {
@@ -26569,10 +26685,10 @@ export namespace Prisma {
     shippingAddress: string
     shippingCity: string
     shippingZip: string
-    shippingPhone?: string | null
-    paymentMethod?: $Enums.PaymentMethod | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    paymentMethod?: $Enums.PaymentMethod | null
+    shippingPhone?: string | null
     user: UserCreateNestedOneWithoutOrdersInput
     payment?: PaymentCreateNestedOneWithoutOrderInput
   }
@@ -26585,10 +26701,10 @@ export namespace Prisma {
     shippingAddress: string
     shippingCity: string
     shippingZip: string
-    shippingPhone?: string | null
-    paymentMethod?: $Enums.PaymentMethod | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    paymentMethod?: $Enums.PaymentMethod | null
+    shippingPhone?: string | null
     payment?: PaymentUncheckedCreateNestedOneWithoutOrderInput
   }
 
@@ -26600,32 +26716,32 @@ export namespace Prisma {
   export type ProductCreateWithoutOrderItemsInput = {
     name: string
     description: string
-    price: number
-    stock?: $Enums.StockStatus
     imageUrl?: string | null
-    specs?: ProductCreatespecsInput | string[]
     createdAt?: Date | string
     updatedAt?: Date | string
-    category: CategoryCreateNestedOneWithoutProductsInput
+    price: number
+    specs?: ProductCreatespecsInput | string[]
+    stock?: $Enums.StockStatus
     cartItems?: CartItemCreateNestedManyWithoutProductInput
-    reviews?: ReviewCreateNestedManyWithoutProductInput
     homepagePhoto?: HomepagePhotoCreateNestedOneWithoutProductInput
+    category: CategoryCreateNestedOneWithoutProductsInput
+    reviews?: ReviewCreateNestedManyWithoutProductInput
   }
 
   export type ProductUncheckedCreateWithoutOrderItemsInput = {
     id?: number
     name: string
     description: string
-    price: number
-    stock?: $Enums.StockStatus
     imageUrl?: string | null
-    specs?: ProductCreatespecsInput | string[]
-    categoryId: number
     createdAt?: Date | string
     updatedAt?: Date | string
+    price: number
+    specs?: ProductCreatespecsInput | string[]
+    stock?: $Enums.StockStatus
+    categoryId: number
     cartItems?: CartItemUncheckedCreateNestedManyWithoutProductInput
-    reviews?: ReviewUncheckedCreateNestedManyWithoutProductInput
     homepagePhoto?: HomepagePhotoUncheckedCreateNestedOneWithoutProductInput
+    reviews?: ReviewUncheckedCreateNestedManyWithoutProductInput
   }
 
   export type ProductCreateOrConnectWithoutOrderItemsInput = {
@@ -26650,10 +26766,10 @@ export namespace Prisma {
     shippingAddress?: StringFieldUpdateOperationsInput | string
     shippingCity?: StringFieldUpdateOperationsInput | string
     shippingZip?: StringFieldUpdateOperationsInput | string
-    shippingPhone?: NullableStringFieldUpdateOperationsInput | string | null
-    paymentMethod?: NullableEnumPaymentMethodFieldUpdateOperationsInput | $Enums.PaymentMethod | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    paymentMethod?: NullableEnumPaymentMethodFieldUpdateOperationsInput | $Enums.PaymentMethod | null
+    shippingPhone?: NullableStringFieldUpdateOperationsInput | string | null
     user?: UserUpdateOneRequiredWithoutOrdersNestedInput
     payment?: PaymentUpdateOneWithoutOrderNestedInput
   }
@@ -26666,10 +26782,10 @@ export namespace Prisma {
     shippingAddress?: StringFieldUpdateOperationsInput | string
     shippingCity?: StringFieldUpdateOperationsInput | string
     shippingZip?: StringFieldUpdateOperationsInput | string
-    shippingPhone?: NullableStringFieldUpdateOperationsInput | string | null
-    paymentMethod?: NullableEnumPaymentMethodFieldUpdateOperationsInput | $Enums.PaymentMethod | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    paymentMethod?: NullableEnumPaymentMethodFieldUpdateOperationsInput | $Enums.PaymentMethod | null
+    shippingPhone?: NullableStringFieldUpdateOperationsInput | string | null
     payment?: PaymentUncheckedUpdateOneWithoutOrderNestedInput
   }
 
@@ -26687,32 +26803,32 @@ export namespace Prisma {
   export type ProductUpdateWithoutOrderItemsInput = {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    price?: IntFieldUpdateOperationsInput | number
-    stock?: EnumStockStatusFieldUpdateOperationsInput | $Enums.StockStatus
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    specs?: ProductUpdatespecsInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    category?: CategoryUpdateOneRequiredWithoutProductsNestedInput
+    price?: IntFieldUpdateOperationsInput | number
+    specs?: ProductUpdatespecsInput | string[]
+    stock?: EnumStockStatusFieldUpdateOperationsInput | $Enums.StockStatus
     cartItems?: CartItemUpdateManyWithoutProductNestedInput
-    reviews?: ReviewUpdateManyWithoutProductNestedInput
     homepagePhoto?: HomepagePhotoUpdateOneWithoutProductNestedInput
+    category?: CategoryUpdateOneRequiredWithoutProductsNestedInput
+    reviews?: ReviewUpdateManyWithoutProductNestedInput
   }
 
   export type ProductUncheckedUpdateWithoutOrderItemsInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    price?: IntFieldUpdateOperationsInput | number
-    stock?: EnumStockStatusFieldUpdateOperationsInput | $Enums.StockStatus
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    specs?: ProductUpdatespecsInput | string[]
-    categoryId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    price?: IntFieldUpdateOperationsInput | number
+    specs?: ProductUpdatespecsInput | string[]
+    stock?: EnumStockStatusFieldUpdateOperationsInput | $Enums.StockStatus
+    categoryId?: IntFieldUpdateOperationsInput | number
     cartItems?: CartItemUncheckedUpdateManyWithoutProductNestedInput
-    reviews?: ReviewUncheckedUpdateManyWithoutProductNestedInput
     homepagePhoto?: HomepagePhotoUncheckedUpdateOneWithoutProductNestedInput
+    reviews?: ReviewUncheckedUpdateManyWithoutProductNestedInput
   }
 
   export type OrderCreateWithoutPaymentInput = {
@@ -26721,10 +26837,10 @@ export namespace Prisma {
     shippingAddress: string
     shippingCity: string
     shippingZip: string
-    shippingPhone?: string | null
-    paymentMethod?: $Enums.PaymentMethod | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    paymentMethod?: $Enums.PaymentMethod | null
+    shippingPhone?: string | null
     user: UserCreateNestedOneWithoutOrdersInput
     items?: OrderItemCreateNestedManyWithoutOrderInput
   }
@@ -26737,10 +26853,10 @@ export namespace Prisma {
     shippingAddress: string
     shippingCity: string
     shippingZip: string
-    shippingPhone?: string | null
-    paymentMethod?: $Enums.PaymentMethod | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    paymentMethod?: $Enums.PaymentMethod | null
+    shippingPhone?: string | null
     items?: OrderItemUncheckedCreateNestedManyWithoutOrderInput
   }
 
@@ -26766,10 +26882,10 @@ export namespace Prisma {
     shippingAddress?: StringFieldUpdateOperationsInput | string
     shippingCity?: StringFieldUpdateOperationsInput | string
     shippingZip?: StringFieldUpdateOperationsInput | string
-    shippingPhone?: NullableStringFieldUpdateOperationsInput | string | null
-    paymentMethod?: NullableEnumPaymentMethodFieldUpdateOperationsInput | $Enums.PaymentMethod | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    paymentMethod?: NullableEnumPaymentMethodFieldUpdateOperationsInput | $Enums.PaymentMethod | null
+    shippingPhone?: NullableStringFieldUpdateOperationsInput | string | null
     user?: UserUpdateOneRequiredWithoutOrdersNestedInput
     items?: OrderItemUpdateManyWithoutOrderNestedInput
   }
@@ -26782,46 +26898,46 @@ export namespace Prisma {
     shippingAddress?: StringFieldUpdateOperationsInput | string
     shippingCity?: StringFieldUpdateOperationsInput | string
     shippingZip?: StringFieldUpdateOperationsInput | string
-    shippingPhone?: NullableStringFieldUpdateOperationsInput | string | null
-    paymentMethod?: NullableEnumPaymentMethodFieldUpdateOperationsInput | $Enums.PaymentMethod | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    paymentMethod?: NullableEnumPaymentMethodFieldUpdateOperationsInput | $Enums.PaymentMethod | null
+    shippingPhone?: NullableStringFieldUpdateOperationsInput | string | null
     items?: OrderItemUncheckedUpdateManyWithoutOrderNestedInput
   }
 
   export type UserCreateWithoutQuotesInput = {
     email: string
     name: string
-    phone?: string | null
     passwordHash: string
     role?: $Enums.UserRole
     isActive?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
-    orders?: OrderCreateNestedManyWithoutUserInput
+    phone?: string | null
     cart?: CartCreateNestedOneWithoutUserInput
-    reviews?: ReviewCreateNestedManyWithoutUserInput
     contactMessages?: ContactCreateNestedManyWithoutUserInput
     contactReplies?: ContactReplyCreateNestedManyWithoutAuthorInput
+    orders?: OrderCreateNestedManyWithoutUserInput
     refreshTokens?: RefreshTokenCreateNestedManyWithoutUserInput
+    reviews?: ReviewCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutQuotesInput = {
     id?: number
     email: string
     name: string
-    phone?: string | null
     passwordHash: string
     role?: $Enums.UserRole
     isActive?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
-    orders?: OrderUncheckedCreateNestedManyWithoutUserInput
+    phone?: string | null
     cart?: CartUncheckedCreateNestedOneWithoutUserInput
-    reviews?: ReviewUncheckedCreateNestedManyWithoutUserInput
     contactMessages?: ContactUncheckedCreateNestedManyWithoutUserInput
     contactReplies?: ContactReplyUncheckedCreateNestedManyWithoutAuthorInput
+    orders?: OrderUncheckedCreateNestedManyWithoutUserInput
     refreshTokens?: RefreshTokenUncheckedCreateNestedManyWithoutUserInput
+    reviews?: ReviewUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutQuotesInput = {
@@ -26843,71 +26959,71 @@ export namespace Prisma {
   export type UserUpdateWithoutQuotesInput = {
     email?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    phone?: NullableStringFieldUpdateOperationsInput | string | null
     passwordHash?: StringFieldUpdateOperationsInput | string
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    orders?: OrderUpdateManyWithoutUserNestedInput
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
     cart?: CartUpdateOneWithoutUserNestedInput
-    reviews?: ReviewUpdateManyWithoutUserNestedInput
     contactMessages?: ContactUpdateManyWithoutUserNestedInput
     contactReplies?: ContactReplyUpdateManyWithoutAuthorNestedInput
+    orders?: OrderUpdateManyWithoutUserNestedInput
     refreshTokens?: RefreshTokenUpdateManyWithoutUserNestedInput
+    reviews?: ReviewUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutQuotesInput = {
     id?: IntFieldUpdateOperationsInput | number
     email?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    phone?: NullableStringFieldUpdateOperationsInput | string | null
     passwordHash?: StringFieldUpdateOperationsInput | string
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    orders?: OrderUncheckedUpdateManyWithoutUserNestedInput
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
     cart?: CartUncheckedUpdateOneWithoutUserNestedInput
-    reviews?: ReviewUncheckedUpdateManyWithoutUserNestedInput
     contactMessages?: ContactUncheckedUpdateManyWithoutUserNestedInput
     contactReplies?: ContactReplyUncheckedUpdateManyWithoutAuthorNestedInput
+    orders?: OrderUncheckedUpdateManyWithoutUserNestedInput
     refreshTokens?: RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
+    reviews?: ReviewUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutContactMessagesInput = {
     email: string
     name: string
-    phone?: string | null
     passwordHash: string
     role?: $Enums.UserRole
     isActive?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
-    orders?: OrderCreateNestedManyWithoutUserInput
+    phone?: string | null
     cart?: CartCreateNestedOneWithoutUserInput
-    quotes?: QuoteCreateNestedManyWithoutUserInput
-    reviews?: ReviewCreateNestedManyWithoutUserInput
     contactReplies?: ContactReplyCreateNestedManyWithoutAuthorInput
+    orders?: OrderCreateNestedManyWithoutUserInput
+    quotes?: QuoteCreateNestedManyWithoutUserInput
     refreshTokens?: RefreshTokenCreateNestedManyWithoutUserInput
+    reviews?: ReviewCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutContactMessagesInput = {
     id?: number
     email: string
     name: string
-    phone?: string | null
     passwordHash: string
     role?: $Enums.UserRole
     isActive?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
-    orders?: OrderUncheckedCreateNestedManyWithoutUserInput
+    phone?: string | null
     cart?: CartUncheckedCreateNestedOneWithoutUserInput
-    quotes?: QuoteUncheckedCreateNestedManyWithoutUserInput
-    reviews?: ReviewUncheckedCreateNestedManyWithoutUserInput
     contactReplies?: ContactReplyUncheckedCreateNestedManyWithoutAuthorInput
+    orders?: OrderUncheckedCreateNestedManyWithoutUserInput
+    quotes?: QuoteUncheckedCreateNestedManyWithoutUserInput
     refreshTokens?: RefreshTokenUncheckedCreateNestedManyWithoutUserInput
+    reviews?: ReviewUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutContactMessagesInput = {
@@ -26956,36 +27072,36 @@ export namespace Prisma {
   export type UserUpdateWithoutContactMessagesInput = {
     email?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    phone?: NullableStringFieldUpdateOperationsInput | string | null
     passwordHash?: StringFieldUpdateOperationsInput | string
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    orders?: OrderUpdateManyWithoutUserNestedInput
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
     cart?: CartUpdateOneWithoutUserNestedInput
-    quotes?: QuoteUpdateManyWithoutUserNestedInput
-    reviews?: ReviewUpdateManyWithoutUserNestedInput
     contactReplies?: ContactReplyUpdateManyWithoutAuthorNestedInput
+    orders?: OrderUpdateManyWithoutUserNestedInput
+    quotes?: QuoteUpdateManyWithoutUserNestedInput
     refreshTokens?: RefreshTokenUpdateManyWithoutUserNestedInput
+    reviews?: ReviewUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutContactMessagesInput = {
     id?: IntFieldUpdateOperationsInput | number
     email?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    phone?: NullableStringFieldUpdateOperationsInput | string | null
     passwordHash?: StringFieldUpdateOperationsInput | string
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    orders?: OrderUncheckedUpdateManyWithoutUserNestedInput
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
     cart?: CartUncheckedUpdateOneWithoutUserNestedInput
-    quotes?: QuoteUncheckedUpdateManyWithoutUserNestedInput
-    reviews?: ReviewUncheckedUpdateManyWithoutUserNestedInput
     contactReplies?: ContactReplyUncheckedUpdateManyWithoutAuthorNestedInput
+    orders?: OrderUncheckedUpdateManyWithoutUserNestedInput
+    quotes?: QuoteUncheckedUpdateManyWithoutUserNestedInput
     refreshTokens?: RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
+    reviews?: ReviewUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type ContactReplyUpsertWithWhereUniqueWithoutContactInput = {
@@ -27004,71 +27120,39 @@ export namespace Prisma {
     data: XOR<ContactReplyUpdateManyMutationInput, ContactReplyUncheckedUpdateManyWithoutContactInput>
   }
 
-  export type ContactCreateWithoutThreadRepliesInput = {
-    name: string
-    email: string
-    phone?: string | null
-    subject: string
-    message: string
-    legacyReplies?: JsonNullValueInput | InputJsonValue
-    status?: $Enums.ContactStatus
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    user?: UserCreateNestedOneWithoutContactMessagesInput
-  }
-
-  export type ContactUncheckedCreateWithoutThreadRepliesInput = {
-    id?: number
-    userId?: number | null
-    name: string
-    email: string
-    phone?: string | null
-    subject: string
-    message: string
-    legacyReplies?: JsonNullValueInput | InputJsonValue
-    status?: $Enums.ContactStatus
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type ContactCreateOrConnectWithoutThreadRepliesInput = {
-    where: ContactWhereUniqueInput
-    create: XOR<ContactCreateWithoutThreadRepliesInput, ContactUncheckedCreateWithoutThreadRepliesInput>
-  }
-
   export type UserCreateWithoutContactRepliesInput = {
     email: string
     name: string
-    phone?: string | null
     passwordHash: string
     role?: $Enums.UserRole
     isActive?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
-    orders?: OrderCreateNestedManyWithoutUserInput
+    phone?: string | null
     cart?: CartCreateNestedOneWithoutUserInput
-    quotes?: QuoteCreateNestedManyWithoutUserInput
-    reviews?: ReviewCreateNestedManyWithoutUserInput
     contactMessages?: ContactCreateNestedManyWithoutUserInput
+    orders?: OrderCreateNestedManyWithoutUserInput
+    quotes?: QuoteCreateNestedManyWithoutUserInput
     refreshTokens?: RefreshTokenCreateNestedManyWithoutUserInput
+    reviews?: ReviewCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutContactRepliesInput = {
     id?: number
     email: string
     name: string
-    phone?: string | null
     passwordHash: string
     role?: $Enums.UserRole
     isActive?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
-    orders?: OrderUncheckedCreateNestedManyWithoutUserInput
+    phone?: string | null
     cart?: CartUncheckedCreateNestedOneWithoutUserInput
-    quotes?: QuoteUncheckedCreateNestedManyWithoutUserInput
-    reviews?: ReviewUncheckedCreateNestedManyWithoutUserInput
     contactMessages?: ContactUncheckedCreateNestedManyWithoutUserInput
+    orders?: OrderUncheckedCreateNestedManyWithoutUserInput
+    quotes?: QuoteUncheckedCreateNestedManyWithoutUserInput
     refreshTokens?: RefreshTokenUncheckedCreateNestedManyWithoutUserInput
+    reviews?: ReviewUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutContactRepliesInput = {
@@ -27076,42 +27160,36 @@ export namespace Prisma {
     create: XOR<UserCreateWithoutContactRepliesInput, UserUncheckedCreateWithoutContactRepliesInput>
   }
 
-  export type ContactUpsertWithoutThreadRepliesInput = {
-    update: XOR<ContactUpdateWithoutThreadRepliesInput, ContactUncheckedUpdateWithoutThreadRepliesInput>
+  export type ContactCreateWithoutThreadRepliesInput = {
+    email: string
+    subject: string
+    message: string
+    status?: $Enums.ContactStatus
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    name: string
+    phone?: string | null
+    legacyReplies?: JsonNullValueInput | InputJsonValue
+    user?: UserCreateNestedOneWithoutContactMessagesInput
+  }
+
+  export type ContactUncheckedCreateWithoutThreadRepliesInput = {
+    id?: number
+    userId?: number | null
+    email: string
+    subject: string
+    message: string
+    status?: $Enums.ContactStatus
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    name: string
+    phone?: string | null
+    legacyReplies?: JsonNullValueInput | InputJsonValue
+  }
+
+  export type ContactCreateOrConnectWithoutThreadRepliesInput = {
+    where: ContactWhereUniqueInput
     create: XOR<ContactCreateWithoutThreadRepliesInput, ContactUncheckedCreateWithoutThreadRepliesInput>
-    where?: ContactWhereInput
-  }
-
-  export type ContactUpdateToOneWithWhereWithoutThreadRepliesInput = {
-    where?: ContactWhereInput
-    data: XOR<ContactUpdateWithoutThreadRepliesInput, ContactUncheckedUpdateWithoutThreadRepliesInput>
-  }
-
-  export type ContactUpdateWithoutThreadRepliesInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    phone?: NullableStringFieldUpdateOperationsInput | string | null
-    subject?: StringFieldUpdateOperationsInput | string
-    message?: StringFieldUpdateOperationsInput | string
-    legacyReplies?: JsonNullValueInput | InputJsonValue
-    status?: EnumContactStatusFieldUpdateOperationsInput | $Enums.ContactStatus
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneWithoutContactMessagesNestedInput
-  }
-
-  export type ContactUncheckedUpdateWithoutThreadRepliesInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    userId?: NullableIntFieldUpdateOperationsInput | number | null
-    name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    phone?: NullableStringFieldUpdateOperationsInput | string | null
-    subject?: StringFieldUpdateOperationsInput | string
-    message?: StringFieldUpdateOperationsInput | string
-    legacyReplies?: JsonNullValueInput | InputJsonValue
-    status?: EnumContactStatusFieldUpdateOperationsInput | $Enums.ContactStatus
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type UserUpsertWithoutContactRepliesInput = {
@@ -27128,107 +27206,105 @@ export namespace Prisma {
   export type UserUpdateWithoutContactRepliesInput = {
     email?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    phone?: NullableStringFieldUpdateOperationsInput | string | null
     passwordHash?: StringFieldUpdateOperationsInput | string
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    orders?: OrderUpdateManyWithoutUserNestedInput
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
     cart?: CartUpdateOneWithoutUserNestedInput
-    quotes?: QuoteUpdateManyWithoutUserNestedInput
-    reviews?: ReviewUpdateManyWithoutUserNestedInput
     contactMessages?: ContactUpdateManyWithoutUserNestedInput
+    orders?: OrderUpdateManyWithoutUserNestedInput
+    quotes?: QuoteUpdateManyWithoutUserNestedInput
     refreshTokens?: RefreshTokenUpdateManyWithoutUserNestedInput
+    reviews?: ReviewUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutContactRepliesInput = {
     id?: IntFieldUpdateOperationsInput | number
     email?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    phone?: NullableStringFieldUpdateOperationsInput | string | null
     passwordHash?: StringFieldUpdateOperationsInput | string
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    orders?: OrderUncheckedUpdateManyWithoutUserNestedInput
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
     cart?: CartUncheckedUpdateOneWithoutUserNestedInput
-    quotes?: QuoteUncheckedUpdateManyWithoutUserNestedInput
-    reviews?: ReviewUncheckedUpdateManyWithoutUserNestedInput
     contactMessages?: ContactUncheckedUpdateManyWithoutUserNestedInput
+    orders?: OrderUncheckedUpdateManyWithoutUserNestedInput
+    quotes?: QuoteUncheckedUpdateManyWithoutUserNestedInput
     refreshTokens?: RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
+    reviews?: ReviewUncheckedUpdateManyWithoutUserNestedInput
   }
 
-  export type UserCreateWithoutReviewsInput = {
-    email: string
-    name: string
-    phone?: string | null
-    passwordHash: string
-    role?: $Enums.UserRole
-    isActive?: boolean
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    orders?: OrderCreateNestedManyWithoutUserInput
-    cart?: CartCreateNestedOneWithoutUserInput
-    quotes?: QuoteCreateNestedManyWithoutUserInput
-    contactMessages?: ContactCreateNestedManyWithoutUserInput
-    contactReplies?: ContactReplyCreateNestedManyWithoutAuthorInput
-    refreshTokens?: RefreshTokenCreateNestedManyWithoutUserInput
+  export type ContactUpsertWithoutThreadRepliesInput = {
+    update: XOR<ContactUpdateWithoutThreadRepliesInput, ContactUncheckedUpdateWithoutThreadRepliesInput>
+    create: XOR<ContactCreateWithoutThreadRepliesInput, ContactUncheckedCreateWithoutThreadRepliesInput>
+    where?: ContactWhereInput
   }
 
-  export type UserUncheckedCreateWithoutReviewsInput = {
-    id?: number
-    email: string
-    name: string
-    phone?: string | null
-    passwordHash: string
-    role?: $Enums.UserRole
-    isActive?: boolean
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    orders?: OrderUncheckedCreateNestedManyWithoutUserInput
-    cart?: CartUncheckedCreateNestedOneWithoutUserInput
-    quotes?: QuoteUncheckedCreateNestedManyWithoutUserInput
-    contactMessages?: ContactUncheckedCreateNestedManyWithoutUserInput
-    contactReplies?: ContactReplyUncheckedCreateNestedManyWithoutAuthorInput
-    refreshTokens?: RefreshTokenUncheckedCreateNestedManyWithoutUserInput
+  export type ContactUpdateToOneWithWhereWithoutThreadRepliesInput = {
+    where?: ContactWhereInput
+    data: XOR<ContactUpdateWithoutThreadRepliesInput, ContactUncheckedUpdateWithoutThreadRepliesInput>
   }
 
-  export type UserCreateOrConnectWithoutReviewsInput = {
-    where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutReviewsInput, UserUncheckedCreateWithoutReviewsInput>
+  export type ContactUpdateWithoutThreadRepliesInput = {
+    email?: StringFieldUpdateOperationsInput | string
+    subject?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    status?: EnumContactStatusFieldUpdateOperationsInput | $Enums.ContactStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    name?: StringFieldUpdateOperationsInput | string
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    legacyReplies?: JsonNullValueInput | InputJsonValue
+    user?: UserUpdateOneWithoutContactMessagesNestedInput
+  }
+
+  export type ContactUncheckedUpdateWithoutThreadRepliesInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: NullableIntFieldUpdateOperationsInput | number | null
+    email?: StringFieldUpdateOperationsInput | string
+    subject?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    status?: EnumContactStatusFieldUpdateOperationsInput | $Enums.ContactStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    name?: StringFieldUpdateOperationsInput | string
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    legacyReplies?: JsonNullValueInput | InputJsonValue
   }
 
   export type ProductCreateWithoutReviewsInput = {
     name: string
     description: string
-    price: number
-    stock?: $Enums.StockStatus
     imageUrl?: string | null
-    specs?: ProductCreatespecsInput | string[]
     createdAt?: Date | string
     updatedAt?: Date | string
-    category: CategoryCreateNestedOneWithoutProductsInput
+    price: number
+    specs?: ProductCreatespecsInput | string[]
+    stock?: $Enums.StockStatus
     cartItems?: CartItemCreateNestedManyWithoutProductInput
-    orderItems?: OrderItemCreateNestedManyWithoutProductInput
     homepagePhoto?: HomepagePhotoCreateNestedOneWithoutProductInput
+    orderItems?: OrderItemCreateNestedManyWithoutProductInput
+    category: CategoryCreateNestedOneWithoutProductsInput
   }
 
   export type ProductUncheckedCreateWithoutReviewsInput = {
     id?: number
     name: string
     description: string
-    price: number
-    stock?: $Enums.StockStatus
     imageUrl?: string | null
-    specs?: ProductCreatespecsInput | string[]
-    categoryId: number
     createdAt?: Date | string
     updatedAt?: Date | string
+    price: number
+    specs?: ProductCreatespecsInput | string[]
+    stock?: $Enums.StockStatus
+    categoryId: number
     cartItems?: CartItemUncheckedCreateNestedManyWithoutProductInput
-    orderItems?: OrderItemUncheckedCreateNestedManyWithoutProductInput
     homepagePhoto?: HomepagePhotoUncheckedCreateNestedOneWithoutProductInput
+    orderItems?: OrderItemUncheckedCreateNestedManyWithoutProductInput
   }
 
   export type ProductCreateOrConnectWithoutReviewsInput = {
@@ -27236,50 +27312,44 @@ export namespace Prisma {
     create: XOR<ProductCreateWithoutReviewsInput, ProductUncheckedCreateWithoutReviewsInput>
   }
 
-  export type UserUpsertWithoutReviewsInput = {
-    update: XOR<UserUpdateWithoutReviewsInput, UserUncheckedUpdateWithoutReviewsInput>
+  export type UserCreateWithoutReviewsInput = {
+    email: string
+    name: string
+    passwordHash: string
+    role?: $Enums.UserRole
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    phone?: string | null
+    cart?: CartCreateNestedOneWithoutUserInput
+    contactMessages?: ContactCreateNestedManyWithoutUserInput
+    contactReplies?: ContactReplyCreateNestedManyWithoutAuthorInput
+    orders?: OrderCreateNestedManyWithoutUserInput
+    quotes?: QuoteCreateNestedManyWithoutUserInput
+    refreshTokens?: RefreshTokenCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutReviewsInput = {
+    id?: number
+    email: string
+    name: string
+    passwordHash: string
+    role?: $Enums.UserRole
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    phone?: string | null
+    cart?: CartUncheckedCreateNestedOneWithoutUserInput
+    contactMessages?: ContactUncheckedCreateNestedManyWithoutUserInput
+    contactReplies?: ContactReplyUncheckedCreateNestedManyWithoutAuthorInput
+    orders?: OrderUncheckedCreateNestedManyWithoutUserInput
+    quotes?: QuoteUncheckedCreateNestedManyWithoutUserInput
+    refreshTokens?: RefreshTokenUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutReviewsInput = {
+    where: UserWhereUniqueInput
     create: XOR<UserCreateWithoutReviewsInput, UserUncheckedCreateWithoutReviewsInput>
-    where?: UserWhereInput
-  }
-
-  export type UserUpdateToOneWithWhereWithoutReviewsInput = {
-    where?: UserWhereInput
-    data: XOR<UserUpdateWithoutReviewsInput, UserUncheckedUpdateWithoutReviewsInput>
-  }
-
-  export type UserUpdateWithoutReviewsInput = {
-    email?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    phone?: NullableStringFieldUpdateOperationsInput | string | null
-    passwordHash?: StringFieldUpdateOperationsInput | string
-    role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
-    isActive?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    orders?: OrderUpdateManyWithoutUserNestedInput
-    cart?: CartUpdateOneWithoutUserNestedInput
-    quotes?: QuoteUpdateManyWithoutUserNestedInput
-    contactMessages?: ContactUpdateManyWithoutUserNestedInput
-    contactReplies?: ContactReplyUpdateManyWithoutAuthorNestedInput
-    refreshTokens?: RefreshTokenUpdateManyWithoutUserNestedInput
-  }
-
-  export type UserUncheckedUpdateWithoutReviewsInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    email?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    phone?: NullableStringFieldUpdateOperationsInput | string | null
-    passwordHash?: StringFieldUpdateOperationsInput | string
-    role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
-    isActive?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    orders?: OrderUncheckedUpdateManyWithoutUserNestedInput
-    cart?: CartUncheckedUpdateOneWithoutUserNestedInput
-    quotes?: QuoteUncheckedUpdateManyWithoutUserNestedInput
-    contactMessages?: ContactUncheckedUpdateManyWithoutUserNestedInput
-    contactReplies?: ContactReplyUncheckedUpdateManyWithoutAuthorNestedInput
-    refreshTokens?: RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type ProductUpsertWithoutReviewsInput = {
@@ -27296,46 +27366,92 @@ export namespace Prisma {
   export type ProductUpdateWithoutReviewsInput = {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    price?: IntFieldUpdateOperationsInput | number
-    stock?: EnumStockStatusFieldUpdateOperationsInput | $Enums.StockStatus
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    specs?: ProductUpdatespecsInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    category?: CategoryUpdateOneRequiredWithoutProductsNestedInput
+    price?: IntFieldUpdateOperationsInput | number
+    specs?: ProductUpdatespecsInput | string[]
+    stock?: EnumStockStatusFieldUpdateOperationsInput | $Enums.StockStatus
     cartItems?: CartItemUpdateManyWithoutProductNestedInput
-    orderItems?: OrderItemUpdateManyWithoutProductNestedInput
     homepagePhoto?: HomepagePhotoUpdateOneWithoutProductNestedInput
+    orderItems?: OrderItemUpdateManyWithoutProductNestedInput
+    category?: CategoryUpdateOneRequiredWithoutProductsNestedInput
   }
 
   export type ProductUncheckedUpdateWithoutReviewsInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    price?: IntFieldUpdateOperationsInput | number
-    stock?: EnumStockStatusFieldUpdateOperationsInput | $Enums.StockStatus
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    specs?: ProductUpdatespecsInput | string[]
-    categoryId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    price?: IntFieldUpdateOperationsInput | number
+    specs?: ProductUpdatespecsInput | string[]
+    stock?: EnumStockStatusFieldUpdateOperationsInput | $Enums.StockStatus
+    categoryId?: IntFieldUpdateOperationsInput | number
     cartItems?: CartItemUncheckedUpdateManyWithoutProductNestedInput
-    orderItems?: OrderItemUncheckedUpdateManyWithoutProductNestedInput
     homepagePhoto?: HomepagePhotoUncheckedUpdateOneWithoutProductNestedInput
+    orderItems?: OrderItemUncheckedUpdateManyWithoutProductNestedInput
+  }
+
+  export type UserUpsertWithoutReviewsInput = {
+    update: XOR<UserUpdateWithoutReviewsInput, UserUncheckedUpdateWithoutReviewsInput>
+    create: XOR<UserCreateWithoutReviewsInput, UserUncheckedCreateWithoutReviewsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutReviewsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutReviewsInput, UserUncheckedUpdateWithoutReviewsInput>
+  }
+
+  export type UserUpdateWithoutReviewsInput = {
+    email?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    passwordHash?: StringFieldUpdateOperationsInput | string
+    role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    cart?: CartUpdateOneWithoutUserNestedInput
+    contactMessages?: ContactUpdateManyWithoutUserNestedInput
+    contactReplies?: ContactReplyUpdateManyWithoutAuthorNestedInput
+    orders?: OrderUpdateManyWithoutUserNestedInput
+    quotes?: QuoteUpdateManyWithoutUserNestedInput
+    refreshTokens?: RefreshTokenUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutReviewsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    email?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    passwordHash?: StringFieldUpdateOperationsInput | string
+    role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    cart?: CartUncheckedUpdateOneWithoutUserNestedInput
+    contactMessages?: ContactUncheckedUpdateManyWithoutUserNestedInput
+    contactReplies?: ContactReplyUncheckedUpdateManyWithoutAuthorNestedInput
+    orders?: OrderUncheckedUpdateManyWithoutUserNestedInput
+    quotes?: QuoteUncheckedUpdateManyWithoutUserNestedInput
+    refreshTokens?: RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type ProductCreateWithoutHomepagePhotoInput = {
     name: string
     description: string
-    price: number
-    stock?: $Enums.StockStatus
     imageUrl?: string | null
-    specs?: ProductCreatespecsInput | string[]
     createdAt?: Date | string
     updatedAt?: Date | string
-    category: CategoryCreateNestedOneWithoutProductsInput
+    price: number
+    specs?: ProductCreatespecsInput | string[]
+    stock?: $Enums.StockStatus
     cartItems?: CartItemCreateNestedManyWithoutProductInput
     orderItems?: OrderItemCreateNestedManyWithoutProductInput
+    category: CategoryCreateNestedOneWithoutProductsInput
     reviews?: ReviewCreateNestedManyWithoutProductInput
   }
 
@@ -27343,13 +27459,13 @@ export namespace Prisma {
     id?: number
     name: string
     description: string
-    price: number
-    stock?: $Enums.StockStatus
     imageUrl?: string | null
-    specs?: ProductCreatespecsInput | string[]
-    categoryId: number
     createdAt?: Date | string
     updatedAt?: Date | string
+    price: number
+    specs?: ProductCreatespecsInput | string[]
+    stock?: $Enums.StockStatus
+    categoryId: number
     cartItems?: CartItemUncheckedCreateNestedManyWithoutProductInput
     orderItems?: OrderItemUncheckedCreateNestedManyWithoutProductInput
     reviews?: ReviewUncheckedCreateNestedManyWithoutProductInput
@@ -27374,15 +27490,15 @@ export namespace Prisma {
   export type ProductUpdateWithoutHomepagePhotoInput = {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    price?: IntFieldUpdateOperationsInput | number
-    stock?: EnumStockStatusFieldUpdateOperationsInput | $Enums.StockStatus
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    specs?: ProductUpdatespecsInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    category?: CategoryUpdateOneRequiredWithoutProductsNestedInput
+    price?: IntFieldUpdateOperationsInput | number
+    specs?: ProductUpdatespecsInput | string[]
+    stock?: EnumStockStatusFieldUpdateOperationsInput | $Enums.StockStatus
     cartItems?: CartItemUpdateManyWithoutProductNestedInput
     orderItems?: OrderItemUpdateManyWithoutProductNestedInput
+    category?: CategoryUpdateOneRequiredWithoutProductsNestedInput
     reviews?: ReviewUpdateManyWithoutProductNestedInput
   }
 
@@ -27390,13 +27506,13 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    price?: IntFieldUpdateOperationsInput | number
-    stock?: EnumStockStatusFieldUpdateOperationsInput | $Enums.StockStatus
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    specs?: ProductUpdatespecsInput | string[]
-    categoryId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    price?: IntFieldUpdateOperationsInput | number
+    specs?: ProductUpdatespecsInput | string[]
+    stock?: EnumStockStatusFieldUpdateOperationsInput | $Enums.StockStatus
+    categoryId?: IntFieldUpdateOperationsInput | number
     cartItems?: CartItemUncheckedUpdateManyWithoutProductNestedInput
     orderItems?: OrderItemUncheckedUpdateManyWithoutProductNestedInput
     reviews?: ReviewUncheckedUpdateManyWithoutProductNestedInput
@@ -27405,36 +27521,36 @@ export namespace Prisma {
   export type UserCreateWithoutRefreshTokensInput = {
     email: string
     name: string
-    phone?: string | null
     passwordHash: string
     role?: $Enums.UserRole
     isActive?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
-    orders?: OrderCreateNestedManyWithoutUserInput
+    phone?: string | null
     cart?: CartCreateNestedOneWithoutUserInput
-    quotes?: QuoteCreateNestedManyWithoutUserInput
-    reviews?: ReviewCreateNestedManyWithoutUserInput
     contactMessages?: ContactCreateNestedManyWithoutUserInput
     contactReplies?: ContactReplyCreateNestedManyWithoutAuthorInput
+    orders?: OrderCreateNestedManyWithoutUserInput
+    quotes?: QuoteCreateNestedManyWithoutUserInput
+    reviews?: ReviewCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutRefreshTokensInput = {
     id?: number
     email: string
     name: string
-    phone?: string | null
     passwordHash: string
     role?: $Enums.UserRole
     isActive?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
-    orders?: OrderUncheckedCreateNestedManyWithoutUserInput
+    phone?: string | null
     cart?: CartUncheckedCreateNestedOneWithoutUserInput
-    quotes?: QuoteUncheckedCreateNestedManyWithoutUserInput
-    reviews?: ReviewUncheckedCreateNestedManyWithoutUserInput
     contactMessages?: ContactUncheckedCreateNestedManyWithoutUserInput
     contactReplies?: ContactReplyUncheckedCreateNestedManyWithoutAuthorInput
+    orders?: OrderUncheckedCreateNestedManyWithoutUserInput
+    quotes?: QuoteUncheckedCreateNestedManyWithoutUserInput
+    reviews?: ReviewUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutRefreshTokensInput = {
@@ -27456,36 +27572,58 @@ export namespace Prisma {
   export type UserUpdateWithoutRefreshTokensInput = {
     email?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    phone?: NullableStringFieldUpdateOperationsInput | string | null
     passwordHash?: StringFieldUpdateOperationsInput | string
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    orders?: OrderUpdateManyWithoutUserNestedInput
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
     cart?: CartUpdateOneWithoutUserNestedInput
-    quotes?: QuoteUpdateManyWithoutUserNestedInput
-    reviews?: ReviewUpdateManyWithoutUserNestedInput
     contactMessages?: ContactUpdateManyWithoutUserNestedInput
     contactReplies?: ContactReplyUpdateManyWithoutAuthorNestedInput
+    orders?: OrderUpdateManyWithoutUserNestedInput
+    quotes?: QuoteUpdateManyWithoutUserNestedInput
+    reviews?: ReviewUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutRefreshTokensInput = {
     id?: IntFieldUpdateOperationsInput | number
     email?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    phone?: NullableStringFieldUpdateOperationsInput | string | null
     passwordHash?: StringFieldUpdateOperationsInput | string
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    orders?: OrderUncheckedUpdateManyWithoutUserNestedInput
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
     cart?: CartUncheckedUpdateOneWithoutUserNestedInput
-    quotes?: QuoteUncheckedUpdateManyWithoutUserNestedInput
-    reviews?: ReviewUncheckedUpdateManyWithoutUserNestedInput
     contactMessages?: ContactUncheckedUpdateManyWithoutUserNestedInput
     contactReplies?: ContactReplyUncheckedUpdateManyWithoutAuthorNestedInput
+    orders?: OrderUncheckedUpdateManyWithoutUserNestedInput
+    quotes?: QuoteUncheckedUpdateManyWithoutUserNestedInput
+    reviews?: ReviewUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type ContactCreateManyUserInput = {
+    id?: number
+    email: string
+    subject: string
+    message: string
+    status?: $Enums.ContactStatus
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    name: string
+    phone?: string | null
+    legacyReplies?: JsonNullValueInput | InputJsonValue
+  }
+
+  export type ContactReplyCreateManyAuthorInput = {
+    id?: number
+    contactId: number
+    senderRole: $Enums.ContactReplySender
+    senderName: string
+    message: string
+    createdAt?: Date | string
   }
 
   export type OrderCreateManyUserInput = {
@@ -27495,23 +27633,32 @@ export namespace Prisma {
     shippingAddress: string
     shippingCity: string
     shippingZip: string
-    shippingPhone?: string | null
-    paymentMethod?: $Enums.PaymentMethod | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    paymentMethod?: $Enums.PaymentMethod | null
+    shippingPhone?: string | null
   }
 
   export type QuoteCreateManyUserInput = {
     id?: number
     title: string
     description: string
+    price?: number | null
+    status?: $Enums.QuoteStatus
+    createdAt?: Date | string
+    updatedAt?: Date | string
     contactName?: string | null
     contactEmail?: string | null
     contactPhone?: string | null
     location?: string | null
     budgetRange?: string | null
-    price?: number | null
-    status?: $Enums.QuoteStatus
+  }
+
+  export type RefreshTokenCreateManyUserInput = {
+    id?: number
+    tokenHash: string
+    expiresAt: Date | string
+    revokedAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -27525,35 +27672,70 @@ export namespace Prisma {
     updatedAt?: Date | string
   }
 
-  export type ContactCreateManyUserInput = {
-    id?: number
-    name: string
-    email: string
-    phone?: string | null
-    subject: string
-    message: string
+  export type ContactUpdateWithoutUserInput = {
+    email?: StringFieldUpdateOperationsInput | string
+    subject?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    status?: EnumContactStatusFieldUpdateOperationsInput | $Enums.ContactStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    name?: StringFieldUpdateOperationsInput | string
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
     legacyReplies?: JsonNullValueInput | InputJsonValue
-    status?: $Enums.ContactStatus
-    createdAt?: Date | string
-    updatedAt?: Date | string
+    threadReplies?: ContactReplyUpdateManyWithoutContactNestedInput
   }
 
-  export type ContactReplyCreateManyAuthorInput = {
-    id?: number
-    contactId: number
-    senderRole: $Enums.ContactReplySender
-    senderName: string
-    message: string
-    createdAt?: Date | string
+  export type ContactUncheckedUpdateWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    email?: StringFieldUpdateOperationsInput | string
+    subject?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    status?: EnumContactStatusFieldUpdateOperationsInput | $Enums.ContactStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    name?: StringFieldUpdateOperationsInput | string
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    legacyReplies?: JsonNullValueInput | InputJsonValue
+    threadReplies?: ContactReplyUncheckedUpdateManyWithoutContactNestedInput
   }
 
-  export type RefreshTokenCreateManyUserInput = {
-    id?: number
-    tokenHash: string
-    expiresAt: Date | string
-    revokedAt?: Date | string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
+  export type ContactUncheckedUpdateManyWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    email?: StringFieldUpdateOperationsInput | string
+    subject?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    status?: EnumContactStatusFieldUpdateOperationsInput | $Enums.ContactStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    name?: StringFieldUpdateOperationsInput | string
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    legacyReplies?: JsonNullValueInput | InputJsonValue
+  }
+
+  export type ContactReplyUpdateWithoutAuthorInput = {
+    senderRole?: EnumContactReplySenderFieldUpdateOperationsInput | $Enums.ContactReplySender
+    senderName?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    contact?: ContactUpdateOneRequiredWithoutThreadRepliesNestedInput
+  }
+
+  export type ContactReplyUncheckedUpdateWithoutAuthorInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    contactId?: IntFieldUpdateOperationsInput | number
+    senderRole?: EnumContactReplySenderFieldUpdateOperationsInput | $Enums.ContactReplySender
+    senderName?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ContactReplyUncheckedUpdateManyWithoutAuthorInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    contactId?: IntFieldUpdateOperationsInput | number
+    senderRole?: EnumContactReplySenderFieldUpdateOperationsInput | $Enums.ContactReplySender
+    senderName?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type OrderUpdateWithoutUserInput = {
@@ -27562,10 +27744,10 @@ export namespace Prisma {
     shippingAddress?: StringFieldUpdateOperationsInput | string
     shippingCity?: StringFieldUpdateOperationsInput | string
     shippingZip?: StringFieldUpdateOperationsInput | string
-    shippingPhone?: NullableStringFieldUpdateOperationsInput | string | null
-    paymentMethod?: NullableEnumPaymentMethodFieldUpdateOperationsInput | $Enums.PaymentMethod | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    paymentMethod?: NullableEnumPaymentMethodFieldUpdateOperationsInput | $Enums.PaymentMethod | null
+    shippingPhone?: NullableStringFieldUpdateOperationsInput | string | null
     items?: OrderItemUpdateManyWithoutOrderNestedInput
     payment?: PaymentUpdateOneWithoutOrderNestedInput
   }
@@ -27577,10 +27759,10 @@ export namespace Prisma {
     shippingAddress?: StringFieldUpdateOperationsInput | string
     shippingCity?: StringFieldUpdateOperationsInput | string
     shippingZip?: StringFieldUpdateOperationsInput | string
-    shippingPhone?: NullableStringFieldUpdateOperationsInput | string | null
-    paymentMethod?: NullableEnumPaymentMethodFieldUpdateOperationsInput | $Enums.PaymentMethod | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    paymentMethod?: NullableEnumPaymentMethodFieldUpdateOperationsInput | $Enums.PaymentMethod | null
+    shippingPhone?: NullableStringFieldUpdateOperationsInput | string | null
     items?: OrderItemUncheckedUpdateManyWithoutOrderNestedInput
     payment?: PaymentUncheckedUpdateOneWithoutOrderNestedInput
   }
@@ -27592,52 +27774,78 @@ export namespace Prisma {
     shippingAddress?: StringFieldUpdateOperationsInput | string
     shippingCity?: StringFieldUpdateOperationsInput | string
     shippingZip?: StringFieldUpdateOperationsInput | string
-    shippingPhone?: NullableStringFieldUpdateOperationsInput | string | null
-    paymentMethod?: NullableEnumPaymentMethodFieldUpdateOperationsInput | $Enums.PaymentMethod | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    paymentMethod?: NullableEnumPaymentMethodFieldUpdateOperationsInput | $Enums.PaymentMethod | null
+    shippingPhone?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type QuoteUpdateWithoutUserInput = {
     title?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
+    price?: NullableIntFieldUpdateOperationsInput | number | null
+    status?: EnumQuoteStatusFieldUpdateOperationsInput | $Enums.QuoteStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     contactName?: NullableStringFieldUpdateOperationsInput | string | null
     contactEmail?: NullableStringFieldUpdateOperationsInput | string | null
     contactPhone?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
     budgetRange?: NullableStringFieldUpdateOperationsInput | string | null
-    price?: NullableIntFieldUpdateOperationsInput | number | null
-    status?: EnumQuoteStatusFieldUpdateOperationsInput | $Enums.QuoteStatus
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type QuoteUncheckedUpdateWithoutUserInput = {
     id?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
+    price?: NullableIntFieldUpdateOperationsInput | number | null
+    status?: EnumQuoteStatusFieldUpdateOperationsInput | $Enums.QuoteStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     contactName?: NullableStringFieldUpdateOperationsInput | string | null
     contactEmail?: NullableStringFieldUpdateOperationsInput | string | null
     contactPhone?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
     budgetRange?: NullableStringFieldUpdateOperationsInput | string | null
-    price?: NullableIntFieldUpdateOperationsInput | number | null
-    status?: EnumQuoteStatusFieldUpdateOperationsInput | $Enums.QuoteStatus
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type QuoteUncheckedUpdateManyWithoutUserInput = {
     id?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
+    price?: NullableIntFieldUpdateOperationsInput | number | null
+    status?: EnumQuoteStatusFieldUpdateOperationsInput | $Enums.QuoteStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     contactName?: NullableStringFieldUpdateOperationsInput | string | null
     contactEmail?: NullableStringFieldUpdateOperationsInput | string | null
     contactPhone?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
     budgetRange?: NullableStringFieldUpdateOperationsInput | string | null
-    price?: NullableIntFieldUpdateOperationsInput | number | null
-    status?: EnumQuoteStatusFieldUpdateOperationsInput | $Enums.QuoteStatus
+  }
+
+  export type RefreshTokenUpdateWithoutUserInput = {
+    tokenHash?: StringFieldUpdateOperationsInput | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    revokedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RefreshTokenUncheckedUpdateWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    tokenHash?: StringFieldUpdateOperationsInput | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    revokedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RefreshTokenUncheckedUpdateManyWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    tokenHash?: StringFieldUpdateOperationsInput | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    revokedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -27668,151 +27876,59 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type ContactUpdateWithoutUserInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    phone?: NullableStringFieldUpdateOperationsInput | string | null
-    subject?: StringFieldUpdateOperationsInput | string
-    message?: StringFieldUpdateOperationsInput | string
-    legacyReplies?: JsonNullValueInput | InputJsonValue
-    status?: EnumContactStatusFieldUpdateOperationsInput | $Enums.ContactStatus
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    threadReplies?: ContactReplyUpdateManyWithoutContactNestedInput
-  }
-
-  export type ContactUncheckedUpdateWithoutUserInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    phone?: NullableStringFieldUpdateOperationsInput | string | null
-    subject?: StringFieldUpdateOperationsInput | string
-    message?: StringFieldUpdateOperationsInput | string
-    legacyReplies?: JsonNullValueInput | InputJsonValue
-    status?: EnumContactStatusFieldUpdateOperationsInput | $Enums.ContactStatus
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    threadReplies?: ContactReplyUncheckedUpdateManyWithoutContactNestedInput
-  }
-
-  export type ContactUncheckedUpdateManyWithoutUserInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    phone?: NullableStringFieldUpdateOperationsInput | string | null
-    subject?: StringFieldUpdateOperationsInput | string
-    message?: StringFieldUpdateOperationsInput | string
-    legacyReplies?: JsonNullValueInput | InputJsonValue
-    status?: EnumContactStatusFieldUpdateOperationsInput | $Enums.ContactStatus
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type ContactReplyUpdateWithoutAuthorInput = {
-    senderRole?: EnumContactReplySenderFieldUpdateOperationsInput | $Enums.ContactReplySender
-    senderName?: StringFieldUpdateOperationsInput | string
-    message?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    contact?: ContactUpdateOneRequiredWithoutThreadRepliesNestedInput
-  }
-
-  export type ContactReplyUncheckedUpdateWithoutAuthorInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    contactId?: IntFieldUpdateOperationsInput | number
-    senderRole?: EnumContactReplySenderFieldUpdateOperationsInput | $Enums.ContactReplySender
-    senderName?: StringFieldUpdateOperationsInput | string
-    message?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type ContactReplyUncheckedUpdateManyWithoutAuthorInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    contactId?: IntFieldUpdateOperationsInput | number
-    senderRole?: EnumContactReplySenderFieldUpdateOperationsInput | $Enums.ContactReplySender
-    senderName?: StringFieldUpdateOperationsInput | string
-    message?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type RefreshTokenUpdateWithoutUserInput = {
-    tokenHash?: StringFieldUpdateOperationsInput | string
-    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    revokedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type RefreshTokenUncheckedUpdateWithoutUserInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    tokenHash?: StringFieldUpdateOperationsInput | string
-    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    revokedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type RefreshTokenUncheckedUpdateManyWithoutUserInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    tokenHash?: StringFieldUpdateOperationsInput | string
-    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    revokedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
   export type ProductCreateManyCategoryInput = {
     id?: number
     name: string
     description: string
-    price: number
-    stock?: $Enums.StockStatus
     imageUrl?: string | null
-    specs?: ProductCreatespecsInput | string[]
     createdAt?: Date | string
     updatedAt?: Date | string
+    price: number
+    specs?: ProductCreatespecsInput | string[]
+    stock?: $Enums.StockStatus
   }
 
   export type ProductUpdateWithoutCategoryInput = {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    price?: IntFieldUpdateOperationsInput | number
-    stock?: EnumStockStatusFieldUpdateOperationsInput | $Enums.StockStatus
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    specs?: ProductUpdatespecsInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    price?: IntFieldUpdateOperationsInput | number
+    specs?: ProductUpdatespecsInput | string[]
+    stock?: EnumStockStatusFieldUpdateOperationsInput | $Enums.StockStatus
     cartItems?: CartItemUpdateManyWithoutProductNestedInput
+    homepagePhoto?: HomepagePhotoUpdateOneWithoutProductNestedInput
     orderItems?: OrderItemUpdateManyWithoutProductNestedInput
     reviews?: ReviewUpdateManyWithoutProductNestedInput
-    homepagePhoto?: HomepagePhotoUpdateOneWithoutProductNestedInput
   }
 
   export type ProductUncheckedUpdateWithoutCategoryInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    price?: IntFieldUpdateOperationsInput | number
-    stock?: EnumStockStatusFieldUpdateOperationsInput | $Enums.StockStatus
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    specs?: ProductUpdatespecsInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    price?: IntFieldUpdateOperationsInput | number
+    specs?: ProductUpdatespecsInput | string[]
+    stock?: EnumStockStatusFieldUpdateOperationsInput | $Enums.StockStatus
     cartItems?: CartItemUncheckedUpdateManyWithoutProductNestedInput
+    homepagePhoto?: HomepagePhotoUncheckedUpdateOneWithoutProductNestedInput
     orderItems?: OrderItemUncheckedUpdateManyWithoutProductNestedInput
     reviews?: ReviewUncheckedUpdateManyWithoutProductNestedInput
-    homepagePhoto?: HomepagePhotoUncheckedUpdateOneWithoutProductNestedInput
   }
 
   export type ProductUncheckedUpdateManyWithoutCategoryInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    price?: IntFieldUpdateOperationsInput | number
-    stock?: EnumStockStatusFieldUpdateOperationsInput | $Enums.StockStatus
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    specs?: ProductUpdatespecsInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    price?: IntFieldUpdateOperationsInput | number
+    specs?: ProductUpdatespecsInput | string[]
+    stock?: EnumStockStatusFieldUpdateOperationsInput | $Enums.StockStatus
   }
 
   export type CartItemCreateManyProductInput = {

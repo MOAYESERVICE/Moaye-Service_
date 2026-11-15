@@ -35,7 +35,9 @@ export default function Home() {
       <Suspense fallback={<ProductsSectionFallback />}>
         <ProductsSection />
       </Suspense>
-      <ProjectsSection />
+      <Suspense fallback={<section className="section"><div className="wrap" role="status" aria-busy="true">Chargement des réalisations…</div></section>}>
+        <ProjectsSection />
+      </Suspense>
       <PartnersSection />
       <AssistantBand />
       <AboutSection />

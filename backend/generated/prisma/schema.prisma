@@ -1,17 +1,240 @@
-// Configure le client Prisma généré pour le backend.
 generator client {
   provider = "prisma-client-js"
   output   = "../generated/prisma"
 }
 
-// Indique que la base de données utilise PostgreSQL.
 datasource db {
   provider = "postgresql"
 }
 
-// ============================================
-// 1. ÉNUMS - Valeurs fixes
-// ============================================
+model User {
+  id              Int            @id @default(autoincrement())
+  email           String         @unique
+  name            String
+  passwordHash    String
+  role            UserRole       @default(CUSTOMER)
+  isActive        Boolean        @default(true)
+  createdAt       DateTime       @default(now())
+  updatedAt       DateTime       @updatedAt
+  phone           String?
+  cart            Cart?
+  contactMessages Contact[]
+  contactReplies  ContactReply[] @relation("ContactReplyAuthor")
+  orders          Order[]
+  quotes          Quote[]
+  refreshTokens   RefreshToken[] @relation("refreshTokens")
+  reviews         Review[]
+}
+
+model Category {
+  id          Int       @id @default(autoincrement())
+  name        String    @unique
+  description String?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  products    Product[]
+}
+
+model Product {
+  id            Int            @id @default(autoincrement())
+  name          String
+  description   String
+  imageUrl      String?
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+  price         Int
+  specs         String[]       @default([])
+  stock         StockStatus    @default(IN_STOCK)
+  categoryId    Int
+  cartItems     CartItem[]
+  homepagePhoto HomepagePhoto?
+  orderItems    OrderItem[]
+  category      Category       @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  reviews       Review[]
+
+  @@index([categoryId])
+}
+
+model Cart {
+  id        Int        @id @default(autoincrement())
+  userId    Int        @unique
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  user      User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  items     CartItem[]
+}
+
+model CartItem {
+  id        Int      @id @default(autoincrement())
+  quantity  Int
+  cartId    Int
+  productId Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  cart      Cart     @relation(fields: [cartId], references: [id], onDelete: Cascade)
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@unique([cartId, productId])
+  @@index([productId])
+}
+
+model Order {
+  id              Int            @id @default(autoincrement())
+  userId          Int
+  status          OrderStatus    @default(PENDING)
+  totalPrice      Int
+  shippingAddress String
+  shippingCity    String
+  shippingZip     String
+  createdAt       DateTime       @default(now())
+  updatedAt       DateTime       @updatedAt
+  paymentMethod   PaymentMethod? @default(CARD)
+  shippingPhone   String?
+  user            User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  items           OrderItem[]
+  payment         Payment?
+
+  @@index([userId])
+}
+
+model OrderItem {
+  id        Int     @id @default(autoincrement())
+  quantity  Int
+  price     Int
+  orderId   Int
+  productId Int
+  order     Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@index([orderId])
+  @@index([productId])
+}
+
+model Payment {
+  id                Int           @id @default(autoincrement())
+  orderId           Int           @unique
+  amount            Int
+  method            PaymentMethod
+  status            PaymentStatus @default(PENDING)
+  providerPaymentId String?
+  createdAt         DateTime      @default(now())
+  updatedAt         DateTime      @updatedAt
+  order             Order         @relation(fields: [orderId], references: [id], onDelete: Cascade)
+
+  @@index([orderId])
+}
+
+model Quote {
+  id           Int         @id @default(autoincrement())
+  userId       Int?
+  title        String
+  description  String
+  price        Int?
+  status       QuoteStatus @default(PENDING)
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
+  contactName  String?
+  contactEmail String?
+  contactPhone String?
+  location     String?
+  budgetRange  String?
+  user         User?       @relation(fields: [userId], references: [id])
+
+  @@index([userId])
+}
+
+model Contact {
+  id            Int            @id @default(autoincrement())
+  userId        Int?
+  email         String
+  subject       String
+  message       String
+  status        ContactStatus  @default(NEW)
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+  name          String
+  phone         String?
+  legacyReplies Json           @default("[]") @map("replies")
+  user          User?          @relation(fields: [userId], references: [id])
+  threadReplies ContactReply[]
+
+  @@index([userId])
+}
+
+model ContactReply {
+  id         Int                @id @default(autoincrement())
+  contactId  Int
+  authorId   Int?
+  senderRole ContactReplySender
+  senderName String
+  message    String             @db.VarChar(5000)
+  createdAt  DateTime           @default(now())
+  author     User?              @relation("ContactReplyAuthor", fields: [authorId], references: [id])
+  contact    Contact            @relation(fields: [contactId], references: [id], onDelete: Cascade)
+
+  @@index([contactId, createdAt])
+  @@index([authorId])
+}
+
+model Review {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  productId Int
+  rating    Int
+  comment   String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, productId])
+  @@index([productId])
+}
+
+model Realization {
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String
+  imageUrl    String?
+  imageAlt    String?
+  domain      String   @default("Accompagnement")
+  location    String?
+  isPublished Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([isPublished, createdAt])
+}
+
+model HomepagePhoto {
+  id         Int      @id @default(autoincrement())
+  productKey String   @unique
+  imageUrl   String
+  alt        String
+  position   Int      @unique
+  isActive   Boolean  @default(true)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  title      String
+  productId  Int?     @unique
+  product    Product? @relation(fields: [productId], references: [id])
+
+  @@index([isActive, position])
+}
+
+model RefreshToken {
+  id        Int       @id @default(autoincrement())
+  userId    Int
+  tokenHash String    @unique
+  expiresAt DateTime
+  revokedAt DateTime?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  user      User      @relation("refreshTokens", fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([tokenHash], map: "RefreshToken_token_idx")
+}
 
 enum UserRole {
   CUSTOMER
@@ -25,344 +248,42 @@ enum StockStatus {
 }
 
 enum OrderStatus {
-  PENDING // En attente de confirmation
-  CONFIRMED // Confirmé par admin
-  PROCESSING // En préparation
-  SHIPPED // Expédié
-  DELIVERED // Livré
-  CANCELLED // Annulé
+  PENDING
+  CONFIRMED
+  PROCESSING
+  SHIPPED
+  DELIVERED
+  CANCELLED
 }
 
 enum PaymentStatus {
-  PENDING // En attente
-  COMPLETED // Paiement reçu
-  FAILED // Échec paiement
-  REFUNDED // Remboursé
+  PENDING
+  COMPLETED
+  FAILED
+  REFUNDED
 }
 
 enum PaymentMethod {
-  CARD // Carte bancaire
-  BANK_TRANSFER // Virement bancaire
-  WAVE // Wave money
-  PAYTECH // Paytech
+  CARD
+  BANK_TRANSFER
+  WAVE
+  PAYTECH
 }
 
 enum QuoteStatus {
-  PENDING // En attente client
-  ACCEPTED // Client accepte
-  REJECTED // Client refuse
-  EXPIRED // Dépassé délai
+  PENDING
+  ACCEPTED
+  REJECTED
+  EXPIRED
 }
 
 enum ContactStatus {
-  NEW // Nouveau message
-  VIEWED // Lu par admin
-  RESOLVED // Résolu
+  NEW
+  VIEWED
+  RESOLVED
 }
 
 enum ContactReplySender {
   CUSTOMER
   ADMIN
-}
-
-// ============================================
-// 2. MODÈLES - Données principales
-// ============================================
-
-// Utilisateurs (clients + admin)
-model User {
-  id           Int      @id @default(autoincrement())
-  email        String   @unique
-  name         String
-  phone        String?
-  passwordHash String
-  role         UserRole @default(CUSTOMER)
-  isActive     Boolean  @default(true)
-
-  // Relations: cet utilisateur a plusieurs commandes, paniers, devis, avis
-  orders          Order[]
-  cart            Cart?
-  quotes          Quote[]
-  reviews         Review[]
-  contactMessages Contact[]
-  contactReplies  ContactReply[] @relation("ContactReplyAuthor")
-  refreshTokens   RefreshToken[] @relation(name: "refreshTokens")
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
-
-// Catégories de produits
-model Category {
-  id          Int     @id @default(autoincrement())
-  name        String  @unique
-  description String?
-
-  // Relation: cette catégorie a plusieurs produits
-  products Product[]
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
-
-// Produits du catalogue
-model Product {
-  id          Int         @id @default(autoincrement())
-  name        String
-  description String
-  price       Int // En centimes (ex: 1000 = 10€)
-  stock       StockStatus @default(IN_STOCK)
-  imageUrl    String?
-  specs       String[]    @default([])
-
-  // Foreign key: à quelle catégorie?
-  categoryId Int
-  category   Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
-
-  // Relations: ce produit peut être dans des paniers, commandes, avis
-  cartItems     CartItem[]
-  orderItems    OrderItem[]
-  reviews       Review[]
-  homepagePhoto HomepagePhoto?
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  @@index([categoryId])
-}
-
-// Panier d'un utilisateur (1 panier par user)
-model Cart {
-  id Int @id @default(autoincrement())
-
-  // Foreign key: à quel utilisateur?
-  userId Int  @unique
-  user   User @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  // Relation: ce panier a plusieurs articles
-  items CartItem[]
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
-
-// Articles dans un panier (plusieurs produits par panier)
-model CartItem {
-  id       Int @id @default(autoincrement())
-  quantity Int
-
-  // Foreign keys: dans quel panier? quel produit?
-  cartId Int
-  cart   Cart @relation(fields: [cartId], references: [id], onDelete: Cascade)
-
-  productId Int
-  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  @@unique([cartId, productId])
-  @@index([productId])
-}
-
-// Commandes
-model Order {
-  id Int @id @default(autoincrement())
-
-  // Foreign key: qui a commandé?
-  userId Int
-  user   User @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  status     OrderStatus @default(PENDING)
-  totalPrice Int // Montant total en centimes
-
-  // Adresse de livraison
-  shippingAddress String
-  shippingCity    String
-  shippingZip     String
-  shippingPhone   String? // Numéro de téléphone pour la livraison
-
-  // Moyen de paiement
-  paymentMethod PaymentMethod? @default(CARD)
-
-  // Relation: cette commande a plusieurs articles
-  items OrderItem[]
-
-  // Relation: cette commande peut avoir un paiement
-  payment Payment?
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  @@index([userId])
-}
-
-// Articles dans une commande (plusieurs produits par commande)
-model OrderItem {
-  id       Int @id @default(autoincrement())
-  quantity Int
-  price    Int // Prix unitaire au moment de la commande
-
-  // Foreign keys: dans quelle commande? quel produit?
-  orderId Int
-  order   Order @relation(fields: [orderId], references: [id], onDelete: Cascade)
-
-  productId Int
-  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
-
-  @@index([orderId])
-  @@index([productId])
-}
-
-// Paiements
-model Payment {
-  id Int @id @default(autoincrement())
-
-  // Foreign key: pour quelle commande?
-  orderId Int   @unique
-  order   Order @relation(fields: [orderId], references: [id], onDelete: Cascade)
-
-  amount Int // Montant en centimes
-  method PaymentMethod
-  status PaymentStatus @default(PENDING)
-
-  // Référence du provider (Stripe, Wave, etc.)
-  providerPaymentId String?
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  @@index([orderId])
-}
-
-// Devis
-model Quote {
-  id Int @id @default(autoincrement())
-
-  // Foreign key: qui a demandé?
-  userId Int?
-  user   User? @relation(fields: [userId], references: [id], onDelete: SetNull)
-
-  title        String
-  description  String
-  contactName  String?
-  contactEmail String?
-  contactPhone String?
-  location     String?
-  budgetRange  String?
-  price        Int? // Optionnel (peut être nul au départ)
-  status       QuoteStatus @default(PENDING)
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  @@index([userId])
-}
-
-// Messages de contact
-model Contact {
-  id Int @id @default(autoincrement())
-
-  // Foreign key: qui a écrit? (peut être null si non connecté)
-  userId Int?
-  user   User? @relation(fields: [userId], references: [id], onDelete: SetNull)
-
-  name          String
-  email         String
-  phone         String?
-  subject       String
-  message       String
-  legacyReplies Json           @default("[]") @map("replies")
-  status        ContactStatus  @default(NEW)
-  threadReplies ContactReply[]
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  @@index([userId])
-}
-
-model ContactReply {
-  id         Int                @id @default(autoincrement())
-  contactId  Int
-  contact    Contact            @relation(fields: [contactId], references: [id], onDelete: Cascade)
-  authorId   Int?
-  author     User?              @relation("ContactReplyAuthor", fields: [authorId], references: [id], onDelete: SetNull)
-  senderRole ContactReplySender
-  senderName String
-  message    String             @db.VarChar(5000)
-  createdAt  DateTime           @default(now())
-
-  @@index([contactId, createdAt])
-  @@index([authorId])
-}
-
-// Avis produits
-model Review {
-  id Int @id @default(autoincrement())
-
-  // Foreign keys: qui a écrit? sur quel produit?
-  userId Int
-  user   User @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  productId Int
-  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
-
-  rating  Int // 1-5 étoiles
-  comment String? // Commentaire optionnel
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  @@unique([userId, productId])
-  @@index([productId])
-}
-
-// Réalisations (projets réalisés)
-model Realization {
-  id          Int     @id @default(autoincrement())
-  title       String
-  description String
-  imageUrl    String?
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
-
-// Photos des produits mis en avant sur la page d'accueil.
-// Les fichiers restent dans le stockage public; PostgreSQL conserve leur chemin et leur texte alternatif.
-model HomepagePhoto {
-  id         Int      @id @default(autoincrement())
-  productKey String   @unique
-  productId  Int?     @unique
-  title      String
-  imageUrl   String
-  alt        String
-  position   Int      @unique
-  isActive   Boolean  @default(true)
-  product    Product? @relation(fields: [productId], references: [id], onDelete: SetNull)
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
-
-  @@index([isActive, position])
-}
-
-// Refresh tokens pour la rotation des sessions
-model RefreshToken {
-  id Int @id @default(autoincrement())
-
-  // Foreign key: à quel utilisateur?
-  userId Int
-  user   User @relation(name: "refreshTokens", fields: [userId], references: [id], onDelete: Cascade)
-
-  tokenHash String   @unique
-  expiresAt DateTime
-
-  // Pour pouvoir révoquer les tokens (logout)
-  revokedAt DateTime?
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  @@index([userId])
 }

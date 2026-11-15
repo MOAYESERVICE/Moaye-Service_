@@ -1,11 +1,5 @@
-"use client";
-import RoleGuard from "@/components/admin/RoleGuard";
-import ContentModule from "@/components/admin/ContentModule";
+import RealisationManager from "@/components/admin/RealisationManager";
 
-export default function Page() {
-  return (
-    <RoleGuard module="realisations">
-      <ContentModule module="realisations" />
-    </RoleGuard>
-  );
+export default function RealisationsAdminPage() {
+  return <RealisationManager />;
 }

@@ -124,12 +124,12 @@ exports.Prisma.UserScalarFieldEnum = {
   id: 'id',
   email: 'email',
   name: 'name',
-  phone: 'phone',
   passwordHash: 'passwordHash',
   role: 'role',
   isActive: 'isActive',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  phone: 'phone'
 };
 
 exports.Prisma.CategoryScalarFieldEnum = {
@@ -144,13 +144,13 @@ exports.Prisma.ProductScalarFieldEnum = {
   id: 'id',
   name: 'name',
   description: 'description',
-  price: 'price',
-  stock: 'stock',
   imageUrl: 'imageUrl',
-  specs: 'specs',
-  categoryId: 'categoryId',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  price: 'price',
+  specs: 'specs',
+  stock: 'stock',
+  categoryId: 'categoryId'
 };
 
 exports.Prisma.CartScalarFieldEnum = {
@@ -177,10 +177,10 @@ exports.Prisma.OrderScalarFieldEnum = {
   shippingAddress: 'shippingAddress',
   shippingCity: 'shippingCity',
   shippingZip: 'shippingZip',
-  shippingPhone: 'shippingPhone',
-  paymentMethod: 'paymentMethod',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  paymentMethod: 'paymentMethod',
+  shippingPhone: 'shippingPhone'
 };
 
 exports.Prisma.OrderItemScalarFieldEnum = {
@@ -207,29 +207,29 @@ exports.Prisma.QuoteScalarFieldEnum = {
   userId: 'userId',
   title: 'title',
   description: 'description',
+  price: 'price',
+  status: 'status',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
   contactName: 'contactName',
   contactEmail: 'contactEmail',
   contactPhone: 'contactPhone',
   location: 'location',
-  budgetRange: 'budgetRange',
-  price: 'price',
-  status: 'status',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  budgetRange: 'budgetRange'
 };
 
 exports.Prisma.ContactScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
-  name: 'name',
   email: 'email',
-  phone: 'phone',
   subject: 'subject',
   message: 'message',
-  legacyReplies: 'legacyReplies',
   status: 'status',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  name: 'name',
+  phone: 'phone',
+  legacyReplies: 'legacyReplies'
 };
 
 exports.Prisma.ContactReplyScalarFieldEnum = {
@@ -257,6 +257,10 @@ exports.Prisma.RealizationScalarFieldEnum = {
   title: 'title',
   description: 'description',
   imageUrl: 'imageUrl',
+  imageAlt: 'imageAlt',
+  domain: 'domain',
+  location: 'location',
+  isPublished: 'isPublished',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -264,14 +268,14 @@ exports.Prisma.RealizationScalarFieldEnum = {
 exports.Prisma.HomepagePhotoScalarFieldEnum = {
   id: 'id',
   productKey: 'productKey',
-  productId: 'productId',
-  title: 'title',
   imageUrl: 'imageUrl',
   alt: 'alt',
   position: 'position',
   isActive: 'isActive',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  title: 'title',
+  productId: 'productId'
 };
 
 exports.Prisma.RefreshTokenScalarFieldEnum = {
