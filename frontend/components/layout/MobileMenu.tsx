@@ -5,7 +5,7 @@ export default function MobileMenu({ open, onClose }: { open: boolean; onClose: 
   if (!open) return null;
 
   return (
-    <div className="mobile-menu">
+    <div id="site-mobile-navigation" className="mobile-menu">
       {nav.map((n) => (
         <Link key={n.href} className="m" href={n.href} onClick={onClose}>{n.label}</Link>
       ))}
