@@ -853,7 +853,7 @@
   .pt-thread-view{display:none;min-height:calc(100dvh - 330px)}
   .pt-message-workspace.mobile-detail-open .pt-thread-list{display:none}
   .pt-message-workspace.mobile-detail-open .pt-thread-view{display:flex}
-  .pt-thread-list{max-height:62vh;border-right:0}
+  .pt-thread-list{max-height:none;overflow:visible;border-right:0}
   .pt-thread-item{grid-template-columns:40px minmax(0,1fr) 8px;padding:13px 12px}
   .pt-thread-avatar{width:40px;height:40px}
   .pt-thread-header{gap:9px;padding:13px 12px}
