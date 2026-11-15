@@ -1,4 +1,27 @@
 {
+  "editor.formatOnSave": true,
+  "[javascript]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
+  "files.exclude": {
+    "**/node_modules": true,
+    "**/.next": true,
+    "backend/generated/prisma": true
+  },
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/.next": true,
+    "backend/generated/prisma": true,
+    "**/package-lock.json": true
+  },
+  "typescript.tsdk": "frontend/node_modules/typescript/lib",
+  "typescript.enablePromptUseWorkspaceTsdk": true,
   "workbench.colorCustomizations": {
     "terminal.foreground": "#80CBC4"
   }

@@ -19,8 +19,8 @@ const accompagnements = [
   {
     title: "Formation des producteurs",
     desc: "Renforcez les pratiques de vos équipes grâce à des conseils techniques adaptés aux réalités du terrain.",
-    image: "/moaye-team-collaboration.jpg",
-    alt: "Équipe de terrain accompagnant des producteurs",
+    image: "/photos/poultry-farming.webp",
+    alt: "Producteurs au travail dans un bâtiment d'élevage avicole lors d'un accompagnement de terrain",
   },
   {
     title: "Suivi technique et sanitaire",
@@ -30,6 +30,20 @@ const accompagnements = [
   },
 ];
 
+const expertiseCtas: Record<string, string> = {
+  Agriculture: "Découvrir notre accompagnement agricole",
+  "Élevage et aviculture": "Explorer nos solutions d’élevage",
+  "Aquaculture et pisciculture": "Découvrir nos systèmes aquacoles",
+  "Nutrition animale": "Voir nos conseils en nutrition",
+};
+
+const accompanimentCtas = [
+  "Présenter mon projet",
+  "Préparer mon installation",
+  "Demander une formation",
+  "Solliciter un suivi technique",
+];
+
 const directoryCards = [
   ...expertises.map((expertise) => ({
     title: expertise.title,
@@ -37,13 +51,15 @@ const directoryCards = [
     href: expertise.href,
     image: expertise.img ?? "/moaye-team-collaboration.jpg",
     alt: expertise.img ? expertise.alt : "Équipe de terrain accompagnant un projet agricole",
+    cta: expertiseCtas[expertise.title] ?? "Découvrir cette expertise",
   })),
-  ...accompagnements.map((item) => ({
+  ...accompagnements.map((item, index) => ({
     title: item.title,
     desc: item.desc,
     href: "/devis",
     image: item.image,
     alt: item.alt,
+    cta: accompanimentCtas[index] ?? "Présenter mon projet",
   })),
 ];
 
@@ -94,7 +110,7 @@ export default function ExpertisesPage() {
                   <h3>{item.title}</h3>
                   <p>{item.desc}</p>
                   <Link className="expertise-directory-link" href={item.href}>
-                    {item.href === "/devis" ? "Demander un accompagnement" : "Découvrir cette expertise"}
+                    {item.cta}
                   </Link>
                 </div>
               </article>

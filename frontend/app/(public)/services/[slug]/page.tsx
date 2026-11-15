@@ -139,8 +139,8 @@ export function generateStaticParams() {
 
 function AvicultureDetail() {
   return (
-    <main>
-      <section className="page-hero">
+    <main className="service-focus service-focus--aviculture">
+      <section className="page-hero service-focus-hero">
         <div className="wrap page-hero-inner">
           <div className="stack">
             <span className="tag">Élevage · Aviculture</span>
@@ -288,8 +288,8 @@ async function ServiceDetailContent({ params }: ServicePageProps) {
   if (slug !== "nutrition-animale") notFound();
 
   return (
-    <main>
-      <section className="page-hero">
+    <main className="service-focus service-focus--nutrition">
+      <section className="page-hero service-focus-hero">
         <div className="wrap page-hero-inner">
           <div className="stack">
             <span className="tag">Aquaculture · Nutrition des poissons</span>
@@ -403,3 +403,4 @@ export default function ServiceDetailPage({ params }: ServicePageProps) {
     </Suspense>
   );
 }
+

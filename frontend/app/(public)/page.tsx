@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import Hero from "@/components/home/Hero";
 import AssetsStrip from "@/components/home/AssetsStrip";
 import ExpertiseSection from "@/components/home/ExpertiseSection";
@@ -12,6 +13,16 @@ import AboutSection from "@/components/home/AboutSection";
 import FaqSection from "@/components/home/FaqSection";
 import CtaBand from "@/components/home/CtaBand";
 
+function ProductsSectionFallback() {
+  return (
+    <section className="section section-mist">
+      <div className="wrap" role="status" aria-busy="true">
+        Chargement des produits…
+      </div>
+    </section>
+  );
+}
+
 export default function Home() {
   return (
     <main>
@@ -21,7 +32,9 @@ export default function Home() {
       <AquaFocus />
       <ServicesSection />
       <MethodSection />
-      <ProductsSection />
+      <Suspense fallback={<ProductsSectionFallback />}>
+        <ProductsSection />
+      </Suspense>
       <ProjectsSection />
       <PartnersSection />
       <AssistantBand />

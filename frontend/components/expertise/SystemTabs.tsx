@@ -33,7 +33,7 @@ export default function SystemTabs() {
               <ul className="bullets">{sel.keys.map((t) => <li key={t}>{t}</li>)}</ul>
             </div>
           </div>
-          <div><Link className="btn btn-amber" href="/devis">Demander un devis pour ce système</Link></div>
+          <div><Link className="btn btn-amber" href="/devis">Demander un devis</Link></div>
         </div>
       </div>
     </>

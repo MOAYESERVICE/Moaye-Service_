@@ -6,7 +6,10 @@
     "scripts": {
         "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
         "dev": "node --watch src/server.js",
-        "start": "node src/server.js"
+        "start": "node src/server.js",
+        "prisma:validate": "prisma validate --config prisma7.config.ts",
+        "prisma:status": "prisma migrate status --config prisma7.config.ts",
+        "prisma:studio": "prisma studio --config prisma7.config.ts"
     },
     "keywords": [],
     "author": "",

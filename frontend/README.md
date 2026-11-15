@@ -1,36 +1,28 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Frontend MOAYE SERVICE
 
-## Getting Started
+Interface Next.js 16 / React 19 / TypeScript. Le site écoute sur le port 3000 par défaut et communique avec l’API Express de `backend/`.
 
-First, run the development server:
+## Démarrage local
 
-```bash
+```powershell
+npm ci
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Ouvrir <http://localhost:3000>. Le backend et PostgreSQL sont nécessaires aux parcours de compte et de données. Les routes serveur Next.js sont dans `app/api/`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## URLs API optionnelles
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `MOAYE_API_URL` est utilisé côté serveur, par défaut `http://localhost:4000/api`.
+- `NEXT_PUBLIC_API_URL` est lu par le client API frontend, par défaut `http://localhost:4000`. Cette valeur est publique; ne jamais y placer un secret.
 
-## Learn More
+Créer `frontend/.env.local` seulement si les valeurs par défaut ne conviennent pas, puis redémarrer Next.js. Garder les secrets dans le backend.
 
-To learn more about Next.js, take a look at the following resources:
+## Commandes
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- `npm run dev` : développement.
+- `npm run lint` : ESLint.
+- `npm run build` : compilation de production.
+- `npm start` : servir la compilation construite.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Lire `AGENTS.md` avant toute modification Next.js et consulter le [guide complet du projet](../docs/PROJET_ET_FONCTIONNEMENT.md).

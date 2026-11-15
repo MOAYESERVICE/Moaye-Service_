@@ -9,8 +9,8 @@ export const metadata = { title: "Expertise aquaculture — MOAYE SERVICE" };
 
 export default function ExpertisePage() {
   return (
-    <main>
-      <section className="page-hero">
+    <main className="service-focus service-focus--aquaculture">
+      <section className="page-hero service-focus-hero">
         <div className="wrap page-hero-inner">
           <div className="stack">
             <span className="tag">Expertise</span>
