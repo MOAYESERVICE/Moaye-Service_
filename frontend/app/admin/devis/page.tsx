@@ -2,7 +2,6 @@
 import { useCallback, useEffect, useState } from "react";
 import RoleGuard from "@/components/admin/RoleGuard";
 import StatusSelect from "@/components/admin/StatusSelect";
-import Pill from "@/components/portal/Pill";
 import { useAdmin } from "@/hooks/useAdmin";
 import { getQuotes, updateQuoteStatus } from "@/lib/api";
 import { norm } from "@/lib/format";
@@ -22,28 +21,24 @@ type Quote = {
   createdAt: string;
 };
 
-const STAGES = ["PENDING", "ACCEPTED", "REJECTED", "EXPIRED"] as const;
+const STAGES = [
+  { id: "PENDING", label: "En attente", hint: "À examiner", tone: "pending" },
+  { id: "ACCEPTED", label: "Acceptés", hint: "Demandes validées", tone: "accepted" },
+  { id: "REJECTED", label: "Rejetés", hint: "Demandes refusées", tone: "rejected" },
+  { id: "EXPIRED", label: "Expirés", hint: "Sans suite", tone: "expired" },
+] as const;
 
 const OPTIONS = [
   { id: "PENDING", label: "En attente" },
   { id: "ACCEPTED", label: "Accepté" },
   { id: "REJECTED", label: "Rejeté" },
   { id: "EXPIRED", label: "Expiré" },
-];
+] as const;
 
-const STATUS_TONE: Record<string, "in" | "pr" | "out" | "n"> = {
-  PENDING: "out",
-  ACCEPTED: "in",
-  REJECTED: "pr",
-  EXPIRED: "pr",
-};
-
-const STATUS_LABEL: Record<string, string> = {
-  PENDING: "En attente",
-  ACCEPTED: "Accepté",
-  REJECTED: "Rejeté",
-  EXPIRED: "Expiré",
-};
+function formatDate(value: string) {
+  const date = new Date(value);
+  return Number.isNaN(date.getTime()) ? "Date inconnue" : new Intl.DateTimeFormat("fr-FR", { day: "2-digit", month: "short", year: "numeric" }).format(date);
+}
 
 export default function AdminDevis() {
   const { q, flash } = useAdmin();
@@ -66,9 +61,7 @@ export default function AdminDevis() {
 
   useEffect(() => {
     const controller = new AbortController();
-    const initialLoad = window.setTimeout(() => {
-      void refreshQuotes(controller.signal);
-    }, 0);
+    const initialLoad = window.setTimeout(() => { void refreshQuotes(controller.signal); }, 0);
     const refreshWhenVisible = () => {
       if (document.visibilityState === "visible") void refreshQuotes();
     };
@@ -85,93 +78,58 @@ export default function AdminDevis() {
   const handleStatusChange = async (id: string, newStatus: string) => {
     try {
       await updateQuoteStatus(id, newStatus);
-      setQuotes((prev) =>
-        prev.map((quote) =>
-          quote.id === id ? { ...quote, status: newStatus as Quote["status"] } : quote,
-        ),
-      );
+      setQuotes((previous) => previous.map((quote) => quote.id === id ? { ...quote, status: newStatus as Quote["status"] } : quote));
       flash("Statut mis à jour.");
     } catch (err) {
       flash(err instanceof Error ? err.message : "Erreur lors de la mise à jour");
     }
   };
 
-  const list = quotes.filter(
-    (quote) =>
-      norm(q) === "" || norm(`${quote.title} ${quote.description}`).includes(norm(q)),
+  const list = quotes.filter((quote) =>
+    norm(q) === "" || norm(`${quote.title} ${quote.description} ${quote.contactName ?? ""} ${quote.location ?? ""}`).includes(norm(q)),
   );
 
   return (
     <RoleGuard module="quotes">
-      <div className="pt-quotes">
-        {loading && <div className="pt-muted">Chargement des devis...</div>}
-        {error && <div style={{ color: "red" }}>{error}</div>}
+      <main className="pt-quote-page">
+        <header className="pt-quote-heading">
+          <div>
+            <span className="pt-quote-eyebrow">RELATION CLIENT</span>
+            <h2>Suivi des devis</h2>
+            <p>Centralisez les demandes et mettez à jour leur statut au fil du traitement.</p>
+          </div>
+          <div className="pt-quote-total"><strong>{loading ? "—" : quotes.length}</strong><span>demande{quotes.length > 1 ? "s" : ""} au total</span></div>
+        </header>
 
-        {!loading && !error && STAGES.map((status) => {
-          const items = list.filter((quote) => quote.status === status);
-          return (
-            <section
-              key={status}
-              className="pt-panel pt-pp pt-col"
-              aria-label={STATUS_LABEL[status]}
-            >
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                }}
-              >
-                <Pill tone={STATUS_TONE[status]}>{STATUS_LABEL[status]}</Pill>
-                <strong>{items.length}</strong>
-              </div>
+        <section className="pt-quote-stats" aria-label="Résumé des devis">
+          {STAGES.map((stage) => {
+            const count = quotes.filter((quote) => quote.status === stage.id).length;
+            return <article key={stage.id} className={`pt-quote-stat ${stage.tone}`}>
+              <div><span>{stage.label}</span><strong>{loading ? "—" : count}</strong></div>
+              <small>{stage.hint}</small>
+            </article>;
+          })}
+        </section>
 
-              {items.map((quote) => (
-                <article key={quote.id} className="pt-panel pt-card">
-                  <strong style={{ lineHeight: 1.3 }}>{quote.title}</strong>
-                  <span style={{ fontSize: 13.5, color: "#5B726B" }}>
-                    {quote.id} · Montant du devis : {quote.price ? `${quote.price.toLocaleString("fr-FR")} FCFA` : "À établir"}
-                  </span>
-                  {(quote.contactName || quote.contactEmail || quote.contactPhone || quote.location || quote.budgetRange) && (
-                    <div style={{ fontSize: 13.5, color: "#355B50", lineHeight: 1.6 }}>
-                      {quote.contactName && <div>Demandeur : {quote.contactName}</div>}
-                      {quote.contactEmail && <div>E-mail : <a href={`mailto:${quote.contactEmail}`}>{quote.contactEmail}</a></div>}
-                      {quote.contactPhone && <div>Téléphone : <a href={`tel:${quote.contactPhone}`}>{quote.contactPhone}</a></div>}
-                      {quote.location && <div>Localisation : {quote.location}</div>}
-                      {quote.budgetRange && <div>Budget annoncé : {quote.budgetRange}</div>}
-                    </div>
-                  )}
-                  <p style={{ margin: "8px 0 0 0", fontSize: 14 }}>
-                    {quote.description}
-                  </p>
-                  <span
-                    style={{
-                      fontSize: 12,
-                      color: "#999",
-                      marginTop: "8px",
-                      display: "block",
-                    }}
-                  >
-                    Créé le: {new Date(quote.createdAt).toLocaleDateString("fr-FR")}
-                  </span>
-                  <StatusSelect
-                    label={`Statut du devis ${quote.id}`}
-                    value={quote.status}
-                    options={OPTIONS}
-                    onChange={(v) => handleStatusChange(quote.id, v)}
-                  />
-                </article>
-              ))}
+        {loading && <div className="pt-panel pt-quote-state" role="status">Chargement des demandes…</div>}
+        {error && <div className="pt-panel pt-quote-state error" role="alert"><strong>Impossible de charger les devis</strong><span>{error}</span><button className="btn btn-ghost btn-sm" onClick={() => { setLoading(true); void refreshQuotes(); }}>Réessayer</button></div>}
 
-              {items.length === 0 && (
-                <span className="pt-muted" style={{ fontSize: 15 }}>
-                  Aucun devis à cette étape.
-                </span>
-              )}
-            </section>
-          );
-        })}
-      </div>
+        {!loading && !error && <section className="pt-panel pt-quote-list">
+          <div className="pt-quote-list-heading"><div><h3>Demandes reçues</h3><p>{list.length} résultat{list.length > 1 ? "s" : ""}{q ? ` pour « ${q} »` : ""}</p></div><span className="pt-quote-live"><i /> Mise à jour automatique</span></div>
+          {list.length ? <div className="pt-quote-table-wrap">
+            <table className="pt-quote-table">
+              <thead><tr><th>Demande</th><th>Client</th><th>Projet</th><th>Reçue le</th><th>Statut</th></tr></thead>
+              <tbody>{list.map((quote) => <tr key={quote.id}>
+                <td data-label="Demande"><div className="pt-quote-request"><strong>{quote.title}</strong><span className="pt-quote-id">Réf. {quote.id}</span><p>{quote.description}</p></div></td>
+                <td data-label="Client"><div className="pt-quote-client"><strong>{quote.contactName || "Client"}</strong>{quote.contactEmail && <a href={`mailto:${quote.contactEmail}`}>{quote.contactEmail}</a>}{quote.contactPhone && <a href={`tel:${quote.contactPhone}`}>{quote.contactPhone}</a>}</div></td>
+                <td data-label="Projet"><div className="pt-quote-project">{quote.location && <span>{quote.location}</span>}{quote.budgetRange && <span>Budget : {quote.budgetRange}</span>}<strong>{quote.price ? `${quote.price.toLocaleString("fr-FR")} FCFA` : "Montant à établir"}</strong></div></td>
+                <td data-label="Reçue le"><span className="pt-quote-date">{formatDate(quote.createdAt)}</span></td>
+                <td data-label="Statut"><StatusSelect label={`Statut du devis ${quote.id}`} value={quote.status} options={[...OPTIONS]} onChange={(value) => void handleStatusChange(quote.id, value)} /></td>
+              </tr>)}</tbody>
+            </table>
+          </div> : <div className="pt-quote-empty"><span aria-hidden="true">✓</span><strong>{q ? "Aucun résultat" : "Aucune demande pour le moment"}</strong><p>{q ? "Essaie un autre terme de recherche." : "Les nouveaux devis apparaîtront ici dès leur réception."}</p></div>}
+        </section>}
+      </main>
     </RoleGuard>
   );
 }
