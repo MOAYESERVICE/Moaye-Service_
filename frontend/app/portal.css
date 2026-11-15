@@ -446,3 +446,57 @@
   .pt-step{width:30px;height:30px;flex:none}
   .pt-steps li>span:last-child strong{font-size:13px!important}
 }
+
+/* Administration desktop: navigation compacte et espace de travail mieux utilise. */
+@media (min-width: 961px) {
+  .pt-admin-app {
+    display: grid;
+    grid-template-columns: 248px minmax(0, 1fr);
+    align-items: start;
+  }
+  .pt-admin-app > .pt-side.dark {
+    position: sticky;
+    top: 0;
+    width: 248px;
+    height: 100vh;
+    min-height: 100vh;
+    overflow-y: auto;
+    flex: none;
+    padding: 20px 12px;
+  }
+  .pt-admin-app > .pt-main {
+    width: 100%;
+    min-width: 0;
+  }
+  .pt-admin-app > .pt-main > .pt-content {
+    width: 100%;
+    max-width: 1440px;
+    margin-inline: auto;
+    padding: 26px clamp(22px, 2vw, 32px);
+    gap: 20px;
+  }
+  .pt-admin-app .pt-dashboard {
+    gap: 19px;
+  }
+  .pt-admin-app .pt-dashboard-kpis,
+  .pt-admin-app .pt-dashboard-primary,
+  .pt-admin-app .pt-dashboard-secondary {
+    gap: 14px;
+  }
+  .pt-admin-app .pt-dashboard-kpis .pt-kpi {
+    padding: 17px;
+  }
+}
+@media (max-width: 960px) {
+  .pt-admin-app {
+    display: flex;
+    flex-direction: column;
+  }
+  .pt-admin-app > .pt-side.dark {
+    position: relative;
+    width: auto;
+    height: auto;
+    min-height: 0;
+    overflow: visible;
+  }
+}

@@ -13,7 +13,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
 
   return (
     <AdminProvider>
-      <div className="pt-app">
+      <div className="pt-app pt-admin-app">
         <Sidebar />
         <div className="pt-main">
           <TopBar />
