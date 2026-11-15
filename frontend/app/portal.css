@@ -708,3 +708,39 @@
   .pt-realisation-form-footer>div{display:grid;grid-template-columns:1fr}
   .pt-realisation-form-footer .btn{width:100%}
 }
+
+/* Alignement de la typographie des devis sur les autres écrans admin. */
+.pt-quote-stat>div span{font-size:14px}
+.pt-quote-stat>div strong{font-size:25px}
+.pt-quote-stat small{font-size:12px}
+.pt-quote-list-heading h3{font-size:19px}
+.pt-quote-list-heading p{font-size:13px}
+.pt-quote-live{font-size:12px}
+.pt-quote-table th{padding:13px 16px;font-size:11.5px}
+.pt-quote-table td{padding:17px 16px}
+.pt-quote-request>strong,.pt-quote-client>strong{font-size:15px}
+.pt-quote-id{font-size:12px}
+.pt-quote-request p{max-width:340px;font-size:13px;line-height:1.5}
+.pt-quote-client a{max-width:220px;font-size:12.5px}
+.pt-quote-project span{font-size:13px;line-height:1.5}
+.pt-quote-project strong{font-size:13px}
+.pt-quote-date{font-size:12.5px}
+.pt-quote-table .pt-sel{min-height:42px;font-size:13px}
+@media(max-width:700px){
+  .pt-quote-stat>div span{font-size:12px}
+  .pt-quote-stat>div strong{font-size:22px}
+  .pt-quote-stat small{font-size:11px}
+  .pt-quote-list-heading h3{font-size:17px}
+  .pt-quote-table td{padding:9px 0}
+  .pt-quote-table td::before{font-size:9px}
+  .pt-quote-request>strong,.pt-quote-client>strong{font-size:13.5px}
+  .pt-quote-id{font-size:11px}
+  .pt-quote-request p{font-size:12px;line-height:1.5}
+  .pt-quote-client a{font-size:12px}
+  .pt-quote-project span,.pt-quote-project strong{font-size:12px}
+  .pt-quote-date{font-size:12px}
+  .pt-quote-table .pt-sel{min-height:40px;font-size:12.5px}
+}
+
+@media(max-width:700px){.pt-quote-live{font-size:0}}
+
