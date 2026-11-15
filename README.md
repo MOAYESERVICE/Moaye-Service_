@@ -4,6 +4,7 @@ Application web de présentation et de gestion des activités agropastorales : c
 
 ## Documentation
 
+- [Bilan global — état au 15 novembre 2026](docs/BILAN_GLOBAL_2026-11-15.md)
 - [Guide complet du projet](docs/PROJET_ET_FONCTIONNEMENT.md)
 - [Guide du frontend](frontend/README.md)
 - [Guide du backend](backend/README.md)
