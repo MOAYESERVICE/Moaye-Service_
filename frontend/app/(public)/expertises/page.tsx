@@ -19,8 +19,8 @@ const accompagnements = [
   {
     title: "Formation des producteurs",
     desc: "Renforcez les pratiques de vos équipes grâce à des conseils techniques adaptés aux réalités du terrain.",
-    image: "/photos/poultry-farming.webp",
-    alt: "Producteurs au travail dans un bâtiment d'élevage avicole lors d'un accompagnement de terrain",
+    image: "/photos/formation-producteurs.png",
+    alt: "Des producteurs réunis en séance de formation et d'accompagnement technique",
   },
   {
     title: "Suivi technique et sanitaire",
