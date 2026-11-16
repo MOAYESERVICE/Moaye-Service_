@@ -6,6 +6,24 @@ import Logo from "@/components/layout/Logo";
 import { menu, roleLabels } from "@/data/admin";
 import { useAdmin } from "@/hooks/useAdmin";
 import { logout } from "@/lib/auth";
+import Icon from "@/components/ui/Icon";
+import { ICONS } from "@/components/portal/icons";
+
+const adminIcons: Record<string, string> = {
+  dash: ICONS.dash,
+  products: ICONS.catalog,
+  categories: ICONS.catalog,
+  services: ICONS.assistant,
+  expertises: ICONS.assistant,
+  realisations: ICONS.chart,
+  photos: ICONS.catalog,
+  partenaires: ICONS.profile,
+  orders: ICONS.orders,
+  clients: ICONS.profile,
+  quotes: ICONS.quotes,
+  messages: ICONS.messages,
+  users: ICONS.profile,
+};
 
 export default function Sidebar() {
   const pathname = usePathname();
@@ -63,6 +81,7 @@ export default function Sidebar() {
                 const n = badge[i.id] ?? 0;
                 return (
                   <Link key={i.id} href={i.href} className={active ? "pt-nv on" : "pt-nv"} aria-current={active ? "page" : undefined} onClick={() => setMobileOpen(false)}>
+                    <span className="pt-admin-nav-icon"><Icon d={adminIcons[i.id] ?? ICONS.catalog} size={22} /></span>
                     <span>{i.label}</span>
                     {n > 0 && <span className="pt-nb">{n}</span>}
                   </Link>
