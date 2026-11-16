@@ -103,9 +103,11 @@ a{color:var(--green)} a:hover{color:var(--green-dark)}
 }
 .product-order-message{margin:8px 0 0;text-align:center;color:var(--green-dark);font-size:15px;line-height:1.6;font-weight:500}
 .project-card-title{font-size:20px;font-weight:700}
+.projects-section-cta{display:flex;justify-content:center;margin-top:28px}
 .project-card-title a{color:var(--ink);text-decoration:none}
 .project-card-title a:hover{color:var(--green-dark);text-decoration:none}
 .project-card-title a:focus-visible{outline:2px solid var(--green);outline-offset:3px;border-radius:3px}
+@media(max-width:640px){.projects-section-cta{margin-top:20px}.projects-section-cta .btn{width:100%;max-width:340px}}
 .realisation-card,.realisation-card .pic-box{border-radius:0}
 .method-step-card{border-radius:8px;transition:box-shadow .18s ease,border-color .18s ease}
 .method-step-card:hover{transform:none;box-shadow:0 8px 18px rgba(14,42,38,.07)}
@@ -311,10 +313,16 @@ a{color:var(--green)} a:hover{color:var(--green-dark)}
 
 /* Expertise */
 .page-hero{background:var(--mist)}
+.realisations-hero{position:relative;overflow:hidden;background-color:var(--ink);background-image:linear-gradient(90deg,rgba(10,36,32,.84) 0%,rgba(10,36,32,.72) 48%,rgba(10,36,32,.35) 100%),url("/realisations-elevage.jpg");background-position:center 35%;background-size:cover;color:#fff}
+.realisations-hero .wrap{position:relative;z-index:1;max-width:1440px;padding-top:28px!important;padding-bottom:32px!important}
+.realisations-hero .tag{align-self:flex-start;border-color:rgba(255,255,255,.32);background:rgba(255,255,255,.94);color:var(--green-dark)}
+.realisations-hero h1{max-width:24ch;color:#fff;font-size:clamp(36px,4.4vw,58px);line-height:1.04;letter-spacing:-.035em;text-wrap:balance}
+.realisations-hero p{max-width:58ch;color:rgba(255,255,255,.9);font-size:clamp(16px,1.5vw,21px);line-height:1.65}
 .page-hero-inner{display:flex;flex-wrap:wrap;align-items:center;gap:48px;padding-top:56px;padding-bottom:64px}
 .page-hero-inner > *{flex:1 1 420px;min-width:0}
 .page-hero h1{font-size:clamp(34px,4.6vw,54px);line-height:1.05;font-weight:700}
 .page-hero p{margin:0;font-size:18px;line-height:1.6;color:var(--muted);max-width:560px}
+@media(max-width:640px){.realisations-hero{background-image:linear-gradient(90deg,rgba(10,36,32,.82),rgba(10,36,32,.58)),url("/realisations-elevage.jpg");background-position:center 48%}.realisations-hero .wrap{padding-top:24px!important;padding-bottom:28px!important}.realisations-hero h1{max-width:20ch;font-size:clamp(32px,8.5vw,40px)}}
 .quote-hero{background-color:var(--ink);background-image:linear-gradient(90deg,rgba(14,42,38,.84) 0%,rgba(14,42,38,.68) 48%,rgba(14,42,38,.5) 100%),url("/parlonPRojet.jpg");background-position:center 55%;background-size:cover;background-repeat:no-repeat;color:#fff}
 .quote-hero .tag{background:rgba(255,255,255,.92);border-color:rgba(255,255,255,.76);color:var(--green-dark)}
 .quote-hero h1{color:#fff}
@@ -563,7 +571,7 @@ textarea.inp{padding:12px 16px;min-height:150px;resize:vertical;line-height:1.5}
 @media(max-width:420px){
   .auth-page:has(.auth-shell-customer){padding:14px 12px}
   .auth-aside{min-height:180px;padding:18px 20px}
-  .auth-aside-content{padding:18px 0 0}
+  .auth-aside-content{padding:18px 0 12px}
   .auth-aside-content h2{max-width:20ch;font-size:22px}
   .auth-aside-content ul,.auth-aside-foot{display:none}
   .auth-panel{padding:26px 22px}

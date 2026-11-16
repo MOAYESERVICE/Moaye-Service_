@@ -25,11 +25,11 @@ async function RealisationsList() {
 export default function RealisationsPage() {
   return (
     <main>
-      <section className="page-hero">
+      <section className="page-hero realisations-hero">
         <div className="wrap stack" style={{ paddingTop: 44, paddingBottom: 44, gap: 14 }}>
-          <span className="tag">Réalisations</span>
-          <h1>Des interventions dans l’agriculture, l’élevage et l’aquaculture</h1>
-          <p>Découvrez les projets réalisés par notre équipe, en images et avec leurs détails.</p>
+          <span className="tag">Nos réalisations</span>
+          <h1>Des projets concrets au service du monde rural</h1>
+          <p>De l’élevage à l’aquaculture, découvrez le savoir-faire de nos équipes sur le terrain.</p>
         </div>
       </section>
       <section className="section"><Suspense fallback={<p className="wrap muted" role="status">Chargement des réalisations…</p>}><RealisationsList /></Suspense></section>
