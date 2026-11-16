@@ -20,15 +20,60 @@ const realizationSchema = z.object({
   isPublished: z.boolean(),
 }).strict();
 
+const realizationPhotoSchema = z.object({
+  imageUrl: z.string().trim().min(1).max(500).refine(
+    (value) => value.startsWith("/") && !value.startsWith("//") && !value.includes(".."),
+    "La photo doit être envoyée depuis l’administration.",
+  ),
+  caption: z.string().trim().min(2).max(200),
+  imageAlt: z.string().trim().min(3).max(250),
+  isPublished: z.boolean(),
+}).strict();
+
 const toResponse = ({ id, title, description, domain, location, imageUrl, imageAlt, isPublished, createdAt, updatedAt }) => ({
   id: String(id), title, description, domain, location: location ?? "", imageUrl,
   imageAlt: imageAlt || title, isPublished, createdAt, updatedAt,
+});
+
+const toPhotoResponse = ({ id, imageUrl, caption, imageAlt, isPublished, createdAt, updatedAt }) => ({
+  id: String(id), imageUrl, caption, imageAlt, isPublished, createdAt, updatedAt,
 });
 
 function parseId(value) {
   const id = Number(value);
   return Number.isSafeInteger(id) && id > 0 ? id : null;
 }
+
+router.get("/photos", async (_req, res) => {
+  const rows = await prisma.realizationPhoto.findMany({
+    where: { isPublished: true },
+    orderBy: [{ createdAt: "desc" }, { id: "desc" }],
+  });
+  res.json({ success: true, data: rows.map(toPhotoResponse) });
+});
+
+router.get("/photos/admin", requireAuth, requireRole("ADMIN"), async (_req, res) => {
+  const rows = await prisma.realizationPhoto.findMany({
+    orderBy: [{ createdAt: "desc" }, { id: "desc" }],
+  });
+  res.json({ success: true, data: rows.map(toPhotoResponse) });
+});
+
+router.post("/photos", requireAuth, requireRole("ADMIN"), validateBody(realizationPhotoSchema), async (req, res) => {
+  const row = await prisma.realizationPhoto.create({ data: req.body });
+  res.status(201).json({ success: true, data: toPhotoResponse(row) });
+});
+
+router.delete("/photos/:photoId", requireAuth, requireRole("ADMIN"), async (req, res) => {
+  const id = parseId(req.params.photoId);
+  if (!id) return res.status(400).json({ success: false, message: "Identifiant de photo invalide." });
+  const row = await prisma.realizationPhoto.delete({ where: { id } }).catch((error) => {
+    if (error?.code === "P2025") return null;
+    throw error;
+  });
+  if (!row) return res.status(404).json({ success: false, message: "Photo introuvable." });
+  return res.json({ success: true, data: toPhotoResponse(row) });
+});
 
 // Seules les réalisations publiées avec photo sont visibles sur le site public.
 router.get("/", async (_req, res) => {

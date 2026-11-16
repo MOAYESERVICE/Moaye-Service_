@@ -5,11 +5,14 @@ const register = jest.fn((_req, res) => res.status(201).json({ success: true }))
 
 jest.unstable_mockModule("../src/modules/auth/auth.controller.js", () => ({
   currentUser: jest.fn(),
+  changePassword: jest.fn(),
   login,
   logout: jest.fn(),
   logoutAll: jest.fn(),
+  requestPasswordReset: jest.fn(),
   refresh: jest.fn(),
   register,
+  resetPassword: jest.fn(),
 }));
 jest.unstable_mockModule("../src/middlewares/auth.middleware.js", () => ({
   requireAuth: jest.fn((_req, _res, next) => next()),
@@ -27,7 +30,7 @@ app.use(express.json(), authRouter);
 
 describe("authentication rate limits", () => {
   it("limits repeated login attempts without blocking registration", async () => {
-    const credentials = { email: "client@example.com", password: "example-password" };
+    const credentials = { email: "client@example.com", password: "1234" };
 
     for (let attempt = 1; attempt <= 10; attempt += 1) {
       await request(app).post("/login").send(credentials).expect(200);
@@ -47,7 +50,7 @@ describe("authentication rate limits", () => {
         name: "Client Test",
         email: "client@example.com",
         phone: "+2250102030405",
-        password: "example-password",
+        password: "1234",
       })
       .expect(201);
   });

@@ -206,6 +206,19 @@ model Realization {
 
   @@index([isPublished, createdAt])
 }
+
+model RealizationPhoto {
+  id          Int      @id @default(autoincrement())
+  imageUrl    String
+  caption     String
+  imageAlt    String
+  isPublished Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([isPublished, createdAt])
+}
+
 model HomepagePhoto {
   id         Int      @id @default(autoincrement())
   productKey String   @unique

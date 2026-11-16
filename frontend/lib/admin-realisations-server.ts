@@ -4,7 +4,7 @@ import { sessionCookieName } from "@/lib/server-auth";
 
 const configuredApi = (process.env.MOAYE_API_URL ?? "http://localhost:4000/api").replace(/\/+$/, "");
 
-export async function forwardAdminRealisations(request: Request, method: "GET" | "POST" | "PUT" | "DELETE", id?: string) {
+export async function forwardAdminRealisations(request: Request, method: "GET" | "POST" | "PUT" | "DELETE", id?: string, resource: "projects" | "photos" = "projects") {
   const token = (await cookies()).get(sessionCookieName)?.value;
   if (!token) {
     return NextResponse.json({ success: false, message: "Session expirée. Reconnectez-vous, puis réessayez." }, { status: 401 });
@@ -19,7 +19,9 @@ export async function forwardAdminRealisations(request: Request, method: "GET" |
     }
   }
 
-  const path = id ? `/realisations/${encodeURIComponent(id)}` : method === "GET" ? "/realisations/admin" : "/realisations";
+  const path = resource === "photos"
+    ? id ? `/realisations/photos/${encodeURIComponent(id)}` : method === "GET" ? "/realisations/photos/admin" : "/realisations/photos"
+    : id ? `/realisations/${encodeURIComponent(id)}` : method === "GET" ? "/realisations/admin" : "/realisations";
   let upstream: Response;
   try {
     upstream = await fetch(`${configuredApi}${path}`, {

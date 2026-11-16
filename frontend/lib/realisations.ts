@@ -14,6 +14,16 @@ const realizationSchema = z.object({
 
 export type PublicRealisation = z.infer<typeof realizationSchema>;
 
+const realizationPhotoSchema = z.object({
+  id: z.string(),
+  imageUrl: z.string().startsWith("/"),
+  caption: z.string(),
+  imageAlt: z.string(),
+  isPublished: z.boolean(),
+});
+
+export type PublicRealisationPhoto = z.infer<typeof realizationPhotoSchema>;
+
 const fallbackProjects: PublicRealisation[] = existingProjects.map((project) => ({
   id: project.slug,
   title: project.title,
@@ -41,5 +51,17 @@ export async function getPublishedRealisations(): Promise<PublicRealisation[]> {
   } catch {
     // Garde les réalisations actuelles visibles si l’API est momentanément indisponible.
     return fallbackProjects;
+  }
+}
+
+export async function getPublishedRealisationPhotos(): Promise<PublicRealisationPhoto[]> {
+  try {
+    const response = await fetch(endpoint("realisations/photos"), { cache: "no-store" });
+    if (!response.ok) return [];
+    const payload: unknown = await response.json();
+    const parsed = z.object({ success: z.literal(true), data: z.array(realizationPhotoSchema) }).safeParse(payload);
+    return parsed.success ? parsed.data.data : [];
+  } catch {
+    return [];
   }
 }

@@ -23,6 +23,20 @@ jest.unstable_mockModule("../src/modules/users/user.repository.js", () => ({
   createUser: jest.fn(),
   findUserByEmail: jest.fn(),
   findUserById,
+  replaceUserPassword: jest.fn(),
+}));
+jest.unstable_mockModule("../src/modules/auth/passwordReset.repository.js", () => ({
+  consumePasswordResetToken: jest.fn(),
+  createPasswordResetToken: jest.fn(),
+  deleteExpiredPasswordResetTokens: jest.fn(),
+  deletePasswordResetTokenByHash: jest.fn(),
+  deletePasswordResetTokensForUser: jest.fn(),
+  findRecentPasswordResetToken: jest.fn(),
+}));
+jest.unstable_mockModule("../src/modules/auth/password-reset-email.service.js", () => ({
+  isPasswordResetEmailConfigured: jest.fn(),
+  sendPasswordChangedEmail: jest.fn(),
+  sendPasswordResetEmail: jest.fn(),
 }));
 jest.unstable_mockModule("../src/modules/auth/refreshToken.repository.js", () => ({
   createRefreshToken: jest.fn(),

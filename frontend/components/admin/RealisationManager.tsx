@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { uploadAdminProductImage } from "@/lib/api";
 import RoleGuard from "@/components/admin/RoleGuard";
+import RealisationPhotoGallery from "@/components/admin/RealisationPhotoGallery";
 
 type Realisation = {
   id: string;
@@ -41,20 +42,28 @@ export default function RealisationManager() {
   const [error, setError] = useState("");
   const editorRef = useRef<HTMLFormElement>(null);
 
-  const load = useCallback(async () => {
-    setLoading(true);
-    setLoadError("");
-    try {
-      const response = await fetch("/api/admin/realisations", { cache: "no-store" });
-      setItems(await readPayload<Realisation[]>(response));
-    } catch (reason) {
-      setLoadError(reason instanceof Error ? reason.message : "Les réalisations ne sont pas disponibles.");
-    } finally {
-      setLoading(false);
-    }
+  const load = useCallback(async (signal?: AbortSignal) => {
+    const response = await fetch("/api/admin/realisations", { cache: "no-store", signal });
+    return readPayload<Realisation[]>(response);
   }, []);
 
-  useEffect(() => { void load(); }, [load]);
+  useEffect(() => {
+    const controller = new AbortController();
+    let active = true;
+    void load(controller.signal)
+      .then((nextItems) => { if (active) { setItems(nextItems); setLoadError(""); } })
+      .catch((reason) => { if (active && !(reason instanceof Error && reason.name === "AbortError")) setLoadError(reason instanceof Error ? reason.message : "Les réalisations ne sont pas disponibles."); })
+      .finally(() => { if (active) setLoading(false); });
+    return () => { active = false; controller.abort(); };
+  }, [load]);
+
+  async function reload() {
+    setLoading(true);
+    setLoadError("");
+    try { setItems(await load()); }
+    catch (reason) { setLoadError(reason instanceof Error ? reason.message : "Les réalisations ne sont pas disponibles."); }
+    finally { setLoading(false); }
+  }
   useEffect(() => {
     if (!editorOpen) return;
     const frame = requestAnimationFrame(() => editorRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }));
@@ -154,7 +163,7 @@ export default function RealisationManager() {
               <button className="btn btn-amber" type="button" onClick={startCreate}>+ Ajouter un projet</button>
             </header>
             {loading ? <p className="pt-muted pt-realisation-state" role="status">Chargement des réalisations…</p> : loadError ? (
-              <div className="pt-realisation-state" role="alert"><p className="err">{loadError}</p><button className="btn btn-ghost btn-sm" type="button" onClick={() => void load()}>Réessayer</button></div>
+              <div className="pt-realisation-state" role="alert"><p className="err">{loadError}</p><button className="btn btn-ghost btn-sm" type="button" onClick={() => void reload()}>Réessayer</button></div>
             ) : items.length === 0 ? <p className="pt-muted pt-realisation-state">Aucun projet enregistré. Ajoute une première réalisation pour la présenter sur le site.</p> : (
               <div className="pt-realisation-list">
                 {items.map((item) => (
@@ -194,6 +203,7 @@ export default function RealisationManager() {
           </form>
         )}
       </div>
+      <RealisationPhotoGallery />
     </RoleGuard>
   );
 }
