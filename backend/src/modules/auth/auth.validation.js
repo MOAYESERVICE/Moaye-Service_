@@ -43,7 +43,8 @@ export const forgotPasswordSchema = z
 
 export const resetPasswordSchema = z
   .object({
-    token: z.string().regex(/^[a-f0-9]{64}$/i),
+    email: z.string().trim().toLowerCase().email().max(254),
+    code: z.string().regex(/^\d{6}$/, "Le code reçu par e-mail doit contenir 6 chiffres."),
     password: passwordInputSchema,
   })
   .strict()

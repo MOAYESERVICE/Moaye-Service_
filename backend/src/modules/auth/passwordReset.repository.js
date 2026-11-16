@@ -28,19 +28,32 @@ export function deletePasswordResetTokenByHash(tokenHash) {
   return prisma.passwordResetToken.deleteMany({ where: { tokenHash } })
 }
 
-export async function consumePasswordResetToken(tokenHash, passwordHash) {
+export async function consumePasswordResetToken(email, tokenHash, passwordHash) {
   try {
     return await prisma.$transaction(async (tx) => {
       const now = new Date()
-      const reset = await tx.passwordResetToken.findUnique({
-        where: { tokenHash },
+      const reset = await tx.passwordResetToken.findFirst({
+        where: {
+          user: { email },
+          usedAt: null,
+          expiresAt: { gt: now },
+        },
+        orderBy: { createdAt: "desc" },
         include: { user: { select: { id: true, email: true, isActive: true } } },
       })
 
-      if (!reset || reset.usedAt || reset.expiresAt <= now || !reset.user.isActive) return null
+      if (!reset || !reset.user.isActive || reset.attempts >= 5) return null
+
+      if (reset.tokenHash !== tokenHash) {
+        await tx.passwordResetToken.updateMany({
+          where: { id: reset.id, usedAt: null, expiresAt: { gt: now }, attempts: { lt: 5 } },
+          data: { attempts: { increment: 1 } },
+        })
+        return null
+      }
 
       const claimed = await tx.passwordResetToken.updateMany({
-        where: { id: reset.id, usedAt: null, expiresAt: { gt: now } },
+        where: { id: reset.id, usedAt: null, expiresAt: { gt: now }, attempts: { lt: 5 }, tokenHash },
         data: { usedAt: now },
       })
       if (claimed.count !== 1) return null

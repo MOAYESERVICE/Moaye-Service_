@@ -63,8 +63,8 @@ export async function forgotPassword(data: ForgotData): Promise<void> {
   await requestAuth("forgot-password", { email: data.email })
 }
 
-export async function resetPassword(data: ResetData, token: string): Promise<void> {
-  await requestAuth("reset-password", { token, password: data.password })
+export async function resetPassword(data: ResetData): Promise<void> {
+  await requestAuth("reset-password", { email: data.email, code: data.code, password: data.password })
 }
 
 export async function logout(): Promise<void> {

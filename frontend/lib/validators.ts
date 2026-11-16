@@ -47,7 +47,12 @@ export const forgotSchema = z.object({
 });
 
 export const resetSchema = z
-  .object({ password: passwordRule, confirm: z.string().min(1, "Veuillez confirmer votre mot de passe.") })
+  .object({
+    email: z.string().trim().email("Veuillez saisir une adresse e-mail valide."),
+    code: z.string().regex(/^\d{6}$/, "Le code reçu par e-mail doit contenir 6 chiffres."),
+    password: passwordRule,
+    confirm: z.string().min(1, "Veuillez confirmer votre mot de passe."),
+  })
   .refine((d) => d.password === d.confirm, { message: "Les mots de passe saisis ne correspondent pas.", path: ["confirm"] });
 
 export const changePasswordSchema = z

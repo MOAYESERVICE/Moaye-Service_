@@ -8,7 +8,7 @@ export default function MotDePasseOubliePage() {
   return (
     <AuthShell
       title="Mot de passe oublié"
-      subtitle="Saisissez l’adresse e-mail associée à votre compte pour demander la réinitialisation de votre mot de passe."
+      subtitle="Saisissez l’adresse e-mail associée à votre compte pour recevoir un code de réinitialisation."
       footer={<Link href="/connexion">← Retour à la connexion</Link>}
     >
       <ForgotForm />

@@ -62,10 +62,10 @@ authRouter.post("/login", loginLimiter, validateBody(loginSchema), login)
 // La vérification de l'ancien mot de passe précède tout changement de session.
 authRouter.post("/change-password", changePasswordLimiter, validateBody(changePasswordSchema), changePassword)
 
-// Envoie un lien de récupération sans révéler si l'adresse existe.
+// Envoie un code de récupération sans révéler si l'adresse existe.
 authRouter.post("/forgot-password", forgotPasswordLimiter, validateBody(forgotPasswordSchema), requestPasswordReset)
 
-// Accepte un jeton secret à usage unique pour remplacer le mot de passe.
+// Vérifie le code secret à usage unique et remplace le mot de passe.
 authRouter.post("/reset-password", resetPasswordLimiter, validateBody(resetPasswordSchema), resetPassword)
 
 // GET /me retourne l'utilisateur connecté

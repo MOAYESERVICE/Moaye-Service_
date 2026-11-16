@@ -253,6 +253,7 @@ model PasswordResetToken {
   id        Int       @id @default(autoincrement())
   userId    Int
   tokenHash String    @unique
+  attempts  Int       @default(0)
   expiresAt DateTime
   usedAt    DateTime?
   createdAt DateTime  @default(now())

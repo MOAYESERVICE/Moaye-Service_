@@ -1,5 +1,5 @@
 // Crée les erreurs HTTP prévues par l'application.
-import { createHash, randomBytes } from "node:crypto"
+import { createHmac, randomInt } from "node:crypto"
 import { env } from "../../config/env.js"
 import { logger } from "../../utils/logger.js"
 import { ApiError } from "../../utils/ApiError.js"
@@ -156,49 +156,56 @@ export async function requestPasswordResetUser(email) {
   const recentRequest = await findRecentPasswordResetToken(user.id, cooldownStart)
   if (recentRequest) return
 
-  const token = randomBytes(32).toString("hex")
-  const tokenHash = createHash("sha256").update(token).digest("hex")
-  const expiresAt = new Date(now.getTime() + 30 * 60 * 1000)
+  const code = String(randomInt(0, 1_000_000)).padStart(6, "0")
+  const tokenHash = createHmac("sha256", env.JWT_SECRET)
+    .update(`${user.id}:${code}`)
+    .digest("hex")
+  const expiresAt = new Date(now.getTime() + 10 * 60 * 1000)
 
   await deletePasswordResetTokensForUser(user.id)
   await createPasswordResetToken({ userId: user.id, tokenHash, expiresAt })
 
-  const resetUrl = new URL("/reinitialiser", env.PUBLIC_FRONTEND_URL)
-  resetUrl.searchParams.set("token", token)
-
   try {
-    // Attendre le fournisseur SMTP : ne pas annoncer une demande envoyée
+    // Attendre le fournisseur SMTP : ne pas annoncer un code envoyé
     // tant que le serveur de messagerie ne l'a pas acceptée.
-    await sendPasswordResetEmail(user.email, resetUrl.toString())
+    await sendPasswordResetEmail(user.email, code)
   } catch (error) {
-    logger.error("Échec de l’envoi du lien de réinitialisation", {
+    logger.error("Échec de l’envoi du code de réinitialisation", {
       userId: user.id,
       error: error instanceof Error ? error.message : "Erreur inconnue",
     })
     try {
-      // Un lien non envoyé ne doit pas rester utilisable dans la base.
+      // Un code non envoyé ne doit pas rester utilisable dans la base.
       await deletePasswordResetTokenByHash(tokenHash)
     } catch (cleanupError) {
-      logger.error("Échec de suppression du jeton de réinitialisation non envoyé", {
+      logger.error("Échec de suppression du code de réinitialisation non envoyé", {
         userId: user.id,
         error: cleanupError instanceof Error ? cleanupError.message : "Erreur inconnue",
       })
     }
-    throw ApiError.serviceUnavailable("L’e-mail n’a pas pu être envoyé. Vérifiez la configuration SMTP du serveur puis réessayez.")
+    throw ApiError.serviceUnavailable("Le code n’a pas pu être envoyé. Vérifiez la configuration SMTP du serveur puis réessayez.")
   }
 }
 
-export async function resetPasswordUser({ token, password }) {
-  const tokenHash = createHash("sha256").update(token).digest("hex")
-  const passwordHash = await hashPassword(password)
-  const email = await consumePasswordResetToken(tokenHash, passwordHash)
+export async function resetPasswordUser({ email, code, password }) {
+  const normalizedEmail = email.trim().toLowerCase()
+  const user = await findUserByEmail(normalizedEmail)
+  if (!user || !user.isActive) {
+    throw ApiError.badRequest("Le code est invalide ou expiré. Demandez un nouveau code.")
+  }
 
-  if (!email) {
-    throw ApiError.badRequest("Ce lien est invalide ou expiré. Demandez un nouveau lien de réinitialisation.")
+  const tokenHash = createHmac("sha256", env.JWT_SECRET)
+    .update(`${user.id}:${code}`)
+    .digest("hex")
+  const passwordHash = await hashPassword(password)
+  const consumedEmail = await consumePasswordResetToken(normalizedEmail, tokenHash, passwordHash)
+
+  if (!consumedEmail) {
+    throw ApiError.badRequest("Le code est invalide ou expiré. Vérifiez-le ou demandez un nouveau code.")
   }
 
   void Promise.resolve()
-    .then(() => sendPasswordChangedEmail(email))
+    .then(() => sendPasswordChangedEmail(consumedEmail))
     .catch((error) => {
       logger.error("Échec de l’envoi de l’avis de changement de mot de passe", {
         error: error instanceof Error ? error.message : "Erreur inconnue",

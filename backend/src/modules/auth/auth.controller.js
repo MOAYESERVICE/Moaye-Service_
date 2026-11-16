@@ -44,7 +44,7 @@ export async function requestPasswordReset(req, res) {
 
   res.status(202).json({
     success: true,
-    message: "Si un compte existe avec cette adresse, un e-mail de réinitialisation va être envoyé.",
+    message: "Si un compte existe avec cette adresse, un code de réinitialisation va être envoyé par e-mail.",
   })
 }
 
