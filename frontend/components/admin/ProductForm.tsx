@@ -47,7 +47,7 @@ export default function ProductForm({
   };
 
   return (
-    <form className="pt-panel pt-pp pt-stack" style={{ gap: 16, border: "2px solid #1B6B57" }} onSubmit={handleSubmit(submit)} noValidate>
+    <form className="pt-panel pt-pp pt-stack pt-product-form" style={{ gap: 16, border: "2px solid #1B6B57" }} onSubmit={handleSubmit(submit)} noValidate>
       <h3 className="pt-h3">{initial ? "Modifier le produit" : "Nouveau produit"}</h3>
       <div className="fgroup">
         <label htmlFor="p-name">Nom du produit</label>
@@ -76,7 +76,7 @@ export default function ProductForm({
       <ImageUploader value={image} onChange={(url) => setValue("image", url)} />
       {errors.image && <span className="err" role="alert">{errors.image.message}</span>}
       {saveError && <p className="err" role="alert">{saveError}</p>}
-      <div style={{ display: "flex", gap: 10 }}>
+      <div className="pt-product-form-actions">
         <button className="btn btn-green" type="submit" disabled={isSaving}>
           {isSaving ? "Enregistrement…" : "Enregistrer"}
         </button>
