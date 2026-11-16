@@ -132,8 +132,6 @@ a{color:var(--green)} a:hover{color:var(--green-dark)}
 .realisation-photo-card{display:inline-block;width:100%;break-inside:avoid;overflow:hidden;margin:0 0 20px;padding:10px;border:1px solid var(--line);border-radius:14px;background:#fff;vertical-align:top}
 .realisation-photo-open{position:relative;display:block;width:100%;padding:0;border:0;border-radius:9px;background:#F1F5F2;text-align:left;cursor:zoom-in}
 .realisation-photo-open img{display:block;width:100%;height:auto;border-radius:9px;background:#F1F5F2}
-.realisation-photo-zoom{position:absolute;right:9px;bottom:9px;padding:6px 10px;border-radius:999px;background:rgba(14,42,38,.82);color:#fff;font-size:12px;font-weight:650;opacity:0;transition:opacity .18s ease}
-.realisation-photo-open:hover .realisation-photo-zoom,.realisation-photo-open:focus-visible .realisation-photo-zoom{opacity:1}
 .realisation-photo-open:focus-visible{outline:3px solid var(--amber);outline-offset:3px}
 .realisation-photo-card figcaption{padding:11px 4px 3px;color:var(--ink);font-size:15px;font-weight:650;line-height:1.45;overflow-wrap:anywhere}
 .realisation-lightbox-backdrop{position:fixed;inset:0;z-index:11000;display:grid;place-items:center;padding:24px;background:rgba(5,18,16,.92);backdrop-filter:blur(5px)}
@@ -158,7 +156,6 @@ a{color:var(--green)} a:hover{color:var(--green-dark)}
   .realisation-lightbox-image{box-sizing:border-box;max-width:calc(100vw - 20px);max-height:calc(100vh - 130px);margin-inline:auto}
   .realisation-lightbox>p{max-width:100%;text-align:center;overflow-wrap:anywhere}
 }
-@media(hover:none){.realisation-photo-zoom{opacity:1}}
 .realisation-card,.realisation-card .pic-box{border-radius:0}
 .method-step-card{border-radius:8px;transition:box-shadow .18s ease,border-color .18s ease}
 .method-step-card:hover{transform:none;box-shadow:0 8px 18px rgba(14,42,38,.07)}

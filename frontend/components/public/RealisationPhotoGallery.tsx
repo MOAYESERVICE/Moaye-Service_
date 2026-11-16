@@ -36,7 +36,6 @@ export default function RealisationPhotoGallery({ photos }: { photos: PublicReal
               {/* Preserve each uploaded photo's original proportions in the masonry layout. */}
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src={photo.imageUrl} alt={photo.imageAlt} loading="lazy" decoding="async" />
-              <span className="realisation-photo-zoom" aria-hidden="true">Agrandir</span>
             </button>
             <figcaption>{photo.caption}</figcaption>
           </figure>
