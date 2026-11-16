@@ -31,6 +31,9 @@ const contactReplyLimiter = rateLimit({
  */
 router.post("/", optionalAuth, validate(createContactSchema), contactController.createContact);
 
+// Création d'une nouvelle demande depuis l'espace client connecté.
+router.post("/mine", requireAuth, validate(createContactSchema), contactController.createContact);
+
 // Un client consulte seulement ses propres conversations.
 router.get("/mine", requireAuth, contactController.getMyContacts);
 

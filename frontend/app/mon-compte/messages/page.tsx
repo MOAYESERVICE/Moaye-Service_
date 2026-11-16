@@ -2,7 +2,7 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { useAccount } from "@/hooks/useAccount";
-import { getMyContactMessages, sendAccountContact, sendContactReply, type ContactThread } from "@/lib/api";
+import { getMyContactMessages, groupContactThreads, sendAccountContact, sendContactReply, type ContactThread } from "@/lib/api";
 import type { ContactData } from "@/lib/validators";
 
 function dateLabel(value: string) {
@@ -27,7 +27,8 @@ export default function MessagesPage() {
     try {
       const records = await getMyContactMessages(signal);
       setThreads(records);
-      setSelectedId((current) => current && records.some((item) => String(item.id) === String(current)) ? current : records[0]?.id ?? null);
+      const grouped = groupContactThreads(records);
+      setSelectedId((current) => current && grouped.some((item) => String(item.id) === String(current)) ? current : grouped[0]?.id ?? null);
       setError(null);
     } catch (err) {
       if (signal?.aborted) return;
@@ -48,8 +49,9 @@ export default function MessagesPage() {
 
   const visibleThreads = useMemo(() => {
     const query = q.trim().toLocaleLowerCase("fr");
-    if (!query) return threads;
-    return threads.filter((thread) => `${thread.subject} ${thread.message} ${thread.replies.map((reply) => reply.message).join(" ")}`.toLocaleLowerCase("fr").includes(query));
+    const grouped = groupContactThreads(threads);
+    if (!query) return grouped;
+    return grouped.filter((thread) => `${thread.subject} ${thread.message} ${thread.replies.map((reply) => `${reply.subject ?? ""} ${reply.message}`).join(" ")}`.toLocaleLowerCase("fr").includes(query));
   }, [q, threads]);
   const current = visibleThreads.find((thread) => String(thread.id) === String(selectedId)) ?? visibleThreads[0];
 
@@ -117,9 +119,9 @@ export default function MessagesPage() {
       {!loading && !error && threads.length === 0 && !compose && <div className="pt-panel pt-client-message-empty"><span className="pt-message-empty-icon" aria-hidden="true"><svg viewBox="0 0 48 48"><rect x="7" y="11" width="34" height="26" rx="5" /><path d="m9 15 15 12 15-12" /></svg></span><h3>Aucune conversation pour le moment</h3><p>Envoyez un message à l’équipe ; l’administration pourra vous répondre ici.</p><button className="btn btn-green" onClick={() => setCompose(true)}>Écrire un message</button><Link className="pt-link" href="/contact">Voir aussi le formulaire de contact →</Link></div>}
 
       {!loading && !error && current && <section className="pt-panel pt-client-inbox" aria-label="Vos conversations">
-        <aside className="pt-client-thread-list"><h3>Conversations</h3>{visibleThreads.map((thread) => { const last = thread.replies.at(-1)?.message ?? thread.message; return <button key={thread.id} className={`pt-client-thread${String(thread.id) === String(current.id) ? " active" : ""}`} onClick={() => setSelectedId(thread.id)}><strong>{thread.subject}</strong><span>{last}</span><small>{dateLabel(thread.replies.at(-1)?.createdAt ?? thread.createdAt)}</small></button>; })}</aside>
+        <aside className="pt-client-thread-list"><h3>Conversations</h3>{visibleThreads.map((thread) => { const last = thread.replies.at(-1)?.message ?? thread.message; return <button key={thread.id} className={`pt-client-thread${String(thread.id) === String(current.id) ? " active" : ""}`} onClick={() => setSelectedId(thread.id)}><strong>{thread.subject}</strong><span>{last}</span><small>{dateLabel(thread.updatedAt ?? thread.replies.at(-1)?.createdAt ?? thread.createdAt)}</small></button>; })}</aside>
         <div className="pt-client-conversation"><header><div><h3>{current.subject}</h3><p>MOAYE SERVICES · Administration</p></div><span className={`pt-client-status ${current.status.toLowerCase()}`}>{current.status === "RESOLVED" ? "Résolu" : current.status === "VIEWED" ? "En cours" : "Nouveau"}</span></header>
-          <div className="pt-client-bubbles"><article className="pt-client-bubble customer"><p>{current.message}</p><small>{dateLabel(current.createdAt)} · Vous</small></article>{current.replies.map((reply) => <article key={reply.id} className={`pt-client-bubble ${reply.sender === "CUSTOMER" ? "customer" : "admin"}`}><p>{reply.message}</p><small>{dateLabel(reply.createdAt)} · {reply.sender === "CUSTOMER" ? "Vous" : "Administration"}</small></article>)}</div>
+          <div className="pt-client-bubbles"><article className="pt-client-bubble customer"><p>{current.message}</p><small>{dateLabel(current.createdAt)} · Vous</small></article>{current.replies.map((reply) => <article key={reply.id} className={`pt-client-bubble ${reply.sender === "CUSTOMER" ? "customer" : "admin"}`}>{reply.subject && <p className="pt-thread-subject-label">Nouvelle demande : {reply.subject}</p>}<p>{reply.message}</p><small>{dateLabel(reply.createdAt)} · {reply.sender === "CUSTOMER" ? "Vous" : "Administration"}</small></article>)}</div>
           <form className="pt-client-reply" aria-label="Répondre à l’administration" onSubmit={(event) => void submitReply(event)}>
             <div className="pt-client-reply-field">
               <label className="sr-only" htmlFor="client-message-reply">Votre réponse</label>

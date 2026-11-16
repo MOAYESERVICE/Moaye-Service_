@@ -5,20 +5,10 @@ import RoleGuard from "@/components/admin/RoleGuard";
 import StatusSelect from "@/components/admin/StatusSelect";
 import Pill from "@/components/portal/Pill";
 import { useAdmin } from "@/hooks/useAdmin";
-import { deleteContactMessage, getContactMessages, sendContactReply, updateContactStatus, type ContactReply } from "@/lib/api";
+import { deleteContactMessage, getContactMessages, groupContactThreads, sendContactReply, updateContactStatus, type ContactThread, type GroupedContactThread } from "@/lib/api";
 import { norm } from "@/lib/format";
 
-type ContactMessage = {
-  id: string | number;
-  name: string;
-  email: string;
-  phone?: string | null;
-  subject: string;
-  message: string;
-  status: "NEW" | "VIEWED" | "RESOLVED";
-  createdAt: string;
-  replies: ContactReply[];
-};
+type ContactMessage = GroupedContactThread;
 
 type MessageStatus = ContactMessage["status"];
 type Filter = "ACTIVE" | "ALL" | MessageStatus;
@@ -46,8 +36,8 @@ function formatDate(value: string) {
 
 export default function AdminMessages() {
   const { q, flash } = useAdmin();
-  const [messages, setMessages] = useState<ContactMessage[]>([]);
-  const threadListRef = useRef<HTMLElement | null>(null);
+  const [messages, setMessages] = useState<ContactThread[]>([]);
+  const refreshGeneration = useRef(0);
   const inboxRef = useRef<HTMLElement | null>(null);
   const scrollToInbox = () => {
     if (!window.matchMedia("(max-width: 700px)").matches) return;
@@ -65,15 +55,17 @@ export default function AdminMessages() {
   const [replyingId, setReplyingId] = useState<string | null>(null);
 
   const refreshMessages = useCallback(async (signal?: AbortSignal) => {
+    const generation = ++refreshGeneration.current;
     try {
       const data = await getContactMessages(signal);
+      if (signal?.aborted || generation !== refreshGeneration.current) return;
       setMessages(data || []);
       setError(null);
     } catch (err) {
-      if (signal?.aborted) return;
+      if (signal?.aborted || generation !== refreshGeneration.current) return;
       setError(err instanceof Error ? err.message : "Les messages n’ont pas pu être chargés.");
     } finally {
-      if (!signal?.aborted) {
+      if (!signal?.aborted && generation === refreshGeneration.current) {
         setLoading(false);
         setRefreshing(false);
       }
@@ -84,7 +76,7 @@ export default function AdminMessages() {
     const controller = new AbortController();
     const initialLoad = window.setTimeout(() => { void refreshMessages(controller.signal); }, 0);
     const refreshWhenVisible = () => { if (document.visibilityState === "visible") void refreshMessages(); };
-    const timer = window.setInterval(refreshWhenVisible, 20000);
+    const timer = window.setInterval(refreshWhenVisible, 5000);
     window.addEventListener("focus", refreshWhenVisible);
     return () => {
       controller.abort();
@@ -94,29 +86,33 @@ export default function AdminMessages() {
     };
   }, [refreshMessages]);
 
+  const conversations = useMemo(() => groupContactThreads(messages), [messages]);
   const counts = useMemo(() => ({
-    ALL: messages.length,
-    ACTIVE: messages.filter((message) => message.status !== "RESOLVED").length,
-    NEW: messages.filter((message) => message.status === "NEW").length,
-    VIEWED: messages.filter((message) => message.status === "VIEWED").length,
-    RESOLVED: messages.filter((message) => message.status === "RESOLVED").length,
-  }), [messages]);
+    ALL: conversations.length,
+    ACTIVE: conversations.filter((message) => message.status !== "RESOLVED").length,
+    NEW: conversations.filter((message) => message.status === "NEW").length,
+    VIEWED: conversations.filter((message) => message.status === "VIEWED").length,
+    RESOLVED: conversations.filter((message) => message.status === "RESOLVED").length,
+  }), [conversations]);
 
-  const filteredMessages = messages.filter((message) => {
+  const filteredMessages = conversations.filter((message) => {
     const matchesStatus = filter === "ALL" || (filter === "ACTIVE" ? message.status !== "RESOLVED" : message.status === filter);
-    const matchesSearch = norm(q) === "" || norm(`${message.subject} ${message.name} ${message.email} ${message.phone ?? ""} ${message.message}`).includes(norm(q));
+    const matchesSearch = norm(q) === "" || norm(`${message.subject} ${message.name} ${message.email} ${message.phone ?? ""} ${message.message} ${message.replies.map((reply) => `${reply.subject ?? ""} ${reply.message}`).join(" ")}`).includes(norm(q));
     return matchesStatus && matchesSearch;
   });
-  const selectedMessage = filteredMessages.find((message) => String(message.id) === selectedId) ?? filteredMessages[0] ?? null;
+  const selectedMessage = filteredMessages.find((message) => String(message.id) === selectedId)
+    ?? (mobileDetailOpen && selectedId ? conversations.find((message) => String(message.id) === selectedId) : null)
+    ?? filteredMessages[0]
+    ?? null;
 
   const handleStatusChange = async (message: ContactMessage, newStatus: string) => {
     const key = String(message.id);
     setPendingId(key);
     try {
       await updateContactStatus(key, newStatus);
-      setMessages((current) => current.map((item) => String(item.id) === key ? { ...item, status: newStatus as MessageStatus } : item));
-      threadListRef.current?.scrollTo({ top: 0 });
-      scrollToInbox();
+      refreshGeneration.current += 1;
+      setRefreshing(false);
+      setMessages((current) => current.map((item) => String(item.id) === key ? { ...item, status: newStatus as MessageStatus, updatedAt: new Date().toISOString() } : item));
       if (newStatus === "RESOLVED" || message.status === "RESOLVED") {
         setFilter("ACTIVE");
         setMobileDetailOpen(false);
@@ -136,6 +132,8 @@ export default function AdminMessages() {
     setReplyingId(key);
     try {
       const updated = await sendContactReply(message.id, reply);
+      refreshGeneration.current += 1;
+      setRefreshing(false);
       setMessages((current) => current.map((item) => String(item.id) === key ? { ...item, ...updated } : item));
       setReplyDrafts((current) => ({ ...current, [key]: "" }));
       if (message.status === "RESOLVED") setFilter("ACTIVE");
@@ -149,12 +147,16 @@ export default function AdminMessages() {
 
   const handleDelete = async (message: ContactMessage) => {
     const key = String(message.id);
-    if (!window.confirm(`Supprimer définitivement la discussion « ${message.subject} » de ${message.name} ainsi que toutes ses réponses ?`)) return;
+    if (!window.confirm(`Supprimer définitivement les ${message.contactIds.length} demande${message.contactIds.length === 1 ? "" : "s"} de ${message.name} ainsi que toutes leurs réponses ?`)) return;
     setDeletingId(key);
     try {
-      await deleteContactMessage(message.id);
-      setMessages((current) => current.filter((item) => String(item.id) !== key));
+      await Promise.all(message.contactIds.map((id) => deleteContactMessage(id)));
+      refreshGeneration.current += 1;
+      setRefreshing(false);
+      const deletedIds = new Set(message.contactIds.map(String));
+      setMessages((current) => current.filter((item) => !deletedIds.has(String(item.id))));
       setReplyDrafts((current) => { const next = { ...current }; delete next[key]; return next; });
+      setSelectedId(null);
       setMobileDetailOpen(false);
       flash("Discussion et réponses supprimées.");
     } catch (err) {
@@ -166,7 +168,7 @@ export default function AdminMessages() {
 
   return (
     <RoleGuard module="messages">
-      <div className="pt-message-page">
+      <div className={`pt-message-page${mobileDetailOpen ? " mobile-detail-open" : ""}`}>
         <header className="pt-message-heading">
           <div><span className="pt-message-eyebrow">RELATION CLIENT</span><h2>Messages</h2><p>Choisissez un client pour consulter l’historique et répondre à sa demande.</p></div>
           <button type="button" className="pt-message-refresh" onClick={() => { setRefreshing(true); void refreshMessages(); }} disabled={refreshing || loading}>
@@ -193,17 +195,17 @@ export default function AdminMessages() {
           {loading && <div className="pt-message-state">Chargement des conversations…</div>}
           {!loading && error && <div className="pt-message-error" role="alert"><div><strong>Impossible de charger les messages</strong><p>{error}</p></div><button type="button" className="pt-message-refresh" onClick={() => { setRefreshing(true); void refreshMessages(); }}>Réessayer</button></div>}
 
-          {!loading && !error && filteredMessages.length === 0 && <div className="pt-message-empty"><span className="pt-message-empty-icon" aria-hidden="true"><svg viewBox="0 0 48 48"><rect x="7" y="11" width="34" height="26" rx="5" /><path d="m9 15 15 12 15-12" /></svg></span><h3>{messages.length ? "Aucune conversation dans ce filtre" : "Votre boîte de réception est vide"}</h3><p>{messages.length ? "Choisissez un autre filtre ou modifiez votre recherche." : "Les demandes envoyées depuis le site apparaîtront ici."}</p></div>}
+          {!loading && !error && filteredMessages.length === 0 && !(mobileDetailOpen && selectedMessage) && <div className="pt-message-empty"><span className="pt-message-empty-icon" aria-hidden="true"><svg viewBox="0 0 48 48"><rect x="7" y="11" width="34" height="26" rx="5" /><path d="m9 15 15 12 15-12" /></svg></span><h3>{messages.length ? "Aucune conversation dans ce filtre" : "Votre boîte de réception est vide"}</h3><p>{messages.length ? "Choisissez un autre filtre ou modifiez votre recherche." : "Les demandes envoyées depuis le site apparaîtront ici."}</p></div>}
 
-          {!loading && !error && filteredMessages.length > 0 && <div className={`pt-message-workspace${mobileDetailOpen ? " mobile-detail-open" : ""}`}>
-            <nav ref={threadListRef} className="pt-thread-list" aria-label="Conversations clients">
+          {!loading && !error && (filteredMessages.length > 0 || (mobileDetailOpen && selectedMessage)) && <div className={`pt-message-workspace${mobileDetailOpen ? " mobile-detail-open" : ""}`}>
+            <nav className="pt-thread-list" aria-label="Conversations clients">
               {filteredMessages.map((message) => {
                 const lastReply = message.replies?.[message.replies.length - 1];
                 const preview = lastReply?.message ?? message.message;
                 const selected = selectedMessage && String(selectedMessage.id) === String(message.id);
-                return <button key={message.id} type="button" className={`pt-thread-item${selected ? " selected" : ""}${message.status === "NEW" ? " unread" : ""}`} onClick={() => { setSelectedId(String(message.id)); setMobileDetailOpen(true); scrollToInbox(); }} aria-pressed={Boolean(selected)}>
+                return <button key={message.id} type="button" className={`pt-thread-item${selected ? " selected" : ""}${message.status === "NEW" ? " unread" : ""}`} onClick={() => { setSelectedId(String(message.id)); setMobileDetailOpen(true); if (message.status === "NEW") void handleStatusChange(message, "VIEWED"); }} aria-pressed={Boolean(selected)}>
                   <span className="pt-thread-avatar">{message.name.trim().charAt(0).toLocaleUpperCase() || "?"}</span>
-                  <span className="pt-thread-main"><span className="pt-thread-line"><strong>{message.name}</strong><time>{formatDate(message.createdAt)}</time></span><span className="pt-thread-subject">{message.subject}</span><span className="pt-thread-preview">{preview}</span></span>
+                  <span className="pt-thread-main"><span className="pt-thread-line"><strong>{message.name}</strong><time>{formatDate(message.updatedAt ?? message.createdAt)}</time></span><span className="pt-thread-subject">{message.subject}</span><span className="pt-thread-preview">{preview}</span></span>
                   <span className={`pt-thread-indicator ${message.status.toLowerCase()}`} aria-label={STATUS_LABEL[message.status]} />
                 </button>;
               })}
@@ -218,8 +220,8 @@ export default function AdminMessages() {
               </header>
               <div className="pt-thread-subject-bar"><strong>{selectedMessage.subject}</strong><span>Ouverte le {formatDate(selectedMessage.createdAt)}</span></div>
               <div className="pt-thread-history" aria-label="Historique de la discussion">
-                <article className="pt-thread-bubble from-client"><p>{selectedMessage.message}</p><small>{selectedMessage.name} · {formatDate(selectedMessage.createdAt)}</small></article>
-                {selectedMessage.replies?.map((reply) => <article key={reply.id} className={`pt-thread-bubble ${reply.sender === "ADMIN" ? "from-admin" : "from-client"}`}><p>{reply.message}</p><small>{reply.sender === "ADMIN" ? "MOAYE SERVICE" : selectedMessage.name} · {formatDate(reply.createdAt)}</small></article>)}
+                <article className="pt-thread-bubble from-client"><p>{selectedMessage.message}</p><small>Client · {formatDate(selectedMessage.createdAt)}</small></article>
+                {selectedMessage.replies?.map((reply) => <article key={reply.id} className={`pt-thread-bubble ${reply.sender === "ADMIN" ? "from-admin" : "from-client"}`}>{reply.subject && <p className="pt-thread-subject-label">Nouvelle demande : {reply.subject}</p>}<p>{reply.message}</p><small>{reply.sender === "ADMIN" ? "MOAYE SERVICE" : "Client"} · {formatDate(reply.createdAt)}</small></article>)}
               </div>
               {selectedMessage.status !== "RESOLVED" && <form className="pt-admin-reply-form pt-thread-composer" onSubmit={(event) => { event.preventDefault(); void handleReply(selectedMessage); }}>
                 <textarea className="inp" rows={2} maxLength={5000} value={replyDrafts[String(selectedMessage.id)] ?? ""} onChange={(event) => setReplyDrafts((current) => ({ ...current, [String(selectedMessage.id)]: event.target.value }))} placeholder={`Écrire à ${selectedMessage.name}…`} aria-label={`Réponse à ${selectedMessage.name}`} />

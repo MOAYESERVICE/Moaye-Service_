@@ -574,11 +574,47 @@ export async function updateAdminUser(
   return payload.data;
 }
 
-export type ContactReply = { id: string; sender: "ADMIN" | "CUSTOMER"; name: string; message: string; createdAt: string };
+export type ContactReply = { id: string; sender: "ADMIN" | "CUSTOMER"; name: string; message: string; createdAt: string; subject?: string };
 export type ContactThread = {
   id: string | number; name: string; email: string; phone?: string | null; subject: string; message: string;
-  status: "NEW" | "VIEWED" | "RESOLVED"; createdAt: string; replies: ContactReply[];
+  status: "NEW" | "VIEWED" | "RESOLVED"; createdAt: string; updatedAt?: string; replies: ContactReply[];
 };
+
+export type GroupedContactThread = ContactThread & { contactIds: Array<string | number> };
+
+function contactActivityTime(thread: ContactThread) {
+  const time = new Date(thread.updatedAt ?? thread.createdAt).getTime();
+  return Number.isFinite(time) ? time : 0;
+}
+
+/** Affiche un seul fil par adresse e-mail et conserve les demandes précédentes dans l'historique. */
+export function groupContactThreads(threads: ContactThread[]): GroupedContactThread[] {
+  const people = new Map<string, ContactThread[]>();
+  for (const thread of threads) {
+    const key = thread.email.trim().toLocaleLowerCase("fr") || `contact:${thread.id}`;
+    const group = people.get(key) ?? [];
+    group.push(thread);
+    people.set(key, group);
+  }
+
+  return Array.from(people.values()).map((group) => {
+    const ordered = [...group].sort((a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime());
+    const first = ordered[0];
+    const latest = [...group].sort((a, b) => contactActivityTime(b) - contactActivityTime(a))[0];
+    const additionalMessages: ContactReply[] = ordered.slice(1).map((thread) => ({
+      id: `contact-${thread.id}`, sender: "CUSTOMER", name: thread.name, message: thread.message,
+      createdAt: thread.createdAt, subject: thread.subject,
+    }));
+    const replies = [...ordered.flatMap((thread) => thread.replies ?? []), ...additionalMessages]
+      .sort((a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime());
+
+    return {
+      ...first, name: latest.name || first.name, email: latest.email || first.email,
+      phone: latest.phone || first.phone, status: latest.status,
+      updatedAt: latest.updatedAt ?? latest.createdAt, replies, contactIds: ordered.map((thread) => thread.id),
+    };
+  }).sort((a, b) => contactActivityTime(b) - contactActivityTime(a));
+}
 
 export async function getMyContactMessages(signal?: AbortSignal): Promise<ContactThread[]> {
   let response: Response;

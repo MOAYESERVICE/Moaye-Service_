@@ -339,6 +339,7 @@
 .pt-client-bubble{max-width:min(82%,620px);padding:13px 16px;border:1px solid #E1EAE4;border-radius:15px 15px 15px 4px;background:#fff;overflow-wrap:anywhere}
 .pt-client-bubble.customer{align-self:flex-end;border-color:#CEE3D7;border-radius:15px 15px 4px 15px;background:#E3EFE8}
 .pt-client-bubble p{margin:0;white-space:pre-wrap;line-height:1.55}
+.pt-client-bubble .pt-thread-subject-label{margin-bottom:5px;color:#31584C;font-size:11px;font-weight:700}
 .pt-client-bubble small{display:block;margin-top:7px;color:#71847B;font-size:11px}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 .pt-client-reply{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:12px;padding:18px 20px;border-top:1px solid #E1EAE4;background:#fff}
@@ -838,6 +839,7 @@
 .pt-thread-bubble.from-client{align-self:flex-end;border-color:#B8C9BE;border-radius:18px 18px 5px 18px;background:#F0F4F1;color:#12342F}
 .pt-thread-bubble.from-admin{align-self:flex-start;border-color:#125A48;border-radius:18px 18px 18px 5px;background:#176B55;color:#fff}
 .pt-thread-bubble p{margin:0;overflow-wrap:anywhere;white-space:pre-wrap;font-size:15px;line-height:1.65}
+.pt-thread-bubble .pt-thread-subject-label{margin-bottom:5px;color:#31584C;font-size:11px;font-weight:700}
 .pt-thread-bubble small{display:block;margin-top:8px;color:#4D655A;font-size:12px}
 .pt-thread-bubble.from-admin small{color:#D9EEE4}
 .pt-thread-composer{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:10px;margin:0;padding:13px 16px;border-top:1px solid #E7EEE9;background:#fff}
@@ -957,4 +959,60 @@
   .pt-thread-avatar{width:40px;height:40px}
   .pt-thread-item.selected{box-shadow:inset 4px 0 #176B55}
   .pt-thread-actions{border-top:1px solid #DCE8E1}
+}
+
+/* Messagerie admin sur telephone : listes lisibles et fil plein ecran. */
+.pt-thread-bubble.from-client{align-self:flex-start;border-color:#DCE8E1;border-radius:18px 18px 18px 5px;background:#fff;color:#12342F}
+.pt-thread-bubble.from-admin{align-self:flex-end;border-color:#BFE0CF;border-radius:18px 18px 5px 18px;background:#E3EFE8;color:#12342F}
+.pt-thread-bubble.from-admin small{color:#657970}
+@media(max-width:700px){
+  .pt-message-page:not(.mobile-detail-open){gap:14px}
+  .pt-message-stats{grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
+  .pt-message-stat{gap:6px;min-width:0;padding:11px 8px;border-radius:13px}
+  .pt-message-stat span{overflow:hidden;font-size:10px;text-overflow:ellipsis;white-space:nowrap}
+  .pt-message-stat strong{font-size:21px}
+  .pt-message-toolbar{gap:12px;padding:15px}
+  .pt-message-filters{width:100%;gap:6px;overflow-x:auto;flex-wrap:nowrap;padding:0 0 4px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .pt-message-filters::-webkit-scrollbar{display:none}
+  .pt-message-filter{flex:none}
+  .pt-thread-list{max-height:none;overflow-y:visible;padding:10px;gap:9px;border-bottom:0}
+  .pt-thread-item{min-height:96px;grid-template-columns:42px minmax(0,1fr) 8px;gap:11px;padding:13px;border-radius:15px}
+  .pt-thread-avatar{width:42px;height:42px}
+  .pt-thread-line strong{font-size:14px}
+  .pt-thread-line time{font-size:10px}
+  .pt-thread-subject{font-size:13px}
+  .pt-thread-preview{font-size:12px;-webkit-line-clamp:2}
+
+  .pt-message-page.mobile-detail-open{height:calc(100dvh - 170px);min-height:390px;max-height:680px;gap:0}
+  .pt-message-page.mobile-detail-open>.pt-message-heading,
+  .pt-message-page.mobile-detail-open>.pt-message-stats,
+  .pt-message-page.mobile-detail-open .pt-message-toolbar{display:none}
+  .pt-message-page.mobile-detail-open .pt-message-inbox{display:flex;flex:1;min-height:0;flex-direction:column;overflow:hidden;border-radius:16px}
+  .pt-message-page.mobile-detail-open .pt-message-workspace{display:flex;flex:1;min-height:0;overflow:hidden;border:1px solid #DCE8E1;border-radius:16px;background:#fff}
+  .pt-message-page.mobile-detail-open .pt-thread-list{display:none}
+  .pt-message-page.mobile-detail-open .pt-thread-view{display:flex;min-height:0;height:100%;flex:1;overflow:hidden}
+  .pt-message-page.mobile-detail-open .pt-thread-header{flex:none;gap:9px;padding:12px}
+  .pt-message-page.mobile-detail-open .pt-thread-header>.pt-thread-avatar.large{display:grid;width:38px;height:38px;font-size:15px}
+  .pt-message-page.mobile-detail-open .pt-thread-header-info{display:flex;flex:1;gap:3px}
+  .pt-message-page.mobile-detail-open .pt-thread-header-info strong{font-size:13px}
+  .pt-message-page.mobile-detail-open .pt-thread-header-info span{font-size:10px}
+  .pt-message-page.mobile-detail-open .pt-thread-header>.pt-bd{display:inline-flex;flex:none;padding:5px 8px;font-size:10px}
+  .pt-message-page.mobile-detail-open .pt-thread-header>.pt-bd:before{width:6px;height:6px}
+  .pt-message-page.mobile-detail-open .pt-thread-back{min-height:36px;padding:0 9px;font-size:11px}
+  .pt-message-page.mobile-detail-open .pt-thread-subject-bar{flex:none;gap:4px;padding:10px 13px}
+  .pt-message-page.mobile-detail-open .pt-thread-subject-bar strong{font-size:13px}
+  .pt-message-page.mobile-detail-open .pt-thread-subject-bar span{font-size:10px}
+  .pt-message-page.mobile-detail-open .pt-thread-history{min-height:0;max-height:none;flex:1 1 0;padding:12px;gap:10px;overscroll-behavior:contain}
+  .pt-message-page.mobile-detail-open .pt-thread-bubble{max-width:88%;padding:11px 13px;border-radius:16px 16px 16px 5px}
+  .pt-message-page.mobile-detail-open .pt-thread-bubble.from-admin{border-radius:16px 16px 5px 16px}
+  .pt-message-page.mobile-detail-open .pt-thread-bubble p{font-size:14px;line-height:1.5}
+  .pt-message-page.mobile-detail-open .pt-thread-bubble small{font-size:10px}
+  .pt-message-page.mobile-detail-open .pt-thread-composer{flex:none;grid-template-columns:minmax(0,1fr) auto;gap:8px;padding:10px}
+  .pt-message-page.mobile-detail-open .pt-thread-composer:focus-within + .pt-thread-actions{display:none}
+  .pt-message-page.mobile-detail-open .pt-thread-composer textarea.inp{min-height:48px;height:48px;padding:10px 12px;font-size:13px}
+  .pt-message-page.mobile-detail-open .pt-thread-composer .btn{width:auto;min-height:48px;padding:0 14px}
+  .pt-message-page.mobile-detail-open .pt-thread-actions{flex:none;gap:8px;padding:9px 10px}
+  .pt-message-page.mobile-detail-open .pt-thread-status-control{width:100%;font-size:11px}
+  .pt-message-page.mobile-detail-open .pt-thread-status-control .pt-sel{min-height:36px}
+  .pt-message-page.mobile-detail-open .pt-thread-buttons button{min-height:38px;padding:0 8px;font-size:10px}
 }
