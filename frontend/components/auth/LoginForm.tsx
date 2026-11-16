@@ -38,7 +38,7 @@ export default function LoginForm({ adminOnly = false }: { adminOnly?: boolean }
         </div>
       )}
       <AuthField id="email" label="E-mail" type="email" placeholder="vous@exemple.com" auto="email" error={errors.email?.message} registration={register("email")} />
-      <AuthField id="password" label="Code ou ancien mot de passe (4 ou 12 chiffres)" type="password" auto="current-password" inputMode="numeric" maxLength={12} error={errors.password?.message} registration={register("password")} />
+      <AuthField id="password" label="Mot de passe (4 chiffres)" type="password" auto="current-password" inputMode="numeric" maxLength={12} error={errors.password?.message} registration={register("password")} />
       <SubmitButton loading={isSubmitting} label="Se connecter" loadingLabel="Connexion…" />
     </form>
   );
