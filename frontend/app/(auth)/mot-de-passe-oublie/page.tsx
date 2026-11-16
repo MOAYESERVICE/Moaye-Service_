@@ -11,6 +11,9 @@ export default function MotDePasseOubliePage() {
       subtitle="Saisissez l’adresse e-mail associée à votre compte pour recevoir un code de réinitialisation."
       footer={<Link href="/connexion">← Retour à la connexion</Link>}
     >
+      <p className="muted" role="status">
+        En cours de développement par le développeur N’Goran Michael.
+      </p>
       <ForgotForm />
     </AuthShell>
   );
