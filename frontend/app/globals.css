@@ -18,6 +18,12 @@ a{color:var(--green)} a:hover{color:var(--green-dark)}
 .btn-ink{background:var(--ink);color:#fff} .btn-ink:hover{background:var(--green-dark);color:#fff}
 .btn-ghost{border-color:var(--ink);color:var(--ink);background:transparent} .btn-ghost:hover{background:var(--ink);color:#fff}
 .btn-sm{min-height:44px;padding:0 18px}
+.home-whatsapp-fab{position:fixed;right:24px;bottom:24px;z-index:1000;display:grid;width:60px;height:60px;place-items:center;border:2px solid #fff;border-radius:50%;background:#25D366;color:#fff;box-shadow:0 8px 24px rgba(10,36,32,.28);text-decoration:none;transition:transform .18s ease,box-shadow .18s ease}
+.home-whatsapp-fab:hover{transform:translateY(-3px) scale(1.04);color:#fff;box-shadow:0 12px 28px rgba(10,36,32,.34)}
+.home-whatsapp-fab:focus-visible{outline:3px solid var(--amber);outline-offset:4px}
+.home-whatsapp-fab::before{position:absolute;right:70px;top:50%;padding:7px 11px;border-radius:8px;background:var(--ink);color:#fff;content:"Écrire sur WhatsApp";font-size:13px;font-weight:600;white-space:nowrap;opacity:0;pointer-events:none;transform:translate(5px,-50%);transition:opacity .18s ease,transform .18s ease}
+.home-whatsapp-fab:hover::before,.home-whatsapp-fab:focus-visible::before{opacity:1;transform:translate(0,-50%)}
+@media(max-width:640px){.home-whatsapp-fab{right:16px;bottom:calc(18px + env(safe-area-inset-bottom));width:54px;height:54px}.home-whatsapp-fab::before{right:64px}}
 
 /* Éléments de base */
 .card{background:#fff;border:1px solid var(--line);border-radius:20px;transition:transform .2s,box-shadow .2s}
