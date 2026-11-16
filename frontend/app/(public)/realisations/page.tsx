@@ -1,4 +1,5 @@
 import { Suspense } from "react";
+import { connection } from "next/server";
 import Photo from "@/components/ui/Photo";
 import RealisationPhotoGallery from "@/components/public/RealisationPhotoGallery";
 import { getPublishedRealisationPhotos, getPublishedRealisations } from "@/lib/realisations";
@@ -6,6 +7,8 @@ import { getPublishedRealisationPhotos, getPublishedRealisations } from "@/lib/r
 export const metadata = { title: "Réalisations — MOAYE SERVICES" };
 
 async function RealisationsList() {
+  // Les données sont modifiées depuis l’admin : charger la liste à chaque requête.
+  await connection();
   const [projects, photos] = await Promise.all([getPublishedRealisations(), getPublishedRealisationPhotos()]);
   if (!projects.length && !photos.length) return <p className="wrap muted">Aucune réalisation publiée pour le moment.</p>;
 

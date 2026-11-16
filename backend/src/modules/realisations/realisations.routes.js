@@ -64,6 +64,17 @@ router.post("/photos", requireAuth, requireRole("ADMIN"), validateBody(realizati
   res.status(201).json({ success: true, data: toPhotoResponse(row) });
 });
 
+router.put("/photos/:photoId", requireAuth, requireRole("ADMIN"), validateBody(realizationPhotoSchema), async (req, res) => {
+  const id = parseId(req.params.photoId);
+  if (!id) return res.status(400).json({ success: false, message: "Identifiant de photo invalide." });
+  const row = await prisma.realizationPhoto.update({ where: { id }, data: req.body }).catch((error) => {
+    if (error?.code === "P2025") return null;
+    throw error;
+  });
+  if (!row) return res.status(404).json({ success: false, message: "Photo introuvable." });
+  return res.json({ success: true, data: toPhotoResponse(row) });
+});
+
 router.delete("/photos/:photoId", requireAuth, requireRole("ADMIN"), async (req, res) => {
   const id = parseId(req.params.photoId);
   if (!id) return res.status(400).json({ success: false, message: "Identifiant de photo invalide." });

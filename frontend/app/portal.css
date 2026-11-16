@@ -654,19 +654,19 @@
 .pt-realisation-list-heading p,.pt-realisation-form-heading p{margin:0;color:#71847B;font-size:13px;line-height:1.5}
 .pt-realisation-eyebrow{color:#1B6B57;font-size:10px;font-weight:750;letter-spacing:.13em}
 .pt-realisation-list-heading>.btn{min-height:44px;white-space:nowrap}
-.pt-realisation-list{display:flex;flex-direction:column;gap:12px;padding:18px 22px}
-.pt-realisation-card{display:grid;grid-template-columns:minmax(170px,220px) minmax(0,1fr);gap:20px;align-items:center;padding:14px;border:1px solid #E4ECE6;border-radius:15px;background:#fff;transition:border-color .15s ease,box-shadow .15s ease}
+.pt-realisation-list{display:flex;min-width:0;flex-direction:column;gap:12px;padding:18px 22px}
+.pt-realisation-card{display:grid;box-sizing:border-box;width:100%;max-width:100%;min-width:0;grid-template-columns:minmax(170px,220px) minmax(0,1fr);gap:20px;align-items:center;padding:14px;border:1px solid #E4ECE6;border-radius:15px;background:#fff;transition:border-color .15s ease,box-shadow .15s ease}
 .pt-realisation-card:hover{border-color:#C8DAD0;box-shadow:0 7px 22px rgba(14,42,38,.06)}
 .pt-realisation-image,.pt-realisation-image-placeholder{display:block;width:100%;height:138px;border-radius:11px;background:#F1F5F2;object-fit:cover}
 .pt-realisation-card-content{display:flex;min-width:0;flex-direction:column;align-items:flex-start;gap:7px}
 .pt-realisation-card-title{display:flex;width:100%;align-items:center;justify-content:space-between;gap:12px}
-.pt-realisation-card-title>strong{color:#173B32;font-size:16px;line-height:1.4}
+.pt-realisation-card-title>strong{min-width:0;color:#173B32;font-size:16px;line-height:1.4;overflow-wrap:anywhere}
 .pt-realisation-card-title .pt-bd{flex:none}
 .pt-realisation-card-meta{font-size:12px}
-.pt-realisation-card-description{display:-webkit-box;overflow:hidden;color:#586F65;font-size:13px;line-height:1.5;-webkit-box-orient:vertical;-webkit-line-clamp:2}
+.pt-realisation-card-description{display:-webkit-box;min-width:0;max-width:100%;overflow:hidden;color:#586F65;font-size:13px;line-height:1.5;overflow-wrap:anywhere;-webkit-box-orient:vertical;-webkit-line-clamp:2}
 .pt-realisation-card-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:3px}
 .pt-realisation-card-actions .btn{min-height:38px;padding:0 15px;font-size:12px}
-.pt-realisation-project-delete-confirmation{display:flex;flex:1 1 220px;min-width:0;gap:8px;padding:6px;border:1px solid rgba(184,50,40,.22);border-radius:12px;background:rgba(184,50,40,.08)}
+.pt-realisation-project-delete-confirmation{display:grid;box-sizing:border-box;width:min(100%,300px);min-width:0;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;padding:6px;border:1px solid rgba(184,50,40,.22);border-radius:12px;background:rgba(184,50,40,.08)}
 .pt-realisation-project-delete-confirmation>.btn{flex:1;min-width:0;min-height:38px;padding:0 10px;border-radius:9px;font-size:12px;white-space:nowrap}
 .pt-realisation-project-delete-confirm{border:1px solid #B83228!important;background:#B83228!important;color:#fff!important}
 .pt-realisation-project-delete-confirm:hover{border-color:#92251D!important;background:#92251D!important;color:#fff!important}
@@ -709,7 +709,8 @@
 .pt-realisation-gallery-form input[type=file]::file-selector-button{margin-right:10px;padding:9px 13px;border:0;border-radius:8px;background:#E4F0E9;color:#165B49;font:inherit;font-size:12px;font-weight:650;cursor:pointer}
 .pt-realisation-gallery-preview{display:block;width:min(100%,520px);max-height:280px;border:1px solid #E1EAE4;border-radius:12px;background:#F8FAF8;object-fit:contain}
 .pt-realisation-gallery-form .pt-realisation-publish{grid-column:1/-1}
-.pt-realisation-gallery-form>.btn{justify-self:start;min-height:42px}
+.pt-realisation-gallery-form-actions{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:9px}
+.pt-realisation-gallery-form-actions .btn{min-height:42px}
 .pt-realisation-gallery-list{padding:22px 28px}
 .pt-realisation-gallery-list h3{display:flex;align-items:center;gap:9px;margin:0 0 15px;color:#173B32;font-size:16px}
 .pt-realisation-gallery-list h3 span{display:grid;min-width:24px;height:24px;place-items:center;border-radius:999px;background:#E4F0E9;color:#165B49;font-size:12px}
@@ -719,7 +720,10 @@
 .pt-realisation-gallery-card>div:not(.pt-realisation-gallery-card-actions){display:flex;flex-direction:column;gap:5px;padding:12px 12px 4px}
 .pt-realisation-gallery-card>div strong{color:#173B32;font-size:13px;line-height:1.4;overflow-wrap:anywhere}
 .pt-realisation-gallery-card>div span{color:#71847B;font-size:11px}
-.pt-realisation-gallery-card-actions{display:block;padding:9px 12px 12px}
+.pt-realisation-gallery-card-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:stretch;gap:7px;padding:9px 12px 12px}
+.pt-realisation-gallery-card-actions>.btn{flex:1;min-width:0;min-height:36px;padding:0 8px;font-size:12px}
+.pt-realisation-gallery-card-actions>.btn{box-sizing:border-box;width:100%}
+.pt-realisation-gallery-card-actions>.pt-realisation-delete-confirmation{grid-column:1/-1}
 .pt-realisation-delete-confirmation{display:block;box-sizing:border-box;width:100%;padding:8px;border:1px solid rgba(184,50,40,.2);border-radius:10px;background:rgba(184,50,40,.08)}
 .pt-realisation-gallery-card .pt-realisation-delete-confirmation>span{padding:0;color:#8F2D25;font-size:12px;font-weight:650;line-height:1.3}
 .pt-realisation-delete-buttons{display:grid;width:100%;grid-template-columns:repeat(2,minmax(0,1fr));align-items:stretch;gap:8px}
@@ -734,7 +738,8 @@
   .pt-realisation-gallery-heading{padding:18px}
   .pt-realisation-gallery-form{grid-template-columns:minmax(0,1fr);gap:15px;padding:17px}
   .pt-realisation-gallery-file,.pt-realisation-gallery-form .pt-realisation-publish{grid-column:1}
-  .pt-realisation-gallery-form>.btn{width:100%}
+  .pt-realisation-gallery-form-actions{display:grid;grid-template-columns:minmax(0,1fr)}
+  .pt-realisation-gallery-form-actions .btn{width:100%}
   .pt-realisation-gallery-list{padding:17px}
   .pt-realisation-gallery-grid{grid-template-columns:minmax(0,1fr);gap:12px}
   .pt-realisation-gallery-card>img{height:auto;aspect-ratio:4/3}
@@ -757,7 +762,7 @@
   .pt-realisation-card-description{font-size:12px;line-height:1.5}
   .pt-realisation-card-actions{width:100%;margin-top:5px}
   .pt-realisation-card-actions .btn{flex:1;min-height:42px}
-  .pt-realisation-project-delete-confirmation{flex:1 1 100%;width:100%;box-sizing:border-box;padding:5px}
+  .pt-realisation-project-delete-confirmation{width:100%;padding:5px}
   .pt-realisation-project-delete-confirmation>.btn{min-height:42px;padding:0 7px}
   .pt-realisation-form{border-radius:15px}
   .pt-realisation-form-heading{flex-direction:column;padding:19px;gap:12px}

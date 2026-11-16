@@ -179,7 +179,6 @@ export default function RealisationManager() {
                       <p className="pt-muted pt-realisation-card-meta">{item.domain}{item.location ? ` · ${item.location}` : ""}</p>
                       <p className="pt-muted pt-realisation-card-description">{item.description}</p>
                       <div className="pt-realisation-card-actions">
-                        <button className="btn btn-ghost btn-sm" type="button" onClick={() => startEdit(item)}>Modifier</button>
                         {confirmDeleteId === item.id ? (
                           <div className="pt-realisation-project-delete-confirmation" role="group" aria-label={`Confirmer la suppression de ${item.title}`}>
                             <button className="btn btn-sm pt-realisation-project-delete-confirm" type="button" disabled={deletingId === item.id} onClick={() => void remove(item)}>
@@ -188,7 +187,10 @@ export default function RealisationManager() {
                             <button className="btn btn-sm pt-realisation-project-delete-cancel" type="button" disabled={deletingId === item.id} onClick={() => setConfirmDeleteId(null)}>Annuler</button>
                           </div>
                         ) : (
-                          <button className="btn btn-ghost btn-sm" type="button" onClick={() => { setError(""); setNotice(""); setConfirmDeleteId(item.id); }}>Supprimer</button>
+                          <>
+                            <button className="btn btn-ghost btn-sm" type="button" onClick={() => startEdit(item)}>Modifier</button>
+                            <button className="btn btn-ghost btn-sm" type="button" onClick={() => { setError(""); setNotice(""); setConfirmDeleteId(item.id); }}>Supprimer</button>
+                          </>
                         )}
                       </div>
                     </div>

@@ -23,6 +23,7 @@ export default function RealisationPhotoGallery() {
   const [caption, setCaption] = useState("");
   const [imageAlt, setImageAlt] = useState("");
   const [isPublished, setIsPublished] = useState(true);
+  const [editingPhotoId, setEditingPhotoId] = useState<string | null>(null);
   const [error, setError] = useState("");
   const [notice, setNotice] = useState("");
   const [confirmDeleteId, setConfirmDeleteId] = useState<string | null>(null);
@@ -65,8 +66,10 @@ export default function RealisationPhotoGallery() {
     setError("");
     setNotice("");
     try {
-      const response = await fetch("/api/admin/realisations/photos", {
-        method: "POST",
+      const response = await fetch(editingPhotoId
+        ? `/api/admin/realisations/photos/${encodeURIComponent(editingPhotoId)}`
+        : "/api/admin/realisations/photos", {
+        method: editingPhotoId ? "PUT" : "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ imageUrl, caption: caption.trim(), imageAlt: imageAlt.trim(), isPublished }),
         cache: "no-store",
@@ -75,17 +78,40 @@ export default function RealisationPhotoGallery() {
       if (!response.ok || !payload?.success || !payload.data) {
         throw new Error(typeof payload?.message === "string" ? payload.message : "La photo n’a pas pu être enregistrée.");
       }
-      setPhotos((current) => [payload.data as GalleryPhoto, ...current]);
+      setPhotos((current) => editingPhotoId
+        ? current.map((photo) => photo.id === editingPhotoId ? payload.data as GalleryPhoto : photo)
+        : [payload.data as GalleryPhoto, ...current]);
+      setEditingPhotoId(null);
       setImageUrl("");
       setCaption("");
       setImageAlt("");
       setIsPublished(true);
-      setNotice("La photo a été ajoutée à la galerie.");
+      setNotice(editingPhotoId ? "La photo a été modifiée." : "La photo a été ajoutée à la galerie.");
     } catch (reason) {
       setError(reason instanceof Error ? reason.message : "La photo n’a pas pu être enregistrée.");
     } finally {
       setSaving(false);
     }
+  }
+
+  function editPhoto(photo: GalleryPhoto) {
+    setEditingPhotoId(photo.id);
+    setImageUrl(photo.imageUrl);
+    setCaption(photo.caption);
+    setImageAlt(photo.imageAlt);
+    setIsPublished(photo.isPublished);
+    setError("");
+    setNotice("");
+    document.getElementById("gallery-photo")?.scrollIntoView({ behavior: "smooth", block: "center" });
+  }
+
+  function cancelEditPhoto() {
+    setEditingPhotoId(null);
+    setImageUrl("");
+    setCaption("");
+    setImageAlt("");
+    setIsPublished(true);
+    setError("");
   }
 
   async function deletePhoto(photo: GalleryPhoto) {
@@ -111,7 +137,7 @@ export default function RealisationPhotoGallery() {
         <div>
           <span className="pt-realisation-eyebrow">PHOTOTHÈQUE</span>
           <h2>Photos des réalisations</h2>
-          <p>Ajoute des photos séparées des fiches de projet. Elles apparaîtront dans la galerie publique.</p>
+          <p>Les trois dernières photos publiées apparaissent sur l’accueil ; toutes les photos publiées restent sur la page Réalisations.</p>
         </div>
       </header>
 
@@ -120,9 +146,9 @@ export default function RealisationPhotoGallery() {
 
       <form className="pt-realisation-gallery-form" onSubmit={addPhoto}>
         <div className="fgroup pt-realisation-gallery-file">
-          <label htmlFor="gallery-photo">Ajouter une photo</label>
+          <label htmlFor="gallery-photo">{editingPhotoId ? "Remplacer la photo (facultatif)" : "Ajouter une photo"}</label>
           <input id="gallery-photo" type="file" accept="image/png,image/jpeg,image/webp" disabled={uploading || saving} onChange={(event) => { void upload(event.target.files?.[0]); event.currentTarget.value = ""; }} />
-          <span className="pt-muted">PNG, JPG ou WEBP · 5 Mo maximum</span>
+          <span className="pt-muted">PNG, JPG ou WEBP · 5 Mo maximum{editingPhotoId ? " · Laisse vide pour garder la photo actuelle" : ""}</span>
           {uploading && <span className="pt-muted" role="status">Envoi de la photo…</span>}
           {imageUrl && <Image src={imageUrl} alt={imageAlt || "Aperçu de la photo à ajouter"} width={480} height={270} unoptimized className="pt-realisation-gallery-preview" />}
         </div>
@@ -136,11 +162,14 @@ export default function RealisationPhotoGallery() {
         </div>
         <label className="pt-realisation-publish">
           <input type="checkbox" checked={isPublished} onChange={(event) => setIsPublished(event.target.checked)} />
-          <span><strong>Afficher sur la page Réalisations</strong><small>Tu peux garder la photo en brouillon.</small></span>
+          <span><strong>Afficher sur l’accueil et la page Réalisations</strong><small>Les trois dernières photos publiées apparaissent sur l’accueil ; tu peux garder cette photo en brouillon.</small></span>
         </label>
-        <button className="btn btn-green" type="submit" disabled={saving || uploading || !imageUrl || !caption.trim() || !imageAlt.trim()}>
-          {saving ? "Enregistrement…" : "Ajouter à la galerie"}
-        </button>
+        <div className="pt-realisation-gallery-form-actions">
+          <button className="btn btn-green" type="submit" disabled={saving || uploading || !imageUrl || !caption.trim() || !imageAlt.trim()}>
+            {saving ? "Enregistrement…" : editingPhotoId ? "Enregistrer les modifications" : "Ajouter à la galerie"}
+          </button>
+          {editingPhotoId && <button className="btn btn-ghost" type="button" disabled={saving || uploading} onClick={cancelEditPhoto}>Annuler</button>}
+        </div>
       </form>
 
       <div className="pt-realisation-gallery-list">
@@ -161,7 +190,12 @@ export default function RealisationPhotoGallery() {
                         <button className="btn btn-ghost btn-sm" type="button" disabled={deletingPhotoId === photo.id} onClick={() => setConfirmDeleteId(null)}>Annuler</button>
                       </div>
                     </div>
-                  ) : <button className="btn btn-sm pt-realisation-delete" type="button" onClick={() => { setError(""); setNotice(""); setConfirmDeleteId(photo.id); }}>Supprimer</button>}
+                  ) : (
+                    <>
+                      <button className="btn btn-ghost btn-sm" type="button" onClick={() => editPhoto(photo)}>Modifier</button>
+                      <button className="btn btn-sm pt-realisation-delete" type="button" onClick={() => { setError(""); setNotice(""); setConfirmDeleteId(photo.id); }}>Supprimer</button>
+                    </>
+                  )}
                 </div>
               </article>
             ))}
