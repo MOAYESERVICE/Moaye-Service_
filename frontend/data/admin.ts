@@ -16,7 +16,7 @@ export const menu: MenuGroup[] = [
   { title: "Contenu du site", items: [
     { id: "services", label: "Services", href: "/admin/services", roles: content },
     { id: "expertises", label: "Expertises", href: "/admin/expertises", roles: content },
-    { id: "realisations", label: "Réalisations", href: "/admin/realisations", roles: content },
+    { id: "realisations", label: "Réalisations & Photos", href: "/admin/realisations", roles: content },
     { id: "photos", label: "Photos", href: "/admin/photos", roles: content },
     { id: "partenaires", label: "Partenaires", href: "/admin/partenaires", roles: content },
   ] },
@@ -37,7 +37,7 @@ export const pageTitles: [string, string, string][] = [
   ["/admin/categories", "Catégories", "Gestion du contenu du site"],
   ["/admin/services", "Services", "Gestion du contenu du site"],
   ["/admin/expertises", "Expertises", "Gestion du contenu du site"],
-  ["/admin/realisations", "Réalisations", "Gestion du contenu du site"],
+  ["/admin/realisations", "Réalisations & Photos", "Gestion du contenu du site"],
   ["/admin/partenaires", "Partenaires", "Gestion du contenu du site"],
   ["/admin/photos", "Photos", "Photothèque du site"],
   ["/admin/commandes", "Commandes", "Suivi et traitement des commandes"],
