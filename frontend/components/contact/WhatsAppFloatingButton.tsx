@@ -7,8 +7,10 @@ import { whatsappHref } from "@/lib/whatsapp";
 export default function WhatsAppFloatingButton() {
   const pathname = usePathname();
   const [visible, setVisible] = useState(false);
-  const showOnPage = pathname.startsWith("/expertise");
-  const delay = 15_000;
+  const isExpertisePage = pathname.startsWith("/expertise");
+  const isRealisationPage = pathname.startsWith("/realisations");
+  const showOnPage = pathname === "/" || pathname === "/produits" || isExpertisePage || isRealisationPage;
+  const delay = 10_000;
 
   useEffect(() => {
     setVisible(false);
