@@ -141,6 +141,38 @@ export async function forwardAuth(path: "login" | "register" | "change-password"
   return setAuthCookies(response, { accessToken: token, refreshToken });
 }
 
+export async function forwardPasswordRecovery(path: "forgot-password" | "reset-password", body: Record<string, string>) {
+  let upstream: Response;
+  try {
+    upstream = await fetch(`${apiBaseUrl}/auth/${path}`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body),
+      cache: "no-store",
+    });
+  } catch {
+    return NextResponse.json(
+      { success: false, message: "Le service de récupération est momentanément indisponible." },
+      { status: 503 },
+    );
+  }
+
+  let payload: { success?: boolean; message?: string };
+  try {
+    payload = await upstream.json();
+  } catch {
+    return NextResponse.json(
+      { success: false, message: "Réponse invalide du service de récupération." },
+      { status: 502 },
+    );
+  }
+
+  return NextResponse.json(
+    { success: Boolean(payload.success), message: payload.message ?? "La demande n’a pas abouti. Réessayez." },
+    { status: upstream.status },
+  );
+}
+
 export type AuthUser = {
   id: number;
   name: string;

@@ -37,6 +37,17 @@ export const changePasswordSchema = z
   })
   .strict()
 
+export const forgotPasswordSchema = z
+  .object({ email: z.string().trim().toLowerCase().email().max(254) })
+  .strict()
+
+export const resetPasswordSchema = z
+  .object({
+    token: z.string().regex(/^[a-f0-9]{64}$/i),
+    password: passwordInputSchema,
+  })
+  .strict()
+
 // Vérifie le refresh token pour générer un nouveau access token.
 export const refreshSchema = z
   .object({

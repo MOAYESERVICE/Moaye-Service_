@@ -15,12 +15,12 @@ export default async function ProjectsSection() {
         {projects.length ? <>
           <div className="grid grid-320">
             {projects.slice(0, 6).map((project) => (
-              <article key={project.id} className="card realisation-card" style={{ padding: 14, display: "flex", flexDirection: "column", gap: 16 }}>
+              <article key={project.id} className="card realisation-card">
                 <Photo src={project.imageUrl} alt={project.imageAlt} height={220} />
-                <div style={{ padding: "0 10px 10px", display: "flex", flexDirection: "column", gap: 10 }}>
-                  <span className="tag" style={{ background: "#E3EFE8", border: "none" }}>{project.domain}{project.location ? ` · ${project.location}` : ""}</span>
+                <div className="realisation-card-content">
+                  <span className="tag realisation-card-tag">{project.domain}{project.location ? ` · ${project.location}` : ""}</span>
                   <h3 className="project-card-title">{project.title}</h3>
-                  <p className="muted">{project.description}</p>
+                  <p className="muted realisation-card-description">{project.description}</p>
                 </div>
               </article>
             ))}

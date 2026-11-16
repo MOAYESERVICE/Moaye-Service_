@@ -4,6 +4,11 @@ import "dotenv/config"
 // Zod sert à vérifier que les réglages ont le bon format
 import { z } from "zod"
 
+const optionalEnvString = z.preprocess(
+  (value) => value === "" ? undefined : value,
+  z.string().trim().min(1).optional(),
+)
+
 // Décrit les réglages attendus par le backend
 const envSchema = z.object({
   NODE_ENV: z
@@ -25,6 +30,19 @@ const envSchema = z.object({
     (value) => value === "" ? undefined : value,
     z.string().url().refine((value) => new URL(value).protocol === "https:", "PUBLIC_FRONTEND_URL doit utiliser HTTPS.").optional(),
   ),
+
+  SMTP_HOST: optionalEnvString,
+  SMTP_PORT: z.preprocess(
+    (value) => value === "" ? undefined : value,
+    z.coerce.number().int().min(1).max(65535).optional(),
+  ),
+  SMTP_SECURE: z.preprocess(
+    (value) => value === "" ? undefined : value === "true" ? true : value === "false" ? false : value,
+    z.boolean().default(false),
+  ),
+  SMTP_USER: optionalEnvString,
+  SMTP_PASSWORD: optionalEnvString,
+  SMTP_FROM: optionalEnvString,
 })
 
 // Vérifie les réglages réellement chargés depuis .env

@@ -35,4 +35,9 @@ export class ApiError extends Error {
   static conflict(message = "Conflit") {
     return new ApiError(409, message)
   }
+
+  // 503 : un service externe nécessaire n'est pas configuré ou disponible.
+  static serviceUnavailable(message = "Service temporairement indisponible") {
+    return new ApiError(503, message)
+  }
 }

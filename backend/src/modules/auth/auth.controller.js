@@ -6,6 +6,8 @@ import {
   logoutUser,
   logoutAllSessions,
   changePasswordUser,
+  requestPasswordResetUser,
+  resetPasswordUser,
 } from "./auth.service.js"
 
 // Reçoit une demande d'inscription et crée un compte client.
@@ -32,6 +34,23 @@ export async function login(req, res) {
 export async function changePassword(req, res) {
   const result = await changePasswordUser(req.body)
   res.status(200).json({ success: true, data: result })
+}
+
+export async function requestPasswordReset(req, res) {
+  const startedAt = Date.now()
+  await requestPasswordResetUser(req.body.email)
+  const remaining = 250 - (Date.now() - startedAt)
+  if (remaining > 0) await new Promise((resolve) => setTimeout(resolve, remaining))
+
+  res.status(202).json({
+    success: true,
+    message: "Si un compte existe avec cette adresse, un e-mail de réinitialisation va être envoyé.",
+  })
+}
+
+export async function resetPassword(req, res) {
+  await resetPasswordUser(req.body)
+  res.status(200).json({ success: true, message: "Votre mot de passe a bien été mis à jour." })
 }
 
 export function currentUser(req, res) {

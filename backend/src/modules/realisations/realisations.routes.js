@@ -34,14 +34,14 @@ function parseId(value) {
 router.get("/", async (_req, res) => {
   const rows = await prisma.realization.findMany({
     where: { isPublished: true, imageUrl: { not: null } },
-    orderBy: { createdAt: "desc" },
+    orderBy: [{ createdAt: "desc" }, { id: "desc" }],
   });
   res.json({ success: true, data: rows.map(toResponse) });
 });
 
 // La liste complète est réservée aux administrateurs.
 router.get("/admin", requireAuth, requireRole("ADMIN"), async (_req, res) => {
-  const rows = await prisma.realization.findMany({ orderBy: { createdAt: "desc" } });
+  const rows = await prisma.realization.findMany({ orderBy: [{ createdAt: "desc" }, { id: "desc" }] });
   res.json({ success: true, data: rows.map(toResponse) });
 });
 

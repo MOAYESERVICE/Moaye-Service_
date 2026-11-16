@@ -1,4 +1,7 @@
 // Crée les erreurs HTTP prévues par l'application.
+import { createHash, randomBytes } from "node:crypto"
+import { env } from "../../config/env.js"
+import { logger } from "../../utils/logger.js"
 import { ApiError } from "../../utils/ApiError.js"
 
 // Hache les mots de passe et compare ceux saisis à leur empreinte.
@@ -23,6 +26,19 @@ import {
   revokeRefreshToken,
   revokeAllUserTokens,
 } from "./refreshToken.repository.js"
+import {
+  consumePasswordResetToken,
+  createPasswordResetToken,
+  deleteExpiredPasswordResetTokens,
+  deletePasswordResetTokenByHash,
+  deletePasswordResetTokensForUser,
+  findRecentPasswordResetToken,
+} from "./passwordReset.repository.js"
+import {
+  isPasswordResetEmailConfigured,
+  sendPasswordChangedEmail,
+  sendPasswordResetEmail,
+} from "./password-reset-email.service.js"
 
 function safeUser(user) {
   return {
@@ -120,6 +136,68 @@ export async function changePasswordUser({ email, currentPassword, newPassword }
   }
 
   return createSession({ ...user, passwordHash })
+}
+
+export async function requestPasswordResetUser(email) {
+  if (!isPasswordResetEmailConfigured()) {
+    throw ApiError.serviceUnavailable("Le service de récupération par e-mail n’est pas encore configuré.")
+  }
+
+  const now = new Date()
+  await deleteExpiredPasswordResetTokens(now)
+  const user = await findUserByEmail(email)
+  if (!user || !user.isActive) return
+
+  const cooldownStart = new Date(now.getTime() - 2 * 60 * 1000)
+  const recentRequest = await findRecentPasswordResetToken(user.id, cooldownStart)
+  if (recentRequest) return
+
+  const token = randomBytes(32).toString("hex")
+  const tokenHash = createHash("sha256").update(token).digest("hex")
+  const expiresAt = new Date(now.getTime() + 30 * 60 * 1000)
+
+  await deletePasswordResetTokensForUser(user.id)
+  await createPasswordResetToken({ userId: user.id, tokenHash, expiresAt })
+
+  const resetUrl = new URL("/reinitialiser", env.PUBLIC_FRONTEND_URL)
+  resetUrl.searchParams.set("token", token)
+
+  void Promise.resolve()
+    .then(() => sendPasswordResetEmail(user.email, resetUrl.toString()))
+    .catch(async (error) => {
+      logger.error("Échec de l’envoi du lien de réinitialisation", {
+        userId: user.id,
+        error: error instanceof Error ? error.message : "Erreur inconnue",
+      })
+      try {
+        await deletePasswordResetTokenByHash(tokenHash)
+      } catch (cleanupError) {
+        logger.error("Échec de suppression du jeton de réinitialisation non envoyé", {
+          userId: user.id,
+          error: cleanupError instanceof Error ? cleanupError.message : "Erreur inconnue",
+        })
+      }
+    })
+}
+
+export async function resetPasswordUser({ token, password }) {
+  const tokenHash = createHash("sha256").update(token).digest("hex")
+  const passwordHash = await hashPassword(password)
+  const email = await consumePasswordResetToken(tokenHash, passwordHash)
+
+  if (!email) {
+    throw ApiError.badRequest("Ce lien est invalide ou expiré. Demandez un nouveau lien de réinitialisation.")
+  }
+
+  void Promise.resolve()
+    .then(() => sendPasswordChangedEmail(email))
+    .catch((error) => {
+      logger.error("Échec de l’envoi de l’avis de changement de mot de passe", {
+        error: error instanceof Error ? error.message : "Erreur inconnue",
+      })
+    })
+
+  return { success: true }
 }
 
 // Génère un nouveau access token à partir d'un refresh token.

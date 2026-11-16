@@ -23,6 +23,7 @@ model User {
   orders          Order[]
   quotes          Quote[]
   refreshTokens   RefreshToken[] @relation("refreshTokens")
+  passwordResetTokens PasswordResetToken[]
   reviews         Review[]
 }
 
@@ -233,6 +234,19 @@ model RefreshToken {
 
   @@index([userId])
   @@index([tokenHash], map: "RefreshToken_token_idx")
+}
+
+model PasswordResetToken {
+  id        Int       @id @default(autoincrement())
+  userId    Int
+  tokenHash String    @unique
+  expiresAt DateTime
+  usedAt    DateTime?
+  createdAt DateTime  @default(now())
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, createdAt])
+  @@index([expiresAt])
 }
 
 enum UserRole {

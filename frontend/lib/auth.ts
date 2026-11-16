@@ -8,7 +8,7 @@ type AuthResponse = {
   data?: { user?: { role?: SessionRole } };
 };
 
-async function requestAuth(path: "login" | "register" | "change-password", data: Record<string, string>) {
+async function requestAuth(path: "login" | "register" | "change-password" | "forgot-password" | "reset-password", data: Record<string, string>) {
   let response: Response;
   try {
     response = await fetch(`/api/auth/${path}`, {
@@ -59,14 +59,12 @@ export async function register(data: RegisterData): Promise<void> {
   });
 }
 
-export async function forgotPassword(_data: ForgotData): Promise<void> {
-  void _data;
-  throw new Error("La récupération du mot de passe n’est pas disponible pour le moment. Veuillez réessayer ultérieurement ou contacter notre équipe.");
+export async function forgotPassword(data: ForgotData): Promise<void> {
+  await requestAuth("forgot-password", { email: data.email })
 }
 
-export async function resetPassword(_data: ResetData): Promise<void> {
-  void _data;
-  throw new Error("La réinitialisation du mot de passe n’est pas disponible pour le moment. Veuillez contacter notre équipe pour obtenir de l’aide.");
+export async function resetPassword(data: ResetData, token: string): Promise<void> {
+  await requestAuth("reset-password", { token, password: data.password })
 }
 
 export async function logout(): Promise<void> {

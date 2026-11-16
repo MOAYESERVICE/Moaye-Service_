@@ -3,7 +3,7 @@ import { Router } from "express"
 import { rateLimit } from "express-rate-limit"
 
 // Importe les fonctions qui traiteront les demandes d'inscription et de connexion.
-import { currentUser, login, register, refresh, logout, logoutAll, changePassword } from "./auth.controller.js"
+import { currentUser, login, register, refresh, logout, logoutAll, changePassword, requestPasswordReset, resetPassword } from "./auth.controller.js"
 import { requireAuth } from "../../middlewares/auth.middleware.js"
 
 // Importe le middleware qui valide les données reçues.
@@ -15,6 +15,8 @@ import {
   registerSchema,
   refreshSchema,
   changePasswordSchema,
+  forgotPasswordSchema,
+  resetPasswordSchema,
 } from "./auth.validation.js"
 
 // Crée un routeur pour les routes d'authentification.
@@ -37,6 +39,18 @@ const registerLimiter = createAuthenticationLimiter()
 const loginLimiter = createAuthenticationLimiter()
 const refreshLimiter = createAuthenticationLimiter()
 const changePasswordLimiter = createAuthenticationLimiter()
+const createPasswordRecoveryLimiter = (limit) => rateLimit({
+  windowMs: 15 * 60 * 1000,
+  limit,
+  standardHeaders: true,
+  legacyHeaders: false,
+  handler: (_req, res) => res.status(429).json({
+    success: false,
+    message: "Trop de demandes. Réessayez dans quelques minutes.",
+  }),
+})
+const forgotPasswordLimiter = createPasswordRecoveryLimiter(5)
+const resetPasswordLimiter = createPasswordRecoveryLimiter(10)
 
 // POST /register reçoit les informations pour créer un compte.
 // validateBody vérifie les données avant que register appelle le contrôleur.
@@ -47,6 +61,12 @@ authRouter.post("/login", loginLimiter, validateBody(loginSchema), login)
 
 // La vérification de l'ancien mot de passe précède tout changement de session.
 authRouter.post("/change-password", changePasswordLimiter, validateBody(changePasswordSchema), changePassword)
+
+// Envoie un lien de récupération sans révéler si l'adresse existe.
+authRouter.post("/forgot-password", forgotPasswordLimiter, validateBody(forgotPasswordSchema), requestPasswordReset)
+
+// Accepte un jeton secret à usage unique pour remplacer le mot de passe.
+authRouter.post("/reset-password", resetPasswordLimiter, validateBody(resetPasswordSchema), resetPassword)
 
 // GET /me retourne l'utilisateur connecté
 authRouter.get("/me", requireAuth, currentUser)
