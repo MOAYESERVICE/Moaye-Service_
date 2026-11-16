@@ -444,8 +444,16 @@ export function AdminProvider({ children }: { children: React.ReactNode }) {
     messageNotificationHistory: messageNotifications,
     readNotificationIds,
     markNotificationRead: (id) => {
-      if (readNotificationIds.includes(id)) return;
-      const updated = [...readNotificationIds, id];
+      let storedIds: string[] = [];
+      try {
+        const stored = JSON.parse(localStorage.getItem("moaye-admin-read-notifications") ?? "[]");
+        if (Array.isArray(stored)) storedIds = stored.filter((value): value is string => typeof value === "string");
+      } catch {
+        localStorage.removeItem("moaye-admin-read-notifications");
+      }
+      const current = Array.from(new Set([...storedIds, ...readNotificationIds]));
+      if (current.includes(id)) return;
+      const updated = [...current, id];
       setReadNotificationIds(updated);
       localStorage.setItem("moaye-admin-read-notifications", JSON.stringify(updated));
     },

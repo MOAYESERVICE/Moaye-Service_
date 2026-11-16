@@ -27,7 +27,7 @@ const adminIcons: Record<string, string> = {
 
 export default function Sidebar() {
   const pathname = usePathname();
-  const { role, todo, readNotificationIds, adminIdentity } = useAdmin();
+  const { role, todo, readNotificationIds, markNotificationRead, adminIdentity } = useAdmin();
   const [mobileOpen, setMobileOpen] = useState(false);
   useEffect(() => {
     if (!mobileOpen) return;
@@ -42,9 +42,22 @@ export default function Sidebar() {
       window.removeEventListener("keydown", closeOnEscape);
     };
   }, [mobileOpen]);
+  const readSection = pathname.startsWith("/admin/commandes")
+    ? "orders"
+    : pathname.startsWith("/admin/devis")
+      ? "quotes"
+      : pathname.startsWith("/admin/messages")
+        ? "messages"
+        : null;
+
+  useEffect(() => {
+    if (!readSection) return;
+    todo.filter((item) => item.need === readSection).forEach((item) => markNotificationRead(item.id));
+  }, [markNotificationRead, readSection, todo]);
+
   const badge: Record<string, number> = {
-    orders: todo.filter((item) => item.need === "orders").length,
-    quotes: todo.filter((item) => item.need === "quotes").length,
+    orders: todo.filter((item) => item.need === "orders" && !readNotificationIds.includes(item.id)).length,
+    quotes: todo.filter((item) => item.need === "quotes" && !readNotificationIds.includes(item.id)).length,
     messages: todo.filter((item) => item.need === "messages" && !readNotificationIds.includes(item.id)).length,
   };
   const adminName = adminIdentity?.name.trim() || "Compte administrateur";
