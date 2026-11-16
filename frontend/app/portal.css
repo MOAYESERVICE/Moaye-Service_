@@ -225,10 +225,12 @@
   .pt-menu-toggle-icon i{display:block;height:2px;border-radius:2px;background:currentColor;transition:transform .18s ease,opacity .18s ease}
   .pt-side.dark:not(.mobile-open) .pt-nav,.pt-side.dark:not(.mobile-open) .pt-foot{display:none}
   .pt-side.dark.mobile-open .pt-nav{display:flex;flex-direction:column;gap:3px;padding-top:10px}
-  .pt-side.dark.mobile-open .pt-foot{display:flex;flex-direction:column;margin-top:0;padding-top:12px}
-  .pt-side.dark.mobile-open{position:fixed;inset:0;z-index:1000;display:flex;width:100%;height:100vh;height:100dvh;box-sizing:border-box;flex:none;flex-direction:column;overflow:hidden;overscroll-behavior:contain;padding:calc(env(safe-area-inset-top) + 12px) 14px calc(env(safe-area-inset-bottom) + 12px)}
-  .pt-side.dark.mobile-open .pt-mobile-header{position:sticky;top:0;z-index:1;flex:none;padding-bottom:10px;background:var(--ink)}
-  .pt-side.dark.mobile-open .pt-nav{height:0;min-height:0;flex:1 1 0%;overflow-x:hidden;overflow-y:scroll;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;touch-action:pan-y}
+  .pt-side.dark.mobile-open .pt-nav .pt-label{flex:0 0 auto;margin:10px 10px 3px;font-size:10px}
+  .pt-side.dark.mobile-open .pt-nav .pt-nv{flex:0 0 auto;min-height:38px;padding:0 11px;font-size:14px}
+  .pt-side.dark.mobile-open .pt-foot{display:flex;flex-direction:column;margin-top:0;padding-top:32px}
+  .pt-side.dark.mobile-open{position:fixed;inset:0;z-index:1000;display:flex;width:100%;height:auto;min-height:0;max-height:100dvh;box-sizing:border-box;flex:none;flex-direction:column;overflow-x:hidden;overflow-y:auto;overscroll-behavior-y:contain;-webkit-overflow-scrolling:touch;touch-action:pan-y;padding:calc(env(safe-area-inset-top) + 12px) 14px calc(env(safe-area-inset-bottom) + 12px)}
+  .pt-side.dark.mobile-open .pt-mobile-header{position:static;flex:none;padding-bottom:10px;background:var(--ink)}
+  .pt-side.dark.mobile-open .pt-nav{height:auto;min-height:0;flex:0 0 auto;overflow:visible}
   .pt-side.dark.mobile-open .pt-nav .pt-label,.pt-side.dark.mobile-open .pt-nav .pt-nv{flex:0 0 auto}
   .pt-side.dark.mobile-open .pt-foot{flex:none;margin-top:auto;padding-bottom:8px}
   .pt-side.dark.mobile-open .pt-menu-toggle-icon i:first-child{transform:translateY(6px) rotate(45deg)}
@@ -493,7 +495,7 @@
     display: flex;
     flex-direction: column;
   }
-  .pt-admin-app > .pt-side.dark {
+  .pt-admin-app > .pt-side.dark:not(.mobile-open) {
     position: relative;
     width: auto;
     height: auto;
