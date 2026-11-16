@@ -246,7 +246,8 @@ a{color:var(--green)} a:hover{color:var(--green-dark)}
 .footer-contact-link:hover{background:#1B6B57;border-color:#8FB09F;color:#fff}
 .footer-contact-link span{font-size:18px;line-height:1}
 .footer-social-list{display:flex;flex-direction:column;gap:10px}
-.footer-social-item{display:flex;align-items:center;gap:10px;color:#E5F0EA;font-size:14px}
+.footer-social-item{display:flex;align-items:center;gap:10px;color:#E5F0EA;font-size:14px;text-decoration:none}
+.footer-social-item[href]:hover{color:var(--amber)}
 .footer-social-icon{display:grid;width:36px;height:36px;flex:none;place-items:center;border:1px solid #50685E;border-radius:50%;background:transparent;color:#D8E5DE}
 .footer-social-icon svg{display:block;width:19px;height:19px}
 .footer-social p{margin:13px 0 0;color:#A9C0B5;font-size:12px;line-height:1.5}
@@ -341,7 +342,7 @@ a{color:var(--green)} a:hover{color:var(--green-dark)}
 @media(min-width:901px){.catalogue-hero::after{background-image:linear-gradient(90deg,rgba(14,42,38,.78) 0%,rgba(14,42,38,.6) 48%,rgba(14,42,38,.34) 100%),url("/parlonPRojet.jpg");background-position:center,center;background-size:cover,auto 120%;background-repeat:no-repeat,repeat-x}}
 .catalogue-hero .tag{background:rgba(255,255,255,.92);border-color:rgba(255,255,255,.7);color:var(--green-dark)}
 .catalogue-hero h1{color:#fff}
-.catalogue-hero p{color:rgba(255,255,255,.92)}
+.catalogue-hero p{max-width:58ch;color:rgba(255,255,255,.92);font-size:clamp(16px,1.5vw,21px);line-height:1.6}
 .stack{display:flex;flex-direction:column;gap:20px}
 .tabs{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:28px}
 .tab{min-height:48px;padding:0 22px;border-radius:999px;border:1.5px solid var(--green);background:#fff;color:var(--green-dark);font-family:inherit;font-size:16px;font-weight:600;cursor:pointer;transition:background .15s,color .15s}

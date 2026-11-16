@@ -12,7 +12,7 @@ export default function ContactPage() {
         <div className="wrap stack" style={{ paddingTop: 44, paddingBottom: 44, gap: 12 }}>
           <span className="tag">Contact</span>
           <h1>Parlons de votre projet</h1>
-          <p>Les coordonnées directes et l’envoi des formulaires sont en cours de configuration.</p>
+          <p>Contactez notre équipe sur WhatsApp ou présentez-nous votre projet avec le formulaire.</p>
         </div>
       </section>
 

@@ -10,7 +10,7 @@ export default function ProduitsPage() {
         <div className="wrap stack" style={{ paddingTop: 44, paddingBottom: 44, gap: 12 }}>
           <span className="tag">Produits</span>
           <h1>Catalogue produits et équipements</h1>
-          <p>Aliments, animaux d&apos;élevage, équipements et matériel. Vous pouvez explorer le catalogue ; la validation des commandes en ligne n&apos;est pas encore activée.</p>
+          <p>Découvrez nos aliments, animaux d&apos;élevage, équipements et matériel. Passez commande en ligne : notre équipe vous contactera pour confirmer la livraison et le paiement.</p>
         </div>
       </section>
       <Suspense fallback={<div className="wrap" aria-busy="true" />}>

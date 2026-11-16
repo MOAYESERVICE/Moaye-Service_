@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Logo from "./Logo";
 import { nav } from "@/data/nav";
+import { whatsappHref } from "@/lib/whatsapp";
 
 const socialNetworks = [
   { name: "Facebook", icon: "facebook" },
@@ -49,13 +50,19 @@ export default function Footer() {
           <h2>Suivez-nous</h2>
           <div className="footer-social-list">
             {socialNetworks.map((network) => (
-              <span className="footer-social-item" key={network.name} aria-label={network.name}>
-                <span className="footer-social-icon"><SocialIcon name={network.icon} /></span>
-                <span>{network.name}</span>
-              </span>
+              network.name === "WhatsApp" ? (
+                <a className="footer-social-item" key={network.name} href={whatsappHref("Bonjour MOAYE SERVICES.")} target="_blank" rel="noopener noreferrer" aria-label="Contacter MOAYE SERVICES sur WhatsApp">
+                  <span className="footer-social-icon"><SocialIcon name={network.icon} /></span>
+                  <span>{network.name}</span>
+                </a>
+              ) : (
+                <span className="footer-social-item" key={network.name} aria-label={network.name}>
+                  <span className="footer-social-icon"><SocialIcon name={network.icon} /></span>
+                  <span>{network.name}</span>
+                </span>
+              )
             ))}
           </div>
-          <p>Comptes officiels en cours de configuration.</p>
         </section>
       </div>
 
