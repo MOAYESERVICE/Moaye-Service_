@@ -1,8 +1,12 @@
 import Link from "next/link";
+import { connection } from "next/server";
 import Photo from "@/components/ui/Photo";
 import { getPublishedRealisations } from "@/lib/realisations";
 
 export default async function ProjectsSection() {
+  // Les réalisations viennent de l’API avec cache no-store : cette section doit
+  // être rendue à la requête, pas pré-rendue avec une valeur volatile.
+  await connection();
   const projects = await getPublishedRealisations();
   return (
     <section id="realisations" className="section">
@@ -25,7 +29,7 @@ export default async function ProjectsSection() {
               </article>
             ))}
           </div>
-          <div className="projects-section-cta"><Link className="btn btn-green" href="/realisations">Voir tous les projets</Link></div>
+          <div className="projects-section-cta"><Link className="btn btn-green" href="/realisations">Voir les projets et photos</Link></div>
         </> : <p className="muted">Nos réalisations seront bientôt présentées ici.</p>}
       </div>
     </section>

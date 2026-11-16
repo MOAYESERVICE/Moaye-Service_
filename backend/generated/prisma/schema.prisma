@@ -8,22 +8,23 @@ datasource db {
 }
 
 model User {
-  id              Int            @id @default(autoincrement())
-  email           String         @unique
-  name            String
-  passwordHash    String
-  role            UserRole       @default(CUSTOMER)
-  isActive        Boolean        @default(true)
-  createdAt       DateTime       @default(now())
-  updatedAt       DateTime       @updatedAt
-  phone           String?
-  cart            Cart?
-  contactMessages Contact[]
-  contactReplies  ContactReply[] @relation("ContactReplyAuthor")
-  orders          Order[]
-  quotes          Quote[]
-  refreshTokens   RefreshToken[] @relation("refreshTokens")
-  reviews         Review[]
+  id                  Int                  @id @default(autoincrement())
+  email               String               @unique
+  name                String
+  passwordHash        String
+  role                UserRole             @default(CUSTOMER)
+  isActive            Boolean              @default(true)
+  createdAt           DateTime             @default(now())
+  updatedAt           DateTime             @updatedAt
+  phone               String?
+  cart                Cart?
+  contactMessages     Contact[]
+  contactReplies      ContactReply[]       @relation("ContactReplyAuthor")
+  orders              Order[]
+  quotes              Quote[]
+  refreshTokens       RefreshToken[]       @relation("refreshTokens")
+  passwordResetTokens PasswordResetToken[]
+  reviews             Review[]
 }
 
 model Category {
@@ -206,6 +207,18 @@ model Realization {
   @@index([isPublished, createdAt])
 }
 
+model RealizationPhoto {
+  id          Int      @id @default(autoincrement())
+  imageUrl    String
+  caption     String
+  imageAlt    String
+  isPublished Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([isPublished, createdAt])
+}
+
 model HomepagePhoto {
   id         Int      @id @default(autoincrement())
   productKey String   @unique
@@ -234,6 +247,19 @@ model RefreshToken {
 
   @@index([userId])
   @@index([tokenHash], map: "RefreshToken_token_idx")
+}
+
+model PasswordResetToken {
+  id        Int       @id @default(autoincrement())
+  userId    Int
+  tokenHash String    @unique
+  expiresAt DateTime
+  usedAt    DateTime?
+  createdAt DateTime  @default(now())
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, createdAt])
+  @@index([expiresAt])
 }
 
 enum UserRole {

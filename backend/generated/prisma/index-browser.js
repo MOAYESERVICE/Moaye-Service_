@@ -265,6 +265,16 @@ exports.Prisma.RealizationScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.RealizationPhotoScalarFieldEnum = {
+  id: 'id',
+  imageUrl: 'imageUrl',
+  caption: 'caption',
+  imageAlt: 'imageAlt',
+  isPublished: 'isPublished',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.HomepagePhotoScalarFieldEnum = {
   id: 'id',
   productKey: 'productKey',
@@ -286,6 +296,15 @@ exports.Prisma.RefreshTokenScalarFieldEnum = {
   revokedAt: 'revokedAt',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
+};
+
+exports.Prisma.PasswordResetTokenScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  tokenHash: 'tokenHash',
+  expiresAt: 'expiresAt',
+  usedAt: 'usedAt',
+  createdAt: 'createdAt'
 };
 
 exports.Prisma.SortOrder = {
@@ -378,8 +397,10 @@ exports.Prisma.ModelName = {
   ContactReply: 'ContactReply',
   Review: 'Review',
   Realization: 'Realization',
+  RealizationPhoto: 'RealizationPhoto',
   HomepagePhoto: 'HomepagePhoto',
-  RefreshToken: 'RefreshToken'
+  RefreshToken: 'RefreshToken',
+  PasswordResetToken: 'PasswordResetToken'
 };
 
 /**

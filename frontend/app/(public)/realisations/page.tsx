@@ -30,9 +30,6 @@ async function RealisationsList() {
             <h2 id="realisation-photo-gallery-title">Nos interventions en images</h2>
             <p>Des photos authentiques de nos projets en agriculture, élevage et aquaculture.</p>
           </div>
-          <span className="realisation-gallery-count" aria-label={`${photos.length} photos dans la galerie`}>
-            <strong>{photos.length}</strong> photo{photos.length === 1 ? "" : "s"}
-          </span>
         </div>
         <RealisationPhotoGallery photos={photos} />
       </section>}

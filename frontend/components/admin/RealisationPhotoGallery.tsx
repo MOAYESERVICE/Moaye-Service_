@@ -25,6 +25,8 @@ export default function RealisationPhotoGallery() {
   const [isPublished, setIsPublished] = useState(true);
   const [error, setError] = useState("");
   const [notice, setNotice] = useState("");
+  const [confirmDeleteId, setConfirmDeleteId] = useState<string | null>(null);
+  const [deletingPhotoId, setDeletingPhotoId] = useState<string | null>(null);
 
   const load = useCallback(async (signal?: AbortSignal) => {
     const response = await fetch("/api/admin/realisations/photos", { cache: "no-store", signal });
@@ -87,17 +89,19 @@ export default function RealisationPhotoGallery() {
   }
 
   async function deletePhoto(photo: GalleryPhoto) {
-    if (!window.confirm(`Supprimer la photo « ${photo.caption} » ?`)) return;
     setError("");
     setNotice("");
+    setDeletingPhotoId(photo.id);
     try {
       const response = await fetch(`/api/admin/realisations/photos/${encodeURIComponent(photo.id)}`, { method: "DELETE", cache: "no-store" });
       const payload = await response.json().catch(() => null);
       if (!response.ok || !payload?.success) throw new Error(payload?.message ?? "La photo n’a pas pu être supprimée.");
       setPhotos((current) => current.filter((item) => item.id !== photo.id));
-      setNotice("La photo a été supprimée de la galerie.");
+      setConfirmDeleteId(null);
     } catch (reason) {
       setError(reason instanceof Error ? reason.message : "La photo n’a pas pu être supprimée.");
+    } finally {
+      setDeletingPhotoId(null);
     }
   }
 
@@ -147,7 +151,18 @@ export default function RealisationPhotoGallery() {
               <article key={photo.id} className="pt-realisation-gallery-card">
                 <Image src={photo.imageUrl} alt={photo.imageAlt} width={640} height={420} unoptimized />
                 <div><strong>{photo.caption}</strong><span>{photo.isPublished ? "Publiée" : "Brouillon"}</span></div>
-                <button className="btn btn-ghost btn-sm" type="button" onClick={() => void deletePhoto(photo)}>Supprimer</button>
+                <div className="pt-realisation-gallery-card-actions">
+                  {confirmDeleteId === photo.id ? (
+                    <div className="pt-realisation-delete-confirmation" role="group" aria-label={`Confirmer la suppression de ${photo.caption}`}>
+                      <div className="pt-realisation-delete-buttons">
+                        <button className="btn btn-sm pt-realisation-delete-confirm" type="button" disabled={deletingPhotoId === photo.id} onClick={() => void deletePhoto(photo)}>
+                          {deletingPhotoId === photo.id ? "Suppression…" : "Confirmer"}
+                        </button>
+                        <button className="btn btn-ghost btn-sm" type="button" disabled={deletingPhotoId === photo.id} onClick={() => setConfirmDeleteId(null)}>Annuler</button>
+                      </div>
+                    </div>
+                  ) : <button className="btn btn-sm pt-realisation-delete" type="button" onClick={() => { setError(""); setNotice(""); setConfirmDeleteId(photo.id); }}>Supprimer</button>}
+                </div>
               </article>
             ))}
           </div>

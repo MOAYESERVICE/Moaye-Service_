@@ -40,6 +40,8 @@ export default function RealisationManager() {
   const [uploading, setUploading] = useState(false);
   const [notice, setNotice] = useState("");
   const [error, setError] = useState("");
+  const [confirmDeleteId, setConfirmDeleteId] = useState<string | null>(null);
+  const [deletingId, setDeletingId] = useState<string | null>(null);
   const editorRef = useRef<HTMLFormElement>(null);
 
   const load = useCallback(async (signal?: AbortSignal) => {
@@ -137,16 +139,19 @@ export default function RealisationManager() {
   }
 
   async function remove(item: Realisation) {
-    if (!window.confirm(`Supprimer « ${item.title} » ? Cette action est définitive.`)) return;
+    setDeletingId(item.id);
     setError("");
     setNotice("");
     try {
       const response = await fetch(`/api/admin/realisations/${encodeURIComponent(item.id)}`, { method: "DELETE", cache: "no-store" });
       await readPayload<Realisation>(response);
       setItems((current) => current.filter((entry) => entry.id !== item.id));
+      setConfirmDeleteId(null);
       if (editingId === item.id) cancelEdit();
     } catch (reason) {
       setError(reason instanceof Error ? reason.message : "La réalisation n’a pas pu être supprimée.");
+    } finally {
+      setDeletingId(null);
     }
   }
 
@@ -175,7 +180,16 @@ export default function RealisationManager() {
                       <p className="pt-muted pt-realisation-card-description">{item.description}</p>
                       <div className="pt-realisation-card-actions">
                         <button className="btn btn-ghost btn-sm" type="button" onClick={() => startEdit(item)}>Modifier</button>
-                        <button className="btn btn-ghost btn-sm" type="button" onClick={() => void remove(item)}>Supprimer</button>
+                        {confirmDeleteId === item.id ? (
+                          <div className="pt-realisation-project-delete-confirmation" role="group" aria-label={`Confirmer la suppression de ${item.title}`}>
+                            <button className="btn btn-sm pt-realisation-project-delete-confirm" type="button" disabled={deletingId === item.id} onClick={() => void remove(item)}>
+                              {deletingId === item.id ? "Suppression…" : "Confirmer"}
+                            </button>
+                            <button className="btn btn-sm pt-realisation-project-delete-cancel" type="button" disabled={deletingId === item.id} onClick={() => setConfirmDeleteId(null)}>Annuler</button>
+                          </div>
+                        ) : (
+                          <button className="btn btn-ghost btn-sm" type="button" onClick={() => { setError(""); setNotice(""); setConfirmDeleteId(item.id); }}>Supprimer</button>
+                        )}
                       </div>
                     </div>
                   </article>
