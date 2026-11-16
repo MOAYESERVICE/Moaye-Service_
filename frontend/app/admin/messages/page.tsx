@@ -35,7 +35,7 @@ function formatDate(value: string) {
 }
 
 export default function AdminMessages() {
-  const { q, flash } = useAdmin();
+  const { q, flash, markNotificationRead } = useAdmin();
   const [messages, setMessages] = useState<ContactThread[]>([]);
   const refreshGeneration = useRef(0);
   const inboxRef = useRef<HTMLElement | null>(null);
@@ -112,6 +112,11 @@ export default function AdminMessages() {
       await updateContactStatus(key, newStatus);
       refreshGeneration.current += 1;
       setRefreshing(false);
+      if (newStatus !== "NEW") {
+        const latestCustomerMessage = [...message.replies].reverse().find((reply) => reply.sender === "CUSTOMER");
+        const activityId = latestCustomerMessage?.id ?? `initial-${message.id}`;
+        markNotificationRead(`contact:${message.id}:${activityId}`);
+      }
       setMessages((current) => current.map((item) => String(item.id) === key ? { ...item, status: newStatus as MessageStatus, updatedAt: new Date().toISOString() } : item));
       if (newStatus === "RESOLVED" || message.status === "RESOLVED") {
         setFilter("ACTIVE");

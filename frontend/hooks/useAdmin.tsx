@@ -3,10 +3,10 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { demoThreads, isUnread, type DemoOrder, type DemoQuote, type OrderStatus, type QuoteStatus, type Thread } from "@/data/demo";
 import { seedContent, seedPhotos, type AdminUser, type AdminUserRole, type ContentId, type ContentItem, type Photo, type Role } from "@/data/admin";
 import type { Product } from "@/types/product";
-import { deleteAdminProduct, getAdminUsers, getAllOrders, getContactMessages, getProducts, getQuotes, saveAdminProduct, updateAdminUser, type AdminProductInput } from "@/lib/api";
+import { deleteAdminProduct, getAdminUsers, getAllOrders, getContactMessages, getProducts, getQuotes, groupContactThreads, saveAdminProduct, updateAdminUser, type AdminProductInput } from "@/lib/api";
 
 type Row = Thread & { unread: boolean };
-export type Todo = { id: string; type: "Commande" | "Devis" | "Message"; label: string; client: string; iso: string; href: string; need: string };
+export type Todo = { id: string; type: "Commande" | "Devis" | "Message"; label: string; client: string; iso: string; href: string; need: string; unread?: boolean };
 type AdminIdentity = { id: number; name: string; email: string };
 
 type Ctx = {
@@ -56,6 +56,7 @@ type Ctx = {
   deletePhoto: (id: string) => void;
 
   todo: Todo[];
+  messageNotificationHistory: Todo[];
   readNotificationIds: string[];
   markNotificationRead: (id: string) => void;
   readNotifs: () => void;
@@ -229,10 +230,7 @@ export function AdminProvider({ children }: { children: React.ReactNode }) {
     let active = true;
 
     const loadRecentActivity = async () => {
-      const [orderResult, messageResult] = await Promise.allSettled([
-        getAllOrders(),
-        getContactMessages(),
-      ]);
+      const orderResult = await Promise.allSettled([getAllOrders()]).then(([result]) => result);
       if (!active) return;
 
       if (orderResult.status === "fulfilled") {
@@ -269,21 +267,6 @@ export function AdminProvider({ children }: { children: React.ReactNode }) {
       }
       setOrdersLoading(false);
 
-      if (messageResult.status === "fulfilled") {
-        setMessageNotifications(messageResult.value
-          .filter((message: { status: string }) => message.status === "NEW")
-          .map((message: { id: string | number; subject: string; name: string; createdAt: string }): Todo => ({
-            id: `contact:${message.id}`,
-            type: "Message",
-            label: message.subject,
-            client: message.name,
-            iso: message.createdAt.slice(0, 10),
-            href: "/admin/messages",
-            need: "messages",
-          })));
-      } else {
-        setMessageNotifications([]);
-      }
     };
 
     void loadRecentActivity();
@@ -291,6 +274,49 @@ export function AdminProvider({ children }: { children: React.ReactNode }) {
       if (document.visibilityState === "visible") void loadRecentActivity();
     };
     const timer = window.setInterval(refreshWhenVisible, 15000);
+    window.addEventListener("focus", refreshWhenVisible);
+    return () => {
+      active = false;
+      window.clearInterval(timer);
+      window.removeEventListener("focus", refreshWhenVisible);
+    };
+  }, []);
+
+  // Actualise uniquement les notifications de messages pour garder leur compteur à jour.
+  useEffect(() => {
+    let active = true;
+    let running = false;
+    const loadMessageNotifications = async () => {
+      if (running) return;
+      running = true;
+      try {
+        const records = await getContactMessages();
+        if (!active) return;
+        const notifications = groupContactThreads(records).map((message): Todo => {
+          const latestCustomerMessage = [...message.replies].reverse().find((reply) => reply.sender === "CUSTOMER");
+          const activityId = latestCustomerMessage?.id ?? `initial-${message.id}`;
+          const activityDate = latestCustomerMessage?.createdAt ?? message.createdAt;
+          return {
+            id: `contact:${message.id}:${activityId}`,
+            type: "Message",
+            label: latestCustomerMessage?.subject ?? message.subject,
+            client: message.name,
+            iso: activityDate.slice(0, 10),
+            href: "/admin/messages",
+            need: "messages",
+            unread: message.status === "NEW",
+          };
+        });
+        setMessageNotifications(notifications);
+      } catch {
+        // Garde les notifications déjà chargées si le réseau est momentanément indisponible.
+      } finally {
+        running = false;
+      }
+    };
+    void loadMessageNotifications();
+    const refreshWhenVisible = () => { if (document.visibilityState === "visible") void loadMessageNotifications(); };
+    const timer = window.setInterval(refreshWhenVisible, 5000);
     window.addEventListener("focus", refreshWhenVisible);
     return () => {
       active = false;
@@ -344,7 +370,7 @@ export function AdminProvider({ children }: { children: React.ReactNode }) {
       href: "/admin/devis",
       need: "quotes",
     })),
-    ...messageNotifications,
+    ...messageNotifications.filter((item) => item.unread && !readNotificationIds.includes(item.id)),
   ].sort((a, b) => new Date(b.iso).getTime() - new Date(a.iso).getTime());
 
   const value: Ctx = {
@@ -415,6 +441,7 @@ export function AdminProvider({ children }: { children: React.ReactNode }) {
     deletePhoto: (id) => { setPhotos((l) => l.filter((x) => x.id !== id)); flash("Photo supprimée."); },
 
     todo,
+    messageNotificationHistory: messageNotifications,
     readNotificationIds,
     markNotificationRead: (id) => {
       if (readNotificationIds.includes(id)) return;

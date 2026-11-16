@@ -27,7 +27,7 @@ const adminIcons: Record<string, string> = {
 
 export default function Sidebar() {
   const pathname = usePathname();
-  const { role, todo, adminIdentity } = useAdmin();
+  const { role, todo, readNotificationIds, adminIdentity } = useAdmin();
   const [mobileOpen, setMobileOpen] = useState(false);
   useEffect(() => {
     if (!mobileOpen) return;
@@ -45,7 +45,7 @@ export default function Sidebar() {
   const badge: Record<string, number> = {
     orders: todo.filter((item) => item.need === "orders").length,
     quotes: todo.filter((item) => item.need === "quotes").length,
-    messages: todo.filter((item) => item.need === "messages").length,
+    messages: todo.filter((item) => item.need === "messages" && !readNotificationIds.includes(item.id)).length,
   };
   const adminName = adminIdentity?.name.trim() || "Compte administrateur";
   const initials = adminName.split(/\s+/).filter(Boolean).slice(0, 2).map((part) => part[0]).join("").toUpperCase() || "AD";

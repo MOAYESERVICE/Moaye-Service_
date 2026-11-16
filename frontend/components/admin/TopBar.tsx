@@ -10,20 +10,27 @@ import { ageLabel } from "@/lib/stats";
 
 export default function TopBar() {
   const pathname = usePathname();
-  const { q, setQ, role, todo, readNotificationIds, markNotificationRead, readNotifs } = useAdmin();
+  const { q, setQ, role, todo, messageNotificationHistory, readNotificationIds, markNotificationRead, readNotifs } = useAdmin();
   const [, title, sub] = pageTitles.find((t) => pathname.startsWith(t[0])) ?? pageTitles[pageTitles.length - 1];
 
   useEffect(() => setQ(""), [pathname, setQ]);
 
-  const mine = todo.filter((t) => canAccess(role, t.need));
+  const activities = [
+    ...todo.filter((item) => item.need !== "messages"),
+    ...messageNotificationHistory,
+  ].sort((a, b) => new Date(b.iso).getTime() - new Date(a.iso).getTime());
+  const mine = activities.filter((t) => canAccess(role, t.need));
+  const isUnread = (item: (typeof mine)[number]) => item.type === "Message"
+    ? Boolean(item.unread) && !readNotificationIds.includes(item.id)
+    : !readNotificationIds.includes(item.id);
   const items = mine.slice(0, 5).map((t) => ({
     id: t.id,
     href: t.href,
     title: `${t.type} · ${t.label}`,
     time: `${t.client} · ${ageLabel(t.iso)}`,
-    unread: !readNotificationIds.includes(t.id),
+    unread: isUnread(t),
   }));
-  const unread = mine.filter((item) => !readNotificationIds.includes(item.id)).length;
+  const unread = mine.filter(isUnread).length;
 
   return (
     <header className="pt-top">
