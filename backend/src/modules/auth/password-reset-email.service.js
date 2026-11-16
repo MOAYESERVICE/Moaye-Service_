@@ -3,15 +3,21 @@ import { env } from "../../config/env.js"
 
 let transporter
 
+export function getMissingPasswordResetEmailConfig() {
+  return [
+    ["SMTP_HOST", env.SMTP_HOST],
+    ["SMTP_PORT", env.SMTP_PORT],
+    ["SMTP_USER", env.SMTP_USER],
+    ["SMTP_PASSWORD", env.SMTP_PASSWORD],
+    ["SMTP_FROM", env.SMTP_FROM],
+    ["PUBLIC_FRONTEND_URL", env.PUBLIC_FRONTEND_URL],
+  ]
+    .filter(([, value]) => value === undefined || value === "")
+    .map(([name]) => name)
+}
+
 export function isPasswordResetEmailConfigured() {
-  return Boolean(
-    env.SMTP_HOST &&
-    env.SMTP_PORT &&
-    env.SMTP_USER &&
-    env.SMTP_PASSWORD &&
-    (env.SMTP_FROM || env.SMTP_USER) &&
-    env.PUBLIC_FRONTEND_URL,
-  )
+  return getMissingPasswordResetEmailConfig().length === 0
 }
 
 function getTransporter() {

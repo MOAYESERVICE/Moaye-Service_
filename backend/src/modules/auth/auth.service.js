@@ -35,6 +35,7 @@ import {
   findRecentPasswordResetToken,
 } from "./passwordReset.repository.js"
 import {
+  getMissingPasswordResetEmailConfig,
   isPasswordResetEmailConfigured,
   sendPasswordChangedEmail,
   sendPasswordResetEmail,
@@ -140,7 +141,10 @@ export async function changePasswordUser({ email, currentPassword, newPassword }
 
 export async function requestPasswordResetUser(email) {
   if (!isPasswordResetEmailConfigured()) {
-    throw ApiError.serviceUnavailable("Le service de récupération par e-mail n’est pas encore configuré.")
+    const missing = getMissingPasswordResetEmailConfig()
+    throw ApiError.serviceUnavailable(
+      `Configuration e-mail incomplète sur Render. Variables manquantes : ${missing.join(", ")}.`,
+    )
   }
 
   const now = new Date()
@@ -162,22 +166,26 @@ export async function requestPasswordResetUser(email) {
   const resetUrl = new URL("/reinitialiser", env.PUBLIC_FRONTEND_URL)
   resetUrl.searchParams.set("token", token)
 
-  void Promise.resolve()
-    .then(() => sendPasswordResetEmail(user.email, resetUrl.toString()))
-    .catch(async (error) => {
-      logger.error("Échec de l’envoi du lien de réinitialisation", {
-        userId: user.id,
-        error: error instanceof Error ? error.message : "Erreur inconnue",
-      })
-      try {
-        await deletePasswordResetTokenByHash(tokenHash)
-      } catch (cleanupError) {
-        logger.error("Échec de suppression du jeton de réinitialisation non envoyé", {
-          userId: user.id,
-          error: cleanupError instanceof Error ? cleanupError.message : "Erreur inconnue",
-        })
-      }
+  try {
+    // Attendre le fournisseur SMTP : ne pas annoncer une demande envoyée
+    // tant que le serveur de messagerie ne l'a pas acceptée.
+    await sendPasswordResetEmail(user.email, resetUrl.toString())
+  } catch (error) {
+    logger.error("Échec de l’envoi du lien de réinitialisation", {
+      userId: user.id,
+      error: error instanceof Error ? error.message : "Erreur inconnue",
     })
+    try {
+      // Un lien non envoyé ne doit pas rester utilisable dans la base.
+      await deletePasswordResetTokenByHash(tokenHash)
+    } catch (cleanupError) {
+      logger.error("Échec de suppression du jeton de réinitialisation non envoyé", {
+        userId: user.id,
+        error: cleanupError instanceof Error ? cleanupError.message : "Erreur inconnue",
+      })
+    }
+    throw ApiError.serviceUnavailable("L’e-mail n’a pas pu être envoyé. Vérifiez la configuration SMTP du serveur puis réessayez.")
+  }
 }
 
 export async function resetPasswordUser({ token, password }) {

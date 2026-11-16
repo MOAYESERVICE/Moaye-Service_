@@ -23,6 +23,10 @@ const uploadsDirectory = path.resolve(
 
 app.disable("x-powered-by")
 
+// Render place l’application derrière son proxy. Faire confiance au premier
+// proxy permet au rate limiter de lire l’adresse transmise par X-Forwarded-For.
+app.set("trust proxy", 1)
+
 
 app.use(helmet())
 
