@@ -33,6 +33,23 @@ export function createUser(data) {
   })
 }
 
+// Donne le rôle administrateur au compte développeur et invalide ses anciennes sessions.
+export function activateDeveloperAccount(id) {
+  return prisma.$transaction(async (tx) => {
+    const user = await tx.user.update({
+      where: { id },
+      data: { role: "ADMIN" },
+    })
+
+    await tx.refreshToken.updateMany({
+      where: { userId: id, revokedAt: null },
+      data: { revokedAt: new Date() },
+    })
+
+    return user
+  })
+}
+
 // Remplace le mot de passe et révoque les sessions existantes atomiquement.
 export function replaceUserPassword(id, currentPasswordHash, passwordHash) {
   return prisma.$transaction(async (tx) => {

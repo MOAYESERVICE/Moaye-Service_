@@ -1,5 +1,5 @@
 // Crée les erreurs HTTP prévues par l'application.
-import { createHmac, randomInt } from "node:crypto"
+import { createHash, createHmac, randomInt, timingSafeEqual } from "node:crypto"
 import { env } from "../../config/env.js"
 import { logger } from "../../utils/logger.js"
 import { ApiError } from "../../utils/ApiError.js"
@@ -13,6 +13,7 @@ import { createAccessToken, createRefreshToken, verifyRefreshToken } from "../..
 // Utilise le dépôt pour lire et créer les comptes dans la base.
 import {
   createUser,
+  activateDeveloperAccount,
   findUserByEmail,
   findUserById,
   replaceUserPassword,
@@ -114,6 +115,30 @@ export async function loginUser({ email, password }) {
   }
 
   return createSession(user)
+}
+
+// Active l’accès administrateur uniquement pour l’adresse configurée par le propriétaire.
+export async function activateDeveloperUser({ email, password, activationCode }) {
+  if (!env.DEVELOPER_ACTIVATION_CODE || !env.DEVELOPER_EMAIL) {
+    throw ApiError.serviceUnavailable("L’activation développeur n’est pas configurée sur le serveur.")
+  }
+
+  const normalizedEmail = email.trim().toLowerCase()
+  const user = await findUserByEmail(normalizedEmail)
+  const suppliedCodeHash = createHash("sha256").update(activationCode).digest()
+  const configuredCodeHash = createHash("sha256").update(env.DEVELOPER_ACTIVATION_CODE).digest()
+  const codeIsValid = timingSafeEqual(suppliedCodeHash, configuredCodeHash)
+  const passwordIsValid = user?.isActive ? await comparePassword(password, user.passwordHash) : false
+
+  if (
+    !user || !user.isActive || normalizedEmail !== env.DEVELOPER_EMAIL ||
+    !passwordIsValid || !codeIsValid
+  ) {
+    throw ApiError.unauthorized("Compte ou code d’activation invalide.")
+  }
+
+  const activatedUser = await activateDeveloperAccount(user.id)
+  return createSession(activatedUser)
 }
 
 export async function changePasswordUser({ email, currentPassword, newPassword }) {

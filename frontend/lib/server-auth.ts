@@ -87,7 +87,7 @@ export async function renewAuthTokens(refreshToken: string) {
   };
 }
 
-export async function forwardAuth(path: "login" | "register" | "change-password", body: Record<string, string>) {
+export async function forwardAuth(path: "login" | "register" | "change-password" | "developer-activation", body: Record<string, string>) {
   let upstream: Response;
   try {
     upstream = await fetch(`${apiBaseUrl}/auth/${path}`, {

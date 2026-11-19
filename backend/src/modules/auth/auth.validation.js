@@ -29,6 +29,15 @@ export const loginSchema = z
   // Refuse les propriétés supplémentaires.
   .strict()
 
+// Vérifie le compte propriétaire et le code secret avant l’activation développeur.
+export const developerActivationSchema = z
+  .object({
+    email: z.string().trim().toLowerCase().email().max(254),
+    password: loginPasswordSchema,
+    activationCode: z.string().trim().min(32).max(128),
+  })
+  .strict()
+
 export const changePasswordSchema = z
   .object({
     email: z.string().trim().toLowerCase().email().max(254),

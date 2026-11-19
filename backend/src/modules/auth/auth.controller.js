@@ -1,6 +1,7 @@
 // Importe les fonctions qui inscrivent un utilisateur et le connectent.
 import {
   loginUser,
+  activateDeveloperUser,
   registerUser,
   refreshAccessToken,
   logoutUser,
@@ -29,6 +30,11 @@ export async function login(req, res) {
     success: true,
     data: result,
   })
+}
+
+export async function activateDeveloper(req, res) {
+  const result = await activateDeveloperUser(req.body)
+  res.status(200).json({ success: true, data: result })
 }
 
 export async function changePassword(req, res) {

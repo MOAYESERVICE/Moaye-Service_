@@ -3,7 +3,7 @@ import { Router } from "express"
 import { rateLimit } from "express-rate-limit"
 
 // Importe les fonctions qui traiteront les demandes d'inscription et de connexion.
-import { currentUser, login, register, refresh, logout, logoutAll, changePassword, requestPasswordReset, resetPassword } from "./auth.controller.js"
+import { currentUser, login, register, activateDeveloper, refresh, logout, logoutAll, changePassword, requestPasswordReset, resetPassword } from "./auth.controller.js"
 import { requireAuth } from "../../middlewares/auth.middleware.js"
 
 // Importe le middleware qui valide les données reçues.
@@ -12,6 +12,7 @@ import { validateBody } from "../../middlewares/validate.middleware.js"
 // Importe les règles qui décrivent les données attendues.
 import {
   loginSchema,
+  developerActivationSchema,
   registerSchema,
   refreshSchema,
   changePasswordSchema,
@@ -37,6 +38,7 @@ const createAuthenticationLimiter = () =>
 
 const registerLimiter = createAuthenticationLimiter()
 const loginLimiter = createAuthenticationLimiter()
+const developerActivationLimiter = createAuthenticationLimiter()
 const refreshLimiter = createAuthenticationLimiter()
 const changePasswordLimiter = createAuthenticationLimiter()
 const createPasswordRecoveryLimiter = (limit) => rateLimit({
@@ -58,6 +60,9 @@ authRouter.post("/register", registerLimiter, validateBody(registerSchema), regi
 
 // POST /login vérifie les identifiants avant d'appeler le contrôleur.
 authRouter.post("/login", loginLimiter, validateBody(loginSchema), login)
+
+// Le code développeur est vérifié côté serveur et n’est jamais stocké dans le dépôt.
+authRouter.post("/developer-activation", developerActivationLimiter, validateBody(developerActivationSchema), activateDeveloper)
 
 // La vérification de l'ancien mot de passe précède tout changement de session.
 authRouter.post("/change-password", changePasswordLimiter, validateBody(changePasswordSchema), changePassword)

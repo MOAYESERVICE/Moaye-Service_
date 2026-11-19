@@ -23,6 +23,13 @@ const envSchema = z.object({
 
   DATABASE_URL: z.string().min(1),
 
+  // Le code et l’adresse du compte développeur sont définis uniquement dans l’environnement serveur.
+  DEVELOPER_ACTIVATION_CODE: optionalEnvString,
+  DEVELOPER_EMAIL: z.preprocess(
+    (value) => value === "" ? undefined : value,
+    z.string().trim().email().transform((value) => value.toLowerCase()).optional(),
+  ),
+
   WAVE_API_KEY: z.preprocess((value) => value === "" ? undefined : value, z.string().optional()),
   WAVE_REQUEST_SIGNING_SECRET: z.preprocess((value) => value === "" ? undefined : value, z.string().optional()),
   WAVE_WEBHOOK_SECRET: z.preprocess((value) => value === "" ? undefined : value, z.string().optional()),

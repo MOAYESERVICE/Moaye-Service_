@@ -8,7 +8,7 @@ type AuthResponse = {
   data?: { user?: { role?: SessionRole } };
 };
 
-async function requestAuth(path: "login" | "register" | "change-password" | "forgot-password" | "reset-password", data: Record<string, string>) {
+async function requestAuth(path: "login" | "register" | "change-password" | "developer-activation" | "forgot-password" | "reset-password", data: Record<string, string>) {
   let response: Response;
   try {
     response = await fetch(`/api/auth/${path}`, {
@@ -38,6 +38,18 @@ export async function login(data: LoginData): Promise<SessionRole> {
   const user = result?.user;
   if (!user?.role) throw new Error("Le service de connexion n’a pas renvoyé le rôle du compte.");
   return user.role;
+}
+
+export async function activateDeveloper(data: LoginData & { activationCode: string }): Promise<SessionRole> {
+  const result = await requestAuth("developer-activation", {
+    email: data.email,
+    password: data.password,
+    activationCode: data.activationCode,
+  });
+  if (result?.user?.role !== "admin") {
+    throw new Error("Le serveur n’a pas confirmé l’activation développeur.");
+  }
+  return result.user.role;
 }
 
 export async function changePassword(data: ChangePasswordData & { email: string; currentPassword: string }): Promise<SessionRole> {
