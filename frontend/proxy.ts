@@ -16,7 +16,7 @@ export async function proxy(req: NextRequest) {
   const refreshToken = req.cookies.get(refreshCookieName)?.value;
   let renewedTokens: AuthTokens | null = null;
   const loginUrl = req.nextUrl.clone();
-  loginUrl.pathname = "/inscription";
+  loginUrl.pathname = "/connexion";
 
   const loginRedirect = () =>
     clearAuthCookies(NextResponse.redirect(loginUrl));
