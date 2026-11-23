@@ -30,7 +30,7 @@ export default async function RealisationDetailPage({ params }: Props) {
           <span className="tag">{project.domain}</span>
           <h1 style={{ fontSize: "clamp(28px, 4vw, 40px)", fontWeight: 700 }}>{project.title}</h1>
           <p className="muted">{project.desc}</p>
-          <Link className="btn btn-green" href="/devis">Parler d’un projet similaire</Link>
+          <Link className="btn btn-green" href="/connexion">Continuer ce projet</Link>
         </article>
       </div>
     </main>

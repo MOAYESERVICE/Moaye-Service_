@@ -23,7 +23,7 @@ export default function RegisterForm() {
     setFailed(false);
     try {
       await registerUser({ ...data, phone: formatInternationalPhone(data.phone, phoneCode) });
-      router.push("/mon-compte");
+      router.push("/");
     } catch (error) {
       setErrorMessage(error instanceof Error ? error.message : "Votre compte n’a pas pu être créé. Veuillez vérifier les informations saisies et réessayer.");
       setFailed(true);

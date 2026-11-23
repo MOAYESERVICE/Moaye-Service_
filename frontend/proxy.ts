@@ -12,18 +12,11 @@ import {
 const apiBaseUrl = (process.env.MOAYE_API_URL ?? "http://localhost:4000/api").replace(/\/+$/, "");
 
 export async function proxy(req: NextRequest) {
-  if (
-    process.env.NODE_ENV === "development" &&
-    (req.nextUrl.pathname.startsWith("/admin") || req.nextUrl.pathname.startsWith("/mon-compte"))
-  ) {
-    return NextResponse.next();
-  }
-
   let token = req.cookies.get(sessionCookieName)?.value;
   const refreshToken = req.cookies.get(refreshCookieName)?.value;
   let renewedTokens: AuthTokens | null = null;
   const loginUrl = req.nextUrl.clone();
-  loginUrl.pathname = "/connexion";
+  loginUrl.pathname = "/inscription";
 
   const loginRedirect = () =>
     clearAuthCookies(NextResponse.redirect(loginUrl));
@@ -129,4 +122,8 @@ export async function proxy(req: NextRequest) {
   return renewedTokens ? setAuthCookies(next, renewedTokens) : next;
 }
 
-export const config = { matcher: ["/mon-compte/:path*", "/admin/:path*"] };
+export const config = {
+  matcher: [
+    "/((?!api(?:/|$)|_next/static|_next/image|favicon\\.ico$|sitemap\\.xml$|robots\\.txt$|connexion(?:/|$)|connexion-admin(?:/|$)|inscription(?:/|$)|mot-de-passe-oublie(?:/|$)|reinitialiser(?:/|$)|.*\\.(?:avif|gif|ico|jpe?g|png|svg|webp|mp4|woff2?|ttf|css|js|map|pdf)$).*)",
+  ],
+};

@@ -1,5 +1,6 @@
 import { Suspense } from "react";
 import { connection } from "next/server";
+import Link from "next/link";
 import Photo from "@/components/ui/Photo";
 import RealisationPhotoGallery from "@/components/public/RealisationPhotoGallery";
 import { getPublishedRealisationPhotos, getPublishedRealisations } from "@/lib/realisations";
@@ -22,6 +23,7 @@ async function RealisationsList() {
               <span className="tag realisation-card-tag">{project.domain}{project.location ? ` · ${project.location}` : ""}</span>
               <h2 className="project-card-title">{project.title}</h2>
               <p className="muted realisation-card-description">{project.description}</p>
+              <Link className="btn btn-ghost btn-sm" href="/connexion">Continuer ce projet</Link>
             </div>
           </article>
         ))}

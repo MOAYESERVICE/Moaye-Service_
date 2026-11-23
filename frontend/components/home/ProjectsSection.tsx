@@ -29,6 +29,7 @@ export default async function ProjectsSection() {
                   <span className="tag realisation-card-tag">{project.domain}{project.location ? ` · ${project.location}` : ""}</span>
                   <h3 className="project-card-title">{project.title}</h3>
                   <p className="muted realisation-card-description">{project.description}</p>
+                  <Link className="btn btn-ghost btn-sm" href="/connexion">Continuer ce projet</Link>
                 </div>
               </article>
             ))}

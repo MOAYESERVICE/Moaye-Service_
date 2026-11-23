@@ -25,7 +25,7 @@ export default function LoginForm({ adminOnly = false }: { adminOnly?: boolean }
         await logout();
         throw new Error("L’accès à l’administration est réservé aux comptes autorisés.");
       }
-      router.push(role === "admin" ? "/admin" : "/mon-compte");
+      router.push(role === "admin" ? "/admin" : "/");
     } catch (error) {
       setErrorMessage(error instanceof Error ? error.message : "La connexion n’a pas pu être établie. Veuillez vérifier vos informations et réessayer.");
       setFailed(true);
