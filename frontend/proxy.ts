@@ -21,6 +21,12 @@ export async function proxy(req: NextRequest) {
   const loginRedirect = () =>
     clearAuthCookies(NextResponse.redirect(loginUrl));
 
+  if (req.nextUrl.pathname === "/") {
+    const redirect = NextResponse.redirect(loginUrl);
+    redirect.headers.set("Cache-Control", "no-store");
+    return redirect;
+  }
+
   async function fetchCurrentUser(accessToken: string) {
     return fetch(`${apiBaseUrl}/auth/me`, {
       headers: { Authorization: `Bearer ${accessToken}` },
