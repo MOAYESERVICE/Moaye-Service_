@@ -22,9 +22,9 @@ export async function proxy(req: NextRequest) {
     clearAuthCookies(NextResponse.redirect(loginUrl));
 
   if (req.nextUrl.pathname === "/") {
-    const redirect = NextResponse.redirect(loginUrl);
-    redirect.headers.set("Cache-Control", "no-store");
-    return redirect;
+    const rewrite = NextResponse.rewrite(loginUrl);
+    rewrite.headers.set("Cache-Control", "no-store");
+    return rewrite;
   }
 
   async function fetchCurrentUser(accessToken: string) {
