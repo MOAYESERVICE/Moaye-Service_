@@ -521,6 +521,15 @@ textarea.inp{padding:12px 16px;min-height:150px;resize:vertical;line-height:1.5}
 .auth-tabs a.active{background:var(--green-dark);color:#fff;box-shadow:0 3px 9px rgba(14,42,38,.18)}
 .auth-panel .auth-heading h1{font-size:30px;font-weight:750;letter-spacing:-.035em;line-height:1.15}
 .auth-panel .auth-heading .muted{margin-top:8px;font-size:14px;line-height:1.5}
+.signup-unavailable{display:grid;grid-template-columns:52px minmax(0,1fr);align-items:start;gap:16px;padding:22px;border:1px solid #E8B0A5;border-radius:18px;background:linear-gradient(145deg,#FFF8F5,#FFF0EC);color:#7D2A17;box-shadow:0 12px 30px rgba(125,42,23,.07)}
+.signup-unavailable-icon{display:grid;width:48px;height:48px;place-items:center;border-radius:15px;background:#B4301A;color:#fff}
+.signup-unavailable-icon svg{width:25px;height:25px}
+.signup-unavailable-copy{min-width:0}
+.signup-unavailable-label{display:inline-flex;margin:2px 0 9px;color:#A33821;font-size:11px;font-weight:800;letter-spacing:.11em;text-transform:uppercase}
+.signup-unavailable-copy h2{color:#742B1B;font-size:clamp(17px,2vw,20px);font-weight:750;letter-spacing:-.02em;line-height:1.35;overflow-wrap:anywhere}
+.signup-unavailable-copy p{margin:9px 0 18px;color:#805043;font-size:14px;line-height:1.6;overflow-wrap:anywhere}
+.signup-unavailable-contact{max-width:100%;min-height:44px;padding:8px 17px;border-radius:999px;font-size:13px;line-height:1.35;text-align:center;white-space:normal;overflow-wrap:anywhere}
+.signup-unavailable-contact span{font-size:16px}
 .auth-form{display:flex;flex-direction:column;gap:16px}
 .auth-panel:has(.register-form){padding:clamp(24px,4vw,48px)}
 .auth-form.register-form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 18px}
@@ -564,6 +573,7 @@ textarea.inp{padding:12px 16px;min-height:150px;resize:vertical;line-height:1.5}
   .auth-aside-foot{align-self:flex-end;font-size:10px}
   .auth-panel{max-width:none;padding:32px 28px}
   .auth-panel:has(.register-form){padding:32px 28px}
+  .signup-unavailable{gap:14px;padding:19px}
   .auth-form.register-form{grid-template-columns:minmax(0,1fr)}
   .register-form .fgroup:has(#phone),.register-form>.alert-error,.register-form>[type=submit]{grid-column:1}
   .auth-panel .auth-foot{flex-direction:column;align-items:flex-start;gap:11px}
@@ -573,9 +583,20 @@ textarea.inp{padding:12px 16px;min-height:150px;resize:vertical;line-height:1.5}
   .auth-aside{min-height:180px;padding:18px 20px}
   .auth-aside-content{padding:18px 0 12px}
   .auth-aside-content h2{max-width:20ch;font-size:22px}
-  .auth-aside-content ul,.auth-aside-foot{display:none}
+  .auth-aside-content ul{display:flex;gap:5px;margin-top:10px}
+  .auth-aside-content li:nth-child(n+3),.auth-aside-foot{display:none}
   .auth-panel{padding:26px 22px}
   .auth-panel:has(.register-form){padding:26px 22px}
+  .signup-unavailable{grid-template-columns:1fr;gap:12px;padding:18px}
+  .signup-unavailable-contact{width:100%;justify-content:center;gap:6px}
+}
+@media(max-width:360px){
+  .auth-page:has(.auth-shell-customer){padding:10px 8px}
+  .auth-shell-customer{border-radius:14px}
+  .auth-aside{padding:16px 17px}
+  .auth-panel{padding:22px 16px}
+  .signup-unavailable{padding:15px;border-radius:14px}
+  .signup-unavailable-contact{font-size:12px}
 }
 
 
